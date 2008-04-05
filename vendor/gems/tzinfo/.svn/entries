@@ -1,0 +1,70 @@
+8
+
+dir
+98
+https://svn.corkboardinc.com/activebudget/trunk/vendor/gems/tzinfo
+https://svn.corkboardinc.com/activebudget
+
+
+
+2007-10-07T20:27:05.816996Z
+97
+jmckible
+
+
+svn:special svn:externals svn:needs-lock
+
+test
+dir
+
+LICENSE
+file
+
+
+
+
+2007-10-07T20:24:56.000000Z
+681ad5db82b7bf384dc7790ead09094b
+2007-10-07T20:27:05.816996Z
+97
+jmckible
+
+Rakefile
+file
+
+
+
+
+2007-10-07T20:24:56.000000Z
+a57017e3b132d521852eb6f1b66ccc1f
+2007-10-07T20:27:05.816996Z
+97
+jmckible
+
+lib
+dir
+
+CHANGES
+file
+
+
+
+
+2007-10-07T20:24:57.000000Z
+bc3ed6804e2a1d0f69bf496a8498d4e1
+2007-10-07T20:27:05.816996Z
+97
+jmckible
+
+README
+file
+
+
+
+
+2007-10-07T20:24:56.000000Z
+39c9653dcfcd3f444cc9add2f07163c6
+2007-10-07T20:27:05.816996Z
+97
+jmckible
+

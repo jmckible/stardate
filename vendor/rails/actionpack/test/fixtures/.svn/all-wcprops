@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/rails/!svn/ver/7701/trunk/actionpack/test/fixtures
+END
+topic.rb
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/rails/!svn/ver/6920/trunk/actionpack/test/fixtures/topic.rb
+END
+developers_projects.yml
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/rails/!svn/ver/3553/trunk/actionpack/test/fixtures/developers_projects.yml
+END
+topics.yml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/rails/!svn/ver/3553/trunk/actionpack/test/fixtures/topics.yml
+END
+replies.yml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/rails/!svn/ver/3553/trunk/actionpack/test/fixtures/replies.yml
+END
+developer.rb
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/rails/!svn/ver/3553/trunk/actionpack/test/fixtures/developer.rb
+END
+developers.yml
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/rails/!svn/ver/3553/trunk/actionpack/test/fixtures/developers.yml
+END
+company.rb
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/rails/!svn/ver/3553/trunk/actionpack/test/fixtures/company.rb
+END
+project.rb
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/rails/!svn/ver/3553/trunk/actionpack/test/fixtures/project.rb
+END
+projects.yml
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/rails/!svn/ver/3553/trunk/actionpack/test/fixtures/projects.yml
+END
+reply.rb
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/rails/!svn/ver/3553/trunk/actionpack/test/fixtures/reply.rb
+END
+companies.yml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/rails/!svn/ver/3553/trunk/actionpack/test/fixtures/companies.yml
+END

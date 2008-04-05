@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/rails/!svn/ver/4673/trunk/railties/lib/commands/performance
+END
+benchmarker.rb
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/rails/!svn/ver/3290/trunk/railties/lib/commands/performance/benchmarker.rb
+END
+profiler.rb
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/rails/!svn/ver/4673/trunk/railties/lib/commands/performance/profiler.rb
+END

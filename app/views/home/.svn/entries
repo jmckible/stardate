@@ -1,0 +1,40 @@
+8
+
+dir
+98
+https://svn.corkboardinc.com/activebudget/trunk/app/views/home
+https://svn.corkboardinc.com/activebudget
+
+
+
+2007-07-05T14:20:04.167210Z
+88
+jmckible
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+277d93c2-6f12-11dc-8874-439135874075
+
+index.html.erb
+file
+
+
+
+
+2007-10-07T19:29:50.000000Z
+45e974c985888634c9c424e3a8e57f9a
+2007-07-05T14:20:04.167210Z
+88
+jmckible
+

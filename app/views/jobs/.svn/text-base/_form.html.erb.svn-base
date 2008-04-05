@@ -1,0 +1,5 @@
+<p>Name<br/> 
+	<%= form.text_field :name %></p>
+	
+<p>Hourly Rate<br/> 
+	<%= form.text_field :rate, :class=>'money' %></p>

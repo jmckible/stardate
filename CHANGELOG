@@ -1,0 +1,73 @@
+* SVN *
+
+* Note that tzinfo gem is required. [jmckible]
+
+* redgreen is now required.  I just can't live without it. [jmckible]
+
+* Added screencast [jmckible]
+
+* Disambiguate true/false/0/1 so Paycheck items are created properly.  Closes #11 [jmckible]
+
+* items/redbox_edit.js.erb could not see the form partial.  Un-DRY'd the partial call.  Closes #12 [jmckible]
+
+* Handle deletion of paychecks [jmckible]
+
+* Apply layout to internal app.  Add stub for intro text. [jmckible]
+
+* Track when Users created [jmckible]
+
+* Google Analytics [jmckible]
+
+* Separate public css.  Give it the Corkboard look. [jmckible]
+
+* Add captcha to user creation and restrict users to edit themselves. [jmckible]
+
+* Clean up Task API, views, and test coverage [jmckible]
+
+* Clean up Recurring API and views. [jmckible]
+
+* Rename public, layout, and graphs view files to standard naming [jmckible]
+
+* Fix create paycheck with invalid transaction item data.  Clean up Paycheck REST API. Rename Paycheck view files.  Functional test for xml/html requests. [jmckible]
+
+* Clean up Job REST API [jmckible]
+
+* Limit users to 50 jobs [jmckible]
+
+* Item REST API cleaned up [jmckible] 
+
+* A paycheck's item and job must come from the same user [jmckible]
+
+* A task's paycheck must come from the same job [jmckible]
+
+* Got to use the same validations and protections on Recurrings as Items [jmckible]
+
+* Nullify Paycheck#item on item destroy [jmckible]
+
+* Validate items and categories have the same owner [jmckible]
+
+* Add secure_associations plugin and clean up code where possible [jmckible]
+
+* Rename Category views to .html.erb.  Remove show html view.  Protect :user attribute.  Clean up REST XML output. [jmckible]
+
+* Default TzTime TimeZone to London [jmckible]
+
+* Handle redirects on task and item creation/editing.  Separate redirect for item regular edit/redbox edit. Handle create with errors. [jmckible]
+
+* Improve User test coverage [jmckible]
+
+* Added MIT license [jmckible]
+
+* Improve Task coverage and protect attributes [jmckible]
+
+* Make Paycheck#paid a virtual attribute, implied by Paycheck#item. Improve Paycheck test coverage [jmckible]
+
+* Protect Job attributes. Improve Job test coverage. Destroy related paychecks on job destruction [jmckible]
+
+* Handle Item destruction [jmckible]
+
+* Improve Item test coverage [jmckible]
+
+* Improve Category test coverage [jmckible]
+
+* CHANGELOG created [jmckible]

@@ -1,0 +1,61 @@
+8
+
+dir
+7994
+http://dev.rubyonrails.org/svn/rails/trunk/actionpack/test/fixtures/public
+http://dev.rubyonrails.org/svn/rails
+
+
+
+2007-02-21T15:58:42.213495Z
+6188
+david
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+5ecf4fe2-1ee6-0310-87b1-e25e094e27de
+
+images
+dir
+
+500.html
+file
+
+
+
+
+2007-10-07T19:30:48.000000Z
+ed24e5e349297a55cb18607d8b160e62
+2006-11-13T02:03:50.247790Z
+5504
+bitsweat
+
+javascripts
+dir
+
+404.html
+file
+
+
+
+
+2007-10-07T19:30:48.000000Z
+4d175f9da7b7ea28d28cfe516d776845
+2006-11-13T02:03:50.247790Z
+5504
+bitsweat
+
+stylesheets
+dir
+

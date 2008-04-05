@@ -1,0 +1,40 @@
+8
+
+dir
+98
+https://svn.corkboardinc.com/activebudget/trunk/vendor/gems/tzinfo/lib/tzinfo/definitions/America/North_Dakota
+https://svn.corkboardinc.com/activebudget
+
+
+
+2007-10-07T20:27:05.816996Z
+97
+jmckible
+
+
+svn:special svn:externals svn:needs-lock
+
+Center.rb
+file
+
+
+
+
+2007-10-07T20:24:57.000000Z
+569731a06a00e8600f23525ce46b9ebe
+2007-10-07T20:27:05.816996Z
+97
+jmckible
+
+New_Salem.rb
+file
+
+
+
+
+2007-10-07T20:24:57.000000Z
+558f5482d148744f9c6f0673cb60f216
+2007-10-07T20:27:05.816996Z
+97
+jmckible
+

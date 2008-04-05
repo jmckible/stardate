@@ -1,0 +1,49 @@
+<div class="intro">
+	<%- if current_user.items.count == 0 -%>
+		This is the register.  All transactions will appear here. 
+	<%- end -%>
+</div>
+
+<h2><%= humanize_period @period %></h2>
+
+<table id="Register">
+	<tr>
+		<th>Date</th>
+		<th>Description</th>
+		<th>&nbsp;</th>
+		<th>&nbsp;</th>
+	</tr>
+	
+	<%- odd_or_even = 0 -%>
+	<%- for item in current_user.items.on(@period) -%>
+		<tr class="list<%= odd_or_even %>">
+			<td><%= link_to item.date.strftime('%B %e'), edit_item_path(item) %></td>
+			<td><%= item.description %> <span class="tags"><%= item.tag_names %></span></td>
+			<%- if item.value > 0 -%>
+				<td class="green right"><%= number_with_delimiter item.value %></td>
+				<td>&nbsp;</td>
+			<%- else -%>
+				<td>&nbsp;</td>
+				<td class="last red"><%= number_with_delimiter item.value * -1 %></td>
+			<%- end -%>
+		</tr>
+		<%- odd_or_even = 1 - odd_or_even -%>
+	<%- end -%>
+	<%- if current_user.items.on(@period).size == 0 -%>
+		<tr>
+			<td>&nbsp;</td>
+			<td><i>No Activity</i></td>
+		</tr>
+	<%- end -%>
+	
+	<tr class="total">
+		<td><strong>Total</strong></td>
+		<td>&nbsp;</td>
+		<td class="green"><%= number_with_delimiter current_user.sum_income(@period) %></td>
+		<td class="last red"><%= number_with_delimiter current_user.sum_expenses(@period) * -1 %></td>
+</table>
+
+
+<% form_tag register_path(nil) do %>
+  <p><%= select_month @period.first %> <%= select_year @period.first %> <%= submit_tag 'Change Date' %></p>
+<% end %>

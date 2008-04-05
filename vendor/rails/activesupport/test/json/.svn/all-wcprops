@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/rails/!svn/ver/7746/trunk/activesupport/test/json
+END
+encoding_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/rails/!svn/ver/7746/trunk/activesupport/test/json/encoding_test.rb
+END
+decoding_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/rails/!svn/ver/7613/trunk/activesupport/test/json/decoding_test.rb
+END

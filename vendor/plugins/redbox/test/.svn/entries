@@ -1,0 +1,40 @@
+8
+
+dir
+98
+https://svn.corkboardinc.com/activebudget/trunk/vendor/plugins/redbox/test
+https://svn.corkboardinc.com/activebudget
+
+
+
+2007-05-08T04:59:12.546291Z
+1
+jmckible
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+277d93c2-6f12-11dc-8874-439135874075
+
+redbox_test.rb
+file
+
+
+
+
+2007-10-07T19:29:51.000000Z
+4388da5356e7d8a38f3edfdf5e795849
+2007-05-08T04:59:12.546291Z
+1
+jmckible
+

@@ -1,0 +1,10 @@
+<h1>Hourly Work</h1>
+
+<%= error_messages_for :task %>
+
+<% form_for(:task, :url => tasks_path) do |f| %>
+  <%= render :partial=>'form', :object=>f%>
+  <p><%= submit_tag "Create" %></p>
+<% end %>
+
+<p><%= link_to 'Home', home_path %></p>

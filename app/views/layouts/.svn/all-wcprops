@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/activebudget/!svn/ver/89/trunk/app/views/layouts
+END
+public.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/activebudget/!svn/ver/79/trunk/app/views/layouts/public.html.erb
+END
+maintenance.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/activebudget/!svn/ver/41/trunk/app/views/layouts/maintenance.html.erb
+END
+application.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/activebudget/!svn/ver/89/trunk/app/views/layouts/application.html.erb
+END

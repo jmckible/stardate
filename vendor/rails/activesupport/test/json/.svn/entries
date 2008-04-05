@@ -1,0 +1,52 @@
+8
+
+dir
+7994
+http://dev.rubyonrails.org/svn/rails/trunk/activesupport/test/json
+http://dev.rubyonrails.org/svn/rails
+
+
+
+2007-10-05T09:43:24.208537Z
+7746
+bitsweat
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+5ecf4fe2-1ee6-0310-87b1-e25e094e27de
+
+encoding_test.rb
+file
+
+
+
+
+2007-10-07T19:30:25.000000Z
+e9c7c91b2b21ca19ca684160ade5f458
+2007-10-05T09:43:24.208537Z
+7746
+bitsweat
+
+decoding_test.rb
+file
+
+
+
+
+2007-10-07T19:30:25.000000Z
+de7b26de498d19f3b17565fc4a54baca
+2007-09-24T17:41:55.102221Z
+7613
+rick
+

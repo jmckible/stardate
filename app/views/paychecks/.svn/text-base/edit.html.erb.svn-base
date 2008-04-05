@@ -1,0 +1,26 @@
+<h1>Editing paycheck</h1>
+
+<%= error_messages_for :paycheck %>
+
+<% form_for(:paycheck, :url => job_paycheck_path(@job, @paycheck), :html => { :method => :put }) do |f| %>
+	<p>Date<br/><%= f.date_select :created_at, :order=>[:month, :day, :year] %></p>
+  <p>Description<br/><%= f.text_field :description, :class=>'description' %></p>
+  <p>Total<br/><%= f.text_field :value, :class=>'money' %></p>
+  <p>Payment Received: <%= f.check_box :paid %></p>
+  <p><%= submit_tag "Update" %> or <%= link_to "Delete", job_paycheck_path(@job, @paycheck), :method=>:delete, :confirm=>"Are you sure?" %></p>
+<% end %>
+
+<%- if @paycheck.tasks.size > 0 -%>
+<h2>Included Work</h2>
+<table class="register">
+	<% for task in @paycheck.tasks -%>
+		<tr>
+			<td><%= task.date.strftime('%B %e') %></td>
+			<td class="right"><%= minutes_to_clock task.minutes %></td>
+			<td><%= task.description %></td>
+		</tr>
+	<% end -%>
+</table>
+<%- end -%>
+
+<p><%= link_to 'Back', job_path(@job) %></p>

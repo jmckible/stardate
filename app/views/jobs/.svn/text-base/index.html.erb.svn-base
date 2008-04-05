@@ -1,0 +1,24 @@
+<% for job in @jobs -%>
+  <h2><%= link_to job.name, job_path(job) %></h2>
+  <% minutes = job.tasks.unpaid.collect{|t|t.minutes}.sum || 0 %>
+	<%- if minutes > 0 -%>
+  	<p>Unpaid: <strong><%= number_to_currency job.rate * minutes / 60.0 %></strong></p>
+	<%- end -%>
+  
+  <%- if job.paychecks.unpaid.size > 0 -%>
+		<p>Billed Awaiting Payment: <strong><%= number_to_currency job.paychecks.unpaid.collect{|t|t.value}.sum %></strong></p>
+	<%- end -%>
+	
+	<% unless job.paychecks.size == 0 -%>   
+    <p>Paid to Date: <strong><%= number_to_currency job.paychecks.sum(:value) %></strong></p>
+  <% end -%>
+  <p><br></p>
+<% end -%>
+
+<%- if @jobs.size == 0 -%>
+	<div class="intro">
+		You can use jobs to track hours worked.<br/> Assign an hourly rate to a job and you'll be able to budget your income.
+	</div>
+<%- end -%>
+
+<p><%= link_to 'New Job', new_job_path %></p>

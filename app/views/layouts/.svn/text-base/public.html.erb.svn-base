@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>ActiveBudget - Open Source Cash Flow on Rails</title>
+  <%= stylesheet_link_tag 'activebudget' %>
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/corkboard" />
+</head>
+
+<body>
+	<div id="Header">
+    <div class="fixed_width">
+      <%= link_to image_tag('activebudget_logo_small.png', :id=>:Logo), welcome_path %>
+    </div>
+  </div>
+  
+  <ul id="Navigation">
+    <li class="first"><%= link_to 'Sign Up', new_user_path %></li>
+		<li><%= link_to 'API', 'http://code.google.com/p/activebudget/wiki/API', :target=>:blank %></li>
+		<li><%= link_to 'Source', 'http://code.google.com/p/activebudget/', :target=>:blank %></li>
+		<li class="manage"><%= link_to 'Login', login_path %></li>
+  </ul>
+  
+	<div id="Content" class="clearfix">
+		<%= yield %>
+	</div>
+		
+	<div id="Footer">
+    ActiveBudget is available under the <%= link_to 'MIT license', 'http://www.opensource.org/licenses/mit-license.php' %> and managed by <%= link_to 'Corkboard', 'http://corkboardinc.com' %>
+  </div>
+
+	<!-- Google Analytics -->
+	<% if ENV['RAILS_ENV'] == 'production' -%>
+		<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			_uacct = "UA-1143202-3";
+			urchinTracker();
+		</script>
+	<% end -%>
+
+</body>
+</html>

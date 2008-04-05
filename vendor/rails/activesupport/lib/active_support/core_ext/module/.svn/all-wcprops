@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/rails/!svn/ver/7236/trunk/activesupport/lib/active_support/core_ext/module
+END
+loading.rb
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/rails/!svn/ver/4060/trunk/activesupport/lib/active_support/core_ext/module/loading.rb
+END
+introspection.rb
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/rails/!svn/ver/6426/trunk/activesupport/lib/active_support/core_ext/module/introspection.rb
+END
+inclusion.rb
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/rails/!svn/ver/3519/trunk/activesupport/lib/active_support/core_ext/module/inclusion.rb
+END
+attr_internal.rb
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/rails/!svn/ver/4839/trunk/activesupport/lib/active_support/core_ext/module/attr_internal.rb
+END
+aliasing.rb
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/rails/!svn/ver/7195/trunk/activesupport/lib/active_support/core_ext/module/aliasing.rb
+END
+attribute_accessors.rb
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/rails/!svn/ver/7220/trunk/activesupport/lib/active_support/core_ext/module/attribute_accessors.rb
+END
+attr_accessor_with_default.rb
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/rails/!svn/ver/5793/trunk/activesupport/lib/active_support/core_ext/module/attr_accessor_with_default.rb
+END
+delegation.rb
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/rails/!svn/ver/7236/trunk/activesupport/lib/active_support/core_ext/module/delegation.rb
+END

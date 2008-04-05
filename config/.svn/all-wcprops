@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/activebudget/!svn/ver/98/trunk/config
+END
+routes.rb
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/activebudget/!svn/ver/89/trunk/config/routes.rb
+END
+boot.rb
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/activebudget/!svn/ver/1/trunk/config/boot.rb
+END
+environment.rb
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/activebudget/!svn/ver/96/trunk/config/environment.rb
+END
+mail.yml.example
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/activebudget/!svn/ver/4/trunk/config/mail.yml.example
+END
+database.yml.example
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/activebudget/!svn/ver/7/trunk/config/database.yml.example
+END
+deploy.rb
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/activebudget/!svn/ver/98/trunk/config/deploy.rb
+END
+mongrel_cluster.yml.example
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/activebudget/!svn/ver/4/trunk/config/mongrel_cluster.yml.example
+END

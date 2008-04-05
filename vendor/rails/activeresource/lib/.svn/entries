@@ -1,0 +1,55 @@
+8
+
+dir
+7994
+http://dev.rubyonrails.org/svn/rails/trunk/activeresource/lib
+http://dev.rubyonrails.org/svn/rails
+
+
+
+2007-10-07T02:13:51.046028Z
+7764
+nzkoz
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+5ecf4fe2-1ee6-0310-87b1-e25e094e27de
+
+active_resource
+dir
+
+active_resource.rb
+file
+
+
+
+
+2007-10-07T19:30:21.000000Z
+82e297f38171c0f527cbb0de094a70af
+2007-09-20T23:18:05.838267Z
+7518
+david
+
+activeresource.rb
+file
+
+
+
+
+2007-10-07T19:30:21.000000Z
+d819521da29be7e8da6b823cb34db6c0
+2007-09-22T18:15:05.027080Z
+7560
+david
+

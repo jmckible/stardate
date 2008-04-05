@@ -1,0 +1,43 @@
+8
+
+dir
+7994
+http://dev.rubyonrails.org/svn/rails/trunk/actionwebservice/test/fixtures
+http://dev.rubyonrails.org/svn/rails
+
+
+
+2006-12-03T20:30:34.307100Z
+5670
+kent
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+5ecf4fe2-1ee6-0310-87b1-e25e094e27de
+
+db_definitions
+dir
+
+users.yml
+file
+
+
+
+
+2007-10-07T19:30:57.000000Z
+758c0fbdc55379a4dcb526de4bbf2bbb
+2006-12-03T20:30:34.307100Z
+5670
+kent
+

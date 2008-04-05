@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/activebudget/!svn/ver/89/trunk/app/models
+END
+item.rb
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/activebudget/!svn/ver/89/trunk/app/models/item.rb
+END
+user.rb
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/activebudget/!svn/ver/89/trunk/app/models/user.rb
+END
+recurring.rb
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/activebudget/!svn/ver/89/trunk/app/models/recurring.rb
+END
+tagging.rb
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/activebudget/!svn/ver/67/trunk/app/models/tagging.rb
+END
+task.rb
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/activebudget/!svn/ver/76/trunk/app/models/task.rb
+END
+paycheck.rb
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/activebudget/!svn/ver/76/trunk/app/models/paycheck.rb
+END
+job.rb
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/activebudget/!svn/ver/76/trunk/app/models/job.rb
+END
+tag.rb
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/activebudget/!svn/ver/73/trunk/app/models/tag.rb
+END

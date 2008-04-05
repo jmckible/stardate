@@ -1,0 +1,40 @@
+8
+
+dir
+7994
+http://dev.rubyonrails.org/svn/rails/trunk/activesupport/lib/active_support/core_ext/float
+http://dev.rubyonrails.org/svn/rails
+
+
+
+2007-09-14T00:34:43.877118Z
+7474
+bitsweat
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+5ecf4fe2-1ee6-0310-87b1-e25e094e27de
+
+rounding.rb
+file
+
+
+
+
+2007-10-07T19:30:28.000000Z
+aa7c4ac255e40b7ec6b9bb15c560ce9f
+2007-09-14T00:34:43.877118Z
+7474
+bitsweat
+

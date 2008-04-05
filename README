@@ -1,0 +1,41 @@
+== Welcome to ActiveBudget
+
+ActiveBudget is a web application written in Ruby on Rails.  It can track your income, expenses, and time spent working.  You can see ActiveBudget in action at http://activebudget.org.  If you'd like to get your own version of ActiveBudget running, it's not too difficult.
+
+== Installation
+
+You'll need a working Ruby on Rails environment to use ActiveBudget.  If you're using Mac OS X, check out http://tuples.us/rails-guide for a step by step setup guide.
+
+Before you can begin using ActiveBudget you must complete a few configuration files.  In the config/ directory, you'll need to create a database.yml and mail.yml file.  Use the .example files for guidance.  You'll need to create a fresh database for ActiveBudget.
+
+Once your database.yml file is configured, you can use the provided migrations to set up your database:
+
+  $ rake db:migrate
+
+Once that is complete, you can start the server with:
+
+  $ script/server
+
+In order for recurring transactions to occur, you must run rake task 'rake recur' once a day.  I'd suggest putting it in your crontab.
+
+The only external library required is tzinfo.  You can install it with:
+  
+  $ sudo gem install tzinfo
+  
+To run the test suite, you'll also need the redgreen gem.  All it does is colorize the output of the tests, but I find it invaluable for TDD:
+
+  $ sudo gem install redgreen
+
+== FusionCharts
+
+ActiveBudget uses FusionCharts http://fusioncharts.com to create all the graphs.  InfoSoft Global provides a free version of FusionCharts for open source projects.  Those free charts have been included in the public/flash directory.  
+
+You may notice the charts on http://activebudget.org are a little nicer looking.  If you've paid for a copy of FusionCharts v3, you can replace the free version with the v3 files.  You'll get much better looking graphs.  Please support InfoSoft Global for providing such a valuable resource.
+
+== Links
+
+If you'd like more information on Ruby on Rails, check out http://rubyonrails.org
+
+ActiveBudget is hosted at Google Code.  The address is http://code.google.com/p/activebudget/
+
+ActiveBudget was written by Jordan McKible http://jordan.mckible.com 

@@ -1,0 +1,52 @@
+8
+
+dir
+7994
+http://dev.rubyonrails.org/svn/rails/trunk/actionpack/test/fixtures/post_test/layouts
+http://dev.rubyonrails.org/svn/rails
+
+
+
+2007-09-28T01:23:20.984924Z
+7661
+david
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+5ecf4fe2-1ee6-0310-87b1-e25e094e27de
+
+post.html.erb
+file
+
+
+
+
+2007-10-07T19:30:47.000000Z
+45a14baa97fab13b0a098c0b8ad9bbe4
+2007-09-28T01:23:20.984924Z
+7661
+david
+
+super_post.iphone.erb
+file
+
+
+
+
+2007-10-07T19:30:47.000000Z
+f06388fc55c6bc2713d91b5d4b92eed5
+2007-09-28T01:23:20.984924Z
+7661
+david
+

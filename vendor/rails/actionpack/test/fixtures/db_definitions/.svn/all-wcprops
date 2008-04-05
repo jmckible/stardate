@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/rails/!svn/ver/3553/trunk/actionpack/test/fixtures/db_definitions
+END
+sqlite.sql
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/rails/!svn/ver/3553/trunk/actionpack/test/fixtures/db_definitions/sqlite.sql
+END

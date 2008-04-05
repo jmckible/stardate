@@ -1,0 +1,40 @@
+8
+
+dir
+98
+https://svn.corkboardinc.com/activebudget/trunk/app
+https://svn.corkboardinc.com/activebudget
+
+
+
+2007-10-07T20:20:51.745549Z
+94
+jmckible
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+277d93c2-6f12-11dc-8874-439135874075
+
+helpers
+dir
+
+models
+dir
+
+controllers
+dir
+
+views
+dir
+

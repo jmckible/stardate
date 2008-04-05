@@ -1,0 +1,58 @@
+8
+
+dir
+7994
+http://dev.rubyonrails.org/svn/rails/trunk/activerecord/test/connections
+http://dev.rubyonrails.org/svn/rails
+
+
+
+2007-10-16T07:04:03.207548Z
+7941
+bitsweat
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+5ecf4fe2-1ee6-0310-87b1-e25e094e27de
+
+native_openbase
+dir
+
+native_sqlite
+dir
+
+native_frontbase
+dir
+
+native_postgresql
+dir
+
+native_sqlite3
+dir
+
+native_mysql
+dir
+
+native_oracle
+dir
+
+native_firebird
+dir
+
+native_sybase
+dir
+
+native_db2
+dir
+

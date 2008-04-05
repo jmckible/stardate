@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/rails/!svn/ver/5750/trunk/activerecord/test/connections/native_mysql
+END
+connection.rb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/rails/!svn/ver/5750/trunk/activerecord/test/connections/native_mysql/connection.rb
+END

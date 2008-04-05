@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/rails/!svn/ver/7774/trunk/activesupport/lib/active_support/core_ext/string
+END
+inflections.rb
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/rails/!svn/ver/5924/trunk/activesupport/lib/active_support/core_ext/string/inflections.rb
+END
+access.rb
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/rails/!svn/ver/5299/trunk/activesupport/lib/active_support/core_ext/string/access.rb
+END
+starts_ends_with.rb
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/rails/!svn/ver/2176/trunk/activesupport/lib/active_support/core_ext/string/starts_ends_with.rb
+END
+xchar.rb
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/rails/!svn/ver/7774/trunk/activesupport/lib/active_support/core_ext/string/xchar.rb
+END
+unicode.rb
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/rails/!svn/ver/7666/trunk/activesupport/lib/active_support/core_ext/string/unicode.rb
+END
+conversions.rb
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/rails/!svn/ver/6935/trunk/activesupport/lib/active_support/core_ext/string/conversions.rb
+END
+iterators.rb
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/rails/!svn/ver/3356/trunk/activesupport/lib/active_support/core_ext/string/iterators.rb
+END

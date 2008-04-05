@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/rails/!svn/ver/7465/trunk/actionpack/test/fixtures/layouts
+END
+talk_from_action.erb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/rails/!svn/ver/6180/trunk/actionpack/test/fixtures/layouts/talk_from_action.erb
+END
+standard.erb
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/rails/!svn/ver/6180/trunk/actionpack/test/fixtures/layouts/standard.erb
+END
+builder.builder
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/rails/!svn/ver/6180/trunk/actionpack/test/fixtures/layouts/builder.builder
+END
+yield.erb
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/rails/!svn/ver/6180/trunk/actionpack/test/fixtures/layouts/yield.erb
+END

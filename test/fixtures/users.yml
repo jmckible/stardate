@@ -1,0 +1,23 @@
+jordan:
+  id: 1
+  email: jordan@test.com
+  password_salt: salt
+  password_hash: <%= User.encrypt 'test', 'salt' %>
+  time_zone: Eastern Time (US & Canada)
+  created_at: <%= Time.now.to_s :db %>
+
+scott:
+  id: 2
+  email: scott@test.com
+  password_salt: salt
+  password_hash: <%= User.encrypt 'test', 'salt' %>
+  time_zone: Eastern Time (US & Canada)
+  created_at: <%= Time.now.to_s :db %>
+  
+new_guy:
+  id: 3
+  email: newguy@dot.com
+  password_salt: salt
+  password_hash: <%= User.encrypt 'test', 'salt' %>
+  time_zone: London
+  created_at: <%= Time.now.to_s :db %>

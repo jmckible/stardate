@@ -1,0 +1,52 @@
+8
+
+dir
+98
+https://svn.corkboardinc.com/activebudget/trunk/app/views/paychecks
+https://svn.corkboardinc.com/activebudget
+
+
+
+2007-06-02T15:57:40.409825Z
+53
+jmckible
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+277d93c2-6f12-11dc-8874-439135874075
+
+edit.html.erb
+file
+
+
+
+
+2007-10-07T19:29:51.000000Z
+4d4dd08791f485fbc395016dc5d20abe
+2007-06-02T15:57:40.409825Z
+53
+jmckible
+
+new.html.erb
+file
+
+
+
+
+2007-10-07T19:29:51.000000Z
+8bac95e68f012c1265c72d69b5baffc7
+2007-05-22T04:29:32.968295Z
+40
+jmckible
+

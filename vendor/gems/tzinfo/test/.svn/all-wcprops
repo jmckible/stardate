@@ -1,0 +1,149 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/activebudget/!svn/ver/97/trunk/vendor/gems/tzinfo/test
+END
+ts_all.rb
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/activebudget/!svn/ver/97/trunk/vendor/gems/tzinfo/test/ts_all.rb
+END
+tc_timezone_index_definition.rb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/activebudget/!svn/ver/97/trunk/vendor/gems/tzinfo/test/tc_timezone_index_definition.rb
+END
+tc_timezone.rb
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/activebudget/!svn/ver/97/trunk/vendor/gems/tzinfo/test/tc_timezone.rb
+END
+tc_linked_timezone_info.rb
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/activebudget/!svn/ver/97/trunk/vendor/gems/tzinfo/test/tc_linked_timezone_info.rb
+END
+tc_timezone_proxy.rb
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/activebudget/!svn/ver/97/trunk/vendor/gems/tzinfo/test/tc_timezone_proxy.rb
+END
+tc_timezone_period.rb
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/activebudget/!svn/ver/97/trunk/vendor/gems/tzinfo/test/tc_timezone_period.rb
+END
+tc_data_timezone_info.rb
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/activebudget/!svn/ver/97/trunk/vendor/gems/tzinfo/test/tc_data_timezone_info.rb
+END
+tc_timezone_definition.rb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/activebudget/!svn/ver/97/trunk/vendor/gems/tzinfo/test/tc_timezone_definition.rb
+END
+tc_offset_rationals.rb
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/activebudget/!svn/ver/97/trunk/vendor/gems/tzinfo/test/tc_offset_rationals.rb
+END
+tc_country_index_definition.rb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/activebudget/!svn/ver/97/trunk/vendor/gems/tzinfo/test/tc_country_index_definition.rb
+END
+tc_timezone_melbourne.rb
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/activebudget/!svn/ver/97/trunk/vendor/gems/tzinfo/test/tc_timezone_melbourne.rb
+END
+tc_country.rb
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/activebudget/!svn/ver/97/trunk/vendor/gems/tzinfo/test/tc_country.rb
+END
+tc_timezone_london.rb
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/activebudget/!svn/ver/97/trunk/vendor/gems/tzinfo/test/tc_timezone_london.rb
+END
+tc_timezone_info.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/activebudget/!svn/ver/97/trunk/vendor/gems/tzinfo/test/tc_timezone_info.rb
+END
+tc_info_timezone.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/activebudget/!svn/ver/97/trunk/vendor/gems/tzinfo/test/tc_info_timezone.rb
+END
+tc_timezone_utc.rb
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/activebudget/!svn/ver/97/trunk/vendor/gems/tzinfo/test/tc_timezone_utc.rb
+END
+tc_timezone_new_york.rb
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/activebudget/!svn/ver/97/trunk/vendor/gems/tzinfo/test/tc_timezone_new_york.rb
+END
+tc_time_or_datetime.rb
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/activebudget/!svn/ver/97/trunk/vendor/gems/tzinfo/test/tc_time_or_datetime.rb
+END
+tc_timezone_offset_info.rb
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/activebudget/!svn/ver/97/trunk/vendor/gems/tzinfo/test/tc_timezone_offset_info.rb
+END
+tc_country_timezone.rb
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/activebudget/!svn/ver/97/trunk/vendor/gems/tzinfo/test/tc_country_timezone.rb
+END
+tc_country_info.rb
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/activebudget/!svn/ver/97/trunk/vendor/gems/tzinfo/test/tc_country_info.rb
+END
+tc_timezone_transition_info.rb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/activebudget/!svn/ver/97/trunk/vendor/gems/tzinfo/test/tc_timezone_transition_info.rb
+END
+tc_linked_timezone.rb
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/activebudget/!svn/ver/97/trunk/vendor/gems/tzinfo/test/tc_linked_timezone.rb
+END
+tc_data_timezone.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/activebudget/!svn/ver/97/trunk/vendor/gems/tzinfo/test/tc_data_timezone.rb
+END

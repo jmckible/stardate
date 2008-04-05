@@ -1,0 +1,11 @@
+<div class="intro">
+	<%- if current_user.recurrings.size == 0 -%>
+		Schedule transactions to occur on a given day every month. 
+	<%- end -%>
+</div>
+
+<p><%= link_to 'New recurring', new_recurring_path %></p>
+
+<%= calendar(:year=>Date.today.year, :month=>Date.today.month, :abbrev => (0..-1)) do |date| 
+  recurring_for_calendar(date)
+end %>

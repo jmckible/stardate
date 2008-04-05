@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/rails/!svn/ver/5670/trunk/actionwebservice/lib/action_web_service/protocol/soap_protocol
+END
+marshaler.rb
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/rails/!svn/ver/5670/trunk/actionwebservice/lib/action_web_service/protocol/soap_protocol/marshaler.rb
+END

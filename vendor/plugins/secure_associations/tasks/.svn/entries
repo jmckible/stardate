@@ -1,0 +1,40 @@
+8
+
+dir
+16
+http://svn.corkboardinc.com/plugins/secure_associations/tasks
+http://svn.corkboardinc.com/plugins
+
+
+
+2007-05-13T06:26:12.766528Z
+4
+jmckible
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+554ebdec-6fb4-11dc-aa39-11348ed93f66
+
+secure_associations_tasks.rake
+file
+
+
+
+
+2007-10-07T20:10:38.000000Z
+246b234c29c850fc546cdd495b83c88a
+2007-05-13T06:13:39.993809Z
+2
+jmckible
+

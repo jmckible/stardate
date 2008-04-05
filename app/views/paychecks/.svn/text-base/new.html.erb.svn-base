@@ -1,0 +1,35 @@
+<h1>New Paycheck from <%= @job.name %></h1>
+
+<%= error_messages_for :paycheck %>
+
+<% form_for(:paycheck, :url => job_paychecks_path(@job)) do |f| %>
+	<% minutes =  @job.tasks.unpaid.collect{|t|t.minutes}.sum -%>
+	<p>Rate: <%= number_to_currency @job.rate %>/hr</p>
+  <p>Description<br/><%= f.text_field :description, :class=>'description' %></p>
+  <p>Total<br/><%= text_field_tag 'paycheck[value]', (minutes * @job.rate / 60).to_i, :class=>'money' %></p>
+  <p>Payment Received: <%= f.check_box :paid %></p>
+  
+	<%- if @job.tasks.unpaid.size > 0 -%>
+	<p><br></p>
+	<h2>Select Work</h2>
+	<table class="register">
+		<% for task in @job.tasks.unpaid -%>
+			<tr>
+				<td><%= check_box_tag 'paycheck[task_ids][]', task.id, true %></td>
+				<td><%= task.date.strftime('%B %e') %></td>
+				<td class="right"><%= minutes_to_clock task.minutes %></td>
+				<td><%= task.description %></td>
+			</tr>
+		<% end -%>
+		<tr class="total">
+			<td><strong>Total</strong></td>
+			<td>&nbsp;</td>
+			<td class="right"><strong><%= minutes_to_clock minutes %></strong></td>
+		</tr>
+	</table>
+	<%- end -%>
+
+  <p><%= submit_tag "Create" %></p>
+<% end %>
+
+<%= link_to 'Back', job_path(@job) %>

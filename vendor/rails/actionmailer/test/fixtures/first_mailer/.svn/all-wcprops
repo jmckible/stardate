@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/rails/!svn/ver/6180/trunk/actionmailer/test/fixtures/first_mailer
+END
+share.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/rails/!svn/ver/6180/trunk/actionmailer/test/fixtures/first_mailer/share.rhtml
+END
+share.erb
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/rails/!svn/ver/6180/trunk/actionmailer/test/fixtures/first_mailer/share.erb
+END

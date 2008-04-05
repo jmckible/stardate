@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/activebudget/!svn/ver/79/trunk/app/views/sessions
+END
+login.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/activebudget/!svn/ver/79/trunk/app/views/sessions/login.html.erb
+END

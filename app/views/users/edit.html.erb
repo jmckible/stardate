@@ -1,0 +1,21 @@
+<%= error_messages_for :user %>
+
+<h2>Update Settings</h2>
+
+<% form_for(:user, :url=>user_path(@user), :html=>{:method=>:put}) do |f| %>
+  <p>Email:<br/><%= f.text_field :email %></p>
+  <p>Time Zone:<br/><%= f.time_zone_select :time_zone %></p>
+  
+  <p><%= submit_tag "Update" %></p>
+<% end %>
+
+<p><br/><br/></p>
+
+<h2>Change Password</h2>
+
+<% form_for(:user, :url=>user_path(@user), :html=>{:method=>:put}) do |f| %>
+	<p>New Password:<br/><%= f.password_field :password %></p>
+	<p>Confirm New Password:<br/><%= f.password_field :password_confirmation %></p>
+  
+  <p><%= submit_tag "Change Password" %></p>
+<% end %>

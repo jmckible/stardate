@@ -1,0 +1,26 @@
+<div class="redbox_padding">
+  <h2>Edit Transaction</h2>
+  <div id="ItemErrors"><%= error_messages_for :item %></div>
+
+  <% form_for(:item, :url => item_path(@item), :html => { :method => :put }) do |f| %>
+		<%= hidden_field_tag :redbox, true %>
+    <dl class="form">
+      <p>Date<br/>
+			<%= f.date_select :date, :order=>[:month, :day, :year] %></p>
+
+			<p>Amount<br/>
+			<%= text_field_tag 'item[value]', @item.explicit_value, :class=>'money' %></p>
+
+			<p>Description<br/>
+			<%= f.text_field :description, :class=>'description' %></p>
+			
+			<p>Tags<br/>
+      <%= text_field_tag 'item[tag_list]', @item.tag_names, :class=>:description  %></p>
+			
+      <p><%= submit_tag "Update" %> or <%= link_to_close_redbox 'Close' %></p>
+    
+    </dl>
+  <% end %>
+  
+  <p style="text-align:right;"><br/><%= link_to 'Delete', redbox_destroy_item_path(@item), :method=>:delete, :redbox=>true %></p>
+</div>

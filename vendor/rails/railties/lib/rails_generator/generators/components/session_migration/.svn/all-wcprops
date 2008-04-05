@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/rails/!svn/ver/6938/trunk/railties/lib/rails_generator/generators/components/session_migration
+END
+USAGE
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/rails/!svn/ver/6884/trunk/railties/lib/rails_generator/generators/components/session_migration/USAGE
+END
+session_migration_generator.rb
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/rails/!svn/ver/4360/trunk/railties/lib/rails_generator/generators/components/session_migration/session_migration_generator.rb
+END

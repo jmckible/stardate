@@ -1,0 +1,137 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/rails/!svn/ver/7819/trunk/actionmailer/lib/action_mailer/vendor/tmail
+END
+mail.rb
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/rails/!svn/ver/2634/trunk/actionmailer/lib/action_mailer/vendor/tmail/mail.rb
+END
+port.rb
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/rails/!svn/ver/2634/trunk/actionmailer/lib/action_mailer/vendor/tmail/port.rb
+END
+base64.rb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/rails/!svn/ver/7476/trunk/actionmailer/lib/action_mailer/vendor/tmail/base64.rb
+END
+address.rb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/rails/!svn/ver/2634/trunk/actionmailer/lib/action_mailer/vendor/tmail/address.rb
+END
+net.rb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/rails/!svn/ver/2634/trunk/actionmailer/lib/action_mailer/vendor/tmail/net.rb
+END
+quoting.rb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/rails/!svn/ver/7819/trunk/actionmailer/lib/action_mailer/vendor/tmail/quoting.rb
+END
+header.rb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/rails/!svn/ver/2634/trunk/actionmailer/lib/action_mailer/vendor/tmail/header.rb
+END
+scanner.rb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/rails/!svn/ver/2634/trunk/actionmailer/lib/action_mailer/vendor/tmail/scanner.rb
+END
+mailbox.rb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/rails/!svn/ver/2634/trunk/actionmailer/lib/action_mailer/vendor/tmail/mailbox.rb
+END
+info.rb
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/rails/!svn/ver/2634/trunk/actionmailer/lib/action_mailer/vendor/tmail/info.rb
+END
+parser.rb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/rails/!svn/ver/2634/trunk/actionmailer/lib/action_mailer/vendor/tmail/parser.rb
+END
+encode.rb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/rails/!svn/ver/2634/trunk/actionmailer/lib/action_mailer/vendor/tmail/encode.rb
+END
+stringio.rb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/rails/!svn/ver/2634/trunk/actionmailer/lib/action_mailer/vendor/tmail/stringio.rb
+END
+utils.rb
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/rails/!svn/ver/2634/trunk/actionmailer/lib/action_mailer/vendor/tmail/utils.rb
+END
+facade.rb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/rails/!svn/ver/2634/trunk/actionmailer/lib/action_mailer/vendor/tmail/facade.rb
+END
+mbox.rb
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/rails/!svn/ver/4/trunk/actionmailer/lib/action_mailer/vendor/tmail/mbox.rb
+END
+config.rb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/rails/!svn/ver/2634/trunk/actionmailer/lib/action_mailer/vendor/tmail/config.rb
+END
+loader.rb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/rails/!svn/ver/4/trunk/actionmailer/lib/action_mailer/vendor/tmail/loader.rb
+END
+tmail.rb
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/rails/!svn/ver/4/trunk/actionmailer/lib/action_mailer/vendor/tmail/tmail.rb
+END
+scanner_r.rb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/rails/!svn/ver/2634/trunk/actionmailer/lib/action_mailer/vendor/tmail/scanner_r.rb
+END
+attachments.rb
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/rails/!svn/ver/6207/trunk/actionmailer/lib/action_mailer/vendor/tmail/attachments.rb
+END
+obsolete.rb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/rails/!svn/ver/2634/trunk/actionmailer/lib/action_mailer/vendor/tmail/obsolete.rb
+END

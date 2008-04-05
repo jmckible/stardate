@@ -1,0 +1,55 @@
+8
+
+dir
+7994
+http://dev.rubyonrails.org/svn/rails/trunk/activesupport/lib/active_support/vendor/builder-2.1.2
+http://dev.rubyonrails.org/svn/rails
+
+
+
+2007-10-10T23:01:41.901742Z
+7828
+bitsweat
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+5ecf4fe2-1ee6-0310-87b1-e25e094e27de
+
+blankslate.rb
+file
+
+
+
+
+2007-10-22T23:07:33.000000Z
+724d3f100f03c25e5de5054886fc3363
+2007-10-10T23:01:41.901742Z
+7828
+bitsweat
+
+builder
+dir
+
+builder.rb
+file
+
+
+
+
+2007-10-22T23:07:33.000000Z
+80f725825cbd92437a509360081ba3af
+2007-10-10T23:01:41.901742Z
+7828
+bitsweat
+

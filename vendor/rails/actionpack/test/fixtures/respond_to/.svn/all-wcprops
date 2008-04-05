@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/rails/!svn/ver/7633/trunk/actionpack/test/fixtures/respond_to
+END
+using_defaults.xml.builder
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/rails/!svn/ver/6507/trunk/actionpack/test/fixtures/respond_to/using_defaults.xml.builder
+END
+custom_constant_handling_without_block.mobile.erb
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/rails/!svn/ver/6857/trunk/actionpack/test/fixtures/respond_to/custom_constant_handling_without_block.mobile.erb
+END
+using_defaults.js.rjs
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/rails/!svn/ver/6507/trunk/actionpack/test/fixtures/respond_to/using_defaults.js.rjs
+END
+using_defaults.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/rails/!svn/ver/6507/trunk/actionpack/test/fixtures/respond_to/using_defaults.html.erb
+END
+using_defaults_with_type_list.xml.builder
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/rails/!svn/ver/6507/trunk/actionpack/test/fixtures/respond_to/using_defaults_with_type_list.xml.builder
+END
+iphone_with_html_response_type.iphone.erb
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/rails/!svn/ver/7629/trunk/actionpack/test/fixtures/respond_to/iphone_with_html_response_type.iphone.erb
+END
+iphone_with_html_response_type.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/rails/!svn/ver/7514/trunk/actionpack/test/fixtures/respond_to/iphone_with_html_response_type.html.erb
+END
+using_defaults_with_type_list.js.rjs
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/rails/!svn/ver/6507/trunk/actionpack/test/fixtures/respond_to/using_defaults_with_type_list.js.rjs
+END
+all_types_with_layout.js.rjs
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/rails/!svn/ver/6507/trunk/actionpack/test/fixtures/respond_to/all_types_with_layout.js.rjs
+END
+using_defaults_with_type_list.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/rails/!svn/ver/6507/trunk/actionpack/test/fixtures/respond_to/using_defaults_with_type_list.html.erb
+END
+all_types_with_layout.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/rails/!svn/ver/6507/trunk/actionpack/test/fixtures/respond_to/all_types_with_layout.html.erb
+END

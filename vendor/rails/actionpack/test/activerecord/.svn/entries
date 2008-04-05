@@ -1,0 +1,52 @@
+8
+
+dir
+7994
+http://dev.rubyonrails.org/svn/rails/trunk/actionpack/test/activerecord
+http://dev.rubyonrails.org/svn/rails
+
+
+
+2007-09-28T14:18:47.653818Z
+7666
+david
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+5ecf4fe2-1ee6-0310-87b1-e25e094e27de
+
+active_record_store_test.rb
+file
+
+
+
+
+2007-10-07T19:30:48.000000Z
+192429e947612b0d29dfba1820be3eb7
+2007-09-28T14:18:47.653818Z
+7666
+david
+
+render_partial_with_record_identification_test.rb
+file
+
+
+
+
+2007-10-07T19:30:48.000000Z
+217547a2cdbdd25a519b963542a02428
+2007-06-01T03:53:39.389709Z
+6920
+bitsweat
+

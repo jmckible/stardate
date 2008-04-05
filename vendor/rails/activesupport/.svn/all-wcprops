@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/rails/!svn/ver/7945/trunk/activesupport
+END
+Rakefile
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/rails/!svn/ver/7828/trunk/activesupport/Rakefile
+END
+CHANGELOG
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/rails/!svn/ver/7945/trunk/activesupport/CHANGELOG
+END
+install.rb
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/rails/!svn/ver/7666/trunk/activesupport/install.rb
+END
+MIT-LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/rails/!svn/ver/5120/trunk/activesupport/MIT-LICENSE
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/rails/!svn/ver/2908/trunk/activesupport/README
+END

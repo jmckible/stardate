@@ -1,0 +1,55 @@
+8
+
+dir
+98
+https://svn.corkboardinc.com/activebudget/trunk/test
+https://svn.corkboardinc.com/activebudget
+
+
+
+2007-07-05T21:33:54.736188Z
+89
+jmckible
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+277d93c2-6f12-11dc-8874-439135874075
+
+unit
+dir
+
+test_helper.rb
+file
+
+
+
+
+2007-10-07T19:29:50.000000Z
+cb658d4e65073bd6a139566f89ea3271
+2007-07-02T21:01:39.614471Z
+64
+jmckible
+
+functional
+dir
+
+integration
+dir
+
+fixtures
+dir
+
+mocks
+dir
+

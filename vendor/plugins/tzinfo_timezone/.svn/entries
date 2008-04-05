@@ -1,0 +1,70 @@
+8
+
+dir
+98
+https://svn.corkboardinc.com/activebudget/trunk/vendor/plugins/tzinfo_timezone
+https://svn.corkboardinc.com/activebudget
+
+
+
+2007-05-08T04:59:12.546291Z
+1
+jmckible
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+277d93c2-6f12-11dc-8874-439135874075
+
+test
+dir
+
+Rakefile
+file
+
+
+
+
+2007-10-07T19:29:51.000000Z
+2659d4b1fe894a8c49063edaf71ed1dd
+2007-05-08T04:59:12.546291Z
+1
+jmckible
+
+init.rb
+file
+
+
+
+
+2007-10-07T19:29:51.000000Z
+49b829d69352ab64478d607797e72817
+2007-05-08T04:59:12.546291Z
+1
+jmckible
+
+lib
+dir
+
+README
+file
+
+
+
+
+2007-10-07T19:29:51.000000Z
+f44c5903b803bbae6faa4df1bc1267c5
+2007-05-08T04:59:12.546291Z
+1
+jmckible
+

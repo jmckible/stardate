@@ -1,0 +1,31 @@
+8
+
+dir
+7994
+http://dev.rubyonrails.org/svn/rails/trunk/railties/test/fixtures/lib
+http://dev.rubyonrails.org/svn/rails
+
+
+
+2006-08-29T10:33:40.393507Z
+4843
+bitsweat
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+5ecf4fe2-1ee6-0310-87b1-e25e094e27de
+
+generators
+dir
+

@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/plugins/!svn/ver/15/secure_associations/test
+END
+has_many_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/plugins/!svn/ver/15/secure_associations/test/has_many_test.rb
+END
+test_helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/plugins/!svn/ver/15/secure_associations/test/test_helper.rb
+END
+schema.rb
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/plugins/!svn/ver/15/secure_associations/test/schema.rb
+END
+database.yml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/plugins/!svn/ver/15/secure_associations/test/database.yml
+END
+belongs_to_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/plugins/!svn/ver/15/secure_associations/test/belongs_to_test.rb
+END

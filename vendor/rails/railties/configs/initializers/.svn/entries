@@ -1,0 +1,52 @@
+8
+
+dir
+7994
+http://dev.rubyonrails.org/svn/rails/trunk/railties/configs/initializers
+http://dev.rubyonrails.org/svn/rails
+
+
+
+2007-09-29T21:47:38.952647Z
+7680
+david
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+5ecf4fe2-1ee6-0310-87b1-e25e094e27de
+
+inflections.rb
+file
+
+
+
+
+2007-10-07T19:31:04.000000Z
+46b85f9044d69b3d813d0957dae1b026
+2007-09-29T21:47:38.952647Z
+7680
+david
+
+mime_types.rb
+file
+
+
+
+
+2007-10-07T19:31:04.000000Z
+53b1216a09d1bbd2863d09a5db5318f0
+2007-09-29T21:47:38.952647Z
+7680
+david
+

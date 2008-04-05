@@ -1,0 +1,43 @@
+8
+
+dir
+98
+https://svn.corkboardinc.com/activebudget/trunk/db
+https://svn.corkboardinc.com/activebudget
+
+
+
+2007-07-05T21:33:54.736188Z
+89
+jmckible
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+277d93c2-6f12-11dc-8874-439135874075
+
+schema.rb
+file
+
+
+
+
+2007-10-07T20:26:23.000000Z
+c418f23c8c14f53393aa2b93bf6a0e7a
+2007-07-05T21:33:54.736188Z
+89
+jmckible
+
+migrate
+dir
+

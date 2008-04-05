@@ -1,0 +1,58 @@
+8
+
+dir
+98
+https://svn.corkboardinc.com/activebudget/trunk/vendor/plugins/exception_notification
+https://svn.corkboardinc.com/activebudget
+
+
+
+2007-05-08T04:59:12.546291Z
+1
+jmckible
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+277d93c2-6f12-11dc-8874-439135874075
+
+init.rb
+file
+
+
+
+
+2007-10-07T19:29:51.000000Z
+d68a35cf6df012c7fd6562da6355a201
+2007-05-08T04:59:12.546291Z
+1
+jmckible
+
+lib
+dir
+
+views
+dir
+
+README
+file
+
+
+
+
+2007-10-07T19:29:51.000000Z
+fe84727e1adb78f3b7c59207d612720b
+2007-05-08T04:59:12.546291Z
+1
+jmckible
+

@@ -1,0 +1,52 @@
+8
+
+dir
+98
+https://svn.corkboardinc.com/activebudget/trunk/vendor/gems/tzinfo/lib/tzinfo/definitions/Mexico
+https://svn.corkboardinc.com/activebudget
+
+
+
+2007-10-07T20:27:05.816996Z
+97
+jmckible
+
+
+svn:special svn:externals svn:needs-lock
+
+General.rb
+file
+
+
+
+
+2007-10-07T20:24:56.000000Z
+1cfdbe14d113dd695c7f1b7bd8568ce9
+2007-10-07T20:27:05.816996Z
+97
+jmckible
+
+BajaNorte.rb
+file
+
+
+
+
+2007-10-07T20:24:56.000000Z
+6cd2f7dbfdf10b231ff6bc457f83c2d2
+2007-10-07T20:27:05.816996Z
+97
+jmckible
+
+BajaSur.rb
+file
+
+
+
+
+2007-10-07T20:24:56.000000Z
+7a5af415c7bb42d50f31d0be173a6045
+2007-10-07T20:27:05.816996Z
+97
+jmckible
+

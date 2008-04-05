@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/rails/!svn/ver/5924/trunk/activesupport/lib/active_support/core_ext/integer
+END
+inflections.rb
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/rails/!svn/ver/5924/trunk/activesupport/lib/active_support/core_ext/integer/inflections.rb
+END
+even_odd.rb
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/rails/!svn/ver/1863/trunk/activesupport/lib/active_support/core_ext/integer/even_odd.rb
+END

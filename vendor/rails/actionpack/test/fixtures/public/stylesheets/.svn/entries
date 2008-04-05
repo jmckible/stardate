@@ -1,0 +1,52 @@
+8
+
+dir
+7994
+http://dev.rubyonrails.org/svn/rails/trunk/actionpack/test/fixtures/public/stylesheets
+http://dev.rubyonrails.org/svn/rails
+
+
+
+2007-02-18T23:54:20.727254Z
+6164
+david
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+5ecf4fe2-1ee6-0310-87b1-e25e094e27de
+
+bank.css
+file
+
+
+
+
+2007-10-07T19:30:48.000000Z
+c338ee86f87a5a70b417514f81da536c
+2007-02-18T23:54:20.727254Z
+6164
+david
+
+robber.css
+file
+
+
+
+
+2007-10-07T19:30:48.000000Z
+b45135add658bcc41e753f06d85c9cd8
+2007-02-18T23:54:20.727254Z
+6164
+david
+

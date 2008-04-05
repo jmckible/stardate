@@ -1,0 +1,56 @@
+8
+
+dir
+7994
+http://dev.rubyonrails.org/svn/rails/trunk/activerecord/lib
+http://dev.rubyonrails.org/svn/rails
+
+
+
+2007-10-20T21:17:31.004835Z
+7980
+rick
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+5ecf4fe2-1ee6-0310-87b1-e25e094e27de
+
+active_record
+dir
+
+active_record.rb
+file
+
+
+
+
+2007-10-07T19:30:38.000000Z
+a33ecd9a194cec8e5d77ff4e74a8acd3
+2007-10-07T05:25:36.404598Z
+7768
+bitsweat
+has-props
+
+activerecord.rb
+file
+
+
+
+
+2007-10-07T19:30:38.000000Z
+f47cc52defd19e7a36145f887d72425b
+2007-09-22T18:15:05.027080Z
+7560
+david
+

@@ -1,0 +1,52 @@
+8
+
+dir
+7994
+http://dev.rubyonrails.org/svn/rails/trunk/activesupport/lib/active_support/core_ext/integer
+http://dev.rubyonrails.org/svn/rails
+
+
+
+2007-01-14T12:18:51.886017Z
+5924
+bitsweat
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+5ecf4fe2-1ee6-0310-87b1-e25e094e27de
+
+inflections.rb
+file
+
+
+
+
+2007-10-07T19:30:28.000000Z
+36ee34d029b86cc3c01c2b0606266223
+2007-01-14T12:18:51.886017Z
+5924
+bitsweat
+
+even_odd.rb
+file
+
+
+
+
+2007-10-07T19:30:28.000000Z
+8206a9e36a1f59df5e8b205f6df01613
+2005-07-19T12:58:01.488069Z
+1863
+ulysses
+

@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/rails/!svn/ver/6227/trunk/activerecord/test/fixtures/all
+END
+tasks.yml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/rails/!svn/ver/6227/trunk/activerecord/test/fixtures/all/tasks.yml
+END
+developers.yml
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/rails/!svn/ver/6227/trunk/activerecord/test/fixtures/all/developers.yml
+END
+people.csv
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/rails/!svn/ver/6227/trunk/activerecord/test/fixtures/all/people.csv
+END

@@ -1,0 +1,11 @@
+<p>Date<br/>
+<%= form.date_select :date, :order=>[:month, :day, :year] %></p>
+
+<p>Amount<br/>
+<%= text_field_tag 'item[value]', @item.explicit_value, :class=>:money %></p>
+
+<p>Description<br/>
+<%= form.text_field :description, :class=>:description %></p>
+
+<p>Tags<br/>
+<%= text_field_tag 'item[tag_list]', @item.tag_names, :class=>:description  %>

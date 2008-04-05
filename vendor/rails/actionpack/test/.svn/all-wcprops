@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/rails/!svn/ver/7993/trunk/actionpack/test
+END
+abstract_unit.rb
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/rails/!svn/ver/7640/trunk/actionpack/test/abstract_unit.rb
+END
+active_record_unit.rb
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/rails/!svn/ver/6029/trunk/actionpack/test/active_record_unit.rb
+END
+testing_sandbox.rb
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/rails/!svn/ver/5288/trunk/actionpack/test/testing_sandbox.rb
+END

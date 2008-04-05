@@ -1,0 +1,66 @@
+<h1><%= @job.name %></h1>
+<p>Current Rate: <%= number_to_currency @job.rate %>/hr</p>
+<p><%= link_to 'Edit', edit_job_path(@job) %><br/><br/></p>
+
+<%- if @job.tasks.unpaid.size > 0 -%>
+<%- odd_or_even = 0 -%>
+<h2>Unpaid Work</h2>
+<table class="register">
+	<tr>
+		<th>Date</th>
+		<th>Time</th>
+		<th>Description</th>
+	</tr>
+  <% for task in @job.tasks.unpaid -%>
+    <tr class="list<%= odd_or_even %>">
+			<td><%= link_to task.date.strftime('%B %e'), edit_task_path(task) %></td>
+			<td class="right"><%= minutes_to_clock task.minutes %></td> 
+			<td><%= task.description%></td>
+		</tr>
+		<%- odd_or_even = 1 - odd_or_even -%>
+  <% end -%>
+	<tr class="total">
+		<td><strong>Total</strong></td>
+		<% minutes = @job.tasks.unpaid.collect{|t|t.minutes}.sum -%>
+		<td class="right"><strong><%= minutes_to_clock minutes %></strong></td>
+		<td><strong><%= number_to_currency minutes * @job.rate / 60 %></strong></td>
+	</tr>
+</table>
+<p><br><br></p>
+<%- end -%>
+
+<%- if @job.paychecks.size > 0 -%>
+<%- odd_or_even = 0 -%>
+<h2>Paychecks</h2>
+<table class="register">
+	<tr>
+		<th>Date</th>
+		<th class="description">Description</th>
+		<th>Amount</th>
+		<th>Deposit</th>
+		<th>Received</th>
+	</tr>
+	<%- for paycheck in @job.paychecks -%>
+		<tr class="list<%= odd_or_even %>">
+			<td><%= link_to paycheck.created_at.strftime('%B %e'), edit_job_paycheck_path(@job, paycheck) %></td>
+			<td><%= paycheck.description %></td>
+			<td><%= number_to_currency paycheck.value %></td>
+			<%- if paycheck.paid? -%>
+				<td><%= link_to "+#{number_to_currency(paycheck.item.value)}", edit_item_path(paycheck.item) %></td>
+				<td><%= paycheck.item.date.strftime('%B %e') %></td>
+			<%- else -%>
+				<td><%= content_tag(:span, 'Unpaid', :class=>'red') %></td>
+				<td>&nbsp;</td>
+			<%- end -%>		
+		</tr>
+		<%- odd_or_even = 1 - odd_or_even -%>
+	<%- end -%>
+	<tr class="total">
+		<td><strong>Total</strong></td>
+		<td>&nbsp;</td>
+		<td><strong><%= number_to_currency @job.paychecks.sum(:value) %></strong></td>
+		<td>&nbsp;</td>
+	</tr>
+</table>
+<%- end -%>
+<p><%= link_to 'New paycheck', new_job_paycheck_path(@job) %></p>

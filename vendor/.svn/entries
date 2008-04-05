@@ -1,34 +1,0 @@
-8
-
-dir
-98
-https://svn.corkboardinc.com/activebudget/trunk/vendor
-https://svn.corkboardinc.com/activebudget
-
-
-
-2007-10-07T20:27:05.816996Z
-97
-jmckible
-has-props
-
-svn:special svn:externals svn:needs-lock
-svn:externals
-
-
-
-
-
-
-
-
-
-
-277d93c2-6f12-11dc-8874-439135874075
-
-plugins
-dir
-
-gems
-dir
-

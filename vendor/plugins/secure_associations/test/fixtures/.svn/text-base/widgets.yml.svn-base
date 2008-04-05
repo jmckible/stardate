@@ -1,9 +1,0 @@
-foo:
-  id: 1
-  name: foo
-  user_id: 1
-  
-bar:
-  id: 2
-  name: bar
-  user_id: 2

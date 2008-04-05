@@ -1,34 +1,0 @@
-8
-
-dir
-7994
-http://dev.rubyonrails.org/svn/rails/trunk/railties/test/fixtures/plugins
-http://dev.rubyonrails.org/svn/rails
-
-
-
-2007-03-02T00:20:32.920852Z
-6277
-marcel
-
-
-svn:special svn:externals svn:needs-lock
-
-
-
-
-
-
-
-
-
-
-
-5ecf4fe2-1ee6-0310-87b1-e25e094e27de
-
-alternate
-dir
-
-default
-dir
-

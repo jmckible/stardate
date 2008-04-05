@@ -1,8 +1,0 @@
-<p>Day of Month<br/>
- <%= form.collection_select :day, (1..28).collect, :to_s, :to_s %></p>
-
-<p>Amount<br/>
-	 <%= form.text_field :value, :class=>'money' %></p>
-	
-<p>Description<br/>
-	 <%= form.text_field :description, :class=>'description' %></p>

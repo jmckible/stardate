@@ -4,6 +4,8 @@ development:
   port: 587
   user_name: yourname@gmail.com
   password: 
+  exception_recipient: yourname@gmail.com
+  exception_sender: ActiveBudget <yourname@gmail.com>
   
 test:
   authentication: plain
@@ -11,6 +13,8 @@ test:
   port: 587
   user_name: yourname@gmail.com
   password: 
+  exception_recipient: yourname@gmail.com
+  exception_sender: ActiveBudget <yourname@gmail.com>
     
 production:
   authentication: plain
@@ -18,3 +22,5 @@ production:
   port: 587
   user_name: yourname@gmail.com
   password:
+  exception_recipient: yourname@gmail.com
+  exception_sender: ActiveBudget <yourname@gmail.com>

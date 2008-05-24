@@ -1,20 +1,5 @@
-# Filters added to this controller apply to all controllers in the application.
-# Likewise, all the methods added will be available for all controllers.
-
 class ApplicationController < ActionController::Base
-  include AuthorizationSystem
-  include ExceptionNotifiable
-  
-  # Load ExceptionNotifiable config
-  # Consider implications of loading a file every request. 
-  # Ideally some better way to handle this with project config
-  begin
-    mail_yml = YAML.load_file(RAILS_ROOT+'/config/mail.yml')
-    mail_env = mail_yml[ENV['RAILS_ENV']]
-    ExceptionNotifier.exception_recipients = mail_env[:exception_recipient]
-    ExceptionNotifier.sender_address = mail_env[:exception_sender]
-  rescue 
-  end
+  include AuthorizationSystem, ExceptionNotifiable
   
   # By default all pages are protected
   # Use skip_before_filter on public pages

@@ -12,6 +12,9 @@ ActionMailer::Base.smtp_settings = {
   :password       => mail_env['password']
 }
 
+ExceptionNotifier.exception_recipients = mail_env[:exception_recipient]
+ExceptionNotifier.sender_address       = mail_env[:exception_sender]
+
 rescue
   logger.warn "Mail sending not configured.  Check config/mail.yml"
 end

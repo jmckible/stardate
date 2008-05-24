@@ -9,13 +9,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 17) do
+ActiveRecord::Schema.define(:version => 20080524235455) do
 
   create_table "items", :force => true do |t|
     t.integer "user_id",     :limit => 11
-    t.integer "category_id", :limit => 11
     t.date    "date"
-    t.integer "value",       :limit => 11
+    t.integer "value",       :limit => 11, :default => 0, :null => false
     t.text    "description"
   end
 

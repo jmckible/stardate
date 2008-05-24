@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(:version => 17) do
     t.string   "password_salt", :default => "",                    :null => false
     t.string   "password_hash", :default => "",                    :null => false
     t.string   "time_zone"
-    t.datetime "created_at",    :default => '2008-04-04 19:57:40'
+    t.datetime "created_at",    :default => '2007-05-24 15:49:54'
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

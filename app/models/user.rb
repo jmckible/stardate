@@ -26,8 +26,6 @@ class User < ActiveRecord::Base
   attr_protected :password_salt
   attr_protected :created_at
   
-  composed_of :tz, :class_name=>'TimeZone', :mapping=>[:time_zone, :time_zone]
-  
   before_save :encrypt_password
   
   validates_confirmation_of :password,                     :if=>:update_password?

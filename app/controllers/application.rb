@@ -8,16 +8,11 @@ class ApplicationController < ActionController::Base
   # Don't show passwords in the log
   filter_parameter_logging 'password'
   
-  # Always localize time when possible
-  # By default go with London since it's GMT
-  around_filter :set_timezone
-  private
-  def set_timezone
-    logged_in? ? TzTime.zone = current_user.tz : TzTime.zone = TimeZone.new('London')
-    # Set the week period for the status bar on in the header
-    @week = TimePeriod.week_to_date
-    yield
-    TzTime.reset!
+  before_filter :set_time_zone
+  
+  protected
+  def set_time_zone
+    Time.zone = current_person.time_zone if logged_in?
   end
   
   # Handle the captcha on user login

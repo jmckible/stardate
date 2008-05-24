@@ -1,41 +1,44 @@
 class Item < ActiveRecord::Base
-  ##########################################
-  #       C L A S S   M E T H O D S        #
-  ##########################################
-  # Find all Items on a date or in a date range
-  def self.on(date)
-    find :all, :conditions=>{:date=>date}, :order=>:date
-  end
-  # Ideally during would be an alias of on, but not sure how to alias class methods
-  def self.during(period)
-    period = period.last..period.first if period.last < period.first
-    find :all, :conditions=>{:date=>period}, :order=>:date
-  end
   
-  ##########################################
-  #       C L A S S   M E T H O D S        #
-  ##########################################
+  #####################################################################
+  #                     R E L A T I O N S H I P S                     #
+  #####################################################################
   belongs_to :user
-  
-  has_many :taggings, :dependent=>:destroy
+  has_one    :paycheck,  :dependent=>:nullify
+
+  #####################################################################
+  #                             T A G G I N G                         #
+  #####################################################################
+  has_many :taggings
   has_many :tags, :through=>:taggings, :order=>:name
   
-  has_one :paycheck, :dependent=>:nullify
+  attr_accessor :tag_list
   
-  # Show tags as comma delimited list
-  attr_accessor  :tag_list
-  after_save     :update_tags
-  def tag_names() tag_list || tags.collect(&:name).join(', ') end
-  
-  # Short description for display in calendars
-  def calendar_description
-    description.blank? ? date.strftime('%D') : description
+  def tag_list
+    tags.map(&:name).join(', ')
+  end
+
+  def tag_list=(tag_string)
+    new_tags = tag_string.split(',').compact.collect{|name| Tag.find_or_create_by_name(name.strip)}
+    for tag in tags
+      tags.delete(tag) unless new_tags.include?(tag)
+    end
+    for new_tag in new_tags
+      tags << new_tag unless tags.include?(new_tag)
+    end
   end
   
-  # Put a + in front of any value 0 or greater
+  #####################################################################
+  #                               S C O P E                           #
+  #####################################################################
+  named_scope :during, lambda { |date| {:conditions=>{:date=>date}} }
+  
+  #####################################################################
+  #                    O B J E C T    M E T H O D S                   #
+  #####################################################################
+  # If the value is positive, put a + in front
   def explicit_value
-    return if value.nil?
-    value < 0 ? value : "+#{value.to_s}"
+    self.value < 0 ? value.to_s : "+#{value.to_s}"
   end
   
   # Overwriting the default value=
@@ -46,27 +49,14 @@ class Item < ActiveRecord::Base
     new_value = '-' + new_value unless new_value =~ /^(\+|-)/
     write_attribute :value, new_value.to_f.round
   end
-    
-  validates_presence_of :user_id
-  validates_presence_of :value
-  validates_presence_of :date
-  validates_length_of   :description, :in=>0..255
   
-  protected
-  def validate
-    errors.add(:value, "can't be zero") if value == 0
-  end
+  #####################################################################
+  #                       V A L I D A T I O N S                       #
+  #####################################################################
+  attr_protected :user, :user_id
   
-  def update_tags
-    unless tag_list.blank?
-      new_tags = tag_list.split(',').compact.collect{|name| Tag.find_or_create_by_name(name.strip)} 
-      for tagging in taggings
-        tagging.destroy unless new_tags.include?(tagging.tag)
-      end
-      for tag in new_tags
-        Tagging.create :item=>self, :tag=>tag unless tags.include?(tag)
-      end
-    end
-  end
+  validates_presence_of     :date, :user_id
+  validates_numericality_of :value, :only_integer=>true
+  validates_length_of       :description, :in=>0..255
 
 end

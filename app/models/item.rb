@@ -15,7 +15,7 @@ class Item < ActiveRecord::Base
   ##########################################
   #       C L A S S   M E T H O D S        #
   ##########################################
-  belongs_to :user, :protected=>true
+  belongs_to :user
   
   has_many :taggings, :dependent=>:destroy
   has_many :tags, :through=>:taggings, :order=>:name

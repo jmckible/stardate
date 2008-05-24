@@ -3,7 +3,7 @@ class Task < ActiveRecord::Base
     find :all, :conditions=>{:date=>date}
   end
   
-  belongs_to :job, :protected=>true
+  belongs_to :job
   belongs_to :paycheck
   
   attr_accessor :hours, :min

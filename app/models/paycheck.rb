@@ -1,6 +1,6 @@
 class Paycheck < ActiveRecord::Base
-  belongs_to :item, :protected=>true
-  belongs_to :job, :protected=>true
+  belongs_to :item
+  belongs_to :job
   
   has_many :tasks, :dependent=>:nullify
   

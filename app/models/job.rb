@@ -3,7 +3,7 @@ class Job < ActiveRecord::Base
     find :all, :conditions=>{:active=>true}, :order=>:name
   end
   
-  belongs_to :user, :protected=>true
+  belongs_to :user
   
   has_many :paychecks, :order=>:created_at, :dependent=>:destroy do
     def unpaid

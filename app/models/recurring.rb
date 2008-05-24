@@ -3,7 +3,7 @@ class Recurring < ActiveRecord::Base
     find :all, :conditions=>{:day=>date.mday}
   end
   
-  belongs_to :user, :protected=>true
+  belongs_to :user
   
   def value=(new_value)
     new_value = new_value.to_s

@@ -1,32 +1,20 @@
 development:
-  method: :smtp
-  address: 
-  port: 25
-  domain: 
-  authentication: :login
-  user_name: 
-  password:
-  exception_recipient: 
-  exception_sender: 
-    
+  authentication: plain
+  address: smtp.gmail.com
+  port: 587
+  user_name: yourname@gmail.com
+  password: 
+  
 test:
-  method: :smtp
-  address: 
-  port: 25
-  domain: 
-  authentication: :login
-  user_name: 
-  password:
-  exception_recipient: 
-  exception_sender: 
+  authentication: plain
+  address: smtp.gmail.com
+  port: 587
+  user_name: yourname@gmail.com
+  password: 
     
 production:
-  method: :smtp
-  address: 
-  port: 25
-  domain: 
-  authentication: :login
-  user_name: 
+  authentication: plain
+  address: smtp.gmail.com
+  port: 587
+  user_name: yourname@gmail.com
   password:
-  exception_recipient: 
-  exception_sender: 

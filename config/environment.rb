@@ -9,16 +9,9 @@ RAILS_GEM_VERSION = '1.2.3' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
-require 'yaml'
 
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here
-  
-  # Load frozen gems from vendor/gems directory
-  config.load_paths += Dir["#{RAILS_ROOT}/vendor/gems/**"].map do |dir| 
-    File.directory?(lib = "#{dir}/lib") ? lib : dir
-  end
-  
   
   # Skip frameworks you're not going to use (only works if using vendor/rails)
   # config.frameworks -= [ :action_web_service, :action_mailer ]
@@ -51,38 +44,7 @@ Rails::Initializer.run do |config|
   # See Rails::Configuration for more options
   config.action_controller.session = { :session_key => "_activebudget_session_id", :secret => "super_secret" }
 
-  # Load external mail.yml for action_mailer config
-  begin
-    mail_yml = YAML.load_file(RAILS_ROOT+'/config/mail.yml')
-    mail_env = mail_yml[ENV['RAILS_ENV']]
-    config.action_mailer.delivery_method = mail_env['delivery_method']
-    config.action_mailer.smtp_settings = {
-      :authentication => mail_env['authentication'],
-      :address        => mail_env['address'],
-      :port           => mail_env['port'],
-      :domain         => mail_env['domain'],
-      :user_name      => mail_env['user_name'],
-      :password       => mail_env['password']
-    }
-  rescue 
-  end
-
   # Disable raising errors when mass-assigning to a protected attribute 
   # config.whiny_protected_attributes = false
 
 end
-
-# Add new inflection rules using the following format 
-# (all these examples are active by default):
-# Inflector.inflections do |inflect|
-#   inflect.plural /^(ox)$/i, '\1en'
-#   inflect.singular /^(ox)en/i, '\1'
-#   inflect.irregular 'person', 'people'
-#   inflect.uncountable %w( fish sheep )
-# end
-
-# Add new mime types for use in respond_to blocks:
-# Mime::Type.register "text/richtext", :rtf
-# Mime::Type.register "application/x-mobile", :mobile
-
-# Include your application configuration below

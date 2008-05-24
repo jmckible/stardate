@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  include AuthorizationSystem, ExceptionNotifiable
+  include AuthorizationSystem, Captcha, ExceptionNotifiable
   
   # By default all pages are protected
   # Use skip_before_filter on public pages
@@ -13,19 +13,6 @@ class ApplicationController < ActionController::Base
   protected
   def set_time_zone
     Time.zone = current_person.time_zone if logged_in?
-  end
-  
-  # Handle the captcha on user login
-  def set_captcha
-    session[:captcha] = rand(10) + 20
-    @captcha = rand(session[:captcha])
-  end
-  def clear_captcha
-    session[:captcha] = nil
-  end
-  def captcha_passed?
-    return false if session[:captcha].nil? or params[:captcha].nil?
-    params[:captcha].to_i == session[:captcha]
   end
   
   # Takes in parameters in the form /:year/:month/:day/:period

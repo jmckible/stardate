@@ -9,11 +9,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080525002624) do
+ActiveRecord::Schema.define(:version => 20080525003100) do
 
   create_table "items", :force => true do |t|
-    t.integer "user_id",     :limit => 11
-    t.date    "date"
+    t.integer "user_id",     :limit => 11,                :null => false
+    t.date    "date",                                     :null => false
     t.integer "value",       :limit => 11, :default => 0, :null => false
     t.text    "description"
   end
@@ -22,8 +22,8 @@ ActiveRecord::Schema.define(:version => 20080525002624) do
   add_index "items", ["date"], :name => "index_items_on_date"
 
   create_table "jobs", :force => true do |t|
-    t.integer  "user_id",    :limit => 11
-    t.string   "name"
+    t.integer  "user_id",    :limit => 11,                                                 :null => false
+    t.string   "name",                                                   :default => "",   :null => false
     t.boolean  "active",                                                 :default => true
     t.datetime "created_at"
     t.decimal  "rate",                     :precision => 6, :scale => 2, :default => 0.0,  :null => false
@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(:version => 20080525002624) do
   add_index "jobs", ["user_id"], :name => "index_projects_on_user_id"
 
   create_table "paychecks", :force => true do |t|
-    t.integer  "job_id",      :limit => 11
-    t.integer  "item_id",     :limit => 11
+    t.integer  "job_id",      :limit => 11,                                                :null => false
+    t.integer  "item_id",     :limit => 11,                                                :null => false
     t.datetime "created_at"
     t.string   "description"
     t.decimal  "value",                     :precision => 8, :scale => 2, :default => 0.0, :null => false
@@ -43,10 +43,9 @@ ActiveRecord::Schema.define(:version => 20080525002624) do
   add_index "paychecks", ["item_id"], :name => "index_paychecks_on_item_id"
 
   create_table "recurrings", :force => true do |t|
-    t.integer "user_id",     :limit => 11
-    t.integer "category_id", :limit => 11
-    t.integer "day",         :limit => 11
-    t.integer "value",       :limit => 11
+    t.integer "user_id",     :limit => 11,                :null => false
+    t.integer "day",         :limit => 11, :default => 1, :null => false
+    t.integer "value",       :limit => 11, :default => 0, :null => false
     t.text    "description"
   end
 
@@ -60,21 +59,27 @@ ActiveRecord::Schema.define(:version => 20080525002624) do
     t.integer  "item_id",    :limit => 11
   end
 
+  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
+  add_index "taggings", ["item_id"], :name => "index_taggings_on_item_id"
+
   create_table "tags", :force => true do |t|
     t.string "name"
   end
 
+  add_index "tags", ["name"], :name => "index_tags_on_name"
+
   create_table "tasks", :force => true do |t|
-    t.integer  "job_id",      :limit => 11
+    t.integer  "job_id",      :limit => 11,                :null => false
     t.datetime "created_at"
-    t.date     "date"
-    t.integer  "minutes",     :limit => 11
+    t.date     "date",                                     :null => false
+    t.integer  "minutes",     :limit => 11, :default => 0, :null => false
     t.string   "description"
-    t.integer  "paycheck_id", :limit => 11
+    t.integer  "paycheck_id", :limit => 11,                :null => false
   end
 
   add_index "tasks", ["job_id"], :name => "index_tasks_on_project_id"
   add_index "tasks", ["paycheck_id"], :name => "index_tasks_on_paycheck_id"
+  add_index "tasks", ["date"], :name => "index_tasks_on_date"
 
   create_table "users", :force => true do |t|
     t.string   "email",         :default => "",                    :null => false

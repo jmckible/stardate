@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080524235455) do
+ActiveRecord::Schema.define(:version => 20080525002116) do
 
   create_table "items", :force => true do |t|
     t.integer "user_id",     :limit => 11
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(:version => 20080524235455) do
     t.string   "name"
     t.boolean  "active",                                                 :default => true
     t.datetime "created_at"
-    t.decimal  "rate",                     :precision => 6, :scale => 2
+    t.decimal  "rate",                     :precision => 6, :scale => 2, :default => 0.0,  :null => false
   end
 
   add_index "jobs", ["user_id"], :name => "index_projects_on_user_id"

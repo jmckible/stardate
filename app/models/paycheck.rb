@@ -17,6 +17,8 @@ class Paycheck < ActiveRecord::Base
     !@paid.nil? or !self.item_id.nil?
   end
   
+  named_scope :unpaid, :conditions=>{:item_id=>nil}
+  
   attr_protected :created_at
   
   validates_presence_of :job_id

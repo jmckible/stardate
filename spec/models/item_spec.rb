@@ -49,16 +49,21 @@ describe Item, 'tagging' do
 end
 
 #####################################################################
+#                               S C O P E                           #
+#####################################################################
+describe Item, 'scope' do
+  it 'should have a during scope' do
+    Item.during(Date.today).should == Item.all
+  end
+end
+
+#####################################################################
 #                    O B J E C T    M E T H O D S                   #
 #####################################################################
 describe Item do
   
   before(:each) do
     @item = items(:sals)
-  end
-  
-  it 'should have a during scope' do
-    Item.during(Date.today).should == Item.all
   end
   
   it 'should round values and assume negative' do
@@ -92,7 +97,6 @@ describe Item, 'protections' do
     @item.update_attributes :user=>users(:scott)
     @item.user.should_not == users(:scott)
   end
-  
 end
 
 #####################################################################
@@ -126,5 +130,4 @@ describe Item, 'destruction' do
     items(:starbucks).destroy
     paychecks(:last_week).item.should be_nil
   end
-  
 end

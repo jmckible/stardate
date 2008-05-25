@@ -17,6 +17,9 @@ class Task < ActiveRecord::Base
     min < 10 ? "0#{min}" : min
   end
   
+  named_scope :on, lambda { |date| {:conditions=>{:date=>date}} }
+  named_scope :unpaid, :conditions=>{:paycheck_id=>nil}
+  
   attr_protected :created_at
   
   before_validation :fix_minutes

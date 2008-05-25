@@ -36,7 +36,7 @@ end
 #####################################################################
 describe Paycheck do
   
-  it 'should have a paid? attrbute' do
+  it 'should have a paid? attribute' do
     paychecks(:april).should_not be_paid
     paychecks(:last_week).should be_paid
   end

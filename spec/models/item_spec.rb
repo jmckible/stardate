@@ -112,10 +112,6 @@ describe Item, 'validations' do
     Item.new.should have(1).error_on(:user_id)
   end
   
-  it 'should have a value' do
-    Item.new.should have(1).error_on(:value)
-  end
-  
   it 'should have a description no longer than 255' do
     Item.new(:description=>(1..122).to_a.to_s).should have(1).error_on(:description)
   end

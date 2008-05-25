@@ -1,9 +1,7 @@
 sals_pizza:
-  id: 1
-  item_id: 1
-  tag_id: 1
+  item: sals
+  tag: pizza
   
 sals_sals:
-  id: 2
-  item_id: 1
-  tag_id: 2
+  item: sals
+  tag: sals

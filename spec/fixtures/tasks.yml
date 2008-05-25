@@ -1,15 +1,10 @@
 explain_search:
-  id: 1
-  job_id: 1
-  created_at: <%= Time.now.to_s :db %>
+  job: risi
   date: <%= Date.today.to_s :db %>
   minutes: 30
-  paycheck_id: null
   
 today_shift:
-  id: 2
-  job_id: 4
-  created_at: <%= Time.now.to_s :db %>
-  date: <%= Date.today.to_s:db %>
+  job: starbucks
+  date: <%= Date.today.to_s :db %>
   minutes: 480
-  paycheck_id: 2
+  paycheck: last_week

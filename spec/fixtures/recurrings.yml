@@ -1,7 +1,5 @@
 rent:
-  id: 1
-  user_id: 1
-  category_id: 3
+  user: jordan
   day: 1
   value: -200
   description: Monthly Rent

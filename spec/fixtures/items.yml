@@ -1,23 +1,17 @@
 sals:
-  id: 1
-  user_id: 1
-  category_id: 2
+  user: jordan
   date: <%= Date.today.to_s :db %>
   value: -6
   description: Sal's
 
 panera:
-  id: 2
-  user_id: 1
-  category_id: 2
+  user: jordan
   date: <%= Date.today.to_s :db %>
   value: -7
   description: 
   
 starbucks:
-  id: 3
-  user_id: 2
-  category_id: null
+  user: scott
   date: <%= Date.today.to_s :db %>
   value: 100
   description: 

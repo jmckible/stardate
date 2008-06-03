@@ -14,11 +14,11 @@ describe Job, 'relationships' do
   end
   
   it 'should have many paychecks' do
-    @job.paychecks.should == [paychecks(:last_week)]
+    @job.paychecks.should == [paychecks(:starbucks_last_week)]
   end
   
   it 'should have many tasks' do
-    @job.tasks.should == [tasks(:today_shift)]
+    @job.tasks.size.should == 5
   end
 end
 
@@ -27,7 +27,7 @@ end
 #####################################################################
 describe Job, 'scope' do
   it 'should find active' do
-    Job.active.size.should == 3
+    Job.active.size.should == 2
   end
 end
 
@@ -37,17 +37,17 @@ end
 describe Job, 'protections' do
   
   before(:each) do
-    @job = jobs(:risi)
+    @job = jobs(:starbucks)
   end
   
   it 'should not update user_id through mass assignment' do
-    @job.update_attributes :user_id=>users(:scott).id
-    @job.user_id.should_not == users(:scott).id
+    @job.update_attributes :user_id=>users(:jordan).id
+    @job.user_id.should_not == users(:jordan).id
   end
   
   it 'should not update user through mass assignment' do
-    @job.update_attributes :user=>users(:scott)
-    @job.user.should_not == users(:scott)
+    @job.update_attributes :user=>users(:jordan)
+    @job.user.should_not == users(:jordan)
   end
 end
 
@@ -79,6 +79,6 @@ describe Job, 'destruction' do
   end
   
   it 'should destroy tasks' do
-    running { @job.destroy }.should change(Task, :count).by(-1)
+    running { @job.destroy }.should change(Task, :count).by(-5)
   end
 end

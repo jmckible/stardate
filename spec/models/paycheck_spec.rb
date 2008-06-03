@@ -6,11 +6,11 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe Paycheck, 'relationships' do
   
   before(:each) do
-    @paycheck = paychecks(:last_week)
+    @paycheck = paychecks(:starbucks_last_week)
   end
   
   it 'should belong to a user' do
-    @paycheck.item.should == items(:starbucks)
+    @paycheck.item.should == items(:starbucks_last_week)
   end
   
   it 'should belong to a job' do
@@ -18,7 +18,7 @@ describe Paycheck, 'relationships' do
   end
   
   it 'should have many tasks' do
-    @paycheck.tasks.should == [tasks(:today_shift)]
+    @paycheck.tasks.size.should == 5
   end
 end
 
@@ -27,7 +27,7 @@ end
 #####################################################################
 describe Paycheck, 'scope' do
   it 'should find unpaid' do
-    Paycheck.unpaid.should == [paychecks(:april)]
+    Paycheck.unpaid.should == [paychecks(:risi_last_month)]
   end
 end
 
@@ -37,8 +37,8 @@ end
 describe Paycheck do
   
   it 'should have a paid? attribute' do
-    paychecks(:april).should_not be_paid
-    paychecks(:last_week).should be_paid
+    paychecks(:risi_last_month).should_not be_paid
+    paychecks(:starbucks_last_week).should be_paid
   end
   
 end
@@ -57,8 +57,8 @@ describe Paycheck, 'validations' do
   end
   
   it 'should have an item and job belong to same person' do
-    paycheck = paychecks(:april)
-    paycheck.item = items(:starbucks)
+    paycheck = paychecks(:risi_last_month)
+    paycheck.item = items(:starbucks_last_week)
     paycheck.should have(1).error_on(:item)
   end
 end
@@ -69,8 +69,8 @@ end
 describe Paycheck, 'destruction' do
   
   it 'should nullify tasks' do
-    paychecks(:last_week).destroy
-    tasks(:today_shift).paycheck.should be_nil
+    paychecks(:starbucks_last_week).destroy
+    tasks(:starbucks_one).paycheck.should be_nil
   end
   
 end

@@ -9,9 +9,3 @@ scott:
   password_salt: salt
   password_hash: <%= User.encrypt 'test', 'salt' %>
   time_zone: Eastern Time (US & Canada)
-  
-wil:
-  email: wil@dot.com
-  password_salt: salt
-  password_hash: <%= User.encrypt 'test', 'salt' %>
-  time_zone: UTC

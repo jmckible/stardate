@@ -1,10 +1,11 @@
-april:
-  job: risi
-  description: April Invoice
-  value: 200
-
-last_week:
+starbucks_last_week:
   job: starbucks
-  description: Last Week
-  value: 95.0
-  item: starbucks
+  description: First week of work
+  value: 380
+  item: starbucks_last_week
+  
+risi_last_month:
+  job: risi
+  description: Last months work
+  value: 200
+  

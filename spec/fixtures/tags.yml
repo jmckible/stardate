@@ -1,5 +1,23 @@
+food:
+  name: food
+
 pizza:
   name: pizza
+
+sandwich:
+  name: sandwich
   
-sals:
-  name: sals
+rent:
+  name: rent
+  
+book:
+  name: book
+  
+interest:
+  name: interest
+  
+paycheck:
+  name: paycheck
+  
+starbucks:
+  name: starbucks

@@ -1,28 +1,13 @@
-risi:
-  user: jordan
-  name: RISI Support
-  created_at: <%= 60.days.ago.to_s :db %>
-  active: true
-  rate: 100.00
-  
-dms:
-  user: jordan
-  name: RISI DMS Project
-  created_at: <%= 60.days.ago.to_s :db %>
-  active: true
-  rate: 100.00
-  
-toms:
-  user: jordan
-  name: Tom's Todo
-  created_at: <%= 60.days.ago.to_s :db %>
-  active: false
-  rate: 100.00
-  
 starbucks:
   user: scott
   name: Starbucks
-  created_at: <%= 60.days.ago.to_s :db %>
+  created_at: <%= 5.days.ago.to_s :db %>
   active: true
   rate: 9.50
   
+risi:
+  user: jordan
+  name: RISI Consulting
+  created_at: <%= 2.month.ago.to_s :db %>
+  active: true
+  rate: 100

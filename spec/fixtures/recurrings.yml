@@ -1,5 +1,11 @@
 rent:
   user: jordan
   day: 1
-  value: -200
-  description: Monthly Rent
+  value: -750
+  description: Rent
+  
+ing:
+  user: jordan
+  day: 31
+  value: 100
+  description: ING

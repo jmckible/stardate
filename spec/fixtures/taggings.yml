@@ -1,7 +1,39 @@
-sals_pizza:
-  item: sals
+pizza_food:
+  item: pizza
+  tag: food
+  
+pizza_pizza:
+  item: pizza
   tag: pizza
   
-sals_sals:
-  item: sals
-  tag: sals
+panera_food:
+  item: panera
+  tag: food
+  
+panera_sandwich:
+  item: panera
+  tag: sandwich
+  
+rent_rent:
+  item: rent
+  tag: rent
+  
+safeway_food:
+  item: safeway
+  tag: food
+  
+border_book:
+  item: borders
+  tag: book
+  
+ing_interest:
+  item: ing
+  tag: interest
+  
+starbucks_last_week_paycheck:
+  item: starbucks_last_week
+  tag: paycheck
+  
+starbucks_last_week_starbucks:
+  item: starbucks_last_week
+  tag: starbucks

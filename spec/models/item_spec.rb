@@ -6,7 +6,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe Item, 'relationships' do 
    
   before(:each) do
-    @item = items(:sals)
+    @item = items(:pizza)
   end
   
   it 'should belong to a user' do
@@ -14,7 +14,7 @@ describe Item, 'relationships' do
   end
   
   it 'should belong to a paycheck' do
-    items(:starbucks).paycheck.should == paychecks(:last_week)
+    items(:starbucks_last_week).paycheck.should == paychecks(:starbucks_last_week)
   end  
 end
 
@@ -24,26 +24,26 @@ end
 describe Item, 'tagging' do
   
   before(:each) do
-    @item = items(:sals)
+    @item = items(:pizza)
   end
   
   it 'should have many taggings' do
-    @item.taggings.should == taggings(:sals_pizza, :sals_sals)
+    @item.taggings.size.should == 2
   end
   
   it 'should have many tags' do
-    @item.tags.should == tags(:pizza, :sals)
+    @item.tags.should == tags(:food, :pizza)
   end
   
   it 'should have a tag list' do
-    @item.tag_list.should == 'pizza, sals'
+    @item.tag_list.should == 'food, pizza'
   end
   
   it 'should add a new tag via tag list' do
     running {
-      @item.tag_list = 'pizza, sals, cupcake'
+      @item.tag_list = 'pizza, food, cupcake'
       @item.save
-      @item.tag_list.should == 'pizza, sals, cupcake'
+      @item.tag_list.should == 'food, pizza, cupcake'
     }.should change(Tag, :count).by(1)
   end
 end
@@ -53,7 +53,7 @@ end
 #####################################################################
 describe Item, 'scope' do
   it 'should have a during scope' do
-    Item.during(Date.today).should == Item.all
+    Item.during(Date.today).size.should == 3
   end
 end
 
@@ -63,7 +63,7 @@ end
 describe Item do
   
   before(:each) do
-    @item = items(:sals)
+    @item = items(:pizza)
   end
   
   it 'should round values and assume negative' do
@@ -85,7 +85,7 @@ end
 describe Item, 'protections' do
   
   before(:each) do
-    @item = items(:sals)
+    @item = items(:pizza)
   end
   
   it 'should not update user_id through mass assignment' do
@@ -123,7 +123,7 @@ end
 describe Item, 'destruction' do
   
   it 'should nullify paycheck on destroy' do
-    items(:starbucks).destroy
-    paychecks(:last_week).item.should be_nil
+    items(:starbucks_last_week).destroy
+    paychecks(:starbucks_last_week).item.should be_nil
   end
 end

@@ -1,4 +1,4 @@
-sals:
+pizza:
   user: jordan
   date: <%= Date.today.to_s :db %>
   value: -6
@@ -8,10 +8,34 @@ panera:
   user: jordan
   date: <%= Date.today.to_s :db %>
   value: -7
-  description: 
+  description: Panera
   
-starbucks:
+rent:
+  user: jordan
+  date: <%= Time.now.beginning_of_month.to_date.to_s :db %>
+  value: -750
+  description: Rent
+  
+safeway:
+  user: jordan
+  date: <%= Date.yesterday.to_s :db %>
+  value: -20
+  description: Safeway
+  
+borders:
+  user: jordan
+  date: <%= (Date.today - 2).to_s :db %>
+  value: -16
+  description: A book
+  
+ing:
+  user: jordan
+  date: <%= (Time.now.beginning_of_month.to_date - 1).to_s :db %>
+  value: 100
+  description: ING
+      
+starbucks_last_week:
   user: scott
   date: <%= Date.today.to_s :db %>
-  value: 100
-  description: 
+  value: 380
+  description: First paycheck

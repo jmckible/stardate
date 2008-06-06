@@ -30,7 +30,7 @@ class Item < ActiveRecord::Base
   #####################################################################
   # If the value is positive, put a + in front
   def string_value
-    self.value < 0 ? value.to_s : "+#{value.to_s}"
+    "#{'+' if value > 0}#{value.to_s}"
   end
   
   # Overwriting the default value=

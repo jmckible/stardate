@@ -55,6 +55,15 @@ describe Paycheck do
     paycheck.should be_paid
   end
   
+  it 'should create an item on save if paid is set and no previous item' do
+    paycheck = paychecks(:risi_last_month)
+    paycheck.paid = true
+    running {
+      paycheck.save
+      paycheck.item.should_not be_nil
+    }.should change(Item, :count).by(1)
+  end
+  
 end
 
 #####################################################################

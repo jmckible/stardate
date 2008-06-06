@@ -24,10 +24,8 @@ class Paycheck < ActiveRecord::Base
   
   before_save :create_item
   def create_item
-    if @paid==true && self.item_id.nil? 
-      self.description ||= ''
-      trans = job.user.items.build :value=>"+#{self.value.to_s}", :description=>self.description, :date=>Date.today
-      self.item = trans if trans.save
+    if paid && !item
+      job.user.items.create :paycheck=>self, :value=>"+#{value}", :description=>description, :date=>Date.today
     end
   end
   

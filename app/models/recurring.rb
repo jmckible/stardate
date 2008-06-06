@@ -1,10 +1,25 @@
 class Recurring < ActiveRecord::Base
-  def self.on(date)
-    find :all, :conditions=>{:day=>date.mday}
-  end
   
+  #####################################################################
+  #                     R E L A T I O N S H I P S                     #
+  #####################################################################
   belongs_to :user
   
+  #####################################################################
+  #                            S C O P E                              #
+  #####################################################################
+  named_scope :on, lambda { |date| {:conditions=>{:day=>(date.is_a?(Date) ? date.mday : date)}} }
+  
+  #####################################################################
+  #                    O B J E C T    M E T H O D S                   #
+  #####################################################################
+  # If the value is positive, put a + in front
+  def string_value
+    "#{'+' if value > 0}#{value}"
+  end
+  
+  # Overwriting the default value=
+  # Assume input without an explicit - or + preceeding is negative
   def value=(new_value)
     new_value = new_value.to_s
     return if new_value.blank?
@@ -12,29 +27,14 @@ class Recurring < ActiveRecord::Base
     write_attribute :value, new_value.to_f.round
   end
   
-  def explicit_value
-    return if value.nil?
-    value < 0 ? value : "+#{value.to_s}"
-  end
-  
-  # Consider overriding to_s?
-  def inline_description
-    description
-  end
+  #####################################################################
+  #                       V A L I D A T I O N S                       #
+  #####################################################################
+  attr_protected :user, :user_id
   
   validates_presence_of     :user_id
-  validates_presence_of     :value
-  validates_numericality_of :day
-  validates_length_of       :description, :in=>0..254
-  
-  protected
-  def validate
-    unless day.nil?
-      errors.add(:day, "must be between 1 and 28") if day < 1 or day > 28
-    end
-    unless self.user_id.blank?
-      errors.add(:user, 'too many recurring transactions') if user.recurrings.size >= 100
-    end
-  end
+  validates_numericality_of :value, :only_integer=>true
+  validates_numericality_of :day, :in=>1..31
+  validates_length_of       :description, :in=>0..255
   
 end

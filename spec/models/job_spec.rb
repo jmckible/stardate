@@ -18,7 +18,7 @@ describe Job, 'relationships' do
   end
   
   it 'should have many tasks' do
-    @job.tasks.size.should == 5
+    @job.should have(5).tasks
   end
 end
 
@@ -27,7 +27,7 @@ end
 #####################################################################
 describe Job, 'scope' do
   it 'should find active' do
-    Job.active.size.should == 2
+    Job.should have(2).active
   end
 end
 

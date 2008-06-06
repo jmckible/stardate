@@ -18,7 +18,7 @@ describe Paycheck, 'relationships' do
   end
   
   it 'should have many tasks' do
-    @paycheck.tasks.size.should == 5
+    @paycheck.should have(5).tasks
   end
 end
 
@@ -53,7 +53,7 @@ describe Paycheck, 'validations' do
   end
   
   it 'should have a numeric value' do
-    Paycheck.new(:value=>'asdf').should have(1).error_on(:value)
+    Paycheck.new(:value=>'not numeric').should have(1).error_on(:value)
   end
   
   it 'should have an item and job belong to same person' do

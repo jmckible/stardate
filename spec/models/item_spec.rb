@@ -28,7 +28,7 @@ describe Item, 'tagging' do
   end
   
   it 'should have many taggings' do
-    @item.taggings.size.should == 2
+    @item.should have(2).taggings
   end
   
   it 'should have many tags' do
@@ -53,7 +53,7 @@ end
 #####################################################################
 describe Item, 'scope' do
   it 'should have a during scope' do
-    Item.during(Date.today).size.should == 3
+    Item.should have(3).during(Date.today)
   end
 end
 

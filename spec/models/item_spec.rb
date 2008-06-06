@@ -4,13 +4,8 @@ require File.dirname(__FILE__) + '/../spec_helper'
 #                     R E L A T I O N S H I P S                     #
 #####################################################################
 describe Item, 'relationships' do 
-   
-  before(:each) do
-    @item = items(:pizza)
-  end
-  
   it 'should belong to a user' do
-    @item.user.should == users(:jordan)
+    items(:pizza).user.should == users(:jordan)
   end
   
   it 'should belong to a paycheck' do
@@ -41,10 +36,12 @@ describe Item, 'tagging' do
   
   it 'should add a new tag via tag list' do
     running {
-      @item.tag_list = 'pizza, food, cupcake'
-      @item.save
-      @item.reload.tag_list.should == 'cupcake, food, pizza'
-    }.should change(Tag, :count).by(1)
+      running {
+        @item.tag_list = 'pizza, food, cupcake'
+        @item.save
+        @item.reload.tag_list.should == 'cupcake, food, pizza'
+      }.should change(Tag, :count).by(1) 
+    }.should change(Tagging, :count).by(1)
   end
   
   it 'should empty tag list when nothing is passed' do
@@ -57,7 +54,7 @@ describe Item, 'tagging' do
 end
 
 #####################################################################
-#                               S C O P E                           #
+#                            S C O P E                              #
 #####################################################################
 describe Item, 'scope' do
   it 'should have a during scope' do
@@ -72,6 +69,11 @@ describe Item do
   
   before(:each) do
     @item = items(:pizza)
+  end
+  
+  it 'should have a string value with explicit plus sign' do
+    @item.string_value.should == '-6'
+    items(:ing).string_value.should == '+100'
   end
   
   it 'should round values and assume negative' do
@@ -90,11 +92,6 @@ describe Item do
     @item.value = 0
     @item.save
     @item.value.should == 0
-  end
-  
-  it 'should have a string value with explicit plus sign' do
-    @item.string_value.should == '-6'
-    items(:ing).string_value.should == '+100'
   end
 end
 

@@ -44,6 +44,9 @@ Rails::Initializer.run do |config|
   # Default users see UTC
   config.time_zone = 'UTC'
   
+  # More efficient database updates
+  config.active_record.partial_updates = true
+  
   # See Rails::Configuration for more options
   config.action_controller.session = { 
     :session_key => '_activebudget_session_id', 

@@ -43,7 +43,16 @@ describe Item, 'tagging' do
     running {
       @item.tag_list = 'pizza, food, cupcake'
       @item.save
+      @item.reload.tag_list.should == 'cupcake, food, pizza'
     }.should change(Tag, :count).by(1)
+  end
+  
+  it 'should empty tag list when nothing is passed' do
+    running {
+      @item.tag_list = ''
+      @item.save
+      @item.should have(0).tags
+    }.should change(Tagging, :count).by(-2)
   end
 end
 

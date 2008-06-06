@@ -17,7 +17,7 @@ class Item < ActiveRecord::Base
   end
 
   def tag_list=(list)
-    tags = list.split(',').compact.collect { |name| Tag.find_or_create_by_name name.strip }
+    self.tags = list.split(',').compact.collect { |name| Tag.find_or_create_by_name name.strip }
   end
   
   #####################################################################

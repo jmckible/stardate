@@ -18,11 +18,8 @@ class Paycheck < ActiveRecord::Base
   #####################################################################
   # Virtual attr paid for checkbox
   attr_accessor :paid
-  def paid=(value)
-    @paid = (value == true || value.to_i == 1) ? true : false
-  end
   def paid?
-    !@paid.nil? || !self.item_id.nil?
+    item_id || paid == true || paid == 1
   end
   
   before_save :create_item

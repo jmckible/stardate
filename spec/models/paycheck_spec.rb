@@ -27,7 +27,7 @@ end
 #####################################################################
 describe Paycheck, 'scope' do
   it 'should find unpaid' do
-    Paycheck.unpaid.should == [paychecks(:risi_last_month)]
+    Paycheck.should have(1).unpaid
   end
 end
 
@@ -36,9 +36,23 @@ end
 #####################################################################
 describe Paycheck do
   
-  it 'should have a paid? attribute' do
+  it 'should have a paid? attribute based on item' do
     paychecks(:risi_last_month).should_not be_paid
     paychecks(:starbucks_last_week).should be_paid
+  end
+  
+  it 'should set paid attribute with boolean' do
+    paycheck = Paycheck.new :paid=>false
+    paycheck.should_not be_paid
+    paycheck.paid = true
+    paycheck.should be_paid
+  end
+  
+  it 'should set paid attribute with an integer (a la form set)' do
+    paycheck = Paycheck.new :paid=>0
+    paycheck.should_not be_paid
+    paycheck.paid = 1
+    paycheck.should be_paid
   end
   
 end

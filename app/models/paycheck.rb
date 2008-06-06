@@ -39,7 +39,7 @@ class Paycheck < ActiveRecord::Base
   
   protected
   def validate
-    unless item_id.nil? || job_id.nil?
+    if item && job
       errors.add(:item, "doesn't belong to you") unless item.user_id == job.user_id
     end
   end

@@ -76,6 +76,11 @@ describe Item do
     @item.save
     @item.value.should == 5
   end  
+  
+  it 'should have a string value with explicit plus sign' do
+    @item.string_value.should == '-6'
+    items(:ing).string_value.should == '+100'
+  end
 end
 
 #####################################################################

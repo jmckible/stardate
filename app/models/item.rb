@@ -7,7 +7,7 @@ class Item < ActiveRecord::Base
   has_one    :paycheck,  :dependent=>:nullify
 
   #####################################################################
-  #                             T A G G I N G                         #
+  #                           T A G G I N G                           #
   #####################################################################
   has_many :taggings
   has_many :tags, :through=>:taggings, :order=>:name
@@ -21,7 +21,7 @@ class Item < ActiveRecord::Base
   end
   
   #####################################################################
-  #                               S C O P E                           #
+  #                            S C O P E                              #
   #####################################################################
   named_scope :during, lambda { |date| {:conditions=>{:date=>date}} }
   
@@ -29,7 +29,7 @@ class Item < ActiveRecord::Base
   #                    O B J E C T    M E T H O D S                   #
   #####################################################################
   # If the value is positive, put a + in front
-  def explicit_value
+  def string_value
     self.value < 0 ? value.to_s : "+#{value.to_s}"
   end
   

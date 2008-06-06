@@ -1,6 +1,7 @@
 class Job < ActiveRecord::Base
 
   belongs_to :user
+  
   has_many   :paychecks, :order=>:created_at, :dependent=>:destroy
   has_many   :tasks,     :order=>:date,       :dependent=>:destroy
   

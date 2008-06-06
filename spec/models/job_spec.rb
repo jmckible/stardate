@@ -14,7 +14,7 @@ describe Job, 'relationships' do
   end
   
   it 'should have many paychecks' do
-    @job.paychecks.should == [paychecks(:starbucks_last_week)]
+    @job.should have(1).paychecks
   end
   
   it 'should have many tasks' do

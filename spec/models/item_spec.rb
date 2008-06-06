@@ -31,7 +31,7 @@ describe Item, 'tagging' do
     @item.should have(2).taggings
   end
   
-  it 'should have many tags' do
+  it 'should have many tags alphabetically' do
     @item.tags.should == tags(:food, :pizza)
   end
   
@@ -43,7 +43,6 @@ describe Item, 'tagging' do
     running {
       @item.tag_list = 'pizza, food, cupcake'
       @item.save
-      @item.tag_list.should == 'food, pizza, cupcake'
     }.should change(Tag, :count).by(1)
   end
 end

@@ -12,20 +12,12 @@ class Item < ActiveRecord::Base
   has_many :taggings
   has_many :tags, :through=>:taggings, :order=>:name
   
-  attr_accessor :tag_list
-  
   def tag_list
     tags.map(&:name).join(', ')
   end
 
-  def tag_list=(tag_string)
-    new_tags = tag_string.split(',').compact.collect{|name| Tag.find_or_create_by_name(name.strip)}
-    for tag in tags
-      tags.delete(tag) unless new_tags.include?(tag)
-    end
-    for new_tag in new_tags
-      tags << new_tag unless tags.include?(new_tag)
-    end
+  def tag_list=(list)
+    tags = list.split(',').compact.collect { |name| Tag.find_or_create_by_name name.strip }
   end
   
   #####################################################################

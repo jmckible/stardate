@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080525011917) do
+ActiveRecord::Schema.define(:version => 20080606230230) do
 
   create_table "items", :force => true do |t|
     t.integer "user_id",     :limit => 11,                :null => false
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(:version => 20080525011917) do
     t.date     "date",                                     :null => false
     t.integer  "minutes",     :limit => 11, :default => 0, :null => false
     t.string   "description"
-    t.integer  "paycheck_id", :limit => 11,                :null => false
+    t.integer  "paycheck_id", :limit => 11
   end
 
   add_index "tasks", ["job_id"], :name => "index_tasks_on_project_id"

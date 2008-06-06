@@ -1,11 +1,20 @@
 class Task < ActiveRecord::Base
-  def self.on(date)
-    find :all, :conditions=>{:date=>date}
-  end
   
+  #####################################################################
+  #                     R E L A T I O N S H I P S                     #
+  #####################################################################
   belongs_to :job
   belongs_to :paycheck
   
+  #####################################################################
+  #                            S C O P E                              #
+  #####################################################################
+  named_scope :on,      lambda { |date| {:conditions=>{:date=>date}} }
+  named_scope :unpaid, :conditions=>{:paycheck_id=>nil}
+  
+  #####################################################################
+  #                    O B J E C T    M E T H O D S                   #
+  #####################################################################
   attr_accessor :hours, :min
   def hours
     return if minutes.blank?
@@ -13,35 +22,29 @@ class Task < ActiveRecord::Base
   end
   def min
     return if minutes.blank?
-    min = minutes.modulo(60)
-    min < 10 ? "0#{min}" : min
+    modulo = minutes.modulo(60)
+    modulo < 10 ? "0#{modulo}" : modulo
   end
-  
-  named_scope :on, lambda { |date| {:conditions=>{:date=>date}} }
-  named_scope :unpaid, :conditions=>{:paycheck_id=>nil}
-  
-  attr_protected :created_at
   
   before_validation :fix_minutes
-  
-  validates_presence_of :job_id
-  validates_presence_of :date
-  validates_presence_of :minutes
-  
-  protected
-  def validate
-    errors.add(:minutes, "can't be zero") if minutes == 0
-    unless paycheck_id.nil? or job_id.nil?
-      errors.add(:paycheck, "doesn't belong to the job") if paycheck.job_id != job.id
-    end
-  end
-  
   def fix_minutes
-    unless @hours.blank? and @min.blank?
+    unless @hours.blank? && @min.blank?
       @hours ||= 0
       @min   ||= 0
       self.minutes = @hours.to_f * 60 + @min.to_i
     end
   end
   
+  #####################################################################
+  #                       V A L I D A T I O N S                       #
+  #####################################################################
+  validates_presence_of :date, :job_id
+  
+  protected
+  def validate
+    if paycheck && job
+      errors.add :paycheck, "doesn't belong to the job" if paycheck.job_id != job_id
+    end
+  end
+
 end

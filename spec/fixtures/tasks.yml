@@ -28,13 +28,13 @@ starbucks_five:
   minutes: 480
   paycheck: starbucks_last_week
   
-risi_reboot:
-  job: risi
-  date: <%= Date.today.to_s :db %>
-  minutes: 60
-  
 risi_dms:
   job: risi
   date: <%= (Date.today - 45).to_s :db %>
   minutes: 120
   paycheck: risi_last_month
+
+risi_reboot:
+  job: risi
+  date: <%= Date.today.to_s :db %>
+  minutes: 30

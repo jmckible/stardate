@@ -25,35 +25,14 @@ module AuthorizationSystem
   # To protect a controller, use this method as a filter
   # before_filter :login_required
   def login_required
-    access_denied unless header_login or session_login or cookie_login
+    access_denied unless session_login || cookie_login
   end
 
   # If the user can't be logged in with supplied credentials
   # redirect to login page, or send 401 depending on request format
   def access_denied
     clear_session
-    respond_to do |format|
-      format.html { redirect_to login_path and return false }
-      format.xml do
-        headers['Status'] = "Unauthorized"
-        headers["WWW-Authenticate"] = %(Basic realm="Web Password")
-        render :text =>'Unauthorized', :status=>401
-      end
-    end
-  end
-
-  # Log in using basic HTTP authorization headers
-  def header_login
-    auth_key  = %w(X-HTTP_AUTHORIZATION HTTP_AUTHORIZATION Authorization).detect { |h| request.env.has_key?(h) }
-    unless auth_key.blank?
-      auth_data = request.env[auth_key].to_s.split
-      if auth_data and auth_data[0] == 'Basic'
-        email, password = Base64.decode64(auth_data[1]).split(':')[0..1]
-        current_user = User.authenticate(email, password)
-        return true unless user.nil?
-      end
-    end
-    return false
+    redirect_to login_path and return false
   end
 
   # Log in using the session

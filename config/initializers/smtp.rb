@@ -12,9 +12,6 @@ begin
     :password       => mail_env['password']
   }
 
-  ExceptionNotifier.exception_recipients = mail_env[:exception_recipient]
-  ExceptionNotifier.sender_address       = mail_env[:exception_sender]
-
 rescue Errno::ENOENT
   $stderr.puts '[WARN] Missing config/mail.yml. Mail will not be sent.'
 end

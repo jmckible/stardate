@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  include AuthorizationSystem, Captcha, ExceptionNotifiable, Periodic
+  include AuthorizationSystem, Captcha, Periodic
   
   # By default all pages are protected
   # Use skip_before_filter on public pages

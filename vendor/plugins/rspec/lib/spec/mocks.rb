@@ -1,5 +1,6 @@
+require 'spec/mocks/framework'
 require 'spec/mocks/methods'
-require 'spec/mocks/argument_constraint_matchers'
+require 'spec/mocks/argument_constraints'
 require 'spec/mocks/spec_methods'
 require 'spec/mocks/proxy'
 require 'spec/mocks/mock'
@@ -10,7 +11,6 @@ require 'spec/mocks/errors'
 require 'spec/mocks/error_generator'
 require 'spec/mocks/extensions/object'
 require 'spec/mocks/space'
-
 
 module Spec
   # == Mocks and Stubs

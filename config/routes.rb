@@ -32,8 +32,6 @@ ActionController::Routing::Routes.draw do |map|
   ##########################
   #   R E S O U R C E S    #
   ##########################  
-  map.redbox_edit_item    '/items/:id/redbox', :controller=>'items', :action=>'edit', :method=>:post
-  map.redbox_destroy_item '/items/:id/redbox_destroy', :controller=>'items', :action=>'redbox_destroy', :method=>:delete
   map.resources :items
   map.resources :jobs, :has_many=>:paychecks
   map.resources :recurrings
@@ -51,7 +49,6 @@ ActionController::Routing::Routes.draw do |map|
   #        H O M E         #
   ##########################
   map.home 'home', :controller=>'home'
-  map.screencast 'screencast', :controller=>'public', :action=>'screencast'
   map.register 'register/:year/:month/:day/:period',
     :controller=>'register',
     :action=>'index',

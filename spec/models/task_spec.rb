@@ -18,7 +18,7 @@ end
 #####################################################################
 describe Task, 'scopes' do
   it 'should find by day' do
-    Task.should have(2).on(Date.today)
+    Task.should have(2).on(Date.new(2008, 1, 15))
   end
   
   it 'should find unpaid' do

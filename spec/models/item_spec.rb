@@ -58,7 +58,7 @@ end
 #####################################################################
 describe Item, 'scope' do
   it 'should have a during scope' do
-    Item.should have(3).during(Date.today)
+    Item.should have(3).during(Date.new(2008, 1, 15))
   end
 end
 

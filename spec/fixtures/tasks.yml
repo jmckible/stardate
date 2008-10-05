@@ -1,40 +1,40 @@
 starbucks_one:
   job: starbucks
-  date: <%= (Date.today - 4).to_s :db %>
+  date: 2008-01-11
   minutes: 480
   paycheck: starbucks_last_week
   
 starbucks_two:
   job: starbucks
-  date: <%= (Date.today - 3).to_s :db %>
+  date: 2008-01-12
   minutes: 480
   paycheck: starbucks_last_week
   
 starbucks_three:
   job: starbucks
-  date: <%= (Date.today - 2).to_s :db %>
+  date: 2008-01-13
   minutes: 480
   paycheck: starbucks_last_week
   
 starbucks_four:
   job: starbucks
-  date: <%= (Date.today - 1).to_s :db %>
+  date: 2008-01-14
   minutes: 480
   paycheck: starbucks_last_week
   
 starbucks_five:
   job: starbucks
-  date: <%= Date.today.to_s :db %>
+  date: 2008-01-15
   minutes: 480
   paycheck: starbucks_last_week
   
 risi_dms:
   job: risi
-  date: <%= (Date.today - 45).to_s :db %>
+  date: 2007-12-01
   minutes: 120
   paycheck: risi_last_month
 
 risi_reboot:
   job: risi
-  date: <%= Date.today.to_s :db %>
+  date: 2008-01-15
   minutes: 30

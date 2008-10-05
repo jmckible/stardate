@@ -56,64 +56,64 @@ describe User do
   
   # activity_during?
   it 'should detect activity from a task' do
-    @user.should be_activity_during(Date.today - 45)
+    @user.should be_activity_during(Date.new(2007, 12, 1))
   end
   
   it 'should detect activity from an item' do
-    @user.should be_activity_during(Date.yesterday)
+    @user.should be_activity_during(Date.new(2008, 1, 14))
   end
   
   it 'should invert range for detecting activity' do
-    @user.should be_activity_during(Date.tomorrow..Date.today)
+    @user.should be_activity_during(Date.new(2008, 1, 16)..Date.new(2008, 1, 15))
   end
   
   it 'should fail to detect activity if none' do
-    @user.should_not be_activity_during(Date.tomorrow)
+    @user.should_not be_activity_during(Date.new(2008, 1, 16))
   end
   
   # totaling
   it 'should total on a date' do
-    @user.total_on(Date.today).should == 37
+    @user.total_on(Date.new(2008, 1, 15)).should == 37
   end
   
   it 'should total for the week' do
-    @user.total_this_week.should == 1
+    @user.total_this_week(Date.new(2008, 1, 15)).should == 1
   end
   
   it 'should total this month' do
-    @user.total_this_month.should == -749
+    @user.total_this_month(Date.new(2008, 1, 15)).should == -749
   end
   
   it 'should total this year' do
-    @user.total_this_year.should == -449
+    @user.total_this_year(Date.new(2008, 1, 15)).should == -749
   end
 
 
   # summing
   it 'should sum income from a range' do
-    @user.sum_income((Date.today - 60)..Date.today).should == 100
+    @user.sum_income(Date.new(2007, 11, 16)..Date.new(2008, 1, 15)).should == 100
   end
   
   it 'should sum income from a date' do
-    @user.sum_income(Date.today).should == 0
+    @user.sum_income(Date.new(2008, 1, 15)).should == 0
   end
   
   it 'should sum expenses from a range' do
-    @user.sum_expenses((Date.today - 30)..Date.today).should == -799
+    @user.sum_expenses(Date.new(2007, 12, 16)..Date.new(2008, 1, 15)).should == -799
   end
   
   it 'should sum expenses from a date' do
-    @user.sum_expenses(Date.today).should == -13
+    @user.sum_expenses(Date.new(2008, 1, 15)).should == -13
   end
   
   
   # value unpaid
   it 'should value unpaid tasks with date' do
-    @user.value_unpaid_tasks_on(Date.today).should == 50
+    @user.value_unpaid_tasks_on(Date.new(2008, 1, 15)).should == 50
   end
   
   it 'should value unpaid tasks with a range and a paid' do
-    @user.value_unpaid_tasks_on((Date.today - 60)..Date.today).should == 250
+    @user.value_unpaid_tasks_on(Date.new(2007, 11, 16)..Date.new(2008, 1, 15)).should == 250
   end
 end
 

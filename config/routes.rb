@@ -22,12 +22,11 @@ ActionController::Routing::Routes.draw do |map|
     :period       => nil
 
   map.with_options :controller=>'sessions' do |s|
-    map.login        'login',        :action=>'login'
-    map.logout       'logout',       :action=>'logout'
-    map.authenticate 'authenticate', :action=>'authenticate', :conditions=>{:method=>:post}
+    s.login        'login',        :action=>'login'
+    s.logout       'logout',       :action=>'logout'
+    s.authenticate 'authenticate', :action=>'authenticate', :conditions=>{:method=>:post}
   end
   
-  map.home 'home', :controller=>'home'
-  map.welcome '', :controller=>'public'
+  map.root :controller=>'items'
   
 end

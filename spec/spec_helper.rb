@@ -17,3 +17,19 @@ Spec::Runner.configure do |config|
   end
 
 end
+
+
+# Always integrate_views in controllers
+module Spec
+  module Rails
+    module Example
+      class ControllerExampleGroup
+        module ControllerInstanceMethods
+          def integrate_views?
+            true
+          end
+        end
+      end
+    end
+  end
+end

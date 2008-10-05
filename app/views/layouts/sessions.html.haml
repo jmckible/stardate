@@ -1,0 +1,15 @@
+!!! Strict
+
+%html{html_attrs('en-US')}
+  %head
+    %meta{'http-equiv' => 'Content-Type', :content => 'text/html'}
+    %title ActiveBudget - Open Source Cash Flow on Rails
+    = stylesheet_link_tag 'activebudget'
+    
+  %body
+    #Header
+      .fixed_width= link_to image_tag('activebudget_logo_small.png', :id=>:Logo), root_path
+
+    #Content.clearfix= yield
+    
+    #Footer= "ActiveBudget is available under the #{link_to 'MIT license', 'http://www.opensource.org/licenses/mit-license.php'} and managed by #{link_to 'Jordan McKible', 'http://jordan.mckible.com'}"

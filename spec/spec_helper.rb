@@ -15,6 +15,17 @@ Spec::Runner.configure do |config|
   def running(&block)
     lambda &block
   end
+  
+  def cookie(name, value)
+    @request.cookies[name.to_s] = CGI::Cookie.new(name.to_s, value.to_s)
+  end
+  
+  def login_as(name)
+    @current_user = users(name)
+    @request.session[:user_id] = @current_user.id
+    cookie :user_id, @current_user.id
+    cookie :password_hash, @current_user.password_hash
+  end
 
 end
 

@@ -1,6 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :items
   map.resources :recurrings
+  map.resources :sessions
   map.resources :users
   
   map.activity_graph 'graphs/activity.:format/:year/:month/:day/:period',
@@ -20,12 +21,6 @@ ActionController::Routing::Routes.draw do |map|
     :month        => nil,
     :day          => nil,
     :period       => nil
-
-  map.with_options :controller=>'sessions' do |s|
-    s.login        'login',        :action=>'login'
-    s.logout       'logout',       :action=>'logout'
-    s.authenticate 'authenticate', :action=>'authenticate', :conditions=>{:method=>:post}
-  end
   
   map.root :controller=>'items'
   

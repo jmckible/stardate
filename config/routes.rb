@@ -10,15 +10,6 @@ ActionController::Routing::Routes.draw do |map|
     :month=>nil,
     :day=>nil,
     :period=>nil
-  
-  map.in_out_bar_graph 'graphs/in_out_bar.:format/:year/:month/:day/:period',
-    :controller=>'graphs',
-    :action=>'in_out_bar',
-    :requirement=>{:format=>/xml/, :year=>/(19|20)\d\d/, :month=>/[01]?\d/, :day=>/[0-3]?\d/, :period=>/\d+/},
-    :year=>nil,
-    :month=>nil,
-    :day=>nil,
-    :period=>nil
     
   ##########################
   #   R E S O U R C E S    #

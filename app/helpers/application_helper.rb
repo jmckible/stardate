@@ -59,4 +59,8 @@ module ApplicationHelper
     minutes = "0#{minutes}" if minutes < 10
     [hours, minutes].join(':')
   end
+  
+  def footer
+    "ActiveBudget is available under the #{link_to 'MIT license', 'http://www.opensource.org/licenses/mit-license.php'} and managed by #{link_to 'Jordan McKible', 'http://jordan.mckible.com'}"
+  end
 end

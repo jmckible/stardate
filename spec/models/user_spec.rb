@@ -77,15 +77,15 @@ describe User do
   end
   
   it 'should total for the week' do
-    @user.total_this_week(Date.new(2008, 1, 15)).should == 1
+    @user.total_past_week(Date.new(2008, 1, 15)).should == 1
   end
   
   it 'should total this month' do
-    @user.total_this_month(Date.new(2008, 1, 15)).should == -749
+    @user.total_past_month(Date.new(2008, 1, 15)).should == -749
   end
   
   it 'should total this year' do
-    @user.total_this_year(Date.new(2008, 1, 15)).should == -749
+    @user.total_past_year(Date.new(2008, 1, 15)).should == -749
   end
 
 

@@ -1,0 +1,43 @@
+%ul#Transactions
+  - for day in @period
+    %li.date= day.strftime('%A %B %e')
+    %li
+      %ul
+        - for item in current_user.items.on(day)
+          %li
+            %dl
+              %dt= color_money item.value
+              %dd= link_to h(item.description), item_path(item)
+              
+    
+#Input
+  #NewTransaction
+    - form_for Item.new do |f|
+      %p
+        Date
+        %br
+        = f.date_select :date, :order=>[:month, :day]
+        
+      %p
+        Amount
+        %br
+        = f.text_field :value, :class=>:money
+        
+      %p
+        Description
+        %br
+        = f.text_field :description, :class=>:description
+        
+      %p
+        Tags
+        %br
+        = f.text_field :tag_list, :class=>:description
+        
+      %p= submit_tag 'Add Transaction'
+
+
+#Activity
+  %script{:type=>'text/javascript'}
+    var expenses = new FusionCharts("/flash/MSArea.swf", "Activity", "800", "300", "0", "0");
+    = "objects.setDataURL(\"#{activity_graph_url(:format=>'xml')}\");"
+    expenses.render("Activity");

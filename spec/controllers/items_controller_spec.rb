@@ -7,4 +7,10 @@ describe ItemsController do
     response.should redirect_to(new_session_path)
   end
   
+  it 'handles / with logged in user' do
+    login_as :jordan
+    get :index
+    response.should be_success
+  end
+  
 end

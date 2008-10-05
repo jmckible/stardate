@@ -1,0 +1,33 @@
+!!! Strict
+%html{html_attrs('en-US')}
+  %head
+    %meta{'http-equiv' => 'Content-Type', :content => 'text/html'}
+    %title ActiveBudget - Open Source Cash Flow on Rails
+    = javascript_include_tag 'FusionCharts'
+    = stylesheet_link_tag 'activebudget'
+
+  %body
+    #Header
+      .fixed_width
+        %dl.breakout
+          %dt Week
+          %dd= color_money current_user.total_past_week
+          
+          %dt 30 Days
+          %dd= color_money current_user.total_past_month
+          
+          %dt Year
+          %dd= color_money current_user.total_past_year
+          
+        = link_to image_tag('activebudget_logo_small.png', :id=>:Logo), root_path
+
+
+    %ul#Navigation
+      %li.first= link_to 'Register', register_path
+      %li= link_to 'Recurring', recurrings_path
+      %li.manage= link_to 'Log Out', session_path(current_user), :method=>:delete
+      %li.manage= link_to 'Settings', edit_user_path(current_user)
+  
+    #Content.clearfix= yield
+  
+    #Footer= footer

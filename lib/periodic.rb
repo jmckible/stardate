@@ -15,14 +15,14 @@ module Periodic
   #   /2007/1/1/90  =>    January 1, 2007 - April 1, 2007
   def period_assign_whole_month
     params[:period].nil? ? period = 0 : period = params[:period].to_i
-    params[:year].nil? ? year = TzTime.now.year : year = params[:year].to_i
+    params[:year].nil? ? year = Date.today.year : year = params[:year].to_i
 
     if params[:day].nil?
       day = 1
       if params[:month].nil?
         month = 1
         if params[:year].nil?
-          year, month, day = TzTime.now.year, TzTime.now.month, 1
+          year, month, day = Date.today.year, Date.today.month, 1
           period += (Date.civil(year, month, -1).day - 1)
         else
           Date.new(year).leap? ? period += 365 : period += 364
@@ -49,7 +49,7 @@ module Periodic
       if day.nil?
         if month.nil?
           if year.nil?
-            @period = Date.new(TzTime.now.year, TzTime.now.month, 1)..TzTime.now.to_date
+            @period = Date.new(Date.today.year, Date.today.month, 1)..Date.today.to_date
           else
             year = year.to_i
             @period = Date.new(year, 1, 1)..Date.new(year, 12, 31)

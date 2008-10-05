@@ -37,15 +37,15 @@ class User < ActiveRecord::Base
   end
   alias :total_during :total_on
   
-  def total_this_week(date = Date.today)
+  def total_past_week(date = Date.today)
     total_on (date - 6)..date
   end
   
-  def total_this_month(date = Date.today)
+  def total_past_month(date = Date.today)
     total_on (Date.new date.year, date.month, 1)..date
   end
   
-  def total_this_year(date = Date.today)
+  def total_past_year(date = Date.today)
     total_on (Date.new date.year, 1, 1)..date
   end
   

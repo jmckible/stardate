@@ -35,25 +35,4 @@ class GraphsController < ApplicationController
     end
   end
   
-  # GET /graphs/tag_bubble.xml
-  # GET /graphs/tag_bubble.xml/2007
-  # GET /graphs/tag_bubble.xml/2007/1
-  # GET /graphs/tag_bubble.xml/2007/1/1
-  # GET /graphs/tag_bubble.xml/2007/1/1/31
-  def tag_bubble
-    items = current_user.items.during(@period).select{|item| item.value < 0}
-    tags  = items.collect(&:tags).flatten.uniq
-
-    @data_points = []
-    tags.each_with_index do |tag, index|
-      select = items.select{ |item| item.tags.include? tag }
-      value = select.inject(0){|sum, s| sum + s.value} * -1
-      @data_points << DataPoint.new(tag.name, value, select.size)
-    end
-    
-    respond_to do |format|
-      format.xml
-    end
-  end
-  
 end

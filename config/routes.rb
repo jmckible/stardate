@@ -20,15 +20,6 @@ ActionController::Routing::Routes.draw do |map|
     :day=>nil,
     :period=>nil
     
-  map.tag_bubble_graph 'graphs/tag_bubble.:format/:year/:month/:day/:period',
-    :controller=>'graphs',
-    :action=>'tag_bubble',
-    :requirement=>{:format=>/xml/, :year=>/(19|20)\d\d/, :month=>/[01]?\d/, :day=>/[0-3]?\d/, :period=>/\d+/},
-    :year=>nil,
-    :month=>nil,
-    :day=>nil,
-    :period=>nil
-    
   ##########################
   #   R E S O U R C E S    #
   ##########################  

@@ -47,10 +47,11 @@ Rails::Initializer.run do |config|
   # More efficient database updates
   config.active_record.partial_updates = true
   
-  # See Rails::Configuration for more options
-  config.action_controller.session = { 
-    :session_key => '_activebudget_session_id', 
-    :secret      => '037903f96795321258b7379aa9d36a5d59dd4e2827f5427000c2590b14158da424e955431e433015021a6be451de189b7ec314761f9aeb7c2576f84d8078f5ff'
+  require 'yaml'
+  db = YAML.load_file 'config/database.yml'
+  config.action_controller.session = {
+    :session_key => db[RAILS_ENV]['session_key'],
+    :secret      => db[RAILS_ENV]['secret']
   }
 
   # Disable raising errors when mass-assigning to a protected attribute 

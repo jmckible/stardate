@@ -17,6 +17,9 @@ development:
   username: root
   password:
   socket: /tmp/mysql.sock
+  session_key: _activebudget_session_id
+  secret:
+  
 
 # Warning: The database defined as 'test' will be erased and
 # re-generated from your development database when you run 'rake'.
@@ -27,6 +30,8 @@ test:
   username: root
   password:
   socket: /tmp/mysql.sock
+  session_key: _activebudget_session_id
+  secret:
 
 production:
   adapter: mysql
@@ -34,3 +39,5 @@ production:
   username: root
   password: 
   socket: /tmp/mysql.sock
+  session_key: _activebudget_session_id
+  secret:

@@ -8,13 +8,8 @@ class ItemsController < ApplicationController
   end
 
   # GET /items/1/edit
-  # GET /items/1/redbox
   def edit
-    @item = current_user.items.find(params[:id])
-    respond_to do |format|
-      format.js { render :action=>:redbox_edit, :layout=>false }
-      format.html 
-    end
+    @item = current_user.items.find params[:id]
   end
 
   # POST /items

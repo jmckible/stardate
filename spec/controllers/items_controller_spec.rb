@@ -22,4 +22,12 @@ describe ItemsController do
     }.should change(Item, :count).by(1)
   end
   
+  it 'handles /items/:id/edit with GET' do
+    login_as :jordan
+    item = items(:pizza)
+    get :edit, :id=>item
+    assigns(:item).should == item
+    response.should be_success
+  end
+  
 end

@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   # GET /
   # GET /items
   def index
-    @period = Date.today..(Date.today - 4)
+    @period = (Date.today - 4)..Date.today
     @item   = current_user.items.build
   end
 

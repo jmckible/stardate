@@ -1,5 +1,5 @@
 %ul#Transactions
-  - for day in @period
+  - for day in @period.to_a.reverse
     %li.date= day.strftime('%A %B %e')
     %li
       %ul

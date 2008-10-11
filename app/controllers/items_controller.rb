@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
   # GET /items
   def index
     @period = Date.today..(Date.today - 4)
+    @item   = current_user.items.build
   end
 
   # GET /items/new
@@ -23,13 +24,9 @@ class ItemsController < ApplicationController
 
   # POST /items
   def create
-    @item = current_user.items.build(params[:item])
-    if @item.save
-      flash[:notice] = 'Item was successfully created.'
-      redirect_to home_path
-    else
-      render :action=>:new
-    end
+    @item = current_user.items.build params[:item]
+    @item.save
+    redirect_to items_path
   end
 
   # PUT /items/1

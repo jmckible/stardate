@@ -13,4 +13,13 @@ describe ItemsController do
     response.should be_success
   end
   
+  it 'handles /items with valid params and POST' do
+    login_as :jordan
+    running {
+      post :create, :item=>{:value=>20, :date=>Date.today, :description=>'twenty' }
+      assigns(:item).value.should == -20
+      response.should redirect_to(items_path)
+    }.should change(Item, :count).by(1)
+  end
+  
 end

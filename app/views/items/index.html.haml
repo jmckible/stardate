@@ -13,26 +13,7 @@
 #Input
   #NewTransaction
     - form_for @item do |f|
-      %p
-        Date
-        %br
-        = f.date_select :date, :order=>[:month, :day]
-        
-      %p
-        Amount
-        %br
-        = f.text_field :value, :class=>:money
-        
-      %p
-        Description
-        %br
-        = f.text_field :description, :class=>:description
-        
-      %p
-        Tags
-        %br
-        = f.text_field :tag_list, :class=>:description
-        
+      = render :partial=>'form', :object=>f        
       %p= submit_tag 'Add Transaction'
 
 

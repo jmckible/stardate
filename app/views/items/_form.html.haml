@@ -1,0 +1,19 @@
+%p
+  Date
+  %br
+  = form.date_select :date, :order=>[:month, :day]
+  
+%p
+  Amount
+  %br
+  = form.text_field :value, :class=>:money
+  
+%p
+  Description
+  %br
+  = form.text_field :description, :class=>:description
+  
+%p
+  Tags
+  %br
+  = form.text_field :tag_list, :class=>:description

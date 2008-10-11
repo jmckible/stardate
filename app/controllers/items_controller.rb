@@ -7,11 +7,6 @@ class ItemsController < ApplicationController
     @item   = current_user.items.build
   end
 
-  # GET /items/new
-  def new
-    @item = current_user.items.build :date=>TzTime.today.to_date
-  end
-
   # GET /items/1/edit
   # GET /items/1/redbox
   def edit

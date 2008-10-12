@@ -7,8 +7,8 @@ class ItemsController < ApplicationController
     @item   = current_user.items.build
   end
 
-  # GET /items/1/edit
-  def edit
+  # GET /items/1
+  def show
     @item = current_user.items.find params[:id]
   end
 

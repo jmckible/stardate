@@ -25,7 +25,7 @@ describe ItemsController do
   it 'handles /items/:id/edit with GET' do
     login_as :jordan
     item = items(:pizza)
-    get :edit, :id=>item
+    get :show, :id=>item
     assigns(:item).should == item
     response.should be_success
   end

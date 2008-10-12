@@ -1,13 +1,15 @@
 %ul#Transactions
   - for day in @period.to_a.reverse
-    %li.date= day.strftime('%A %B %e')
-    %li
-      %ul
-        - for item in current_user.items.on(day)
-          %li
-            %dl
-              %dt= color_money item.value
-              %dd= link_to h(item.description), item, :rel=>:facebox
+    - items = current_user.items.on day
+    - unless items.empty?
+      %li.date= day.strftime('%A %B %e')
+      %li
+        %ul
+          - for item in items
+            %li
+              %dl
+                %dt= color_money item.value
+                %dd= link_to h(item.description), item, :rel=>:facebox
               
     
 #Input

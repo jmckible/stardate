@@ -22,12 +22,18 @@ describe ItemsController do
     }.should change(Item, :count).by(1)
   end
   
-  it 'handles /items/:id/edit with GET' do
+  it 'handles /items/:id with GET' do
     login_as :jordan
-    item = items(:pizza)
-    get :show, :id=>item
-    assigns(:item).should == item
+    get :show, :id=>items(:pizza)
     response.should be_success
+  end
+  
+  it 'handles /items/:id with DELETE' do
+    login_as :jordan
+    running {
+      delete :destroy, :id=>items(:pizza)
+      response.should redirect_to(items_path)
+    }.should change(Item, :count).by(-1)
   end
   
 end

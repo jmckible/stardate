@@ -7,9 +7,10 @@ class ItemsController < ApplicationController
     @item   = current_user.items.build
   end
 
-  # GET /items/1
+  # GET /items/:id
   def show
     @item = current_user.items.find params[:id]
+    render :layout=>false
   end
 
   # POST /items
@@ -19,7 +20,7 @@ class ItemsController < ApplicationController
     redirect_to items_path
   end
 
-  # PUT /items/1
+  # PUT /items/:id
   def update
     @item = current_user.items.find(params[:id])
     if @item.update_attributes(params[:item])
@@ -34,18 +35,11 @@ class ItemsController < ApplicationController
     end
   end
 
-  # DELETE /items/1
+  # DELETE /items/:id
   def destroy
     @item = current_user.items.find(params[:id])
-    date = @item.date
     @item.destroy
-    redirect_to register_path(:year=>date.year, :month=>date.month)
-  end
-  
-  # DELETE /items/1/redbox_destroy
-  def redbox_destroy
-    @item = current_user.items.find(params[:id]).destroy
-    redirect_to home_url
+    redirect_to items_path
   end
 
 end

@@ -1,0 +1,32 @@
+%h2= humanize_period @period
+
+%table#Register
+  %tr
+    %th Date
+    %th Description
+    %th &nbsp;
+    %th &nbsp;
+    
+    - if @items.empty?
+      %tr
+        %td &nbsp;
+        %td No Activity
+    - else
+      - for item in @items
+        %tr{:class=>('list_' + cycle(1, 0))}
+          %td= link_to item.date.strftime('%B %e'), item, :rel=>:facebox
+          %td
+            = h item.description
+            %span.tags= h item.tag_list
+          - if item.value > 0
+            %td.green.right= number_with_delimiter item.value
+            %td &nbsp;
+          - else
+            %td &nbsp;
+            %td.last.red= number_with_delimiter item.value * -1
+
+%p
+  - form_tag register_path do
+    = select_month @period.first
+    = select_year  @period.first
+    = submit_tag 'Change Date'

@@ -24,7 +24,7 @@ class ItemsController < ApplicationController
   def update
     @item = current_user.items.find(params[:id])
     @item.update_attributes params[:item]
-    redirect_to items_path
+    redirect_to request.env['HTTP_REFERER'] || items_path
   end
 
   # DELETE /items/:id

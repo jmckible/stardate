@@ -23,7 +23,9 @@ class Item < ActiveRecord::Base
   #####################################################################
   #                            S C O P E                              #
   #####################################################################
-  named_scope :on, lambda { |date| {:conditions=>{:date=>date}} }
+  named_scope :during, lambda { |date| {:conditions=>{:date=>date}} }
+  named_scope :on,     lambda { |date| {:conditions=>{:date=>date}} }
+  
   
   #####################################################################
   #                    O B J E C T    M E T H O D S                   #

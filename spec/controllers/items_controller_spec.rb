@@ -28,6 +28,14 @@ describe ItemsController do
     response.should be_success
   end
   
+  it 'handles /items/:id with valid params and PUT' do
+    login_as :jordan
+    item = items(:pizza)
+    put :update, :id=>item, :item=>{:description=>'new'}
+    item.reload.description.should == 'new'
+    response.should redirect_to(items_path)
+  end
+  
   it 'handles /items/:id with DELETE' do
     login_as :jordan
     running {

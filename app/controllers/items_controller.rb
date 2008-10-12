@@ -23,21 +23,13 @@ class ItemsController < ApplicationController
   # PUT /items/:id
   def update
     @item = current_user.items.find(params[:id])
-    if @item.update_attributes(params[:item])
-      flash[:notice] = 'Item was successfully updated.'
-      unless params[:redbox].nil?
-        redirect_to home_path
-      else
-        redirect_to register_path(:year=>@item.date.year, :month=>@item.date.month)
-      end
-    else
-      render :action=>:edit
-    end
+    @item.update_attributes params[:item]
+    redirect_to items_path
   end
 
   # DELETE /items/:id
   def destroy
-    @item = current_user.items.find(params[:id])
+    @item = current_user.items.find params[:id]
     @item.destroy
     redirect_to items_path
   end

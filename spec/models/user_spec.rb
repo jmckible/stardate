@@ -105,15 +105,14 @@ describe User do
   it 'should sum expenses from a date' do
     @user.sum_expenses(Date.new(2008, 1, 15)).should == -13
   end
-  
-  
+
   # value unpaid
   it 'should value unpaid tasks with date' do
     @user.value_unpaid_tasks_on(Date.new(2008, 1, 15)).should == 50
   end
   
   it 'should value unpaid tasks with a range and a paid' do
-    @user.value_unpaid_tasks_on(Date.new(2007, 11, 16)..Date.new(2008, 1, 15)).should == 250
+    @user.value_unpaid_tasks_on(Date.new(2007, 11, 16)..Date.new(2008, 1, 15)).should == 50
   end
 end
 

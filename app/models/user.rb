@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
   end
   
   def value_unpaid_tasks_on(date)
-    tasks.on(date).collect{|t| t.job.rate * t.minutes / 60.0 }.sum.round
+    tasks.unpaid.on(date).collect{|t| t.job.rate * t.minutes / 60.0 }.sum.round
   end
   alias :value_unpaid_tasks_during :value_unpaid_tasks_on
   

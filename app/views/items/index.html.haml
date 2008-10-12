@@ -22,5 +22,5 @@
 #Activity
   %script{:type=>'text/javascript'}
     var expenses = new FusionCharts("/flash/MSArea.swf", "Activity", "800", "300", "0", "0");
-    = "expenses.setDataURL(\"#{activity_graph_url(:format=>'xml')}\");"
+    = "expenses.setDataURL(\"#{activity_graph_url}\");"
     expenses.render("Activity");

@@ -17,21 +17,21 @@ class ItemsController < ApplicationController
   def create
     @item = current_user.items.build params[:item]
     @item.save
-    redirect_to items_path
+    redirect_to items_url
   end
 
   # PUT /items/:id
   def update
     @item = current_user.items.find(params[:id])
     @item.update_attributes params[:item]
-    redirect_to request.env['HTTP_REFERER'] || items_path
+    redirect_to request.env['HTTP_REFERER'] || items_url
   end
 
   # DELETE /items/:id
   def destroy
     @item = current_user.items.find params[:id]
     @item.destroy
-    redirect_to items_path
+    redirect_to items_url
   end
 
 end

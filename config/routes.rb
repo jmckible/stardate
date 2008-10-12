@@ -4,14 +4,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :sessions
   map.resources :users
   
-  map.activity_graph 'graphs/activity.:format/:year/:month/:day/:period',
-    :controller  => 'graphs',
-    :action      => 'activity',
-    :requirement => {:format=>/xml/, :year=>/(19|20)\d\d/, :month=>/[01]?\d/, :day=>/[0-3]?\d/, :period=>/\d+/},
-    :year        => nil,
-    :month       => nil,
-    :day         => nil,
-    :period      => nil
+  map.activity_graph 'graphs/activity', :controller=>'graphs', :action=>'activity'
     
   map.register 'register/:year/:month/:day/:period',
     :controller   => 'register',

@@ -16,10 +16,13 @@ describe ItemsController do
   it 'handles /items with valid params and POST' do
     login_as :jordan
     running {
-      post :create, :item=>{:value=>20, :date=>Date.today, :description=>'twenty' }
-      assigns(:item).value.should == -20
-      response.should redirect_to(items_path)
-    }.should change(Item, :count).by(1)
+      running {
+        post :create, :item=>{:value=>20, :date=>Date.today, :description=>'twenty' }, :vendor=>{:name=>'new'}
+        assigns(:item).value.should == -20
+        assigns(:item).vendor.should == assigns(:vendor)
+        response.should redirect_to(items_path)
+      }.should change(Item, :count).by(1)
+    }.should change(Vendor, :count).by(1)
   end
   
   it 'handles /items/:id with GET' do
@@ -31,8 +34,9 @@ describe ItemsController do
   it 'handles /items/:id with valid params and PUT' do
     login_as :jordan
     item = items(:pizza)
-    put :update, :id=>item, :item=>{:description=>'new'}
+    put :update, :id=>item, :item=>{:description=>'new'}, :vendor=>{:name=>vendors(:panera).name}
     item.reload.description.should == 'new'
+    item.vendor.should == vendors(:panera)
     response.should redirect_to(items_path)
   end
   

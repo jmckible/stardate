@@ -8,6 +8,12 @@
   %br
   = form.text_field :value, :class=>:money
   
+- fields_for @item.vendor do |f|
+  %p
+    Vendor
+    %br
+    = f.text_field :name, :class=>:description
+  
 %p
   Description
   %br

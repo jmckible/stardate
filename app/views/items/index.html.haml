@@ -9,6 +9,7 @@
             %li
               %dl
                 %dt= color_money item.value
+                %dd= h(item.vendor.name) if item.vendor
                 %dd= link_to h(item.description), item, :rel=>:facebox
               
     

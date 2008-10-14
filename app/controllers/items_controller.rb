@@ -15,15 +15,17 @@ class ItemsController < ApplicationController
 
   # POST /items
   def create
-    @item = current_user.items.build params[:item]
+    @vendor = Vendor.find_or_create_by_name params[:vendor][:name]
+    @item = current_user.items.build params[:item].merge(:vendor=>@vendor)
     @item.save
     redirect_to items_url
   end
 
   # PUT /items/:id
   def update
-    @item = current_user.items.find(params[:id])
-    @item.update_attributes params[:item]
+    @vendor = Vendor.find_or_create_by_name params[:vendor][:name]
+    @item = current_user.items.find params[:id]
+    @item.update_attributes params[:item].merge(:vendor=>@vendor)
     redirect_to request.env['HTTP_REFERER'] || items_url
   end
 

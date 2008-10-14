@@ -3,12 +3,14 @@ pizza:
   date: 2008-01-15
   value: -6
   description: Sal's
+  vendor: sals
 
 panera:
   user: jordan
   date: 2008-01-15
   value: -7
   description: Panera
+  vendor: panera
   
 rent:
   user: jordan
@@ -21,21 +23,25 @@ safeway:
   date: 2008-01-14
   value: -20
   description: Safeway
+  vendor: safeway
   
 borders:
   user: jordan
   date: 2008-01-13
   value: -16
   description: A book
+  vendor: borders
   
 ing:
   user: jordan
   date: 2007-12-31
   value: 100
   description: ING
+  vendor: ing
       
 starbucks_last_week:
   user: scott
   date: 2008-01-15
   value: 380
   description: First paycheck
+  vendor: starbucks

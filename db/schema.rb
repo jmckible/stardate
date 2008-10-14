@@ -9,17 +9,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080606230230) do
+ActiveRecord::Schema.define(:version => 20081014215511) do
 
   create_table "items", :force => true do |t|
     t.integer "user_id",                    :null => false
     t.date    "date",                       :null => false
     t.integer "value",       :default => 0, :null => false
     t.text    "description"
+    t.integer "vendor_id"
   end
 
   add_index "items", ["user_id"], :name => "index_items_on_user_id"
   add_index "items", ["date"], :name => "index_items_on_date"
+  add_index "items", ["vendor_id"], :name => "index_items_on_vendor_id"
 
   create_table "jobs", :force => true do |t|
     t.integer  "user_id",                                                    :null => false
@@ -27,9 +29,11 @@ ActiveRecord::Schema.define(:version => 20080606230230) do
     t.boolean  "active",                                   :default => true
     t.datetime "created_at"
     t.decimal  "rate",       :precision => 6, :scale => 2, :default => 0.0,  :null => false
+    t.integer  "vendor_id"
   end
 
   add_index "jobs", ["user_id"], :name => "index_projects_on_user_id"
+  add_index "jobs", ["vendor_id"], :name => "index_jobs_on_vendor_id"
 
   create_table "paychecks", :force => true do |t|
     t.integer  "job_id",                                                     :null => false
@@ -90,5 +94,11 @@ ActiveRecord::Schema.define(:version => 20080606230230) do
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
+
+  create_table "vendors", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

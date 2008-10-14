@@ -10,7 +10,11 @@ describe Item, 'relationships' do
   
   it 'should belong to a paycheck' do
     items(:starbucks_last_week).paycheck.should == paychecks(:starbucks_last_week)
-  end  
+  end
+  
+  it 'should belong to a vendor' do
+    items(:pizza).vendor.should == vendors(:sals)
+  end
 end
 
 #####################################################################

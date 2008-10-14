@@ -20,6 +20,10 @@ describe Job, 'relationships' do
   it 'should have many tasks' do
     @job.should have(5).tasks
   end
+  
+  it 'should belong to a vendor' do
+    @job.vendor.should == vendors(:starbucks)
+  end
 end
 
 #####################################################################

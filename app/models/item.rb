@@ -4,6 +4,7 @@ class Item < ActiveRecord::Base
   #                     R E L A T I O N S H I P S                     #
   #####################################################################
   belongs_to :user
+  belongs_to :vendor
   has_one    :paycheck,  :dependent=>:nullify
 
   #####################################################################

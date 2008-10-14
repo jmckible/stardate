@@ -4,6 +4,7 @@ starbucks:
   created_at: 2008-01-10
   active: true
   rate: 9.50
+  vendor: starbucks
   
 risi:
   user: jordan
@@ -11,3 +12,4 @@ risi:
   created_at: 2007-11-15
   active: true
   rate: 100
+  vendor: risi

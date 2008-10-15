@@ -52,6 +52,5 @@ class Item < ActiveRecord::Base
   
   validates_presence_of     :date, :user_id
   validates_numericality_of :value, :only_integer=>true
-  validates_length_of       :description, :in=>0..255
 
 end

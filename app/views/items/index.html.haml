@@ -1,18 +1,17 @@
-%ul#Transactions
-  - for day in @period.to_a.reverse
-    - items = current_user.items.on day
-    - unless items.empty?
-      %li.date= day.strftime('%A %B %e')
-      %li
-        %ul
-          - for item in items
-            %li
-              %dl
-                %dt= color_money item.value
-                %dd= h(item.vendor.name) if item.vendor
-                %dd= link_to h(item.description), item, :rel=>:facebox
-              
-    
+- unless @items.empty?
+  %table#Transactions
+    %tr
+      %th Date
+      %th Amount
+      %th Vendor
+      %th Description
+    - for item in @items
+      %tr
+        %td= link_to item.date.strftime('%a %m/%d'), item, :rel=>:facebox
+        %td= color_money item.value
+        %td= h item.vendor.try(:name)
+        %td= h item.description
+
 #Input
   #NewTransaction
     - form_for @item do |f|

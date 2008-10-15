@@ -32,11 +32,6 @@ describe Recurring do
     @recurring = recurrings(:rent)
   end
   
-  it 'should have a string value with explicit plus sign' do
-    @recurring.string_value.should == '-750'
-    recurrings(:ing).string_value.should == '+100'
-  end
-  
   it 'should round values and assume negative' do
     @recurring.value = 12.99
     @recurring.save

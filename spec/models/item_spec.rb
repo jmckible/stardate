@@ -75,11 +75,6 @@ describe Item do
     @item = items(:pizza)
   end
   
-  it 'should have a string value with explicit plus sign' do
-    @item.string_value.should == '-6'
-    items(:ing).string_value.should == '+100'
-  end
-  
   it 'should round values and assume negative' do
     @item.value = 12.99
     @item.save

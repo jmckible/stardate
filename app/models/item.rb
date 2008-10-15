@@ -31,11 +31,6 @@ class Item < ActiveRecord::Base
   #####################################################################
   #                    O B J E C T    M E T H O D S                   #
   #####################################################################
-  # If the value is positive, put a + in front
-  def string_value
-    "#{'+' if value > 0}#{value}"
-  end
-  
   # Overwriting the default value=
   # Assume input without an explicit - or + preceeding is negative
   def value=(new_value)

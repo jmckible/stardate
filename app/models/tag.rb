@@ -1,6 +1,5 @@
 class Tag < ActiveRecord::Base
   has_many :taggings, :dependent=>:destroy
-  has_many :items,    :through=>:taggings 
   
   before_validation :strip_spaces
   def strip_spaces

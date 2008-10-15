@@ -7,10 +7,6 @@ describe Tag, 'relationships' do
   it 'should have many taggings' do
     tags(:food).should have(3).taggings
   end
-  
-  it 'should have many items' do
-    tags(:food).should have(3).items
-  end
 end
 
 #####################################################################

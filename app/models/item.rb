@@ -10,7 +10,7 @@ class Item < ActiveRecord::Base
   #####################################################################
   #                           T A G G I N G                           #
   #####################################################################
-  has_many :taggings
+  has_many :taggings, :as=>:taggable
   has_many :tags, :through=>:taggings, :order=>:name
   
   def tag_list

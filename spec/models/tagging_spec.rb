@@ -9,7 +9,7 @@ describe Tagging, 'relationships' do
   end
   
   it 'should belong to and item' do
-    taggings(:pizza_food).item.should == items(:pizza)
+    taggings(:pizza_food).taggable.should == items(:pizza)
   end
 end
 
@@ -19,10 +19,6 @@ end
 describe Tagging, 'validations' do
   it' should belong to a tag' do
     Tagging.new.should have(1).error_on(:tag_id)
-  end
-  
-  it 'should belong to an item' do
-    Tagging.new(:item_id=>nil).should have(1).error_on(:item_id)
   end
   
   it 'should tag an item uniquely' do

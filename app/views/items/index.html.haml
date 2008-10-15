@@ -17,6 +17,20 @@
     - form_for @item do |f|
       = render :partial=>'form', :object=>f        
       %p= submit_tag 'Add Transaction'
+      
+%dl.breakout
+  %dt Week
+  %dd= color_money current_user.total_past_week
+  
+  %dt 30 Days
+  %dd= color_money current_user.total_past_month
+  
+  %dt Year
+  %dd= color_money current_user.total_past_year
+  
+  %dt All Time
+  %dd= color_money current_user.items.sum(:value)
+
 
 
 #Activity

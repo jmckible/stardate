@@ -9,19 +9,6 @@
   %body
     #Header
       .fixed_width
-        %dl.breakout
-          %dt Week
-          %dd= color_money current_user.total_past_week
-          
-          %dt 30 Days
-          %dd= color_money current_user.total_past_month
-          
-          %dt Year
-          %dd= color_money current_user.total_past_year
-          
-          %dt All Time
-          %dd= color_money current_user.items.sum(:value)
-          
         = link_to image_tag('activebudget_logo_small.png', :id=>:Logo), root_path
 
 

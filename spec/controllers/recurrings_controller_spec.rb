@@ -8,4 +8,10 @@ describe RecurringsController do
     response.should be_success
   end
   
+  it 'handles /recurrings/new with GET' do
+    login_as :jordan
+    get :new
+    response.should be_success
+  end
+  
 end

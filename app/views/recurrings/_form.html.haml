@@ -1,0 +1,13 @@
+%dl
+  %dt Day of Month
+  %dd= form.collection_select :day, (1..31).collect, :to_s, :to_s
+
+  %dt Amount
+  %dd= form.text_field :value, :class=>:money
+
+  - fields_for @recurring.vendor do |v|
+    %dt Vendor
+    %dd= v.text_field :name
+
+  %dt Description
+  %dd= form.text_field :description

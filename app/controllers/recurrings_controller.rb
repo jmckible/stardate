@@ -8,6 +8,7 @@ class RecurringsController < ApplicationController
   # GET /recurrings/new
   def new
     @recurring = current_user.recurrings.build
+    render :layout=>false
   end
 
   # GET /recurrings/1/edit

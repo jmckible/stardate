@@ -1,4 +1,5 @@
 class Item < ActiveRecord::Base
+  include ExplicitValue
   
   #####################################################################
   #                     R E L A T I O N S H I P S                     #
@@ -26,21 +27,6 @@ class Item < ActiveRecord::Base
   #####################################################################
   named_scope :during, lambda { |date| {:conditions=>{:date=>date}} }
   named_scope :on,     lambda { |date| {:conditions=>{:date=>date}} }
-  
-  
-  #####################################################################
-  #                    O B J E C T    M E T H O D S                   #
-  #####################################################################
-  def explicit_value
-    "#{'+' if value > 0}#{value}"
-  end
-
-  def explicit_value=(new_value)
-    new_value = new_value.to_s
-    return if new_value.blank?
-    new_value = '-' + new_value unless new_value =~ /^(\+|-)/
-    write_attribute :value, new_value.to_f.round
-  end
   
   #####################################################################
   #                       V A L I D A T I O N S                       #

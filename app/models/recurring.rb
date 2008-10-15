@@ -4,6 +4,7 @@ class Recurring < ActiveRecord::Base
   #                     R E L A T I O N S H I P S                     #
   #####################################################################
   belongs_to :user
+  belongs_to :vendor
   
   #####################################################################
   #                            S C O P E                              #
@@ -35,6 +36,5 @@ class Recurring < ActiveRecord::Base
   validates_presence_of     :user_id
   validates_numericality_of :value, :only_integer=>true
   validates_numericality_of :day, :in=>1..31
-  validates_length_of       :description, :in=>0..255
   
 end

@@ -9,3 +9,4 @@ ing:
   day: 31
   value: 100
   description: ING
+  vendor: ing

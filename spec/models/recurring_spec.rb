@@ -7,6 +7,10 @@ describe Recurring, 'relationships' do
   it 'should belong to a user' do
     recurrings(:rent).user.should == users(:jordan)
   end
+  
+  it 'should belong to a vendor' do
+    recurrings(:ing).vendor.should == vendors(:ing)
+  end
 end
 
 #####################################################################
@@ -79,9 +83,5 @@ describe Recurring, 'validations' do
   
   it 'should have a user_id' do
     Recurring.new.should have(1).error_on(:user_id)
-  end
-  
-  it 'should have a description no longer than 255' do
-    Recurring.new(:description=>(1..122).to_a.to_s).should have(1).error_on(:description)
   end
 end

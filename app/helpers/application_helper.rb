@@ -21,26 +21,6 @@ module ApplicationHelper
        '0'
     end
   end
-
-  def items_for_calendar(date=Date.today)
-    str  = content_tag :span, date.mday, :class=>"date" 
-    str += "<dl>"
-    for item in current_user.items.on(date)
-      str += content_tag :dt, link_to(item.value, edit_item_path(item))
-      str += content_tag :dd, h(item.calendar_description)
-    end
-    str += "</dl>"
-  end
-  
-  def recurring_for_calendar(date=Date.today)
-    str  = content_tag :span, date.mday, :class=>"date" 
-    str += "<dl>"
-    for recurring in current_user.recurrings.on(date)
-      str += content_tag :dt, link_to(recurring.explicit_value, edit_recurring_path(recurring))
-      str += content_tag :dd, h(recurring.inline_description)
-    end
-    str += "</dl>"
-  end
   
   def humanize_period(period)
     if period.first.day == 1 and period.last == Date.civil(period.first.year, period.first.month, -1)

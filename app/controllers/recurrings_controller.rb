@@ -2,7 +2,7 @@ class RecurringsController < ApplicationController
   
   # GET /recurrings
   def index
-    @recurrings = current_user.recurrings.find :all
+    @recurrings = current_user.recurrings
   end
 
   # GET /recurrings/new

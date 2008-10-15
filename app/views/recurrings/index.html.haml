@@ -1,0 +1,14 @@
+%p= link_to 'New recurring', new_recurring_path
+
+- unless @recurrings.empty?
+  %table
+    %tr
+      %th Day
+      %th Amount
+      %th Description
+      
+    - for recurring in @recurrings
+      %tr
+        %td= link_to recurring.day, recurring, :rel=>:facebox
+        %td= color_money recurring.value
+        %td= h recurring.description

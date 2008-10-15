@@ -4,14 +4,14 @@ class RegisterController < ApplicationController
   # POST /register?&date[year]=2007&date[month]=1
   def index
     if request.method == :post
-      year = params[:date][:year].to_i
+      year  = params[:date][:year].to_i
       month = params[:date][:month].to_i
-      start = Date.new year, month, 1
-      ending = Date.civil year, month, -1
-      @period = start..ending
     else
-      period_assign_whole_month
+      year  = params[:year]  ? params[:year].to_i  : Date.today.year
+      month = params[:month] ? params[:month].to_i : Date.today.month
     end
-    @items = current_user.items.during @period
+    
+    @period = Date.new(year, month, 1)..Date.civil(year, month, -1)
+    @items  = current_user.items.during @period
   end
 end

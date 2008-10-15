@@ -32,7 +32,7 @@ describe ItemsController do
     login_as :jordan
     running {
       running {
-        post :create, :item=>{:value=>20, :date=>Date.today, :description=>'twenty' }, :vendor=>{:name=>'new'}
+        post :create, :item=>{:explicit_value=>20, :date=>Date.today, :description=>'twenty' }, :vendor=>{:name=>'new'}
         assigns(:item).value.should == -20
         assigns(:item).vendor.should == assigns(:vendor)
         response.should redirect_to(items_path)
@@ -51,7 +51,7 @@ describe ItemsController do
   it 'handles /items with no vendor and POST' do
     login_as :jordan
     running {
-      post :create, :item=>{:value=>20, :date=>Date.today, :description=>'twenty' }
+      post :create, :item=>{:explicit_value=>20, :date=>Date.today, :description=>'twenty' }
       assigns(:item).value.should == -20
       response.should redirect_to(items_path)
     }.should change(Item, :count).by(1)

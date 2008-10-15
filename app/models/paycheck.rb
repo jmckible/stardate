@@ -25,7 +25,7 @@ class Paycheck < ActiveRecord::Base
   before_save :create_item
   def create_item
     if paid && !item
-      job.user.items.create :paycheck=>self, :value=>"+#{value}", :description=>description, :date=>Date.today
+      job.user.items.create :paycheck=>self, :explicit_value=>"+#{value}", :description=>description, :date=>Date.today
     end
   end
   

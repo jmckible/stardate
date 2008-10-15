@@ -33,24 +33,24 @@ describe Recurring do
   end
   
   it 'should have a string value with explicit plus sign' do
-    @recurring.string_value.should == '-750'
-    recurrings(:ing).string_value.should == '+100'
+    @recurring.explicit_value.should == '-750'
+    recurrings(:ing).explicit_value.should == '+100'
   end
   
   it 'should round values and assume negative' do
-    @recurring.value = 12.99
+    @recurring.explicit_value = 12.99
     @recurring.save
     @recurring.value.should == -13
   end
   
   it 'should use plus sign for explicit positive' do
-    @recurring.value = '+4.50'
+    @recurring.explicit_value = '+4.50'
     @recurring.save
     @recurring.value.should == 5
   end  
   
   it 'should handle zero value properly' do
-    @recurring.value = 0
+    @recurring.explicit_value = 0
     @recurring.save
     @recurring.value.should == 0
   end

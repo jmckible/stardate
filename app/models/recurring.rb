@@ -15,13 +15,13 @@ class Recurring < ActiveRecord::Base
   #                    O B J E C T    M E T H O D S                   #
   #####################################################################
   # If the value is positive, put a + in front
-  def string_value
+  def explicit_value
     "#{'+' if value > 0}#{value}"
   end
   
   # Overwriting the default value=
   # Assume input without an explicit - or + preceeding is negative
-  def value=(new_value)
+  def explicit_value=(new_value)
     new_value = new_value.to_s
     return if new_value.blank?
     new_value = '-' + new_value unless new_value =~ /^(\+|-)/

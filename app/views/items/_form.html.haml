@@ -3,7 +3,7 @@
   %dd= form.date_select :date, :order=>[:month, :day, :year]
 
   %dt Amount
-  %dd= form.text_field :value, :class=>:money
+  %dd= form.text_field :explicit_value, :class=>:money
 
   - fields_for @item.vendor do |v|
     %dt Vendor

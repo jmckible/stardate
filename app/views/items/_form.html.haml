@@ -1,25 +1,21 @@
-%p
-  Date
-  %br
-  = form.date_select :date, :order=>[:month, :day]
+%table
+  %tr
+    %td Date
+    %td= form.date_select :date, :order=>[:month, :day]
   
-%p
-  Amount
-  %br
-  = form.text_field :value, :class=>:money
-  
-- fields_for @item.vendor do |f|
-  %p
-    Vendor
-    %br
-    = f.text_field :name, :class=>:description
-  
-%p
-  Description
-  %br
-  = form.text_field :description, :class=>:description
-  
-%p
-  Tags
-  %br
-  = form.text_field :tag_list, :class=>:description
+  %tr
+    %td Amount
+    %td= form.text_field :value, :class=>:money
+    
+  - fields_for @item.vendor do |v|
+    %tr
+      %td Vendor
+      %td= v.text_field :name, :class=>:description
+
+  %tr
+    %td Description
+    %td= form.text_field :description, :class=>:description
+    
+  %tr
+    %td Tags
+    %td= form.text_field :tag_list, :class=>:description

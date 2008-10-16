@@ -3,8 +3,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :recurrings
   map.resources :sessions
   map.resources :users
-  
-  map.activity_graph 'graphs/activity', :controller=>'graphs', :action=>'activity'
     
   map.register 'register/:year/:month/:day/:period',
     :controller   => 'register',

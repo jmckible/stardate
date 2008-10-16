@@ -67,39 +67,6 @@ describe Item, 'scope' do
 end
 
 #####################################################################
-#                    O B J E C T    M E T H O D S                   #
-#####################################################################
-describe Item do
-  
-  before(:each) do
-    @item = items(:pizza)
-  end
-  
-  it 'should have a string value with explicit plus sign' do
-    @item.explicit_value.should == '-6'
-    items(:ing).explicit_value.should == '+100'
-  end
-  
-  it 'should round values and assume negative' do
-    @item.explicit_value = 12.99
-    @item.save
-    @item.value.should == -13
-  end
-  
-  it 'should use plus sign for explicit positive' do
-    @item.explicit_value = '+4.50'
-    @item.save
-    @item.value.should == 5
-  end  
-  
-  it 'should handle zero value properly' do
-    @item.explicit_value = 0
-    @item.save
-    @item.value.should == 0
-  end
-end
-
-#####################################################################
 #                         P R O T E C T I O N                       #
 #####################################################################
 describe Item, 'protections' do

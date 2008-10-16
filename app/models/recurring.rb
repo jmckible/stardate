@@ -1,5 +1,6 @@
 class Recurring < ActiveRecord::Base
-  include ExplicitValue
+
+  explicit_integer :value
 
   belongs_to :user
   belongs_to :vendor

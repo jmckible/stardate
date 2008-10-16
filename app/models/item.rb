@@ -1,6 +1,6 @@
 class Item < ActiveRecord::Base
-  include ExplicitValue
-  
+
+  explicit_integer :value
   is_taggable
 
   belongs_to :user

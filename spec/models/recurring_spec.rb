@@ -24,39 +24,6 @@ describe Recurring, 'scope' do
 end
 
 #####################################################################
-#                    O B J E C T    M E T H O D S                   #
-#####################################################################
-describe Recurring do
-  
-  before(:each) do
-    @recurring = recurrings(:rent)
-  end
-  
-  it 'should have a string value with explicit plus sign' do
-    @recurring.explicit_value.should == '-750'
-    recurrings(:ing).explicit_value.should == '+100'
-  end
-  
-  it 'should round values and assume negative' do
-    @recurring.explicit_value = 12.99
-    @recurring.save
-    @recurring.value.should == -13
-  end
-  
-  it 'should use plus sign for explicit positive' do
-    @recurring.explicit_value = '+4.50'
-    @recurring.save
-    @recurring.value.should == 5
-  end  
-  
-  it 'should handle zero value properly' do
-    @recurring.explicit_value = 0
-    @recurring.save
-    @recurring.value.should == 0
-  end
-end
-
-#####################################################################
 #                         P R O T E C T I O N                       #
 #####################################################################
 describe Recurring, 'protections' do

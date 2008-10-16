@@ -31,7 +31,7 @@
   %dt All Time
   %dd= color_money current_user.items.sum(:value)
 
-
+%img{:src=>current_user.chart((Date.today - 30)..Date.today)}
 
 #Activity
   %script{:type=>'text/javascript'}

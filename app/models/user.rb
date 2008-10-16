@@ -62,6 +62,18 @@ class User < ActiveRecord::Base
   end
   alias :value_unpaid_tasks_during :value_unpaid_tasks_on
   
+  def chart(period)
+    expenses = 0
+    income   = 0
+    Gchart.line :data   => [period.collect{|day| expenses = expenses + (sum_expenses(day) * -1)},
+                            period.collect{|day| income = income + sum_income(day)} ],
+                :legend => ['Expenses', 'Income'],
+                :size   => '800x300',
+                :bg     => {:color => 'efefef', :type => 'stripes'},
+                :line_colors => 'CC6600,0066CC'
+               
+  end
+  
   #####################################################################
   #                       V A L I D A T I O N S                       #
   #####################################################################

@@ -19,6 +19,7 @@ ModelStubbing.define_models do
   model Item do
     stub :date=>current_time.to_date, :description=>'What I bought', :value=>-10, 
          :user=>users(:default), :vendor=>vendors(:default)
+    stub :other, :user=>users(:other)
   end
   
   model Job do

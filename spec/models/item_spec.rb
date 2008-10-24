@@ -1,34 +1,27 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-#####################################################################
-#                     R E L A T I O N S H I P S                     #
-#####################################################################
-describe Item, 'relationships' do
+describe Item do
   define_models
+  before { @item = items(:default) }
   
+  #####################################################################
+  #                     R E L A T I O N S H I P S                     #
+  #####################################################################
   it 'should belong to a user' do
-    items(:default).user.should == users(:default)
+    @item.user.should == users(:default)
   end
 
   it 'should belong to a paycheck' do
-    items(:default).paycheck.should == paychecks(:default)
+    @item.paycheck.should == paychecks(:default)
   end
 
   it 'should belong to a vendor' do
-    items(:default).vendor.should == vendors(:default)
-  end
-end
-
-#####################################################################
-#                             T A G G I N G                         #
-#####################################################################
-describe Item, 'tagging' do
-  define_models
-  
-  before do
-    @item = items(:default)
+    @item.vendor.should == vendors(:default)
   end
 
+  #####################################################################
+  #                             T A G G I N G                         #
+  #####################################################################
   it 'should have many taggings' do
     @item.should have(1).taggings
   end
@@ -58,28 +51,17 @@ describe Item, 'tagging' do
       @item.should have(0).tags
     }.should change(Tagging, :count).by(-1)
   end
-end
 
-#####################################################################
-#                            S C O P E                              #
-#####################################################################
-describe Item, 'scope' do
-  define_models
+  #####################################################################
+  #                            S C O P E                              #
+  #####################################################################
   it 'should have a during scope' do
     Item.should have(1).on(current_time.to_date)
   end
-end
 
-#####################################################################
-#                         P R O T E C T I O N                       #
-#####################################################################
-describe Item, 'protections' do
-  define_models
-  
-  before do
-    @item = items(:default)
-  end
-
+  #####################################################################
+  #                         P R O T E C T I O N                       #
+  #####################################################################
   it 'should not update user_id through mass assignment' do
     @item.update_attributes :user_id=>users(:other).id
     @item.user_id.should_not == users(:other).id
@@ -89,14 +71,10 @@ describe Item, 'protections' do
     @item.update_attributes :user=>users(:other)
     @item.user.should_not == users(:other)
   end
-end
 
-#####################################################################
-#                       V A L I D A T I O N S                       #
-#####################################################################
-describe Item, 'validations' do
-  define_models
-  
+  #####################################################################
+  #                       V A L I D A T I O N S                       #
+  #####################################################################
   it 'should have a date' do
     Item.new.should have(1).error_on(:date)
   end
@@ -104,16 +82,13 @@ describe Item, 'validations' do
   it 'should have a user_id' do
     Item.new.should have(1).error_on(:user_id)
   end
-end
 
-#####################################################################
-#                       D E S T R U C T I O N                       #
-#####################################################################
-describe Item, 'destruction' do
-  define_models
-  
+  #####################################################################
+  #                       D E S T R U C T I O N                       #
+  #####################################################################
   it 'should nullify paycheck on destroy' do
-    items(:default).destroy
-    paychecks(:default).item.should be_nil
+    @item.destroy
+    @item.paycheck(true).should be_nil
   end
+
 end

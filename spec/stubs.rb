@@ -35,7 +35,7 @@ ModelStubbing.define_models do
   end
   
   model Tagging do
-    stub :taggable=>items(:default), :tag=>tags(:default)
+    stub :taggable=>items(:default), :taggable_type=>'Item', :tag=>tags(:default)
   end
   
   model Task do

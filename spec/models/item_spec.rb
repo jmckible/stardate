@@ -69,7 +69,7 @@ describe Item do
 
   it 'should not update user through mass assignment' do
     @item.update_attributes :user=>users(:other)
-    @item.user.should_not == users(:other)
+    @item.user(true).should_not == users(:other)
   end
 
   #####################################################################

@@ -1,88 +1,67 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-#####################################################################
-#                     R E L A T I O N S H I P S                     #
-#####################################################################
-describe Job, 'relationships' do
+describe Job do
+  define_models
+  before { @job = jobs(:default) }
   
-  before(:each) do
-    @job = jobs(:starbucks)
-  end
-  
+  #####################################################################
+  #                     R E L A T I O N S H I P S                     #
+  #####################################################################
   it 'should belong to a user' do
-    @job.user.should == users(:scott)
+    @job.user.should == users(:default)
   end
-  
+
   it 'should have many paychecks' do
     @job.should have(1).paychecks
   end
-  
+
   it 'should have many tasks' do
-    @job.should have(5).tasks
+    @job.should have(1).tasks
   end
-  
+
   it 'should belong to a vendor' do
-    @job.vendor.should == vendors(:starbucks)
+    @job.vendor.should == vendors(:default)
   end
-end
 
-#####################################################################
-#                               S C O P E                           #
-#####################################################################
-describe Job, 'scope' do
+  #####################################################################
+  #                               S C O P E                           #
+  #####################################################################
   it 'should find active' do
-    Job.should have(2).active
+    Job.should have(1).active
   end
-end
 
-#####################################################################
-#                         P R O T E C T I O N                       #
-#####################################################################
-describe Job, 'protections' do
-  
-  before(:each) do
-    @job = jobs(:starbucks)
-  end
-  
+  #####################################################################
+  #                         P R O T E C T I O N                       #
+  #####################################################################
   it 'should not update user_id through mass assignment' do
-    @job.update_attributes :user_id=>users(:jordan).id
-    @job.user_id.should_not == users(:jordan).id
+    @job.update_attributes :user_id=>users(:other).id
+    @job.user_id.should_not == users(:other).id
   end
-  
-  it 'should not update user through mass assignment' do
-    @job.update_attributes :user=>users(:jordan)
-    @job.user.should_not == users(:jordan)
-  end
-end
 
-#####################################################################
-#                       V A L I D A T I O N S                       #
-#####################################################################
-describe Job, 'validations' do
+  it 'should not update user through mass assignment' do
+    @job.update_attributes :user=>users(:other)
+    @job.user(true).should_not == users(:other)
+  end
   
+  #####################################################################
+  #                       V A L I D A T I O N S                       #
+  #####################################################################
   it 'should have a name' do
     Job.new.should have(1).error_on(:name)
   end
-  
+
   it 'should have a user_id' do
     Job.new.should have(1).error_on(:user_id)
   end
-end
 
-#####################################################################
-#                       D E S T R U C T I O N                       #
-#####################################################################
-describe Job, 'destruction' do
-  
-  before(:each) do
-    @job = jobs(:starbucks)
-  end
-  
+  #####################################################################
+  #                       D E S T R U C T I O N                       #
+  #####################################################################
   it 'should destroy paychecks' do
     running { @job.destroy }.should change(Paycheck, :count).by(-1)
   end
-  
+
   it 'should destroy tasks' do
-    running { @job.destroy }.should change(Task, :count).by(-5)
+    running { @job.destroy }.should change(Task, :count).by(-1)
   end
 end

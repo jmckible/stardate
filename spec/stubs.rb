@@ -32,7 +32,7 @@ ModelStubbing.define_models do
   end
   
   model Recurring do
-    stub :day=>1, :value=>-100, :user=>users(:default), :description=>'Recurring'
+    stub :day=>1, :value=>-100, :user=>users(:default), :description=>'Recurring', :vendor=>vendors(:default)
   end
   
   model Tagging do

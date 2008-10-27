@@ -1,54 +1,47 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-#####################################################################
-#                     R E L A T I O N S H I P S                     #
-#####################################################################
-describe Recurring, 'relationships' do 
-  it 'should belong to a user' do
-    recurrings(:rent).user.should == users(:jordan)
-  end
+describe Recurring do
+  define_models
+  before { @recurring = recurrings(:default) }
   
-  it 'should belong to a vendor' do
-    recurrings(:ing).vendor.should == vendors(:ing)
+  #####################################################################
+  #                     R E L A T I O N S H I P S                     #
+  #####################################################################
+  it 'should belong to a user' do
+    @recurring.user.should == users(:default)
   end
-end
 
-#####################################################################
-#                            S C O P E                              #
-#####################################################################
-describe Recurring, 'scope' do
+  it 'should belong to a vendor' do
+    @recurring.vendor.should == vendors(:default)
+  end
+
+  #####################################################################
+  #                            S C O P E                              #
+  #####################################################################
   it 'should have a during scope' do
     Recurring.should have(1).on(1)
     Recurring.should have(1).on(Date.new(2008, 1, 1))
   end
-end
 
-#####################################################################
-#                         P R O T E C T I O N                       #
-#####################################################################
-describe Recurring, 'protections' do
-  
-  before(:each) do
-    @recurring = recurrings(:rent)
-  end
-  
+  #####################################################################
+  #                         P R O T E C T I O N                       #
+  #####################################################################
   it 'should not update user_id through mass assignment' do
-    @recurring.update_attributes :user_id=>users(:scott).id
-    @recurring.user_id.should_not == users(:scott).id
+    @recurring.update_attributes :user_id=>users(:other).id
+    @recurring.user_id.should_not == users(:other).id
   end
-  
-  it 'should not update user through mass assignment' do
-    @recurring.update_attributes :user=>users(:scott)
-    @recurring.user.should_not == users(:scott)
-  end
-end
 
-#####################################################################
-#                       V A L I D A T I O N S                       #
-#####################################################################
-describe Recurring, 'validations' do
-  
+  it 'should not update user through mass assignment' do
+    @recurring.update_attributes :user=>users(:other)
+    @recurring.user.should_not == users(:other)
+  end
+
+  #####################################################################
+  #                       V A L I D A T I O N S                       #
+  #####################################################################
   it 'should have a user_id' do
     Recurring.new.should have(1).error_on(:user_id)
   end
+  
 end
+

@@ -10,6 +10,7 @@ ModelStubbing.define_models do
   
   model Vendor do
     stub :name=>'Default'
+    stub :other, :name=>'Other'
   end
   
   model Tag do
@@ -25,6 +26,7 @@ ModelStubbing.define_models do
   model Job do
     stub :name=>'Default', :user=>users(:default), :created_at=>current_time,
          :active=>true, :rate=>9.5, :vendor=>vendors(:default)
+    stub :other, :user=>users(:other), :vendor=>vendors(:other)
   end
   
   model Paycheck do
@@ -40,8 +42,10 @@ ModelStubbing.define_models do
   end
   
   model Task do
-    stub :job=>jobs(:default), :date=>current_time.to_date, :minutes=>60, 
-         :paycheck=>paychecks(:default)
+    stub :job=>jobs(:default), :date=>current_time.to_date, :minutes=>60, :paycheck=>paychecks(:default)
+    stub :short, :minutes=>30
+    stub :long,  :minutes=>120
+    stub :other, :job=>jobs(:other), :minutes=>45
   end
   
 end

@@ -1,28 +1,30 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-#####################################################################
-#                     R E L A T I O N S H I P S                     #
-#####################################################################
-describe Tagging, 'relationships' do
-  it 'should belong to a tag' do
-    taggings(:pizza_food).tag.should == tags(:food)
-  end
+describe Tagging do
+  define_models
+  before { @tagging = taggings(:default) }
   
-  it 'should belong to and item' do
-    taggings(:pizza_food).taggable.should == items(:pizza)
+  #####################################################################
+  #                     R E L A T I O N S H I P S                     #
+  #####################################################################
+  it 'should belong to a tag' do
+    @tagging.tag.should == tags(:default)
   end
-end
 
-#####################################################################
-#                       V A L I D A T I O N S                       #
-#####################################################################
-describe Tagging, 'validations' do
-  it' should belong to a tag' do
+  it 'should belong to and item' do
+    @tagging.taggable.should == items(:default)
+  end
+
+  #####################################################################
+  #                       V A L I D A T I O N S                       #
+  #####################################################################
+  it 'should belong to a tag' do
     Tagging.new.should have(1).error_on(:tag_id)
   end
-  
+
   it 'should tag an item uniquely' do
-    tagging = taggings(:pizza_food).clone
+    tagging = @tagging.clone
     tagging.should have(1).error_on(:tag_id)
   end
 end
+

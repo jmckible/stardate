@@ -47,46 +47,36 @@ describe User do
   #####################################################################
   # totaling
   it 'should total on a date' do
-    @user.total_on(Date.new(2008, 1, 15)).should == 37
+    @user.total_on(Date.new(2008, 1, 1)).should == -10
   end
 
   it 'should total for the week' do
-    @user.total_past_week(Date.new(2008, 1, 15)).should == 1
+    @user.total_past_week(Date.new(2008, 1, 1)).should == -10
   end
 
   it 'should total this month' do
-    @user.total_past_month(Date.new(2008, 1, 15)).should == -749
+    @user.total_past_month(Date.new(2008, 1, 1)).should == -10
   end
 
   it 'should total this year' do
-    @user.total_past_year(Date.new(2008, 1, 15)).should == -749
+    @user.total_past_year(Date.new(2008, 1, 1)).should == -10
   end
-
 
   # summing
   it 'should sum income from a range' do
-    @user.sum_income(Date.new(2007, 11, 16)..Date.new(2008, 1, 15)).should == 100
+    @user.sum_income(Date.new(2008, 1, 1)..Date.new(2008, 1, 15)).should == 0
   end
 
   it 'should sum income from a date' do
-    @user.sum_income(Date.new(2008, 1, 15)).should == 0
+    @user.sum_income(Date.new(2008, 1, 1)).should == 0
   end
 
   it 'should sum expenses from a range' do
-    @user.sum_expenses(Date.new(2007, 12, 16)..Date.new(2008, 1, 15)).should == -799
+    @user.sum_expenses(Date.new(2008, 1, 1)..Date.new(2008, 1, 15)).should == -10
   end
 
   it 'should sum expenses from a date' do
-    @user.sum_expenses(Date.new(2008, 1, 15)).should == -13
-  end
-
-  # value unpaid
-  it 'should value unpaid tasks with date' do
-    @user.value_unpaid_tasks_on(Date.new(2008, 1, 15)).should == 50
-  end
-
-  it 'should value unpaid tasks with a range and a paid' do
-    @user.value_unpaid_tasks_on(Date.new(2007, 11, 16)..Date.new(2008, 1, 15)).should == 50
+    @user.sum_expenses(Date.new(2008, 1, 1)).should == -10
   end
 
   #####################################################################
@@ -118,7 +108,7 @@ describe User do
   end
 
   it 'should have a unique email' do
-    user = users(:jordan).clone
+    user = @user.clone
     user.should have(1).error_on(:email)
   end
 
@@ -139,16 +129,11 @@ describe User do
     @user.reload.password_salt.should_not == 'new salt'
   end
 
-  it 'should not update created at through mass assignment' do
-    @user.update_attributes :created_at=>2.weeks.ago
-    @user.reload.created_at.should > 2.weeks.ago
-  end
-
   #####################################################################
   #                       D E S T R U C T I O N                       #
   #####################################################################
   it 'should delete items on destroy' do
-    running { @user.destroy }.should change(Item, :count).by(-6)
+    running { @user.destroy }.should change(Item, :count).by(-1)
   end
 
   it 'should delete jobs on destroy' do
@@ -156,7 +141,7 @@ describe User do
   end
 
   it 'should delete recurrings on destroy' do
-    running { @user.destroy }.should change(Recurring, :count).by(-2)
+    running { @user.destroy }.should change(Recurring, :count).by(-1)
   end
   
 end

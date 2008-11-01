@@ -4,6 +4,8 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require 'spec'
 require 'spec/rails'
+require 'model_stubbing'
+require File.dirname(__FILE__) + '/stubs'
 
 Spec::Runner.configure do |config|
   config.use_transactional_fixtures = true

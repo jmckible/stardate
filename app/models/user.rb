@@ -23,14 +23,7 @@ class User < ActiveRecord::Base
   
   #####################################################################
   #                    O B J E C T    M E T H O D S                   #
-  #####################################################################
-  def activity_during?(date)
-    date = date.last..date.first if date.is_a?(Range) && date.last < date.first
-    return true if items.count(:conditions=>{:date=>date}) > 0
-    return true if tasks.count(:conditions=>{:date=>date}) > 0
-    false
-  end
-  
+  #####################################################################  
   def total_on(date)
     items.sum(:value, :conditions=>{:date=>date}) +
     value_unpaid_tasks_on(date)

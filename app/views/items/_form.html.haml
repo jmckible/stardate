@@ -5,7 +5,7 @@
   %dt Amount
   %dd= form.text_field :explicit_value, :class=>:money
 
-  - fields_for @item.vendor do |v|
+  - fields_for :vendor, @item.vendor do |v|
     %dt Vendor
     %dd= v.text_field :name
 

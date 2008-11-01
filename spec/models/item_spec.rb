@@ -56,7 +56,7 @@ describe Item do
   #                            S C O P E                              #
   #####################################################################
   it 'should have a during scope' do
-    Item.should have(1).on(current_time.to_date)
+    Item.should have(2).on(current_time.to_date)
   end
 
   #####################################################################

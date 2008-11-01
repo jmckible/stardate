@@ -21,7 +21,7 @@ describe Paycheck do
   end
 
   it 'should have many tasks' do
-    @paycheck.should have(1).tasks
+    @paycheck.should have(4).tasks
   end
 
   #####################################################################

@@ -16,7 +16,7 @@ describe Job do
   end
 
   it 'should have many tasks' do
-    @job.should have(1).tasks
+    @job.should have(3).tasks
   end
 
   it 'should belong to a vendor' do
@@ -27,7 +27,7 @@ describe Job do
   #                               S C O P E                           #
   #####################################################################
   it 'should find active' do
-    Job.should have(1).active
+    Job.should have(2).active
   end
 
   #####################################################################
@@ -62,6 +62,6 @@ describe Job do
   end
 
   it 'should destroy tasks' do
-    running { @job.destroy }.should change(Task, :count).by(-1)
+    running { @job.destroy }.should change(Task, :count).by(-3)
   end
 end

@@ -29,19 +29,6 @@ describe Job do
   it 'should find active' do
     Job.should have(2).active
   end
-
-  #####################################################################
-  #                         P R O T E C T I O N                       #
-  #####################################################################
-  it 'should not update user_id through mass assignment' do
-    @job.update_attributes :user_id=>users(:other).id
-    @job.user_id.should_not == users(:other).id
-  end
-
-  it 'should not update user through mass assignment' do
-    @job.update_attributes :user=>users(:other)
-    @job.user(true).should_not == users(:other)
-  end
   
   #####################################################################
   #                       V A L I D A T I O N S                       #

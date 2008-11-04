@@ -7,7 +7,7 @@ class Recurring < ActiveRecord::Base
   
   named_scope :on, lambda { |date| {:conditions=>{:day=>(date.is_a?(Date) ? date.mday : date)}} }
 
-  attr_protected :user, :user_id
+  attr_accessible :day, :description, :value
   
   validates_presence_of     :user_id
   validates_numericality_of :value, :only_integer=>true

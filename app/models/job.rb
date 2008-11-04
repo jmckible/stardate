@@ -8,7 +8,7 @@ class Job < ActiveRecord::Base
   
   named_scope :active, :conditions=>{:active=>true}
   
-  attr_protected :user, :user_id
+  attr_accessible :active, :name, :rate
   
   validates_presence_of     :name, :user_id
   validates_numericality_of :rate

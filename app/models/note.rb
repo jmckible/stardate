@@ -4,7 +4,7 @@ class Note < ActiveRecord::Base
   named_scope :during, lambda { |date| {:conditions=>{:date=>date}} }
   named_scope :on,     lambda { |date| {:conditions=>{:date=>date}} }
   
-  attr_protected :user, :user_id
+  attr_accessible :body, :date
   
   validates_presence_of :body, :date, :user_id
 end

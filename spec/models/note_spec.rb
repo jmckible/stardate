@@ -8,16 +8,6 @@ describe Note do
     @note.user.should == users(:default)
   end
   
-  it 'should not update user through mass assignment' do
-    @note.update_attributes :user=>users(:other)
-    @note.user.should_not == users(:other)
-  end
-  
-  it 'should not update user_id through mass assignment' do
-    @note.update_attributes :user_id=>users(:other)
-    @note.user.should_not == users(:other).id
-  end
-  
   it 'should have a body' do
     Note.new.should have(1).error_on(:body)
   end

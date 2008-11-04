@@ -121,19 +121,6 @@ describe User do
   end
 
   #####################################################################
-  #                       P R O T E C T I O N                         #
-  #####################################################################
-  it 'should not update password hash through mass assignment' do
-    @user.update_attributes :password_hash=>'new hash'
-    @user.reload.password_hash.should_not == 'new hash'
-  end
-
-  it 'should not update password salt through mass assignment' do
-    @user.update_attributes :password_salt=>'new salt'
-    @user.reload.password_salt.should_not == 'new salt'
-  end
-
-  #####################################################################
   #                       D E S T R U C T I O N                       #
   #####################################################################
   it 'should delete items on destroy' do

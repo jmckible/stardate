@@ -60,19 +60,6 @@ describe Item do
   end
 
   #####################################################################
-  #                         P R O T E C T I O N                       #
-  #####################################################################
-  it 'should not update user_id through mass assignment' do
-    @item.update_attributes :user_id=>users(:other).id
-    @item.user_id.should_not == users(:other).id
-  end
-
-  it 'should not update user through mass assignment' do
-    @item.update_attributes :user=>users(:other)
-    @item.user(true).should_not == users(:other)
-  end
-
-  #####################################################################
   #                       V A L I D A T I O N S                       #
   #####################################################################
   it 'should have a date' do

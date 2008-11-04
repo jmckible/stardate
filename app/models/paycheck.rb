@@ -32,6 +32,8 @@ class Paycheck < ActiveRecord::Base
   #####################################################################
   #                       V A L I D A T I O N S                       #
   #####################################################################
+  attr_accessible :value
+  
   validates_presence_of     :job_id
   validates_numericality_of :value
   

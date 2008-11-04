@@ -71,10 +71,8 @@ class User < ActiveRecord::Base
   #####################################################################
   #                       V A L I D A T I O N S                       #
   #####################################################################
-  attr_accessor  :password
-  attr_protected :password_hash
-  attr_protected :password_salt
-  attr_protected :created_at
+  attr_accessor    :password
+  attr_accessible  :email, :password, :password_confirmation, :time_zone
   
   validates_confirmation_of :password,                     :if=>:update_password?
   validates_length_of       :password, :within=>4..40,     :if=>:update_password?

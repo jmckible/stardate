@@ -38,6 +38,8 @@ class Task < ActiveRecord::Base
   #####################################################################
   #                       V A L I D A T I O N S                       #
   #####################################################################
+  attr_accessible :date, :description, :hours, :min
+  
   validates_presence_of :date, :job_id
   
   protected

@@ -24,19 +24,6 @@ describe Recurring do
   end
 
   #####################################################################
-  #                         P R O T E C T I O N                       #
-  #####################################################################
-  it 'should not update user_id through mass assignment' do
-    @recurring.update_attributes :user_id=>users(:other).id
-    @recurring.user_id.should_not == users(:other).id
-  end
-
-  it 'should not update user through mass assignment' do
-    @recurring.update_attributes :user=>users(:other)
-    @recurring.user.should_not == users(:other)
-  end
-
-  #####################################################################
   #                       V A L I D A T I O N S                       #
   #####################################################################
   it 'should have a user_id' do

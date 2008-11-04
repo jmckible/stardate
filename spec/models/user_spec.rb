@@ -33,6 +33,10 @@ describe User do
   it 'should have many jobs' do
     @user.should have(1).jobs
   end
+  
+  it 'should have many notes' do
+    @user.should have(1).notes
+  end
 
   it 'should have many recurrings' do
     @user.should have(1).recurrings
@@ -138,6 +142,10 @@ describe User do
 
   it 'should delete jobs on destroy' do
     running { @user.destroy }.should change(Job, :count).by(-1)
+  end
+  
+  it 'should delete notes on destroy' do
+    running { @user.destroy }.should change(Note, :count).by(-1)
   end
 
   it 'should delete recurrings on destroy' do

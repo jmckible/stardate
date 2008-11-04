@@ -29,6 +29,10 @@ ModelStubbing.define_models do
     stub :other, :user=>users(:other), :vendor=>vendors(:other)
   end
   
+  model Note do
+    stub :body=>'body', :user=>users(:default), :date=>current_time.to_date
+  end
+  
   model Paycheck do
     stub :job=>jobs(:default), :description=>'Got paid', :value=>300, :item=>items(:default)
   end

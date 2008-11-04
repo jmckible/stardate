@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   #####################################################################
   has_many :items,      :order=>:date, :dependent=>:destroy
   has_many :jobs,       :order=>:name, :dependent=>:destroy
+  has_many :notes,      :order=>:date, :dependent=>:destroy
   has_many :recurrings, :order=>:day,  :dependent=>:destroy
   has_many :tasks,      :through=>:jobs 
   

@@ -1,0 +1,12 @@
+%h1 Edit Recurring Transaction
+
+= error_messages_for :recurring
+
+- form_for @recurring do |f|
+  = render :partial=>'form', :object=>f
+  %p
+    = submit_tag 'Update'
+    or
+    = link_to 'Delete', @recurring, :method=>:delete, :confirm=>'Are you sure?'
+    
+%p= link_to 'Back', recurrings_path

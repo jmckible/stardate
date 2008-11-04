@@ -1,0 +1,5 @@
+%h1 Edit Note
+
+- form_for @note do |f|
+  = render :partial=>'form', :object=>f
+  %p= submit_tag 'Update'

@@ -39,7 +39,7 @@ describe ItemsController do
         post :create, :item=>{:explicit_value=>20, :date=>Date.today, :description=>'twenty' }, :vendor=>{:name=>'new'}
         assigns(:item).value.should == -20
         assigns(:item).vendor.should == assigns(:vendor)
-        response.should redirect_to(items_path)
+        response.should redirect_to(root_path)
       }.should change(Item, :count).by(1)
     }.should change(Vendor, :count).by(1)
   end
@@ -47,7 +47,7 @@ describe ItemsController do
   it 'handles /items with no params and POST' do
     running {
       post :create, :item=>{}
-      response.should redirect_to(items_path)
+      response.should redirect_to(root_path)
     }.should_not change(Item, :count)
   end
   
@@ -55,7 +55,7 @@ describe ItemsController do
     running {
       post :create, :item=>{:explicit_value=>20, :date=>Date.today, :description=>'twenty' }
       assigns(:item).value.should == -20
-      response.should redirect_to(items_path)
+      response.should redirect_to(root_path)
     }.should change(Item, :count).by(1)
   end
 
@@ -66,14 +66,14 @@ describe ItemsController do
     put :update, :id=>@item, :item=>{:description=>'new'}, :vendor=>{:name=>vendors(:other).name}
     @item.reload.description.should == 'new'
     @item.vendor.should == vendors(:other)
-    response.should redirect_to(items_path)
+    response.should redirect_to(root_path)
   end
   
   it 'handles /items/:id with emptying of vendor' do
     put :update, :id=>@item, :item=>{:description=>'new'}
     @item.reload.description.should == 'new'
     @item.vendor.should be_nil
-    response.should redirect_to(items_path)
+    response.should redirect_to(root_path)
   end
   
   #############################################################################
@@ -82,7 +82,7 @@ describe ItemsController do
   it 'handles /items/:id with DELETE' do
     running {
       delete :destroy, :id=>@item
-      response.should redirect_to(items_path)
+      response.should redirect_to(root_path)
     }.should change(Item, :count).by(-1)
   end
   

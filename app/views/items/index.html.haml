@@ -1,5 +1,18 @@
+%dl
+  %dt Week
+  %dd= color_money current_user.total_past_week
+  
+  %dt 30 Days
+  %dd= color_money current_user.total_past_month
+  
+  %dt Year
+  %dd= color_money current_user.total_past_year
+  
+  %dt All Time
+  %dd= color_money current_user.items.sum(:value)
+
 - unless @items.empty?
-  %table#Transactions
+  %table
     %tr
       %th Date
       %th Amount
@@ -12,23 +25,22 @@
         %td= h item.vendor.try(:name)
         %td= h item.description
 
-#Input
-  #NewTransaction
-    - form_for @item do |f|
-      = render :partial=>'form', :object=>f        
-      %p= submit_tag 'Add Transaction'
-      
-%dl.breakout
-  %dt Week
-  %dd= color_money current_user.total_past_week
-  
-  %dt 30 Days
-  %dd= color_money current_user.total_past_month
-  
-  %dt Year
-  %dd= color_money current_user.total_past_year
-  
-  %dt All Time
-  %dd= color_money current_user.items.sum(:value)
+- form_for @item do |f|
+  = render :partial=>'form', :object=>f        
+  %p= submit_tag 'Add Transaction'
+
+- unless @notes.empty?
+  %table
+    %tr
+      %th Date
+      %th &nbsp;
+    - for note in @notes
+      %tr
+        %td= link_to note.date.strftime('%a %m/%d'), note, :rel=>:facebox
+        %td=h note.body
+
+- form_for @note do |f|
+  = render :partial=>'notes/form', :object=>f
+  %p= submit_tag 'Add Note'  
 
 %img{:src=>current_user.chart((Date.today - 30)..Date.today)}

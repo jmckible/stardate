@@ -1,6 +1,17 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   
+  def color_money(value)
+    return '0' if value.nil?
+    if value < 0
+      content_tag :span, number_with_delimiter(value*-1), :class=>'negative'
+    elsif value > 0
+      content_tag :span, number_with_delimiter(value), :class=>'positive'
+    else
+       '0'
+    end
+  end
+  
   def humanize_period(period)
     if period.first.day == 1 and period.last == Date.civil(period.first.year, period.first.month, -1)
       period.first.strftime('%B, %Y')

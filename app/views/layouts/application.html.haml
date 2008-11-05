@@ -4,15 +4,16 @@
     %meta{'http-equiv' => 'Content-Type', :content => 'text/html'}
     %title ...
     = javascript_include_tag 'jquery', 'facebox', 'activebudget'
-    = stylesheet_link_tag 'activebudget', 'facebox'
+    = stylesheet_link_tag 'reset', 'facebox', 'activebudget'
 
   %body
-  
-    - if logged_in?
-      %ul
-        %li= link_to 'Register', register_path
-        %li= link_to 'Recurring', recurrings_path
-        %li= link_to 'Log Out', session_path(current_user), :method=>:delete
-        %li= link_to 'Settings', edit_user_path(current_user)
-  
-    = yield
+
+    #Content
+      = yield
+    
+      - if logged_in?
+        %ul
+          %li= link_to 'Register', register_path
+          %li= link_to 'Recurring', recurrings_path
+          %li= link_to 'Log Out', session_path(current_user), :method=>:delete
+          %li= link_to 'Settings', edit_user_path(current_user)

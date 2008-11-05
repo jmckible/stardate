@@ -1,15 +1,15 @@
-%dl
-  %dt Week
-  %dd= current_user.total_past_week
+%dl#Scorecard
+  %dt 7
+  %dd= color_money current_user.total_past_week
   
-  %dt 30 Days
-  %dd= current_user.total_past_month
+  %dt 30
+  %dd= color_money current_user.total_past_month
   
-  %dt Year
-  %dd= current_user.total_past_year
+  %dt 365
+  %dd= color_money current_user.total_past_year
   
-  %dt All Time
-  %dd= current_user.items.sum(:value)
+  %dt ∞
+  %dd= color_money current_user.items.sum(:value)
 
 - unless @items.empty?
   %table
@@ -43,4 +43,4 @@
   = render :partial=>'notes/form', :object=>f
   %p= submit_tag 'Add Note'  
 
-%img{:src=>current_user.chart((Date.today - 30)..Date.today)}
+/%img{:src=>current_user.chart((Date.today - 30)..Date.today)}

@@ -1,15 +1,15 @@
 %dl
   %dt Week
-  %dd= color_money current_user.total_past_week
+  %dd= current_user.total_past_week
   
   %dt 30 Days
-  %dd= color_money current_user.total_past_month
+  %dd= current_user.total_past_month
   
   %dt Year
-  %dd= color_money current_user.total_past_year
+  %dd= current_user.total_past_year
   
   %dt All Time
-  %dd= color_money current_user.items.sum(:value)
+  %dd= current_user.items.sum(:value)
 
 - unless @items.empty?
   %table
@@ -21,7 +21,7 @@
     - for item in @items
       %tr
         %td= link_to item.date.strftime('%a %m/%d'), item, :rel=>:facebox
-        %td= color_money item.value
+        %td= item.value
         %td= h item.vendor.try(:name)
         %td= h item.description
 

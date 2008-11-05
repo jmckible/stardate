@@ -11,6 +11,6 @@
     - for recurring in @recurrings
       %tr
         %td= link_to recurring.day, recurring, :rel=>:facebox
-        %td= color_money recurring.value
+        %td= recurring.value
         %td= h recurring.vendor.try(:name)
         %td= h recurring.description

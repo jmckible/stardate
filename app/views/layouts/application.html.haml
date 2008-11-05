@@ -2,22 +2,17 @@
 %html{html_attrs('en-US')}
   %head
     %meta{'http-equiv' => 'Content-Type', :content => 'text/html'}
-    %title ActiveBudget - Open Source Cash Flow on Rails
+    %title ...
     = javascript_include_tag 'jquery', 'facebox', 'activebudget'
     = stylesheet_link_tag 'activebudget', 'facebox'
 
   %body
-    #Header
-      .fixed_width
-        = link_to image_tag('activebudget_logo_small.png', :id=>:Logo), root_path
-
-
-    %ul#Navigation
-      %li.first= link_to 'Register', register_path
-      %li= link_to 'Recurring', recurrings_path
-      %li.manage= link_to 'Log Out', session_path(current_user), :method=>:delete
-      %li.manage= link_to 'Settings', edit_user_path(current_user)
   
-    #Content.clearfix= yield
+    - if logged_in?
+      %ul
+        %li= link_to 'Register', register_path
+        %li= link_to 'Recurring', recurrings_path
+        %li= link_to 'Log Out', session_path(current_user), :method=>:delete
+        %li= link_to 'Settings', edit_user_path(current_user)
   
-    #Footer= footer
+    = yield

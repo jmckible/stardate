@@ -1,14 +1,17 @@
 body {
   color: #333;
   font-family: verdana, helvetica, sans-serif;
-  background: #999;
+  background: #ccc;
 }
 
 #Content {
   margin: 0 auto;
   width: 800px;
   background: #fff;
-  padding: 1em 0 0 2em;
+  padding: 1em 0 2em 2em;
+  border-left: 10px solid #999;
+  border-right: 10px solid #999;
+  border-bottom: 10px solid #999;
 }
 
 input.money {

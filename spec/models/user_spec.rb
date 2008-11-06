@@ -44,44 +44,7 @@ describe User do
 
   it 'should have many tasks' do
     @user.should have(3).tasks
-  end
-
-  #####################################################################
-  #                   O B J E C T S   M E T H O D S                  #
-  #####################################################################
-  # totaling
-  it 'should total on a date' do
-    @user.total_on(Date.new(2008, 1, 1)).should == -10
-  end
-
-  it 'should total for the week' do
-    @user.total_past_week(Date.new(2008, 1, 1)).should == -10
-  end
-
-  it 'should total this month' do
-    @user.total_past_month(Date.new(2008, 1, 1)).should == -10
-  end
-
-  it 'should total this year' do
-    @user.total_past_year(Date.new(2008, 1, 1)).should == -10
-  end
-
-  # summing
-  it 'should sum income from a range' do
-    @user.sum_income(Date.new(2008, 1, 1)..Date.new(2008, 1, 15)).should == 0
-  end
-
-  it 'should sum income from a date' do
-    @user.sum_income(Date.new(2008, 1, 1)).should == 0
-  end
-
-  it 'should sum expenses from a range' do
-    @user.sum_expenses(Date.new(2008, 1, 1)..Date.new(2008, 1, 15)).should == -10
-  end
-
-  it 'should sum expenses from a date' do
-    @user.sum_expenses(Date.new(2008, 1, 1)).should == -10
-  end
+  end  
 
   #####################################################################
   #                        C A L L B A C K S                          #

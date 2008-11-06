@@ -32,15 +32,15 @@ class User < ActiveRecord::Base
   alias :total_during :total_on
   
   def total_past_week(date = Date.today)
-    total_on (date - 6)..date
+    total_on (date - 1.week)..date
   end
   
   def total_past_month(date = Date.today)
-    total_on (Date.new date.year, date.month, 1)..date
+    total_on (date - 1.month)..date
   end
   
   def total_past_year(date = Date.today)
-    total_on (Date.new date.year, 1, 1)..date
+    total_on (date - 1.year)..date
   end
   
   def sum_income(period)
@@ -55,6 +55,10 @@ class User < ActiveRecord::Base
     tasks.unpaid.on(date).collect{|t| t.job.rate * t.minutes / 60.0 }.sum.round
   end
   alias :value_unpaid_tasks_during :value_unpaid_tasks_on
+  
+  def stuff_during(period)
+    #if period.is
+  end
   
   def chart(period)
     expenses = 0

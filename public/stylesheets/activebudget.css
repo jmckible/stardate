@@ -15,12 +15,21 @@ body {
 }
 
 input.defaulted{
-  color: #999;
+  color: #888;
 }
+
+input[type=text] {
+  border: 2px solid #ddd;
+  font-size: 1.25em;
+  margin: 0.25em 0;
+  width: 10em;
+}
+
 
 input.money {
   background: #ffffff url(/images/dollar_sign.png) no-repeat center left;
-  padding-left: 12px;
+  padding-left: 1em;
+  width: 9em;
 }
 
 .negative { color: #f0c; }

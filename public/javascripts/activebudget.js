@@ -4,7 +4,7 @@ $(document).ready(function() {
   
   $('input[type=text][default]').livequery(function(){
     
-    prompt_default(this);
+    insert_default(this);
     
     $(this).focus(function(){
       if($(this).attr('value') == $(this).attr('default')){
@@ -14,7 +14,7 @@ $(document).ready(function() {
     });
     
     $(this).blur(function(){
-      prompt_default(this);
+      insert_default(this);
     });
     
   });
@@ -31,7 +31,7 @@ $(document).ready(function() {
   
 });
 
-function prompt_default(element) {
+function insert_default(element) {
   if($(element).attr('value') == ''){
     $(element).addClass('defaulted');
     $(element).attr('value', $(element).attr('default'));

@@ -14,6 +14,10 @@ body {
   border-bottom: 10px solid #999;
 }
 
+input.defaulted{
+  color: #999;
+}
+
 input.money {
   background: #ffffff url(/images/dollar_sign.png) no-repeat center left;
   padding-left: 12px;

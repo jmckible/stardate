@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   # GET /items
   def index
     @items = current_user.items.during((Date.today - 4)..Date.today)
-    @item  = current_user.items.build :value=>nil
+    @item  = current_user.items.build :explicit_value=>nil
     @notes = current_user.notes.during((Date.today - 4)..Date.today)
     @note  = current_user.notes.build
   end

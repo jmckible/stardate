@@ -1,6 +1,3 @@
-%dl
-  %dt Date
-  %dd= form.date_select :date, :order=>[:month, :day, :year]
+%div= form.date_select :date, :order=>[:month, :day, :year]
 
-  %dt Body
-  %dd= form.text_field :body
+%div= form.text_field :body, :default=>'note'

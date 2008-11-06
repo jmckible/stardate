@@ -1,17 +1,10 @@
-%dl
-  %dt Date
-  %dd= form.date_select :date, :order=>[:month, :day, :year]
+%div= form.date_select :date, :order=>[:month, :day, :year]
 
-  %dt Amount
-  %dd= form.text_field :explicit_value, :class=>:money
+%div= form.text_field :explicit_value, :class=>:money
 
-  - fields_for :vendor, @item.vendor do |v|
-    %dt Vendor
-    %dd= v.text_field :name
+- fields_for :vendor, @item.vendor do |v|
+  %div= v.text_field :name, :default=>'vendor'
 
-  %dt Description
-  %dd= form.text_field :description
-  
-  %dt Tags
-  %dd= form.text_field :tag_list
-    
+%div= form.text_field :description, :default=>'description'
+
+%div= form.text_field :tag_list, :default=>'tags'

@@ -1,5 +1,3 @@
-
-
 %dl#Scorecard
   %dt 7
   %dd= color_money current_user.total_past_week
@@ -12,6 +10,21 @@
   
   %dt ∞
   %dd= color_money current_user.items.sum(:value)
+
+- @stuff.each do |date, things|
+  %h2= date.to_s :long
+  - things.each do |thing|
+    - if thing.is_a?(Item)
+      .item
+        = link_to thing.date.to_s(:short), thing, :rel=>:facebox
+        = color_money thing.value
+        = h thing.vendor.try(:name)
+        = h thing.description
+        = h thing.tag_list
+    - elsif thing.is_a?(Note)
+      .note
+        = link_to thing.date.to_s(:short), thing, :rel=>:facebox
+        = h thing.body
 
 - form_for @item do |f|
   = render :partial=>'form', :object=>f        

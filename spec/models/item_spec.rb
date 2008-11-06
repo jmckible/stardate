@@ -18,6 +18,37 @@ describe Item do
   it 'should belong to a vendor' do
     @item.vendor.should == vendors(:default)
   end
+  
+  it 'should access vendor name' do
+    @item.vendor_name.should == vendors(:default).name
+    Item.new.vendor_name.should be_nil
+  end
+  
+  it 'should set vendor name with existing vendor' do
+    running {
+      @item.vendor_name = vendors(:other).name
+      @item.save
+      @item.reload.vendor.should == vendors(:other)
+    }.should_not change(Vendor, :count)
+  end
+  
+  it 'should set vendor name with new vendor' do
+    @item.vendor_name = 'New Vendor'
+    @item.vendor.should be_new_record
+    running {
+      @item.save
+    }.should change(Vendor, :count).by(1)
+  end
+  
+  it 'should clear vendor when name set to nil' do
+    @item.vendor_name = nil
+    @item.vendor.should be_nil
+  end
+  
+  it 'should clear vendor when name set empty string' do
+    @item.vendor_name = ' '
+    @item.vendor.should be_nil
+  end
 
   #####################################################################
   #                             T A G G I N G                         #

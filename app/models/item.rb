@@ -10,6 +10,23 @@ class Item < ActiveRecord::Base
   named_scope :during, lambda { |date| {:conditions=>{:date=>date}} }
   named_scope :on,     lambda { |date| {:conditions=>{:date=>date}} }
   
+  def vendor_name
+    vendor.try :name
+  end
+  
+  def vendor_name=(string)
+    if string.nil? || string.chop.blank?
+      self.vendor = nil
+    else
+      v = Vendor.find_by_name string
+      if v.nil?
+        self.vendor = Vendor.new :name=>string
+      else
+        self.vendor = v
+      end
+    end
+  end
+  
   attr_accessible :date, :explicit_value, :description, :paycheck, :vendor
   
   validates_presence_of     :date, :user_id

@@ -3,8 +3,8 @@ $(document).ready(function() {
   $('a[rel*=facebox]').facebox();
   
   $('input[type=text][default]').livequery(function(){
-    $(this).addClass('defaulted');
-    $(this).attr('value', $(this).attr('default'));
+    
+    prompt_default(this);
     
     $(this).focus(function(){
       if($(this).attr('value') == $(this).attr('default')){
@@ -14,10 +14,7 @@ $(document).ready(function() {
     });
     
     $(this).blur(function(){
-      if($(this).attr('value') == ''){
-        $(this).addClass('defaulted');
-        $(this).attr('value', $(this).attr('default'));
-      }
+      prompt_default(this);
     });
     
   });
@@ -33,3 +30,10 @@ $(document).ready(function() {
 
   
 });
+
+function prompt_default(element) {
+  if($(element).attr('value') == ''){
+    $(element).addClass('defaulted');
+    $(element).attr('value', $(element).attr('default'));
+  }
+}

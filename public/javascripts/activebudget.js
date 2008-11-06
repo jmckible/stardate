@@ -2,7 +2,7 @@ $(document).ready(function() {
   
   $('a[rel*=facebox]').facebox();
   
-  $('input[type=text][default]').each(function(){
+  $('input[type=text][default]').livequery(function(){
     $(this).addClass('defaulted');
     $(this).attr('value', $(this).attr('default'));
     
@@ -22,7 +22,7 @@ $(document).ready(function() {
     
   });
   
-  $('form').submit(function(){
+  $('form').livequery('submit', function(){
     $(this).find('input[type=text][default]').each(function(){
       if($(this).attr('value') == $(this).attr('default')){
         $(this).attr('value', '');

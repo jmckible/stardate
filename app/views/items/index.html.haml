@@ -10,6 +10,9 @@
   
   %dt ∞
   %dd= color_money current_user.items.sum(:value)
+  
+- form_tag things_path do 
+  %p= text_field_tag 'thing'
 
 - @stuff.each do |date, things|
   %h2= date.to_s :long

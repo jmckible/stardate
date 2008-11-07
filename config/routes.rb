@@ -3,6 +3,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :notes
   map.resources :recurrings
   map.resources :sessions
+  map.resources :things
   map.resources :users
     
   map.register 'register/:year/:month/:day/:period',

@@ -31,6 +31,10 @@ $(document).ready(function() {
   
 });
 
+$(window).load(function(){
+  $('input#thing').focus();
+});
+
 function insert_default(element) {
   if($(element).attr('value') == ''){
     $(element).addClass('defaulted');

@@ -1,12 +1,9 @@
 class Grammar
   
   def self.parse(string)
-    if string =~ /^\d+\/\d+/
-      date, string = Grammar.pop_date string
-    else
-      date = Date.today
-    end
-    
+    date     = Grammar.parse_date string.slice!(/^\d+\/\d+(\/\d+)?\s/)
+    tag_list = (string.slice!(/\s\[.+\]$/) || '').gsub(/(^\s\[)|(\]$)/, '')
+
     if string =~ /^(\$|\+)/
       words = string.split ' '
       explicit_value = words.shift.gsub('$', '')
@@ -18,20 +15,19 @@ class Grammar
       else
         vendor = string
       end
-      Item.new :date=>date, :explicit_value=>explicit_value, :vendor_name=>vendor, :description=>description
+      Item.new :date=>date, :explicit_value=>explicit_value, :vendor_name=>vendor, 
+               :description=>description, :tag_list=>tag_list
+    
     else
       Note.new :date=>date, :body=>string
     end
-  end
-  
-  def self.pop_date(string)
-    words = string.split ' '
-    return Grammar.parse_date(words.shift), words.join(' ')
+  rescue
+    Note.new :date=>Date.today, :body=>'Failed to parse'
   end
   
   def self.parse_date(string=nil)
     return Date.today if string.nil?
-    pieces = string.split('/').collect(&:to_i)
+    pieces = string.strip.split('/').collect(&:to_i)
     case pieces.length
     when 1
       Date.new Date.today.year, Date.today.month, pieces.first

@@ -49,13 +49,6 @@ describe Grammar do
     note.body.should == '4 is a number'
   end
   
-  it 'should parse a note with a date and no body' do
-    note = Grammar.parse '12/15'
-    note.should be_is_a(Note)
-    note.date.should == Date.new(Date.today.year, 12, 15)
-    note.body.should be_blank
-  end
-  
   it 'should parse a note with date and body' do
     note = Grammar.parse '2/1/2009 something happened'
     note.should be_is_a(Note)
@@ -114,6 +107,16 @@ describe Grammar do
     item.vendor.name.should == 'Home Depot'
     item.description.should == 'lampshades'
     item.should have(0).tags
+  end
+  
+  it 'should parse a date, value, vendor, description, and tags' do
+    item = Grammar.parse "1/2/03 $5 Kool Korners - cuban [food, sandwich]"
+    item.should be_is_a(Item)
+    item.date.should == Date.new(2003, 1, 2)
+    item.value.should == -5
+    item.vendor.name.should == 'Kool Korners'
+    item.description.should == 'cuban'
+    item.tag_list.should == 'food, sandwich'
   end
   
 end

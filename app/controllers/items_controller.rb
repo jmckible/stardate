@@ -16,8 +16,7 @@ class ItemsController < ApplicationController
 
   # POST /items
   def create
-    @vendor = params[:vendor] ? Vendor.find_or_create_by_name(params[:vendor][:name]) : nil
-    @item = current_user.items.build params[:item].merge(:vendor=>@vendor)
+    @item = current_user.items.build params[:item]
     @item.save
     redirect_to root_url
   end

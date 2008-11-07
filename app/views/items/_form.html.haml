@@ -2,8 +2,7 @@
 
 %div= form.text_field :explicit_value, :class=>:money
 
-- fields_for :vendor, @item.vendor do |v|
-  %div= v.text_field :name, :default=>'vendor'
+%div= form.text_field :vendor_name, :default=>'vendor'
 
 %div= form.text_field :description, :default=>'description'
 

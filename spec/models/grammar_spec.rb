@@ -96,4 +96,15 @@ describe Grammar do
     item.should have(0).tags
   end
   
+  it 'should parse a value and a new vendor' do
+    item = Grammar.parse "$10 Target"
+    item.should be_is_a(Item)
+    item.date.should == Date.today
+    item.value.should == -10
+    item.vendor.should be_new_record
+    item.vendor.name.should == 'Target'
+    item.description.should be_nil
+    item.should have(0).tags
+  end
+  
 end

@@ -36,9 +36,9 @@ describe ItemsController do
   it 'handles /items with valid params and POST' do
     running {
       running {
-        post :create, :item=>{:explicit_value=>20, :date=>Date.today, :description=>'twenty' }, :vendor=>{:name=>'new'}
+        post :create, :item=>{:explicit_value=>20, :date=>Date.today, :description=>'twenty', :vendor_name=>'new' }
         assigns(:item).value.should == -20
-        assigns(:item).vendor.should == assigns(:vendor)
+        assigns(:item).vendor.name.should == 'new'
         response.should redirect_to(root_path)
       }.should change(Item, :count).by(1)
     }.should change(Vendor, :count).by(1)
@@ -63,14 +63,14 @@ describe ItemsController do
   #                                   U P D A T E                             #
   #############################################################################
   it 'handles /items/:id with valid params and PUT' do
-    put :update, :id=>@item, :item=>{:description=>'new'}, :vendor=>{:name=>vendors(:other).name}
+    put :update, :id=>@item, :item=>{:description=>'new', :vendor_name=>vendors(:other).name}
     @item.reload.description.should == 'new'
     @item.vendor.should == vendors(:other)
     response.should redirect_to(root_path)
   end
   
   it 'handles /items/:id with emptying of vendor' do
-    put :update, :id=>@item, :item=>{:description=>'new'}
+    put :update, :id=>@item, :item=>{:description=>'new', :vendor_name=>'' }
     @item.reload.description.should == 'new'
     @item.vendor.should be_nil
     response.should redirect_to(root_path)

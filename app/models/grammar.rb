@@ -11,7 +11,14 @@ class Grammar
       words = string.split ' '
       explicit_value = words.shift.gsub('$', '')
       string = words.join ' '
-      Item.new :date=>date, :explicit_value=>explicit_value, :vendor_name=>string
+      if string =~ /-/
+        words  = string.split ' - '
+        vendor = words.shift
+        description = words.join ' - '
+      else
+        vendor = string
+      end
+      Item.new :date=>date, :explicit_value=>explicit_value, :vendor_name=>vendor, :description=>description
     else
       Note.new :date=>date, :body=>string
     end

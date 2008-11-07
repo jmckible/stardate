@@ -6,13 +6,6 @@ class NotesController < ApplicationController
     render :layout=>false
   end
   
-  # POST /notes
-  def create
-    @note = current_user.notes.build params[:note]
-    @note.save
-    redirect_to root_url
-  end
-  
   # PUT /notes/:id
   def update
     @note = current_user.notes.find params[:id]

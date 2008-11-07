@@ -3,7 +3,12 @@
 = error_messages_for :item
 
 - form_for @item do |f|
-  = render :partial=>'form', :object=> f
+  %p= f.date_select :date,           :order=>[:month, :day, :year]
+  %p= f.text_field  :explicit_value, :class=>:money
+  %p= f.text_field  :vendor_name,    :default=>'vendor'
+  %p= f.text_field  :description,    :default=>'description'
+  %p= f.text_field  :tag_list,       :default=>'tags'
+  
   %p
     = submit_tag 'Update'
     or

@@ -3,22 +3,13 @@ class ItemsController < ApplicationController
   # GET /
   # GET /items
   def index
-    @stuff  = current_user.stuff_during((Date.today - 3)..Date.today).reverse
-    @item   = current_user.items.build
-    @note   = current_user.notes.build
+    @things = current_user.stuff_during((Date.today - 3)..Date.today).reverse
   end
 
   # GET /items/:id
   def show
     @item = current_user.items.find params[:id]
     render :layout=>false
-  end
-
-  # POST /items
-  def create
-    @item = current_user.items.build params[:item]
-    @item.save
-    redirect_to root_url
   end
 
   # PUT /items/:id

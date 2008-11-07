@@ -1,5 +1,6 @@
 %h1 Edit Note
 
 - form_for @note do |f|
-  = render :partial=>'form', :object=>f
+  %p= f.date_select :date, :order=>[:month, :day, :year]
+  %p= f.text_field  :body, :default=>'note'
   %p= submit_tag 'Update'

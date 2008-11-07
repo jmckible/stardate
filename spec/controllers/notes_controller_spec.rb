@@ -9,20 +9,6 @@ describe NotesController do
     response.should be_success
   end
   
-  it 'handles /notes with valid params and POST' do
-    running {
-      post :create, :note=>{:date=>Date.today, :body=>'body'}
-      response.should redirect_to(root_path)
-    }.should change(Note, :count).by(1)
-  end
-  
-  it 'handles /notes with invalid params and POST' do
-    running {
-      post :create, :note=>{}
-      response.should redirect_to(root_path)
-    }.should_not change(Note, :count)
-  end
-  
   it 'handles /notes/:id with valid params and PUT' do
     note = notes(:default)
     put :update, :id=>note, :note=>{:body=>'update'}

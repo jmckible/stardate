@@ -14,7 +14,7 @@
 - form_tag things_path do 
   %p= text_field_tag 'thing'
 
-- @stuff.each do |date, things|
+- @things.each do |date, things|
   %h2= date.to_s :long
   - things.each do |thing|
     - if thing.is_a?(Item)
@@ -27,14 +27,6 @@
     - elsif thing.is_a?(Note)
       .note
         = link_to thing.date.to_s(:short), thing, :rel=>:facebox
-        = h thing.body
-
-- form_for @item do |f|
-  = render :partial=>'form', :object=>f        
-  %p= submit_tag 'Add Transaction'
-
-- form_for @note do |f|
-  = render :partial=>'notes/form', :object=>f
-  %p= submit_tag 'Add Note'  
+        = h thing.body  
 
 /%img{:src=>current_user.chart((Date.today - 30)..Date.today)}

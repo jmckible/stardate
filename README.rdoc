@@ -1,0 +1,9 @@
+= stardate
+
+stardate was originally called ActiveBudget.  It used to just track income/expenses and hourly work.  I stopped working hourly, so I removed that section and added a microblogging element.  Basically if you want to see what a real life Rails app looks like, check it out.
+
+== Author
+
+* stardate was created by Jordan McKible http://jordan.mckible.com
+
+* Available on GitHub at http://github.com/jmckible/stardate/tree/master

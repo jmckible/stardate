@@ -13,11 +13,11 @@
 #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
 development:
   adapter: mysql
-  database: activebudget_development
+  database: stardate_development
   username: root
   password:
   socket: /tmp/mysql.sock
-  session_key: _activebudget_session_id
+  session_key: _stardate_session_id
   secret:
   
 
@@ -26,18 +26,18 @@ development:
 # Do not set this db to the same as development or production.
 test:
   adapter: mysql
-  database: activebudget_test
+  database: stardate_test
   username: root
   password:
   socket: /tmp/mysql.sock
-  session_key: _activebudget_session_id
+  session_key: _stardate_session_id
   secret:
 
 production:
   adapter: mysql
-  database: activebudget_production
+  database: stardate_production
   username: root
   password: 
   socket: /tmp/mysql.sock
-  session_key: _activebudget_session_id
+  session_key: _stardate_session_id
   secret:

@@ -62,7 +62,7 @@ describe Item do
   end
 
   it 'should have a tag list' do
-    @item.tag_list.should == 'default'
+    @item.tag_list.should == ['default']
   end
 
   it 'should add a new tag via tag list' do
@@ -70,19 +70,11 @@ describe Item do
       running {
         @item.tag_list = 'default, breakfast'
         @item.save
-        @item.reload.tag_list.should == 'breakfast, default'
+        @item.reload.tag_list.should == ['default', 'breakfast']
       }.should change(Tag, :count).by(1) 
     }.should change(Tagging, :count).by(1)
   end
-
-  it 'should empty tag list when nothing is passed' do
-    running {
-      @item.tag_list = ''
-      @item.save
-      @item.should have(0).tags
-    }.should change(Tagging, :count).by(-1)
-  end
-
+  
   #####################################################################
   #                            S C O P E                              #
   #####################################################################

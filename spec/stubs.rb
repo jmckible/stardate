@@ -30,7 +30,7 @@ ModelStubbing.define_models do
   end
   
   model Note do
-    stub :body=>'body', :user=>users(:default), :date=>current_time.to_date
+    stub :body=>'body', :user=>users(:default), :date=>current_time.to_date, :created_at=>current_time
   end
   
   model Paycheck do

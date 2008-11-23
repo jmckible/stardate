@@ -13,6 +13,7 @@
     
       - if logged_in?
         %ul#Menu
+          %li= link_to 'home', items_path
           %li= link_to 'register', register_path
           %li= link_to 'recurring', recurrings_path
           %li= link_to 'settings', edit_user_path(current_user)

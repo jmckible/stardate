@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   # GET /
   # GET /items
   def index
-    @things = current_user.stuff_during((Date.today - 3)..Date.today).reverse
+    @things = current_user.stuff_during((Date.today - 3)..Date.today)
   end
 
   # GET /items/:id

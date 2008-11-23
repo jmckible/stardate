@@ -18,34 +18,23 @@ describe User do
     end
     
     model Note do
-      stub :yesterday,  :date=>(current_time.to_date - 1), :user=>users(:totaling)
-      stub :today,      :date=>current_time.to_date,       :user=>users(:totaling)
+      stub :yesterday,  :date=>(current_time.to_date - 1), :user=>users(:totaling), :created_at=>(current_time - 1.days)
+      stub :today,      :date=>current_time.to_date,       :user=>users(:totaling), :created_at=>current_time
     end
   end
   before { @user = users(:totaling) }
-
+  
   #####################################################################
-  #                               S T U F F                           #
+  #                              S T U F F                            #
   #####################################################################
   it 'should find stuff on a day' do
     @user.stuff_during(Date.new(2008, 1, 1)).should == [items(:today), notes(:today)]
-  end
-  
-  it 'should find stuff during a period' do
-    @user.stuff_during(Date.new(2007, 12, 31)..Date.new(2008, 1, 1)).should ==
-      [ [Date.new(2007, 12, 31), [items(:yesterday), notes(:yesterday)]] , 
-        [Date.new(2008, 1, 1),   [items(:today), notes(:today)]]
-      ]
   end
   
   it 'should find nothing on an empty day' do
     @user.stuff_during(Date.new(2009, 1, 1)).should == []
   end
   
-  it 'should find nothing during an empty period' do
-    @user.stuff_during(Date.new(2008, 12, 31)..Date.new(2009, 1, 1)).should == []
-  end
-
   #####################################################################
   #                            T O T A L I N G                        #
   #####################################################################

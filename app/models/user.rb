@@ -57,15 +57,8 @@ class User < ActiveRecord::Base
   alias :value_unpaid_tasks_during :value_unpaid_tasks_on
   
   def stuff_during(period)
-    if period.is_a?(Date)
-      (items.during(period) + notes.during(period))#.sort_by(&:created_at)
-    else
-      all = []
-      period.first.upto(period.last) do |date|
-        stuff = stuff_during date
-        all << [date, stuff] unless stuff.empty?
-      end
-      all
+    (items.during(period) + notes.during(period)).sort do |x,y|
+      y.created_at <=> x.created_at
     end
   end
   

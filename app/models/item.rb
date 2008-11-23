@@ -27,7 +27,7 @@ class Item < ActiveRecord::Base
     end
   end
   
-  attr_accessible :date, :explicit_value, :description, :paycheck, :tag_list, :vendor, :vendor_name
+  attr_accessible :date, :explicit_value, :description, :paycheck, :tag_list, :vendor_name
   
   validates_presence_of     :date, :user_id
   validates_numericality_of :value, :only_integer=>true

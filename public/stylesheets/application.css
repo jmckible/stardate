@@ -1,3 +1,6 @@
+a { color: #0cf; text-decoration: none;}
+a:hover {  text-decoration: underline; }
+
 body {
   color: #333;
   font-family: verdana, helvetica, sans-serif;
@@ -30,6 +33,16 @@ input.money {
   background: #ffffff url(/images/dollar_sign.png) no-repeat center left;
   padding-left: 1em;
   width: 9em;
+}
+
+#Menu {
+  margin-top: 6em;
+}
+
+#Menu li {
+  float: left;
+  list-style: none;
+  margin-right: 2em;
 }
 
 .negative { color: #f0c; }

@@ -2,7 +2,7 @@
 %html{html_attrs('en-US')}
   %head
     %meta{'http-equiv' => 'Content-Type', :content => 'text/html'}
-    %title ...
+    %title stardate
     = javascript_include_tag 'jquery', 'jquery.livequery', 'facebox', 'application'
     = stylesheet_link_tag 'reset', 'facebox', 'application'
 
@@ -12,8 +12,8 @@
       = yield
     
       - if logged_in?
-        %ul
-          %li= link_to 'Register', register_path
-          %li= link_to 'Recurring', recurrings_path
-          %li= link_to 'Log Out', session_path(current_user), :method=>:delete
-          %li= link_to 'Settings', edit_user_path(current_user)
+        %ul#Menu
+          %li= link_to 'register', register_path
+          %li= link_to 'recurring', recurrings_path
+          %li= link_to 'settings', edit_user_path(current_user)
+          %li= link_to 'goodbye', session_path(current_user), :method=>:delete

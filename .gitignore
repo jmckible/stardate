@@ -2,6 +2,5 @@
 /**/.svn
 .DS_Store
 config/*.yml
-config/deploy.rb
 log/*
 tmp/**/*

@@ -1,7 +1,7 @@
 class Item < ActiveRecord::Base
 
   explicit_integer :value
-  is_taggable
+  acts_as_taggable
 
   belongs_to :user
   belongs_to :vendor

@@ -27,6 +27,4 @@
     - elsif thing.is_a?(Note)
       .note
         = link_to thing.date.to_s(:short), thing, :rel=>:facebox
-        = h thing.body  
-
-/%img{:src=>current_user.chart((Date.today - 30)..Date.today)}
+        = h thing.body

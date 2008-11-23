@@ -1,5 +1,5 @@
 a { 
-  color: #fc6; 
+  color: #999; 
   text-decoration: none;
 }
 a:hover {
@@ -24,6 +24,31 @@ body {
 
 #History {
   margin-top: 2em;
+  line-height: 1.5em;
+}
+
+#History .date {
+  width: 4em;
+  text-align: left;
+}
+
+#History .money {
+  width: 3em;
+  text-align: right;
+}
+
+#History .tags {
+  font-size: 0.8em;
+  color: #999;
+}
+
+#History .vendor {
+  padding-left: 1em;
+  font-weight: bold;
+}
+
+#History .description {
+  padding-left: 1em;
 }
 
 input.defaulted{
@@ -79,14 +104,5 @@ input.money {
 #Scorecard dd {
   font-size: 1.75em;
   line-height: 1em;
-  font-weight: bold;
-}
-
-.tags {
-  font-size: 0.8em;
-  color: #999;
-}
-
-.vendor {
   font-weight: bold;
 }

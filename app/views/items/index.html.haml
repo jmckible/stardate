@@ -14,16 +14,19 @@
 - form_tag things_path do 
   %p= text_field_tag 'thing'
 
-#History
+%table#History
   - @things.each do |thing|
     - if thing.is_a?(Item)
-      .item
-        %span.date= link_to thing.date.strftime('%a %d %b'), thing, :rel=>:facebox
-        = color_money thing.value
-        %span.vendor= h thing.vendor.try(:name)
-        %span.description= h thing.description
-        %span.tags= h thing.tag_list
+      %tr.item
+        %td.date= link_to thing.date.strftime('%a %d'), thing, :rel=>:facebox
+        %td.money= color_money thing.value
+        %td.vendor= h thing.vendor.try(:name)
+        %td.description
+          = h thing.description
+          %span.tags= h thing.tag_list
     - elsif thing.is_a?(Note)
-      .note
-        %span.date= link_to thing.date.strftime('%a %d %b'), thing, :rel=>:facebox
-        %span.body= h thing.body
+      %tr.note
+        %td.date= link_to thing.date.strftime('%a %d'), thing, :rel=>:facebox
+        %td.money &nbsp;
+        %td.vendor &nbsp;
+        %td.description= h thing.body

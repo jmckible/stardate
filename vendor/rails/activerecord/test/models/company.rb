@@ -13,6 +13,12 @@ class Company < AbstractCompany
   def arbitrary_method
     "I am Jack's profound disappointment"
   end
+
+  private
+
+  def private_method
+    "I am Jack's innermost fears and aspirations"
+  end
 end
 
 module Namespaced
@@ -106,6 +112,14 @@ class Client < Company
   def rating?
     query_attribute :rating
   end
+
+  class << self
+    private
+
+    def private_method
+      "darkness"
+    end
+  end
 end
 
 
@@ -129,9 +143,14 @@ class Account < ActiveRecord::Base
     true
   end
 
-
   protected
     def validate
       errors.add_on_empty "credit_limit"
     end
+
+  private
+
+  def private_method
+    "Sir, yes sir!"
+  end
 end

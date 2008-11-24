@@ -252,7 +252,7 @@ module ActionController #:nodoc:
   #
   #   def do_something
   #     redirect_to(:action => "elsewhere") and return if monkeys.nil?
-  #     render :action => "overthere" # won't be called unless monkeys is nil
+  #     render :action => "overthere" # won't be called if monkeys is nil
   #   end
   #
   class Base
@@ -289,8 +289,6 @@ module ActionController #:nodoc:
     # when called from concurrent threads. Turned off by default.
     @@allow_concurrency = false
     cattr_accessor :allow_concurrency
-
-    @@guard = Monitor.new
 
     # Modern REST web services often need to submit complex data to the web application.
     # The <tt>@@param_parsers</tt> hash lets you register handlers which will process the HTTP body and add parameters to the
@@ -532,12 +530,7 @@ module ActionController #:nodoc:
         assign_names
 
         log_processing
-
-        if @@allow_concurrency
-          send(method, *arguments)
-        else
-          @@guard.synchronize { send(method, *arguments) }
-        end
+        send(method, *arguments)
 
         send_response
       ensure
@@ -549,8 +542,8 @@ module ActionController #:nodoc:
         response
       end
 
-      # Returns a URL that has been rewritten according to the options hash and the defined Routes.
-      # (For doing a complete redirect, use redirect_to).
+      # Returns a URL that has been rewritten according to the options hash and the defined routes.
+      # (For doing a complete redirect, use +redirect_to+).
       #
       # <tt>url_for</tt> is used to:
       #
@@ -590,7 +583,15 @@ module ActionController #:nodoc:
       # missing values in the current request's parameters. Routes attempts to guess when a value should and should not be
       # taken from the defaults. There are a few simple rules on how this is performed:
       #
-      # * If the controller name begins with a slash, no defaults are used: <tt>url_for :controller => '/home'</tt>
+      # * If the controller name begins with a slash no defaults are used:
+      #
+      #     url_for :controller => '/home'
+      #
+      #   In particular, a leading slash ensures no namespace is assumed. Thus,
+      #   while <tt>url_for :controller => 'users'</tt> may resolve to
+      #   <tt>Admin::UsersController</tt> if the current controller lives under
+      #   that module, <tt>url_for :controller => '/users'</tt> ensures you link
+      #   to <tt>::UsersController</tt> no matter what.
       # * If the controller changes, the action will default to index unless provided
       #
       # The final rule is applied while the URL is being generated and is best illustrated by an example. Let us consider the
@@ -964,18 +965,6 @@ module ActionController #:nodoc:
         render :nothing => true, :status => status
       end
 
-      # Sets the Last-Modified response header. Returns 304 Not Modified if the
-      # If-Modified-Since request header is <= last modified.
-      def last_modified!(utc_time)
-        head(:not_modified) if response.last_modified!(utc_time)
-      end
-
-      # Sets the ETag response header. Returns 304 Not Modified if the
-      # If-None-Match request header matches.
-      def etag!(etag)
-        head(:not_modified) if response.etag!(etag)
-      end
-
       # Clears the rendered results, allowing for another render to be performed.
       def erase_render_results #:nodoc:
         response.body = nil
@@ -1083,6 +1072,51 @@ module ActionController #:nodoc:
         raise DoubleRenderError if performed?
         response.redirect(url, interpret_status(status))
         @performed_redirect = true
+      end
+
+      # Sets the etag and/or last_modified on the response and checks it against
+      # the client request. If the request doesn't match the options provided, the
+      # request is considered stale and should be generated from scratch. Otherwise,
+      # it's fresh and we don't need to generate anything and a reply of "304 Not Modified" is sent.
+      #
+      # Example:
+      #
+      #   def show
+      #     @article = Article.find(params[:id])
+      #
+      #     if stale?(:etag => @article, :last_modified => @article.created_at.utc)
+      #       @statistics = @article.really_expensive_call
+      #       respond_to do |format|
+      #         # all the supported formats
+      #       end
+      #     end
+      #   end
+      def stale?(options)
+        fresh_when(options)
+        !request.fresh?(response)
+      end
+
+      # Sets the etag, last_modified, or both on the response and renders a
+      # "304 Not Modified" response if the request is already fresh. 
+      #
+      # Example:
+      #
+      #   def show
+      #     @article = Article.find(params[:id])
+      #     fresh_when(:etag => @article, :last_modified => @article.created_at.utc)
+      #   end
+      # 
+      # This will render the show template if the request isn't sending a matching etag or 
+      # If-Modified-Since header and just a "304 Not Modified" response if there's a match.
+      def fresh_when(options)
+        options.assert_valid_keys(:etag, :last_modified)
+
+        response.etag          = options[:etag]          if options[:etag]
+        response.last_modified = options[:last_modified] if options[:last_modified]
+
+        if request.fresh?(response)
+          head :not_modified
+        end
       end
 
       # Sets a HTTP 1.1 Cache-Control header. Defaults to issuing a "private" instruction, so that
@@ -1248,7 +1282,7 @@ module ActionController #:nodoc:
             action_name = strip_out_controller(action_name)
           end
         end
-        "#{self.class.controller_path}/#{action_name}"
+        "#{self.controller_path}/#{action_name}"
       end
 
       def strip_out_controller(path)
@@ -1256,7 +1290,7 @@ module ActionController #:nodoc:
       end
 
       def template_path_includes_controller?(path)
-        self.class.controller_path.split('/')[-1] == path.split('/')[0]
+        self.controller_path.split('/')[-1] == path.split('/')[0]
       end
 
       def process_cleanup

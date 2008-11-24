@@ -30,17 +30,31 @@ class TestController < ActionController::Base
   end
 
   def conditional_hello
-    response.last_modified = Time.now.utc.beginning_of_day
-    response.etag = [:foo, 123]
-
-    if request.fresh?(response)
-      head :not_modified
-    else
+    if stale?(:last_modified => Time.now.utc.beginning_of_day, :etag => [:foo, 123])
       render :action => 'hello_world'
     end
   end
 
+  def conditional_hello_with_bangs
+    render :action => 'hello_world'
+  end
+  before_filter :handle_last_modified_and_etags, :only=>:conditional_hello_with_bangs
+  
+  def handle_last_modified_and_etags
+    fresh_when(:last_modified => Time.now.utc.beginning_of_day, :etag => [ :foo, 123 ])
+  end
+
   def render_hello_world
+    render :template => "test/hello_world"
+  end
+
+  def render_hello_world_with_last_modified_set
+    response.last_modified = Date.new(2008, 10, 10).to_time
+    render :template => "test/hello_world"
+  end
+
+  def render_hello_world_with_etag_set
+    response.etag = "hello_world"
     render :template => "test/hello_world"
   end
 
@@ -238,7 +252,7 @@ class TestController < ActionController::Base
     if @alternate_default_render
       @alternate_default_render.call
     else
-      render
+      super
     end
   end
 
@@ -1306,6 +1320,7 @@ class EtagRenderTest < Test::Unit::TestCase
     @controller = TestController.new
 
     @request.host = "www.nextangle.com"
+    @expected_bang_etag = etag_for(expand_key([:foo, 123]))
   end
 
   def test_render_200_should_set_etag
@@ -1333,12 +1348,21 @@ class EtagRenderTest < Test::Unit::TestCase
     assert_equal "200 OK", @response.status
     assert !@response.body.empty?
   end
+  
+  def test_render_should_not_set_etag_when_last_modified_has_been_specified
+    get :render_hello_world_with_last_modified_set
+    assert_equal "200 OK", @response.status
+    assert_not_nil @response.last_modified
+    assert_nil @response.etag
+    assert @response.body.present?
+  end
 
   def test_render_with_etag
     get :render_hello_world_from_variable
     expected_etag = etag_for('hello david')
     assert_equal expected_etag, @response.headers['ETag']
-
+    @response = ActionController::TestResponse.new
+    
     @request.if_none_match = expected_etag
     get :render_hello_world_from_variable
     assert_equal "304 Not Modified", @response.status
@@ -1354,10 +1378,8 @@ class EtagRenderTest < Test::Unit::TestCase
   end
 
   def test_etag_should_not_be_changed_when_already_set
-    expected_etag = etag_for("hello somewhere else")
-    @response.headers["ETag"] = expected_etag
-    get :render_hello_world_from_variable
-    assert_equal expected_etag, @response.headers['ETag']
+    get :render_hello_world_with_etag_set
+    assert_equal etag_for("hello_world"), @response.headers['ETag']
   end
 
   def test_etag_should_govern_renders_with_layouts_too
@@ -1365,10 +1387,26 @@ class EtagRenderTest < Test::Unit::TestCase
     assert_equal "<wrapper>\n<html>\n  <p>Hello </p>\n<p>This is grand!</p>\n</html>\n</wrapper>\n", @response.body
     assert_equal etag_for("<wrapper>\n<html>\n  <p>Hello </p>\n<p>This is grand!</p>\n</html>\n</wrapper>\n"), @response.headers['ETag']
   end
-
+  
+  def test_etag_with_bang_should_set_etag
+    get :conditional_hello_with_bangs
+    assert_equal @expected_bang_etag, @response.headers["ETag"]
+    assert_response :success
+  end
+  
+  def test_etag_with_bang_should_obey_if_none_match
+    @request.if_none_match = @expected_bang_etag
+    get :conditional_hello_with_bangs
+    assert_response :not_modified
+  end
+  
   protected
     def etag_for(text)
       %("#{Digest::MD5.hexdigest(text)}")
+    end
+    
+    def expand_key(args)
+      ActiveSupport::Cache.expand_cache_key(args)
     end
 end
 
@@ -1395,12 +1433,37 @@ class LastModifiedRenderTest < Test::Unit::TestCase
     assert_equal @last_modified, @response.headers['Last-Modified']
   end
 
+  def test_request_not_modified_but_etag_differs
+    @request.if_modified_since = @last_modified
+    @request.if_none_match = "234"
+    get :conditional_hello
+    assert_response :success
+  end
+
   def test_request_modified
     @request.if_modified_since = 'Thu, 16 Jul 2008 00:00:00 GMT'
     get :conditional_hello
     assert_equal "200 OK", @response.status
     assert !@response.body.blank?
     assert_equal @last_modified, @response.headers['Last-Modified']
+  end
+  
+  def test_request_with_bang_gets_last_modified
+    get :conditional_hello_with_bangs
+    assert_equal @last_modified, @response.headers['Last-Modified']
+    assert_response :success
+  end
+  
+  def test_request_with_bang_obeys_last_modified
+    @request.if_modified_since = @last_modified
+    get :conditional_hello_with_bangs
+    assert_response :not_modified
+  end
+
+  def test_last_modified_works_with_less_than_too
+    @request.if_modified_since = 5.years.ago.httpdate
+    get :conditional_hello_with_bangs
+    assert_response :success
   end
 end
 

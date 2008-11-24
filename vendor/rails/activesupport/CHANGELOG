@@ -1,4 +1,12 @@
-*Edge*
+*2.2.0 [RC1] (October 24th, 2008)*
+
+* TimeWithZone#freeze: preload instance variables so that we can actually freeze [Geoff Buesing]
+
+* Fix Brasilia timezone #1180 [Marcus Derencius, Kane]
+
+* Time#advance recognizes fractional days and weeks. Deprecate Durations of fractional months and years #970 [Tom Lea]
+
+* Add ActiveSupport::Rescuable module abstracting ActionController::Base rescue_from features. [Norbert Crombach, Pratik]
 
 * Switch from String#chars to String#mb_chars for the unicode proxy.  [Manfred Stienstra]
 

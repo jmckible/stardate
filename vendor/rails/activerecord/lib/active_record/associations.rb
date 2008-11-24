@@ -624,7 +624,8 @@ module ActiveRecord
       #   Adds one or more objects to the collection by setting their foreign keys to the collection's primary key.
       # [collection.delete(object, ...)]
       #   Removes one or more objects from the collection by setting their foreign keys to +NULL+.
-      #   This will also destroy the objects if they're declared as +belongs_to+ and dependent on this model.
+      #   Objects will be in addition destroyed if they're associated with <tt>:dependent => :destroy</tt>,
+      #   and deleted if they're associated with <tt>:dependent => :delete_all</tt>.
       # [collection=objects]
       #   Replaces the collections content by deleting and adding objects as appropriate.
       # [collection_singular_ids]
@@ -955,8 +956,6 @@ module ActiveRecord
       #   destroyed. This requires that a column named <tt>#{table_name}_count</tt> (such as +comments_count+ for a belonging Comment class)
       #   is used on the associate class (such as a Post class). You can also specify a custom counter cache column by providing
       #   a column name instead of a +true+/+false+ value to this option (e.g., <tt>:counter_cache => :my_custom_counter</tt>.)
-      #   When creating a counter cache column, the database statement or migration must specify a default value of <tt>0</tt>, failing to do 
-      #   this results in a counter with +NULL+ value, which will never increment.
       #   Note: Specifying a counter cache will add it to that model's list of readonly attributes using +attr_readonly+.
       # [:include]
       #   Specify second-order associations that should be eager loaded when this object is loaded.
@@ -1237,7 +1236,7 @@ module ActiveRecord
 
             association = instance_variable_get(ivar) if instance_variable_defined?(ivar)
 
-            if association.nil? || !association.loaded? || force_reload
+            if association.nil? || force_reload
               association = association_proxy_class.new(self, reflection)
               retval = association.reload
               if retval.nil? and association_proxy_class == BelongsToAssociation
@@ -1248,6 +1247,11 @@ module ActiveRecord
             end
 
             association.target.nil? ? nil : association
+          end
+
+          define_method("loaded_#{reflection.name}?") do
+            association = instance_variable_get(ivar) if instance_variable_defined?(ivar)
+            association && association.loaded?
           end
 
           define_method("#{reflection.name}=") do |new_value|
@@ -1263,17 +1267,6 @@ module ActiveRecord
             else
               association.replace(new_value)
               instance_variable_set(ivar, new_value.nil? ? nil : association)
-            end
-          end
-
-          if association_proxy_class == BelongsToAssociation
-            define_method("#{reflection.primary_key_name}=") do |target_id|
-              if instance_variable_defined?(ivar)
-                if association = instance_variable_get(ivar)
-                  association.reset
-                end
-              end
-              write_attribute(reflection.primary_key_name, target_id)
             end
           end
 
@@ -1303,7 +1296,7 @@ module ActiveRecord
           end
 
           define_method("#{reflection.name.to_s.singularize}_ids") do
-            if send(reflection.name).loaded?
+            if send(reflection.name).loaded? || reflection.options[:finder_sql]
               send(reflection.name).map(&:id)
             else
               send(reflection.name).all(:select => "#{reflection.quoted_table_name}.#{reflection.klass.primary_key}").map(&:id)
@@ -1479,6 +1472,8 @@ module ActiveRecord
           end
         end
 
+        # Creates before_destroy callback methods that nullify, delete or destroy
+        # has_one associated objects, according to the defined :dependent rule.
         def configure_dependency_for_has_one(reflection)
           if reflection.options.include?(:dependent)
             case reflection.options[:dependent]
@@ -1492,6 +1487,10 @@ module ActiveRecord
               when :delete
                 method_name = "has_one_dependent_delete_for_#{reflection.name}".to_sym
                 define_method(method_name) do
+                  # Retrieve the associated object and delete it. The retrieval
+                  # is necessary because there may be multiple associated objects
+                  # with foreign keys pointing to this object, and we only want
+                  # to delete the correct one, not all of them.
                   association = send(reflection.name)
                   association.delete unless association.nil?
                 end

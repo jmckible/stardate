@@ -172,18 +172,6 @@ module ActionView #:nodoc:
       delegate :logger, :to => 'ActionController::Base'
     end
 
-    def self.cache_template_loading=(*args)
-      ActiveSupport::Deprecation.warn(
-        "config.action_view.cache_template_loading option has been deprecated" +
-        "and has no effect. Please remove it from your config files.", caller)
-    end
-
-    def self.cache_template_extensions=(*args)
-      ActiveSupport::Deprecation.warn(
-        "config.action_view.cache_template_extensions option has been" +
-        "deprecated and has no effect. Please remove it from your config files.", caller)
-    end
-
     # Templates that are exempt from layouts
     @@exempt_from_layout = Set.new([/\.rjs$/])
 
@@ -259,10 +247,6 @@ module ActionView #:nodoc:
         if options[:layout]
           _render_with_layout(options, local_assigns, &block)
         elsif options[:file]
-          if options[:use_full_path]
-            ActiveSupport::Deprecation.warn("use_full_path option has been deprecated and has no affect.", caller)
-          end
-
           _pick_template(options[:file]).render_template(self, options[:locals])
         elsif options[:partial]
           render_partial(options)
@@ -290,18 +274,20 @@ module ActionView #:nodoc:
     private
       attr_accessor :_first_render, :_last_render
 
-      # Evaluate the local assigns and pushes them to the view.
+      # Evaluates the local assigns and controller ivars, pushes them to the view.
       def _evaluate_assigns_and_ivars #:nodoc:
         unless @assigns_added
           @assigns.each { |key, value| instance_variable_set("@#{key}", value) }
-
-          if @controller
-            variables = @controller.instance_variable_names
-            variables -= @controller.protected_instance_variables if @controller.respond_to?(:protected_instance_variables)
-            variables.each { |name| instance_variable_set(name, @controller.instance_variable_get(name)) }
-          end
-
+          _copy_ivars_from_controller
           @assigns_added = true
+        end
+      end
+
+      def _copy_ivars_from_controller #:nodoc:
+        if @controller
+          variables = @controller.instance_variable_names
+          variables -= @controller.protected_instance_variables if @controller.respond_to?(:protected_instance_variables)
+          variables.each { |name| instance_variable_set(name, @controller.instance_variable_get(name)) }
         end
       end
 

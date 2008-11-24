@@ -5,7 +5,7 @@ class AppGenerator < Rails::Generator::Base
   DEFAULT_SHEBANG = File.join(Config::CONFIG['bindir'],
                               Config::CONFIG['ruby_install_name'])
 
-  DATABASES = %w(mysql oracle postgresql sqlite2 sqlite3 frontbase)
+  DATABASES = %w(mysql oracle postgresql sqlite2 sqlite3 frontbase ibm_db)
   DEFAULT_DATABASE = 'sqlite3'
 
   default_options   :db => (ENV["RAILS_DEFAULT_DATABASE"] || DEFAULT_DATABASE),
@@ -50,7 +50,6 @@ class AppGenerator < Rails::Generator::Base
       m.template "helpers/application.rb",        "app/controllers/application.rb", :assigns => { :app_name => @app_name, :app_secret => md5.hexdigest }
       m.template "helpers/application_helper.rb", "app/helpers/application_helper.rb"
       m.template "helpers/test_helper.rb",        "test/test_helper.rb"
-      m.template "helpers/performance_test_helper.rb", "test/performance/test_helper.rb"
       m.template "helpers/performance_test.rb",   "test/performance/browsing_test.rb"
 
       # database.yml and routes.rb

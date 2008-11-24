@@ -30,3 +30,9 @@
         %td.money &nbsp;
         %td.vendor &nbsp;
         %td.description= h thing.body
+    - elsif thing.is_a?(Run)
+      %tr.run
+        %td.date= link_to thing.date.strftime('%a %d'), thing, :rel=>:facebox
+        %td.money &nbsp;
+        %td.vendor &nbsp;
+        %td.description= "Ran #{thing.distance} miles"

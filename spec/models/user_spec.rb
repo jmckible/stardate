@@ -41,6 +41,10 @@ describe User do
   it 'should have many recurrings' do
     @user.should have(1).recurrings
   end
+  
+  it 'should have many runs' do
+    @user.should have(1).runs
+  end
 
   it 'should have many tasks' do
     @user.should have(3).tasks

@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   has_many :jobs,       :order=>:name, :dependent=>:destroy
   has_many :notes,      :order=>:date, :dependent=>:destroy
   has_many :recurrings, :order=>:day,  :dependent=>:destroy
+  has_many :runs,       :order=>:date, :dependent=>:destroy
   has_many :tasks,      :through=>:jobs 
   
   #####################################################################
@@ -57,7 +58,7 @@ class User < ActiveRecord::Base
   alias :value_unpaid_tasks_during :value_unpaid_tasks_on
   
   def stuff_during(period)
-    (items.during(period) + notes.during(period)).sort do |x,y|
+    (items.during(period) + notes.during(period) + runs.during(period)).sort do |x,y|
       y.created_at <=> x.created_at
     end
   end

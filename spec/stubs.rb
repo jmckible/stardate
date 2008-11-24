@@ -52,4 +52,8 @@ ModelStubbing.define_models do
     stub :other, :job=>jobs(:other), :minutes=>45
   end
   
+  model Run do
+    stub :user=>users(:default), :distance=>3.5, :date=>current_time.to_date, :created_at=>current_time
+  end
+  
 end

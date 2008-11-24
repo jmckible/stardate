@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081106045410) do
+ActiveRecord::Schema.define(:version => 20081124075825) do
 
   create_table "items", :force => true do |t|
     t.integer  "user_id",                    :null => false
@@ -69,6 +69,16 @@ ActiveRecord::Schema.define(:version => 20081106045410) do
   add_index "recurrings", ["user_id"], :name => "index_recurrings_on_user_id"
   add_index "recurrings", ["day"], :name => "index_recurrings_on_day"
   add_index "recurrings", ["vendor_id"], :name => "index_recurrings_on_vendor_id"
+
+  create_table "runs", :force => true do |t|
+    t.date     "date"
+    t.integer  "distance",   :limit => 10, :precision => 10, :scale => 0, :default => 0, :null => false
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "runs", ["user_id"], :name => "index_runs_on_user_id"
 
   create_table "taggings", :force => true do |t|
     t.datetime "created_at"

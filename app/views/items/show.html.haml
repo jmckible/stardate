@@ -12,4 +12,4 @@
   %p
     = submit_tag 'Update'
     or
-    = link_to 'Delete', @item, :method=>:delete, :confirm=>'Are you sure?'
+    %span.delete= link_to 'delete', @item, :method=>:delete

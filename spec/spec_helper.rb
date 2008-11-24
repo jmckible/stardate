@@ -8,11 +8,6 @@ require 'model_stubbing'
 require File.dirname(__FILE__) + '/stubs'
 
 Spec::Runner.configure do |config|
-  config.use_transactional_fixtures = true
-  config.use_instantiated_fixtures  = false
-  config.fixture_path = RAILS_ROOT + '/spec/fixtures/'
-  
-  config.global_fixtures = :all
 
   def running(&block)
     lambda &block

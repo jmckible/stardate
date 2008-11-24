@@ -59,7 +59,11 @@ class User < ActiveRecord::Base
   
   def stuff_during(period)
     (items.during(period) + notes.during(period) + runs.during(period)).sort do |x,y|
-      y.created_at <=> x.created_at
+      if x.date == y.date
+        y.created_at <=> x.created_at
+      else
+        y.date <=> x.date
+      end
     end
   end
   

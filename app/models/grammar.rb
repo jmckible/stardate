@@ -18,6 +18,8 @@ class Grammar
       Item.new :date=>date, :explicit_value=>explicit_value, :vendor_name=>vendor, 
                :description=>description, :tag_list=>tag_list
     
+    elsif string =~ /^(Ran|ran)/
+      Run.new :date=>date, :distance=>string.split(/^(Ran|ran) /).last.to_f
     else
       Note.new :date=>date, :body=>string
     end

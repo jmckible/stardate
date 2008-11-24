@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(:version => 20081124075825) do
 
   create_table "runs", :force => true do |t|
     t.date     "date"
-    t.integer  "distance",   :limit => 10, :precision => 10, :scale => 0, :default => 0, :null => false
+    t.decimal  "distance",   :precision => 10, :scale => 2
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"

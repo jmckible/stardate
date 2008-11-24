@@ -57,6 +57,22 @@ describe Grammar do
   end
   
   #####################################################################
+  #                                R U N                              #
+  #####################################################################
+  it 'should parse starting with Ran' do
+    run = Grammar.parse 'Ran 4'
+    run.should be_is_a(Run)
+    run.distance.should == 4
+  end
+  
+  it 'should parse starting with ran and date' do
+    run = Grammar.parse '2/1/09 ran 3.5'
+    run.should be_is_a(Run)
+    run.distance.to_s.should == '3.5'
+    run.date.should == Date.new(2009, 2, 1)
+  end
+  
+  #####################################################################
   #                              I T E M                              #
   #####################################################################
   it 'should parse just an assumed negative value' do

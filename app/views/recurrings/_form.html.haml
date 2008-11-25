@@ -1,4 +1,4 @@
-%p= form.collection_select :day, (1..31).collect, :to_s, :to_s
+%p= form.collection_select :day, (1..31).collect, :to_i, :to_s
 %p= form.text_field :explicit_value, :class=>:money
 %p= form.text_field :vendor_name,    :default=>'vendor'
 %p= form.text_field :description,    :default=>'description'

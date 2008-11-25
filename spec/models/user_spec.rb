@@ -39,7 +39,7 @@ describe User do
   end
 
   it 'should have many recurrings' do
-    @user.should have(1).recurrings
+    @user.should have(2).recurrings
   end
   
   it 'should have many runs' do
@@ -103,7 +103,7 @@ describe User do
   end
 
   it 'should delete recurrings on destroy' do
-    running { @user.destroy }.should change(Recurring, :count).by(-1)
+    running { @user.destroy }.should change(Recurring, :count).by(-2)
   end
   
 end

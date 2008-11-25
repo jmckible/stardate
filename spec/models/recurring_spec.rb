@@ -21,6 +21,7 @@ describe Recurring do
   it 'should have a during scope' do
     Recurring.should have(1).on(1)
     Recurring.should have(1).on(Date.new(2008, 1, 1))
+    Recurring.should have(1).on(Date.new(2007, 2, 28))
   end
 
   #####################################################################

@@ -23,6 +23,18 @@ describe Recurring do
     Recurring.should have(1).on(Date.new(2008, 1, 1))
     Recurring.should have(1).on(Date.new(2007, 2, 28))
   end
+  
+  #####################################################################
+  #                           M E T H O D S                           #
+  #####################################################################
+  it 'should convert to a new item' do
+    item = recurrings(:default).to_item
+    item.date.should == Date.today
+    item.value.should == -100
+    item.user.should == users(:default)
+    item.description.should == 'Recurring'
+    item.vendor.should == vendors(:default)
+  end
 
   #####################################################################
   #                       V A L I D A T I O N S                       #

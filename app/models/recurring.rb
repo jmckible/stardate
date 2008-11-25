@@ -17,6 +17,13 @@ class Recurring < ActiveRecord::Base
       {:conditions=>{:day=>date}}
     end
   }
+  
+  def to_item
+    item = Item.new :date=>Date.today, :explicit_value=>explicit_value, 
+                    :description=>description, :vendor_name=>vendor_name
+    item.user = user
+    item
+  end
 
   attr_accessible :day, :description, :explicit_value, :tag_list
   

@@ -12,6 +12,14 @@ module ApplicationHelper
     end
   end
   
+  def minutes_to_time(minutes)
+    if minutes < 60
+      "#{minutes}min"
+    else
+      "#{minutes.div 60}:#{minutes.modulo 60}hr"
+    end
+  end
+  
   def humanize_period(period)
     if period.first.day == 1 and period.last == Date.civil(period.first.year, period.first.month, -1)
       period.first.strftime('%B, %Y')

@@ -54,7 +54,7 @@ ModelStubbing.define_models do
   end
   
   model Run do
-    stub :user=>users(:default), :distance=>3.5, :date=>current_time.to_date, :created_at=>current_time
+    stub :user=>users(:default), :distance=>3.5, :minutes=>60, :date=>current_time.to_date, :created_at=>current_time
   end
   
 end

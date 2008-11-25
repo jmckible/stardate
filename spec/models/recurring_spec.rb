@@ -14,6 +14,10 @@ describe Recurring do
   it 'should belong to a vendor' do
     @recurring.vendor.should == vendors(:default)
   end
+  
+  it 'should have many items' do
+    recurrings(:last).should have(1).items
+  end
 
   #####################################################################
   #                            S C O P E                              #
@@ -34,6 +38,7 @@ describe Recurring do
     item.user.should == users(:default)
     item.description.should == 'Recurring'
     item.vendor.should == vendors(:default)
+    item.recurring.should == recurrings(:default)
   end
 
   #####################################################################
@@ -41,6 +46,14 @@ describe Recurring do
   #####################################################################
   it 'should have a user_id' do
     Recurring.new.should have(1).error_on(:user_id)
+  end
+  
+  #####################################################################
+  #                       D E S T R U C T I O N                       #
+  #####################################################################
+  it 'should nullify items on destroy' do
+    recurrings(:last).destroy
+    items(:other).reload.recurring.should be_nil
   end
   
 end

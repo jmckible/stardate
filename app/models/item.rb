@@ -4,6 +4,7 @@ class Item < ActiveRecord::Base
   explicit_integer :value
   acts_as_taggable
 
+  belongs_to :recurring
   belongs_to :user
   
   has_one    :paycheck,  :dependent=>:nullify

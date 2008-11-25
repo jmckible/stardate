@@ -14,6 +14,10 @@ describe Item do
   it 'should belong to a paycheck' do
     @item.paycheck.should == paychecks(:default)
   end
+  
+  it 'should belong to a recurring' do
+    items(:other).recurring.should == recurrings(:last)
+  end
 
   it 'should belong to a vendor' do
     @item.vendor.should == vendors(:default)

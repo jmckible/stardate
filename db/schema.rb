@@ -9,21 +9,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081124075825) do
+ActiveRecord::Schema.define(:version => 20081125051708) do
 
   create_table "items", :force => true do |t|
-    t.integer  "user_id",                    :null => false
-    t.date     "date",                       :null => false
-    t.integer  "value",       :default => 0, :null => false
+    t.integer  "user_id",                     :null => false
+    t.date     "date",                        :null => false
+    t.integer  "value",        :default => 0, :null => false
     t.text     "description"
     t.integer  "vendor_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "recurring_id"
   end
 
   add_index "items", ["user_id"], :name => "index_items_on_user_id"
   add_index "items", ["date"], :name => "index_items_on_date"
   add_index "items", ["vendor_id"], :name => "index_items_on_vendor_id"
+  add_index "items", ["recurring_id"], :name => "index_items_on_recurring_id"
 
   create_table "jobs", :force => true do |t|
     t.integer  "user_id",                                                    :null => false

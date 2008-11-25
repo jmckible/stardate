@@ -17,10 +17,15 @@ ModelStubbing.define_models do
     stub :name=>'default'
   end
   
+  model Recurring do
+    stub :day=>1, :value=>-100, :user=>users(:default), :description=>'Recurring', :vendor=>vendors(:default)
+    stub :last,   :day=>31, :user=>users(:other)
+  end
+  
   model Item do
     stub :date=>current_time.to_date, :description=>'What I bought', :value=>-10, 
          :user=>users(:default), :vendor=>vendors(:default), :created_at=>current_time
-    stub :other, :user=>users(:other)
+    stub :other, :user=>users(:other), :recurring=>recurrings(:last)
   end
   
   model Job do
@@ -35,11 +40,6 @@ ModelStubbing.define_models do
   
   model Paycheck do
     stub :job=>jobs(:default), :description=>'Got paid', :value=>300, :item=>items(:default)
-  end
-  
-  model Recurring do
-    stub :day=>1, :value=>-100, :user=>users(:default), :description=>'Recurring', :vendor=>vendors(:default)
-    stub :last,   :day=>31
   end
   
   model Tagging do

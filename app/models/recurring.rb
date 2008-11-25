@@ -6,6 +6,8 @@ class Recurring < ActiveRecord::Base
 
   belongs_to :user
   
+  has_many :items, :dependent=>:nullify
+  
   named_scope :on, lambda { |date|
     if date.is_a?(Date)
       if date == date.end_of_month
@@ -19,9 +21,12 @@ class Recurring < ActiveRecord::Base
   }
   
   def to_item
-    item = Item.new :date=>Date.today, :explicit_value=>explicit_value, 
-                    :description=>description, :vendor_name=>vendor_name
-    item.user = user
+    item = Item.new :date=>Date.today,
+                    :description=>description,
+                    :explicit_value=>explicit_value,
+                    :vendor_name=>vendor_name
+    item.recurring  = self
+    item.user       = user
     item
   end
 

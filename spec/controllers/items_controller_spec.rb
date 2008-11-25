@@ -1,22 +1,10 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe ItemsController, 'without logging in' do
-  it 'handles /' do
-    get :index
-    response.should redirect_to(new_session_path)
-  end
-end
-
 describe ItemsController do
   define_models
   before do
     login_as :default
     @item = items(:default)
-  end
-  
-  it 'handles /' do
-    get :index
-    response.should be_success
   end
   
   it 'handles /items/:id with GET' do
@@ -31,7 +19,7 @@ describe ItemsController do
     response.should redirect_to(root_path)
   end
   
-  it 'handles /items/:id with emptying of vendor' do
+  it 'handles /items/:id with emptying of vendor and PUT' do
     put :update, :id=>@item, :item=>{:description=>'new', :vendor_name=>'' }
     @item.reload.description.should == 'new'
     @item.vendor.should be_nil

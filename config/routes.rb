@@ -16,6 +16,6 @@ ActionController::Routing::Routes.draw do |map|
     :day          => nil,
     :period       => nil
   
-  map.root :controller=>'items'
+  map.root :controller=>'things'
   
 end

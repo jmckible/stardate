@@ -28,7 +28,7 @@ class Grammar
   end
   
   def self.parse_date(string=nil)
-    return Date.today if string.nil?
+    return Time.zone.now.to_date if string.nil?
     pieces = string.strip.split('/').collect(&:to_i)
     case pieces.length
     when 1

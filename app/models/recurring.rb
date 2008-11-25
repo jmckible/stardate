@@ -24,6 +24,7 @@ class Recurring < ActiveRecord::Base
     item = Item.new :date=>Date.today,
                     :description=>description,
                     :explicit_value=>explicit_value,
+                    :tag_list=>tag_list,
                     :vendor_name=>vendor_name
     item.recurring  = self
     item.user       = user

@@ -19,20 +19,18 @@
     - if thing.is_a?(Item)
       %tr.item
         %td.date= link_to thing.date.strftime('%a %d'), thing, :rel=>:facebox
-        %td.money= color_money thing.value
-        %td.vendor= h thing.vendor.try(:name)
         %td.description
           = h thing.description
           %span.tags= h thing.tag_list
+        %td.vendor= h thing.vendor.try(:name)
+        %td.money= color_money thing.value
+        
     - elsif thing.is_a?(Note)
       %tr.note
         %td.date= link_to thing.date.strftime('%a %d'), thing, :rel=>:facebox
-        %td.money &nbsp;
-        %td.vendor &nbsp;
-        %td.description= h thing.body
+        %td.description{:colspan=>3}= h thing.body
+        
     - elsif thing.is_a?(Run)
       %tr.run
         %td.date= link_to thing.date.strftime('%a %d'), thing, :rel=>:facebox
-        %td.money &nbsp;
-        %td.vendor &nbsp;
-        %td.description= "Ran #{thing.distance}mi/#{minutes_to_time thing.minutes}"
+        %td.description{:colspan=>3}= "Ran #{thing.distance}mi/#{minutes_to_time thing.minutes}"

@@ -19,12 +19,13 @@ class Grammar
                :description=>description, :tag_list=>tag_list
     
     elsif string =~ /^(Ran|ran)/
-      Run.new :date=>date, :distance=>string.split(/^(Ran|ran) /).last.to_f
+      distance, minutes = string.split(/^(Ran|ran) /).last.split(' ')
+      Run.new :date=>date, :distance=>distance, :minutes=>minutes
     else
       Note.new :date=>date, :body=>string
     end
   rescue
-    Note.new :date=>Date.today, :body=>'Failed to parse'
+    Note.new :date=>Time.zone.now.to_date, :body=>'Failed to parse'
   end
   
   def self.parse_date(string=nil)
@@ -32,17 +33,17 @@ class Grammar
     pieces = string.strip.split('/').collect(&:to_i)
     case pieces.length
     when 1
-      Date.new Date.today.year, Date.today.month, pieces.first
+      Date.new Time.zone.now.to_date.year, Time.zone.now.to_date.month, pieces.first
     when 2
-      Date.new Date.today.year, pieces.first, pieces.last
+      Date.new Time.zone.now.to_date.year, pieces.first, pieces.last
     when 3
       pieces[2] = pieces[2] + 2000 if pieces[2] < 100
       Date.new pieces[2], pieces[0], pieces[1]
     else
-      Date.today
+      Time.zone.now.to_date
     end
   rescue
-    Date.today
+    Time.zone.now.to_date
   end
   
 end

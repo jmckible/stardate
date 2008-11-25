@@ -1,16 +1,12 @@
 %p= link_to 'New recurring', new_recurring_path, :rel=>:facebox
 
 - unless @recurrings.empty?
-  %table
-    %tr
-      %th Day
-      %th Amount
-      %th Vendor
-      %th Description
-      
+  %table#History
     - for recurring in @recurrings
-      %tr
-        %td= link_to recurring.day, recurring, :rel=>:facebox
-        %td= recurring.value
-        %td= h recurring.vendor.try(:name)
-        %td= h recurring.description
+      %tr.recurring
+        %td.date= link_to recurring.day, recurring, :rel=>:facebox
+        %td.money= color_money recurring.value
+        %td.vendor= h recurring.vendor.try(:name)
+        %td.description
+          = h recurring.description
+          %span.tags= h recurring.tag_list

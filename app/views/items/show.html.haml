@@ -1,7 +1,5 @@
 %h1 Edit Transaction
 
-= error_messages_for :item
-
 - form_for @item do |f|
   %p= f.date_select :date,           :order=>[:month, :day, :year]
   %p= f.text_field  :explicit_value, :class=>:money

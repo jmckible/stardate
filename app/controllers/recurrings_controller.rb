@@ -11,31 +11,24 @@ class RecurringsController < ApplicationController
     render :layout=>false
   end
 
-  # GET /recurrings/1/edit
-  def edit
+  # GET /recurrings/1
+  def show
     @recurring = current_user.recurrings.find params[:id]
+    render :layout=>false
   end
 
   # POST /recurrings
   def create
     @recurring = current_user.recurrings.build params[:recurring]
-    if @recurring.save
-      flash[:notice] = 'Recurring was successfully created.'
-      redirect_to recurrings_url
-    else
-      render :action=>:new
-    end
+    @recurring.save
+    redirect_to recurrings_url
   end
 
   # PUT /recurrings/1
   def update
     @recurring = current_user.recurrings.find params[:id]
-    if @recurring.update_attributes(params[:recurring])
-      flash[:notice] = 'Recurring was successfully updated.'
-      redirect_to recurrings_url
-    else
-      render :action=>:edit
-    end
+    @recurring.update_attributes(params[:recurring])
+    redirect_to recurrings_url
   end
 
   # DELETE /recurrings/1
@@ -43,4 +36,5 @@ class RecurringsController < ApplicationController
     @recurring = current_user.recurrings.find(params[:id]).destroy
     redirect_to recurrings_url
   end
+  
 end

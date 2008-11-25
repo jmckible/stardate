@@ -49,31 +49,6 @@ describe Item do
     @item.vendor_name = ' '
     @item.vendor.should be_nil
   end
-
-  #####################################################################
-  #                             T A G G I N G                         #
-  #####################################################################
-  it 'should have many taggings' do
-    @item.should have(1).taggings
-  end
-
-  it 'should have many tags alphabetically' do
-    @item.tags.should == [tags(:default)]
-  end
-
-  it 'should have a tag list' do
-    @item.tag_list.should == ['default']
-  end
-
-  it 'should add a new tag via tag list' do
-    running {
-      running {
-        @item.tag_list = 'default, breakfast'
-        @item.save
-        @item.reload.tag_list.should == ['default', 'breakfast']
-      }.should change(Tag, :count).by(1) 
-    }.should change(Tagging, :count).by(1)
-  end
   
   #####################################################################
   #                            S C O P E                              #

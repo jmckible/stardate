@@ -2,7 +2,7 @@ class ThingsController < ApplicationController
   
   # GET /
   def index
-    @things = current_user.things_during((Date.today - 7)..Date.today)
+    @things = current_user.things_during((Date.today - 4)..Date.today)
   end
   
   # POST /things

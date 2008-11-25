@@ -25,14 +25,14 @@ describe User do
   before { @user = users(:totaling) }
   
   #####################################################################
-  #                              S T U F F                            #
+  #                            T H I N G S                            #
   #####################################################################
   it 'should find stuff on a day' do
-    @user.stuff_during(Date.new(2008, 1, 1)).should == [items(:today), notes(:today)]
+    @user.things_during(Date.new(2008, 1, 1)).should == [items(:today), notes(:today)]
   end
   
   it 'should find nothing on an empty day' do
-    @user.stuff_during(Date.new(2009, 1, 1)).should == []
+    @user.things_during(Date.new(2009, 1, 1)).should == []
   end
   
   #####################################################################

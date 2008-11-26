@@ -14,6 +14,13 @@ describe ItemsController do
     response.should be_success
   end
   
+  it 'handles /items?date[month]=:month&date[year]=:year with GET' do
+    get :index, :date=>{:month=>7, :year=>1999}
+    assigns(:period).first.should == Date.new(1999, 7, 1)
+    assigns(:period).last.should == Date.new(1999, 7, 31)
+    response.should be_success
+  end
+  
   it 'handles /items/:id with GET' do
     get :show, :id=>@item
     response.should be_success

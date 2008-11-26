@@ -2,8 +2,13 @@ class ItemsController < ApplicationController
 
   # GET /items
   def index
-    year  = params[:year]  ? params[:year].to_i  : Date.today.year
-    month = params[:month] ? params[:month].to_i : Date.today.month
+    if params[:date]
+      year  = params[:date][:year]  ? params[:date][:year].to_i  : Date.today.year
+      month = params[:date][:month] ? params[:date][:month].to_i : Date.today.month
+    else
+      year = Date.today.year
+      month = Date.today.month
+    end
     
     @period = Date.new(year, month, 1)..Date.civil(year, month, -1)
     @items  = current_user.items.during @period

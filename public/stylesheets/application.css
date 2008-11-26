@@ -12,6 +12,10 @@ body {
   background: #ccc;
 }
 
+.clear {
+  clear: both;
+}
+
 #Content {
   margin: 0 auto;
   width: 800px;
@@ -22,12 +26,21 @@ body {
   border-bottom: 10px solid #999;
 }
 
+.date_selector {
+  float: right;
+  margin: 1em 2em 0 1em;
+}
+
 .delete a {
   color: #f00;
 }
 
+h1 {
+ font-size: 2em; 
+}
+
 #History {
-  margin-top: 2em;
+  margin: 2em 0;
   line-height: 1.75em;
 }
 

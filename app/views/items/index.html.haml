@@ -4,7 +4,6 @@
   - form_tag items_path, :method=>:get do
     = select_month @period.first
     = select_year  @period.first
-    = submit_tag 'Change Date'
 .clear
 
 - if @items.empty?
@@ -26,5 +25,4 @@
   - form_tag items_path, :method=>:get do
     = select_month @period.first
     = select_year  @period.first
-    = submit_tag 'Change Date'
 .clear

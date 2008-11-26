@@ -2,6 +2,10 @@ $(document).ready(function() {
   
   $('a[rel*=facebox]').facebox();
   
+  $('.date_selector select').change(function(){
+    $(this).parent().submit();
+  });
+  
   $('input[type=text][default]').livequery(function(){
     
     insert_default(this);

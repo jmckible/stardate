@@ -26,7 +26,7 @@
             %td.last.red= number_with_delimiter item.value * -1
 
 %p
-  - form_tag register_path do
+  - form_tag items_path, :method=>:get do
     = select_month @period.first
     = select_year  @period.first
     = submit_tag 'Change Date'

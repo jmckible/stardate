@@ -1,5 +1,14 @@
 class ItemsController < ApplicationController
 
+  # GET /items
+  def index
+    year  = params[:year]  ? params[:year].to_i  : Date.today.year
+    month = params[:month] ? params[:month].to_i : Date.today.month
+    
+    @period = Date.new(year, month, 1)..Date.civil(year, month, -1)
+    @items  = current_user.items.during @period
+  end
+
   # GET /items/:id
   def show
     @item = current_user.items.find params[:id]

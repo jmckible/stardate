@@ -7,6 +7,13 @@ describe ItemsController do
     @item = items(:default)
   end
   
+  it 'handles /items with GET' do
+    get :index
+    assigns(:period).first.should == Date.new(Date.today.year, Date.today.month, 1)
+    assigns(:period).last.should == Date.civil(Date.today.year, Date.today.month, -1)
+    response.should be_success
+  end
+  
   it 'handles /items/:id with GET' do
     get :show, :id=>@item
     response.should be_success

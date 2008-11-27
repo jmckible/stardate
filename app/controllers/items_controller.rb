@@ -31,7 +31,7 @@ class ItemsController < ApplicationController
   def destroy
     @item = current_user.items.find params[:id]
     @item.destroy
-    redirect_to root_url
+    redirect_to request.env['HTTP_REFERER'] || root_url
   end
 
 end

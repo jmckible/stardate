@@ -4,3 +4,5 @@
   - for vendor in @vendors
     %tr
       %td= link_to h(vendor.name), vendor
+      %td= vendor.items.count_from(current_user)
+      %td= color_money vendor.items.sum_from(current_user)

@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   has_many :recurrings, :order=>:day,  :dependent=>:destroy
   has_many :runs,       :order=>:date, :dependent=>:destroy
   has_many :tasks,      :through=>:jobs 
-  has_many :vendors,    :through=>:items, :order=>'name'
+  has_many :vendors,    :through=>:items, :uniq=>true, :order=>'name'
   
   #####################################################################
   #                    O B J E C T    M E T H O D S                   #

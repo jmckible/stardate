@@ -6,6 +6,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :sessions
   map.resources :things
   map.resources :users
+  map.resources :vendors
 
   map.root :controller=>'things'
   

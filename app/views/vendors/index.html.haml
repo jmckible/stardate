@@ -1,6 +1,6 @@
 %h1 Vendor
 
-%table
+%table#History
   - for vendor in @vendors
     %tr
-      %td= vendor.name
+      %td= link_to h(vendor.name), vendor

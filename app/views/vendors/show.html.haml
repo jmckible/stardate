@@ -1,0 +1,15 @@
+%dl#Scorecard
+  %dt #
+  %dd= @vendor.items.count_from(current_user)
+  
+  %dt $
+  %dd= color_money @vendor.items.sum_from(current_user)
+
+%h1= h @vendor.name
+  
+  
+  
+%table#History
+  = render :partial=>'items/item', :collection=>@vendor.items.from(current_user)
+    
+      

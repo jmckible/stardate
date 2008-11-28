@@ -9,4 +9,9 @@ describe VendorsController do
     response.should be_success
   end
   
+  it 'handles /vendors/:id with GET' do
+    get :show, :id=>vendors(:default)
+    response.should be_success
+  end
+  
 end

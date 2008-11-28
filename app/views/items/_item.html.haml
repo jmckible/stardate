@@ -1,0 +1,8 @@
+%tr
+  %td= link_to item.date.strftime('%B %e'), item, :rel=>:facebox
+  %td.vendor= h item.vendor.try(:name)
+  %td.description
+    = h item.description
+    %span.tags= h item.tag_list
+  
+  %td.money= color_money item.value

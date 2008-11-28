@@ -39,44 +39,6 @@ h1 {
  font-size: 2em; 
 }
 
-#History {
-  margin: 2em 0;
-  line-height: 1.75em;
-}
-
-#History tr:hover{
-  background-color: #ffd;
-}
-
-#History td{
-  border-bottom: 1px solid #ccc;
-}
-
-#History .date {
-  width: 4em;
-  text-align: left;
-  padding-left: 0.2em;
-}
-
-#History .money {
-  width: 3em;
-  text-align: right;
-}
-
-#History .tags {
-  font-size: 0.8em;
-  color: #999;
-}
-
-#History .vendor {
-  padding-left: 1em;
-  color: #66c;
-}
-
-#History .description {
-  padding: 0 1em;
-}
-
 input.defaulted{
   color: #888;
 }
@@ -132,3 +94,72 @@ input.money {
   line-height: 1em;
   font-weight: bold;
 }
+
+table {
+  margin: 2em 0;
+  line-height: 1.75em;
+}
+
+tbody tr:hover{
+  background-color: #ffd;
+}
+
+td{
+  border-bottom: 1px solid #ccc;
+  padding: 0 0.5em;
+}
+
+td.count {
+  margin: 0 1em;
+  text-align: right;
+}
+
+td.date {
+  width: 4em;
+  text-align: left;
+  padding-left: 0.2em;
+}
+
+td.description {
+  padding: 0 1em;
+}
+
+td.money {
+  width: 3em;
+  text-align: right;
+}
+
+td.sum {
+  margin: 0 1em;
+  text-align: right;
+}
+
+td .tags {
+  font-size: 0.8em;
+  color: #999;
+}
+
+td.vendor a {color: #66c;}
+
+th {
+  padding: 0 0.5em;
+  font-size: 0.8em;
+  background-color: #eee;
+  min-width: 5em;
+  text-align: right;
+}
+
+th.first{
+  text-align: left;
+}
+
+th.headerSortDown {
+  color: #000;
+  font-weight: bold;
+}
+
+th.headerSortUp {
+  color: #000;
+  font-weight: bold;
+}
+

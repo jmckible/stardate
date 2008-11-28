@@ -9,8 +9,9 @@
 - if @items.empty?
   %p No Activity
 - else
-  %table#History
-    = render :partial=>'item', :collection=>@items
+  %table
+    %tbody
+      = render :partial=>'item', :collection=>@items
 
 .date_selector
   - form_tag items_path, :method=>:get do

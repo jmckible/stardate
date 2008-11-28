@@ -12,6 +12,17 @@ module ApplicationHelper
     end
   end
   
+  def color_explicit_money(value)
+    return '0' if value.nil?
+    if value < 0
+      content_tag :span, value, :class=>'negative'
+    elsif value > 0
+      content_tag :span, value, :class=>'positive'
+    else
+       '0'
+    end
+  end
+  
   def minutes_to_time(minutes)
     if minutes < 60
       "#{minutes}min"

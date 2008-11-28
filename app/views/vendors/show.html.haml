@@ -7,9 +7,9 @@
 
 %h1= h @vendor.name
   
-  
-  
-%table#History
-  = render :partial=>'items/item', :collection=>@vendor.items.from(current_user)
+
+%table
+  %tbody
+    = render :partial=>'items/item', :collection=>@vendor.items.from(current_user)
     
       

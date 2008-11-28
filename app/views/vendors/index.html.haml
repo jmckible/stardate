@@ -1,8 +1,14 @@
 %h1 Vendor
 
-%table#History
-  - for vendor in @vendors
+%table.sortable
+  %thead
     %tr
-      %td= link_to h(vendor.name), vendor
-      %td= vendor.items.count_from(current_user)
-      %td= color_money vendor.items.sum_from(current_user)
+      %th.first.headerSortDown Name
+      %th Count
+      %th Amount
+  %tbody
+    - for vendor in @vendors
+      %tr
+        %td.vendor= link_to h(vendor.name), vendor
+        %td.count= vendor.items.count_from(current_user)
+        %td.sum= color_explicit_money vendor.items.sum_from(current_user)

@@ -48,7 +48,11 @@ describe User do
 
   it 'should have many tasks' do
     @user.should have(3).tasks
-  end  
+  end
+  
+  it 'should have many vendors' do
+    @user.should have(1).vendors
+  end
 
   #####################################################################
   #                        C A L L B A C K S                          #

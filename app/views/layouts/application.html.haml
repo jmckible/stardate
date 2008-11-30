@@ -7,9 +7,9 @@
     = stylesheet_link_tag 'reset', 'facebox', 'application'
 
   %body
-
     #Content
-      = yield
+      #Sidebar= yield :sidebar
+      #Main= yield
     
       - if logged_in?
         %ul#Menu

@@ -1,4 +1,6 @@
-%p= link_to 'New recurring', new_recurring_path, :rel=>:facebox
+%h1 Recurring Transactions
+
+%p.create= link_to 'Create...', new_recurring_path, :rel=>:facebox
 
 - unless @recurrings.empty?
   %table

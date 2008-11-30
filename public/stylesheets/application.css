@@ -1,10 +1,8 @@
-a { 
-  color: #999; 
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
-}
+/****************************/
+/*      G E N E R A L       */
+/****************************/
+a       { color: #999; text-decoration: none; }
+a:hover { text-decoration: underline;         }
 
 body {
   color: #333;
@@ -12,36 +10,20 @@ body {
   background: #ccc;
 }
 
-.clear {
-  clear: both;
+.clear { clear: both; }
+.create a { color: #0c0; }
+.delete a { color: #f00; }
+
+h1 { 
+  font-size: 2em; 
+  margin: 0 0 1em 0;
+}
+h2 {
+  font-size: 1.75em;
+  margin: 0 0 0.5em 0;
 }
 
-#Content {
-  margin: 0 auto;
-  width: 800px;
-  background: #fff;
-  padding: 1em 0 2em 2em;
-  border-left: 10px solid #999;
-  border-right: 10px solid #999;
-  border-bottom: 10px solid #999;
-}
-
-.date_selector {
-  float: right;
-  margin: 1em 2em 0 1em;
-}
-
-.delete a {
-  color: #f00;
-}
-
-h1 {
- font-size: 2em; 
-}
-
-input.defaulted{
-  color: #888;
-}
+input.defaulted{ color: #888; }
 
 input[type=text] {
   border: 2px solid #ddd;
@@ -50,17 +32,33 @@ input[type=text] {
   width: 15em;
 }
 
-
 input.money {
   background: #ffffff url(/images/dollar_sign.png) no-repeat center left;
   padding-left: 1em;
   width: 9em;
 }
 
-#Menu {
-  margin-top: 6em;
+/****************************/
+/*       L A Y O U T        */
+/****************************/
+#Content {
+  margin: 0 auto 40px auto;
+  width: 980px;
+  background: #fff;
+  padding: 1em 0 2em 2em;
+  border-left: 10px solid #999;
+  border-right: 10px solid #999;
+  border-bottom: 10px solid #999;
 }
 
+#Main {
+  padding-left: 30px;
+  width: 800px;
+}
+
+#Menu { 
+  margin: 5em 0 0 30px; 
+}
 #Menu li {
   float: left;
   list-style: none;
@@ -68,16 +66,17 @@ input.money {
 }
 
 .negative { color: #f0c; }
-
 .positive { color: #0cf; }
 
-#Scorecard {
-  font-family: serif;
+#Sidebar {
   float: right;
-  width: 10em;
+  width: 130px;
 }
 
-#Scorecard dt {
+#Sidebar dl {
+  font-family: serif;
+}
+#Sidebar dl dt {
   width: 2em;
   float: left;
   clear: both;
@@ -88,13 +87,19 @@ input.money {
   vertical-align: top;
   font-size: 0.9em;
 }
-
-#Scorecard dd {
+#Sidebar dl dd {
   font-size: 1.75em;
   line-height: 1em;
   font-weight: bold;
 }
 
+#Graphs {
+  margin-left: -45px;
+}
+
+/****************************/
+/*        T A B L E         */
+/****************************/
 table {
   margin: 2em 0;
   line-height: 1.75em;
@@ -115,7 +120,7 @@ td.count {
 }
 
 td.date {
-  width: 4em;
+  width: 6em;
   text-align: left;
   padding-left: 0.2em;
 }
@@ -161,11 +166,4 @@ th.headerSortDown {
 th.headerSortUp {
   color: #000;
   font-weight: bold;
-}
-
-.under_chart {
-  margin-left: 45px;
-}
-.under_chart input {
-  width: 535px;
 }

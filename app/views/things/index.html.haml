@@ -1,25 +1,26 @@
-%dl#Scorecard
-  %dt 7
-  %dd= color_money current_user.total_past_week
+- content_for :sidebar do
+  %dl
+    %dt 7
+    %dd= color_money current_user.total_past_week
   
-  %dt 30
-  %dd= color_money current_user.total_past_month
+    %dt 30
+    %dd= color_money current_user.total_past_month
   
-  %dt 365
-  %dd= color_money current_user.total_past_year
+    %dt 365
+    %dd= color_money current_user.total_past_year
   
-  %dt ∞
-  %dd= color_money current_user.items.sum(:value)
+    %dt ∞
+    %dd= color_money current_user.items.sum(:value)
 
-.under_chart
-  - form_tag things_path do 
-    %p= text_field_tag 'thing'
+- form_tag things_path do 
+  %p= text_field_tag 'thing'
 
-#Spending
-%script{:type=>'text/javascript'}
-  var spending = new FusionCharts("/flash/MSArea.swf", "Spending", "600", "300", "0", "0");
-  = "spending.setDataURL(\"#{spending_graph_url(:format=>'xml')}\");"
-  spending.render("Spending");
+#Graphs
+  #Spending
+  %script{:type=>'text/javascript'}
+    var spending = new FusionCharts("/flash/MSArea.swf", "Spending", "400", "250", "0", "0");
+    = "spending.setDataURL(\"#{spending_graph_url(:format=>'xml')}\");"
+    spending.render("Spending");
 
 %table.under_chart
   %tbody

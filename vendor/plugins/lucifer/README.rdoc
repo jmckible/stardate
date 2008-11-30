@@ -1,0 +1,57 @@
+= lucifer
+
+Lucifer is Rails plugin which utilizes the ezcrypto gem to encrypt/decrypt database columns transparently.
+
+Why is it called Lucifer? http://en.wikipedia.org/wiki/Lucifer_(cipher)
+
+== Installation
+
+  ./script/plugin install git://github.com/jmckible/lucifer.git
+  
+Lucifer looks for a key and salt in config/key.yml. See key.yml.example
+
+
+== Usage
+
+Add Lucifer to a class like so:
+
+  class Person < ActiveRecord::Base
+    # Database columns - id(integer), ssn_b(binary)
+    encrypt_attributes
+  end
+  
+Lucifer will treat any binary column that ends in _b as encryptable. 
+
+  person = Person.new :ssn=>'000-00-0000'
+  => Person...
+  person.save
+  => true
+  Person.first.ssn
+  => '000-00-0000'
+  
+If you check out the database, you'll see
+
+  > select * from people;
+   ---------------------------------
+  | id         | ssn_b              |
+   ----------------------------------
+  | 1          | U??6?7f%25(?????   |
+   ---------------------------------
+
+== Configuration
+
+You can customize Lucifer by passing options like so:
+
+  class Person < ActiveRecord::Base
+    encrypt_attributes :suffix=>'_encrypted', :key_file=>'lucifer.yml'
+  end
+    
+* :suffix - You can override the _b selector with this option
+
+* :key_file - If you'd like to use a different file in your config/ directory, pass the name here
+    
+== Author
+
+* Lucifer was created by Jordan McKible http://jordan.mckible.com
+
+* Available on GitHub at http://github.com/jmckible/lucifer/tree/master

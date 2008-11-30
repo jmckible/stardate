@@ -1,6 +1,11 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   
+  def vendor_name(thing)
+    return '&nbsp;' unless thing.vendor
+    link_to h(thing.vendor.name), thing.vendor
+  end
+  
   def color_money(value)
     return '0' if value.nil?
     if value < 0

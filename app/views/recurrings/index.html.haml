@@ -7,11 +7,7 @@
         %tr.recurring
           %td.date= link_to recurring.day, recurring, :rel=>:facebox
           %td.money= color_money recurring.value
-          %td.vendor
-            - if recurring.vendor
-              = link_to h(recurring.vendor.name), recurring.vendor
-            - else
-              &nbsp;
+          %td.vendor= vendor_name recurring
           %td.description
             = h recurring.description
             %span.tags= h recurring.tag_list

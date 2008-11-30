@@ -20,7 +20,8 @@ after 'deploy:update_code', 'symlink_configs'
 task :symlink_configs, :roles=>:app do
   run <<-CMD
     cd #{release_path} &&
-    ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml
+    ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml &&
+    ln -nfs #{shared_path}/config/key.yml #{release_path}/config/key.yml
   CMD
 end
 

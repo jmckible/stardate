@@ -24,7 +24,13 @@ class User < ActiveRecord::Base
   has_many :recurrings, :order=>:day,  :dependent=>:destroy
   has_many :runs,       :order=>:date, :dependent=>:destroy
   has_many :tasks,      :through=>:jobs 
+  has_many :tweets,     :order=>'created_at desc', :dependent=>:destroy
   has_many :vendors,    :through=>:items, :uniq=>true, :order=>'name'
+  
+  #####################################################################
+  #                             S C O P E                             #
+  #####################################################################
+  named_scope :with_twitter, :conditions=>"twitter_username is not null and twitter_password_b is not null"
   
   #####################################################################
   #                    O B J E C T    M E T H O D S                   #
@@ -68,6 +74,18 @@ class User < ActiveRecord::Base
         y.date <=> x.date
       end
     end
+  end
+  
+  def import_tweet(tweet_hash)
+    tweet = tweets.find_by_tweet_id tweet_hash['id']
+    return tweet if tweet 
+    tweet            = Tweet.new
+    tweet.user       = self
+    tweet.tweet_id   = tweet_hash['id']
+    tweet.text       = tweet_hash['text']
+    tweet.created_at = Time.parse tweet_hash['created_at']
+    tweet.save
+    tweet
   end
   
   #####################################################################

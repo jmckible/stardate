@@ -50,8 +50,32 @@ describe User do
     @user.should have(3).tasks
   end
   
+  it 'should have many tweets' do
+    @user.should have(1).tweets
+  end
+  
   it 'should have many vendors' do
     @user.should have(1).vendors
+  end
+  
+  #####################################################################
+  #                    O B J E C T   M E T H O D S                    #
+  #####################################################################
+  it 'should import a new tweet' do
+    hash = {'id'=>2, 'text'=>'New text', 'created_at'=>"Sun Nov 30 06:21:33 +0000 2008"}
+    running {
+      tweet = @user.import_tweet hash
+      tweet.tweet_id.should == 2
+      tweet.text.should == 'New text'
+      #tweet.created_at.to_s.should == "2008-11-30 06:21:33 UTC"
+    }.should change(Tweet, :count).by(1)
+  end
+  
+  it 'should skip import on know tweet id' do
+    hash = {'id'=>1, 'text'=>'New text', 'created_at'=>"Sun Nov 30 06:21:33 +0000 2008"}
+    running {
+      @user.import_tweet hash
+    }.should_not change(Tweet, :count)
   end
 
   #####################################################################
@@ -108,6 +132,10 @@ describe User do
 
   it 'should delete recurrings on destroy' do
     running { @user.destroy }.should change(Recurring, :count).by(-1)
+  end
+  
+  it 'should delete tweets on destroy' do
+    running { @user.destroy }.should change(Tweet, :count).by(-1)
   end
   
 end

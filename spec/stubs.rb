@@ -57,4 +57,8 @@ ModelStubbing.define_models do
     stub :user=>users(:default), :distance=>3.5, :minutes=>60, :date=>current_time.to_date, :created_at=>current_time
   end
   
+  model Tweet do
+    stub :user=>users(:default), :text=>'A tweet', :tweet_id=>1, :created_at=>current_time
+  end
+  
 end

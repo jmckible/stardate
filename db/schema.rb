@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081125070501) do
+ActiveRecord::Schema.define(:version => 20081130221745) do
 
   create_table "items", :force => true do |t|
     t.integer  "user_id",                     :null => false
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(:version => 20081125070501) do
 
   create_table "jobs", :force => true do |t|
     t.integer  "user_id",                                                    :null => false
-    t.string   "name",                                     :default => "",   :null => false
+    t.string   "name",                                                       :null => false
     t.boolean  "active",                                   :default => true
     t.datetime "created_at"
     t.decimal  "rate",       :precision => 6, :scale => 2, :default => 0.0,  :null => false
@@ -114,12 +114,22 @@ ActiveRecord::Schema.define(:version => 20081125070501) do
   add_index "tasks", ["paycheck_id"], :name => "index_tasks_on_paycheck_id"
   add_index "tasks", ["date"], :name => "index_tasks_on_date"
 
+  create_table "tweets", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "tweet_id"
+    t.string   "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", :force => true do |t|
-    t.string   "email",         :default => "",                    :null => false
-    t.string   "password_salt", :default => "",                    :null => false
-    t.string   "password_hash", :default => "",                    :null => false
+    t.string   "email",                                                 :null => false
+    t.string   "password_salt",                                         :null => false
+    t.string   "password_hash",                                         :null => false
     t.string   "time_zone"
-    t.datetime "created_at",    :default => '2007-05-24 15:49:54'
+    t.datetime "created_at",         :default => '2007-05-24 15:49:54'
+    t.string   "twitter_username"
+    t.binary   "twitter_password_b"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

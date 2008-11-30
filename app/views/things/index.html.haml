@@ -10,11 +10,18 @@
   
   %dt ∞
   %dd= color_money current_user.items.sum(:value)
-  
-- form_tag things_path do 
-  %p= text_field_tag 'thing'
 
-%table
+.under_chart
+  - form_tag things_path do 
+    %p= text_field_tag 'thing'
+
+#Spending
+%script{:type=>'text/javascript'}
+  var spending = new FusionCharts("/flash/MSArea.swf", "Spending", "600", "300", "0", "0");
+  = "spending.setDataURL(\"#{spending_graph_url(:format=>'xml')}\");"
+  spending.render("Spending");
+
+%table.under_chart
   %tbody
     - @things.each do |thing|
       - if thing.is_a?(Item)

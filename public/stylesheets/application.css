@@ -47,7 +47,7 @@ input[type=text] {
   border: 2px solid #ddd;
   font-size: 1.5em;
   margin: 0.25em 0;
-  width: 18em;
+  width: 15em;
 }
 
 
@@ -163,3 +163,9 @@ th.headerSortUp {
   font-weight: bold;
 }
 
+.under_chart {
+  margin-left: 45px;
+}
+.under_chart input {
+  width: 535px;
+}

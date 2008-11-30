@@ -1,5 +1,7 @@
 require 'digest/sha1'
 class User < ActiveRecord::Base
+  encrypt_attributes
+  
   ##########################################
   #       C L A S S   M E T H O D S        #
   ##########################################
@@ -72,7 +74,7 @@ class User < ActiveRecord::Base
   #                       V A L I D A T I O N S                       #
   #####################################################################
   attr_accessor    :password
-  attr_accessible  :email, :password, :password_confirmation, :time_zone
+  attr_accessible  :email, :password, :password_confirmation, :time_zone, :twitter_username, :twitter_password
   
   validates_confirmation_of :password,                     :if=>:update_password?
   validates_length_of       :password, :within=>4..40,     :if=>:update_password?

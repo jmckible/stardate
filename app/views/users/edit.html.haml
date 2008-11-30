@@ -1,0 +1,37 @@
+= error_messages_for :user
+
+- form_for @user do |f|
+  %p
+    Email
+    %br
+    = f.text_field :email
+    
+  %p
+    Time Zone
+    %br
+    = f.time_zone_select :time_zone
+    
+  %p
+    Twitter Username
+    %br
+    = f.text_field :twitter_username
+    
+  %p
+    Twitter Password
+    %br
+    = f.password_field :twitter_password
+    
+  %p= submit_tag 'Update'
+  
+- form_for @user do |f|
+  %p
+    New Password
+    %br
+    = f.password_field :password
+    
+  %p
+    Confirm New Password
+    %br
+    = f.password_field :password_confirmation
+  
+  %p= submit_tag 'Update Password'

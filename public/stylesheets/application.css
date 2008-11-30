@@ -96,6 +96,10 @@ input.money {
 #Graphs {
   margin-left: -45px;
 }
+#Graphs #Spending {
+  float: left;
+  width: 400px;
+}
 
 /****************************/
 /*        T A B L E         */

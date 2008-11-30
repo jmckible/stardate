@@ -2,9 +2,11 @@ xml.chart :chartLeftMargin=>0, :showBorder=>0, :bgColor=>'ffffff', :showValues=>
   xml.categories do
     @period.each do |date|
       if date.day.modulo(2) == 0
-        xml.category :label=>date.day
-      else
         xml.category :label=>''
+      elsif date.day == 1
+        xml.category :label=>date.strftime('%b %e')
+      else
+        xml.category :label=>date.day
       end
     end
   end

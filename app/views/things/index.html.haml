@@ -21,6 +21,12 @@
     var spending = new FusionCharts("/flash/MSArea.swf", "Spending", "400", "250", "0", "0");
     = "spending.setDataURL(\"#{spending_graph_url(:format=>'xml')}\");"
     spending.render("Spending");
+  #Running
+  %script{:type=>'text/javascript'}
+    var running = new FusionCharts("/flash/Column2D.swf", "Running", "400", "250", "0", "0");
+    = "running.setDataURL(\"#{running_graph_url(:format=>'xml')}\");"
+    running.render("Running");
+.clear
 
 %table
   %tbody

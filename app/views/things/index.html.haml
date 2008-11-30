@@ -49,3 +49,8 @@
         %tr.run
           %td.date= link_to thing.date.strftime('%a %d'), thing, :rel=>:facebox
           %td.description{:colspan=>3}= "Ran #{thing.distance}mi/#{minutes_to_time thing.minutes}"
+          
+      - elsif thing.is_a?(Tweet)
+        %tr.tweet
+          %td.date= link_to thing.created_at.strftime('%a %d'), thing.url
+          %td.description{:colspan=>3}= h thing.text

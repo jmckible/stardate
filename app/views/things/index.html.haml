@@ -22,7 +22,7 @@
     = "spending.setDataURL(\"#{spending_graph_url(:format=>'xml')}\");"
     spending.render("Spending");
 
-%table.under_chart
+%table
   %tbody
     - @things.each do |thing|
       - if thing.is_a?(Item)

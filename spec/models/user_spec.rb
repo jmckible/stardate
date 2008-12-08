@@ -68,7 +68,7 @@ describe User do
       tweet.tweet_id.should == 2
       tweet.text.should == 'New text'
       @user.reload.twitter_profile_image_url.should == 'url'
-      #tweet.created_at.to_s.should == "2008-11-30 06:21:33 UTC"
+      tweet.created_at.to_s.should == "2008-11-30 06:21:33 UTC"
     }.should change(Tweet, :count).by(1)
   end
   

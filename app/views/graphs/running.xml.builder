@@ -6,7 +6,7 @@ xml.chart :showValues=>'0', :showBorder=>0, :bgColor=>'ffffff',  :plotGradientCo
     else
       label = date.day
     end
-    xml.set :label=>label, :value=>current_user.runs.on(date).sum(:distance)
+    xml.set :label=>label, :value=>current_user.runs.on(date).sum(:distance), :color=>'33DD33'
   end
   
 end

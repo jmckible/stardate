@@ -4,8 +4,8 @@ namespace :update do
     User.with_twitter.each do |user|
       begin
         Twitter.new(user).timeline(:user).each{|t| user.import_tweet t}
-      rescue
-        # something went wrong
+      rescue Net::HTTPServerException
+        # Probably 401 "Unauthorized"
       end
     end
     

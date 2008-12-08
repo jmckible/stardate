@@ -62,17 +62,18 @@ describe User do
   #                    O B J E C T   M E T H O D S                    #
   #####################################################################
   it 'should import a new tweet' do
-    hash = {'id'=>2, 'text'=>'New text', 'created_at'=>"Sun Nov 30 06:21:33 +0000 2008"}
+    hash = {'id'=>2, 'text'=>'New text', 'created_at'=>"Sun Nov 30 06:21:33 +0000 2008", 'user'=>{'profile_image_url'=>'url'}}
     running {
       tweet = @user.import_tweet hash
       tweet.tweet_id.should == 2
       tweet.text.should == 'New text'
+      @user.reload.twitter_profile_image_url.should == 'url'
       #tweet.created_at.to_s.should == "2008-11-30 06:21:33 UTC"
     }.should change(Tweet, :count).by(1)
   end
   
   it 'should skip import on know tweet id' do
-    hash = {'id'=>1, 'text'=>'New text', 'created_at'=>"Sun Nov 30 06:21:33 +0000 2008"}
+    hash = {'id'=>1, 'text'=>'New text', 'created_at'=>"Sun Nov 30 06:21:33 +0000 2008", 'user'=>{'profile_image_url'=>'url'}}
     running {
       @user.import_tweet hash
     }.should_not change(Tweet, :count)

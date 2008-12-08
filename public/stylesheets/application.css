@@ -23,6 +23,8 @@ h2 {
   margin: 0 0 0.5em 0;
 }
 
+img.twitter_profile { width: 20px; float: right; vertical-align: center;}
+
 input.defaulted{ color: #888; }
 
 input[type=text] {

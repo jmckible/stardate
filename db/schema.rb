@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081130221745) do
+ActiveRecord::Schema.define(:version => 20081208021754) do
 
   create_table "items", :force => true do |t|
     t.integer  "user_id",                     :null => false
@@ -123,13 +123,14 @@ ActiveRecord::Schema.define(:version => 20081130221745) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                                 :null => false
-    t.string   "password_salt",                                         :null => false
-    t.string   "password_hash",                                         :null => false
+    t.string   "email",                                                        :null => false
+    t.string   "password_salt",                                                :null => false
+    t.string   "password_hash",                                                :null => false
     t.string   "time_zone"
-    t.datetime "created_at",         :default => '2007-05-24 15:49:54'
+    t.datetime "created_at",                :default => '2007-05-24 15:49:54'
     t.string   "twitter_username"
     t.binary   "twitter_password_b"
+    t.string   "twitter_profile_image_url"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

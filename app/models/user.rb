@@ -85,6 +85,9 @@ class User < ActiveRecord::Base
     tweet.text       = tweet_hash['text']
     tweet.created_at = Time.parse tweet_hash['created_at']
     tweet.save
+    
+    update_attribute :twitter_profile_image_url, tweet_hash['user']['profile_image_url']
+    
     tweet
   end
   

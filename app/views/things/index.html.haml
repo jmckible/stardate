@@ -53,4 +53,7 @@
       - elsif thing.is_a?(Tweet)
         %tr.tweet
           %td.date= link_to thing.created_at.strftime('%a %d'), thing.url
-          %td.description{:colspan=>3}= h thing.text
+          %td.description{:colspan=>2}= h thing.text
+          %td
+            - if current_user.twitter_profile_image_url
+              = image_tag current_user.twitter_profile_image_url, :class=>:twitter_profile

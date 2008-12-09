@@ -2,7 +2,7 @@ class GraphsController < ApplicationController
   
   # GET /graphs/running.xml
   def running
-    @period = (Date.today - 30)..Date.today
+    @period = (Time.now.to_date - 30)..Time.now.to_date
     respond_to do |format|
       format.xml
     end
@@ -10,7 +10,7 @@ class GraphsController < ApplicationController
   
   # GET /graphs/spending.xml
   def spending
-    @period = (Date.today - 30)..Date.today
+    @period = (Time.now.to_date - 30)..Time.now.to_date
     respond_to do |format|
       format.xml
     end

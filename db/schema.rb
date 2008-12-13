@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(:version => 20081208021754) do
 
   create_table "jobs", :force => true do |t|
     t.integer  "user_id",                                                    :null => false
-    t.string   "name",                                                       :null => false
+    t.string   "name",                                     :default => "",   :null => false
     t.boolean  "active",                                   :default => true
     t.datetime "created_at"
     t.decimal  "rate",       :precision => 6, :scale => 2, :default => 0.0,  :null => false
@@ -123,9 +123,9 @@ ActiveRecord::Schema.define(:version => 20081208021754) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                                        :null => false
-    t.string   "password_salt",                                                :null => false
-    t.string   "password_hash",                                                :null => false
+    t.string   "email",                     :default => "",                    :null => false
+    t.string   "password_salt",             :default => "",                    :null => false
+    t.string   "password_hash",             :default => "",                    :null => false
     t.string   "time_zone"
     t.datetime "created_at",                :default => '2007-05-24 15:49:54'
     t.string   "twitter_username"

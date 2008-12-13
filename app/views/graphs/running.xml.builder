@@ -23,7 +23,8 @@ xml.chart :showValues=>'0', :showBorder=>0, :bgColor=>'ffffff',  :plotGradientCo
       if value == 0
         xml.set
       else
-        xml.set :value=>value
+        distance = current_user.runs.on(date).sum(:distance)
+        xml.set :value=>(value / distance.to_f)
       end
     end
   end

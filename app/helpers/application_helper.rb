@@ -6,6 +6,10 @@ module ApplicationHelper
     link_to h(thing.vendor.name), thing.vendor
   end
   
+  def linked_tag_list(thing)
+    thing.tags.collect{|tag| link_to h(tag.name), tag}.join(', ')
+  end
+  
   def color_money(value)
     return '0' if value.nil?
     if value < 0

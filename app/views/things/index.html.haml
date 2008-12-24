@@ -36,7 +36,7 @@
           %td.date= link_to thing.date.strftime('%a %d'), thing, :rel=>:facebox
           %td.description
             = h thing.description
-            %span.tags= h thing.tag_list
+            %span.tags= linked_tag_list thing
           %td.vendor= vendor_name thing
           %td.money= color_money thing.value
         

@@ -4,6 +4,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :recurrings
   map.resources :runs
   map.resources :sessions
+  map.resources :tags
   map.resources :things
   map.resources :users
   map.resources :vendors

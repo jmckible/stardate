@@ -1,0 +1,14 @@
+default:
+  date: <%= Date.new 2008, 1, 1 %>
+  description: What I bought
+  value: -10
+  user: default
+  vendor: default
+
+other:
+  date: <%= Date.new 2008, 1, 1 %>
+  description: What I bought
+  value: -10
+  user: other
+  vendor: default
+  recurring: last

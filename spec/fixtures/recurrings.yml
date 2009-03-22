@@ -1,0 +1,13 @@
+default:
+  day: 1
+  value: -100
+  user: default
+  description: Recurring
+  vendor: default
+  
+last:
+  day: 31
+  user: other
+  value: -100
+  description: Recurring
+  vendor: default

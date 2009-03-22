@@ -1,0 +1,4 @@
+default:
+  body: body
+  user: default
+  date: <%= Date.new 2008, 1, 1 %>

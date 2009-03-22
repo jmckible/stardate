@@ -1,0 +1,13 @@
+default:
+  name: Default
+  user: default
+  active: true
+  rate: 9.5
+  vendor: default
+  
+other:
+  name: Default
+  user: other
+  active: true
+  rate: 9.5
+  vendor: other

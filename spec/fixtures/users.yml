@@ -1,0 +1,11 @@
+default:
+  email: default@email.com
+  time_zone: Pacific Time (US & Canada)
+  password_salt: salt
+  password_hash: f438229716cab43569496f3a3630b3727524b81b
+
+other:
+  email: other@email.com
+  time_zone: Pacific Time (US & Canada)
+  password_salt: salt
+  password_hash: f438229716cab43569496f3a3630b3727524b81b

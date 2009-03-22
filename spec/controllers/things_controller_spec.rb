@@ -8,7 +8,6 @@ describe ItemsController, 'without logging in' do
 end
 
 describe ThingsController do
-  define_models
   before { login_as :default }
   
   it 'handles / with GET' do

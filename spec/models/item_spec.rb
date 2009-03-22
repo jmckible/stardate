@@ -1,7 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Item do
-  define_models
   before { @item = items(:default) }
   
   #####################################################################
@@ -58,7 +57,7 @@ describe Item do
   #                            S C O P E                              #
   #####################################################################
   it 'should have a during scope' do
-    Item.should have(2).on(current_time.to_date)
+    Item.on(Date.new(2008, 1, 1)).size.should == 3
   end
 
   #####################################################################

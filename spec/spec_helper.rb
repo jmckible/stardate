@@ -4,10 +4,13 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require 'spec/autorun'
 require 'spec/rails'
-require 'model_stubbing'
-require File.dirname(__FILE__) + '/stubs'
 
 Spec::Runner.configure do |config|
+  
+  config.use_transactional_fixtures = true
+  config.use_instantiated_fixtures  = false
+  config.global_fixtures            = :all
+  config.fixture_path = "#{Rails.root}/spec/fixtures"
 
   def running(&block)
     lambda &block

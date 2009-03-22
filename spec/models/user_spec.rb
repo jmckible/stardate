@@ -1,7 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe User do
-  define_models
   before { @user = users(:default) }
   
   #####################################################################

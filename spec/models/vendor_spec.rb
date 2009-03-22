@@ -1,7 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Vendor, 'relationships' do
-  define_models
   before { @vendor = vendors(:default) }
   
   it 'should have many items' do
@@ -23,8 +22,6 @@ describe Vendor, 'relationships' do
 end
 
 describe Vendor, 'validations' do
-  define_models
-  
   it 'should have a name' do
     Vendor.new.should have(1).error_on(:name)
   end

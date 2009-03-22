@@ -1,14 +1,44 @@
 default:
-  date: <%= Date.new 2008, 1, 1 %>
+  date: 2008-01-01
   description: What I bought
   value: -10
   user: default
   vendor: default
 
 other:
-  date: <%= Date.new 2008, 1, 1 %>
+  date: 2008-01-01
   description: What I bought
   value: -10
   user: other
   vendor: default
   recurring: last
+
+last_year:
+  date: 2007-01-01
+  value: -1
+  user: totaling
+  
+last_month:
+  date: 2007-12-01
+  value: -1
+  user: totaling
+  
+last_week:
+  date: 2007-12-25
+  value: -1
+  user: totaling
+  
+yesterday:
+  date: 2007-12-31
+  value: 10
+  user: totaling
+  
+today:
+  date: 2008-01-01
+  value: -1
+  user: totaling
+  
+tomorrow:
+  date: 2008-01-02
+  value: -1
+  user: totaling

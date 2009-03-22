@@ -1,7 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe UsersController do 
-  define_models
   before { login_as :default }
   
   it 'handles /users/:id/edit with GET' do

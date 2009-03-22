@@ -1,7 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Run do
-  define_models
   before { @run = runs(:default) }
     
   #####################################################################
@@ -15,7 +14,7 @@ describe Run do
   #                            S C O P E                              #
   #####################################################################
   it 'should find by day' do
-    Run.should have(1).on(current_time.to_date)
+    Run.should have(1).on(Date.new(2008, 1, 1))
   end
     
   #####################################################################

@@ -1,7 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Task do
-  define_models
   before { @task = tasks(:default) }
   
   #####################################################################
@@ -19,7 +18,7 @@ describe Task do
   #                            S C O P E                              #
   #####################################################################
   it 'should find by day' do
-    Task.should have(4).on(current_time.to_date)
+    Task.should have(4).on(Date.new(2008, 1, 1))
   end
 
   it 'should find unpaid' do

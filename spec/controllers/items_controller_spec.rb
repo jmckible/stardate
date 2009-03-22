@@ -1,7 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe ItemsController do
-  define_models
   before do
     login_as :default
     @item = items(:default)

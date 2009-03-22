@@ -1,7 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Job do
-  define_models
   before { @job = jobs(:default) }
   
   #####################################################################

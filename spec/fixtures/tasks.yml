@@ -1,23 +1,23 @@
 default:
   job: default
-  date: <%= Date.new 2008, 1, 1 %>
+  date: 2008-01-01
   minutes: 60
   paycheck: default
   
 short:
   job: default
-  date: <%= Date.new 2008, 1, 1 %>
+  date: 2008-01-01
   minutes: 30
   paycheck: default
   
 long:
   job: default
-  date: <%= Date.new 2008, 1, 1 %>
+  date: 2008-01-01
   minutes: 120
   paycheck: default
   
 other:
   job: other
-  date: <%= Date.new 2008, 1, 1 %>
+  date: 2008-01-01
   minutes: 45
   paycheck: default

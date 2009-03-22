@@ -1,7 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Recurring do
-  define_models
   before { @recurring = recurrings(:default) }
   
   #####################################################################

@@ -1,7 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe RunsController do
-  define_models
   before { login_as :default }
   
   it 'handles /runs/:id with GET' do

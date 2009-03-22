@@ -1,7 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Paycheck do
-  define_models
   before do
     @paycheck    = paychecks(:default)
     @unpaid      = @paycheck.clone

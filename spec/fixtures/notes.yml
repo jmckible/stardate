@@ -1,4 +1,13 @@
 default:
   body: body
   user: default
-  date: <%= Date.new 2008, 1, 1 %>
+  date: 2008-01-01
+
+
+yesterday:
+  date: 2007-12-31
+  user: totaling
+  
+today:
+  date: 2008-01-01
+  user: totaling

@@ -1,7 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe SessionsController do
-  define_models
   
   it 'handles /sessions/new with GET' do
     get :new
@@ -19,8 +18,8 @@ describe SessionsController do
     post :create, :email=>@user.email, :password=>'test'
     response.should redirect_to(root_path)
     session[:user_id].should == @user.id
-    response.cookies['user_id'].first.should == @user.id.to_s
-    response.cookies['password_hash'].first.should == @user.password_hash
+    response.cookies['user_id'].should == @user.id.to_s
+    response.cookies['password_hash'].should == @user.password_hash
   end
   
   it 'denies access to a user with invalid credentials' do
@@ -34,8 +33,8 @@ describe SessionsController do
     delete :destroy, :id=>@current_user.id
     response.should redirect_to(new_session_path)
     session[:user_id].should be_nil
-    response.cookies['user_id'].should be_empty
-    response.cookies['password_hash'].should be_empty
+    response.cookies['user_id'].should be_nil
+    response.cookies['password_hash'].should be_nil
   end
   
 end

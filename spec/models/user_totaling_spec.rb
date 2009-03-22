@@ -1,27 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe User do
-  define_models do 
-    time 2008, 1, 1
-
-    model User do
-      stub :totaling, :email=>'totaling@email.com'
-    end
-
-    model Item do
-      stub :last_year,  :date=>(current_time.to_date - 365), :value=>-1, :user=>users(:totaling), :created_at=>(current_time - 365.days)
-      stub :last_month, :date=>(current_time.to_date - 31),  :value=>-1, :user=>users(:totaling), :created_at=>(current_time - 31.days)
-      stub :last_week,  :date=>(current_time.to_date - 7),   :value=>-1, :user=>users(:totaling), :created_at=>(current_time - 7.days)
-      stub :yesterday,  :date=>(current_time.to_date - 1),   :value=>10, :user=>users(:totaling), :created_at=>(current_time - 1.days)
-      stub :today,      :date=>current_time.to_date,         :value=>-1, :user=>users(:totaling), :created_at=>current_time
-      stub :tomorrow,   :date=>(current_time.to_date + 1),   :value=>-1, :user=>users(:totaling), :created_at=>(current_time + 1.days)
-    end
-    
-    model Note do
-      stub :yesterday,  :date=>(current_time.to_date - 1), :user=>users(:totaling), :created_at=>(current_time - 1.days)
-      stub :today,      :date=>current_time.to_date,       :user=>users(:totaling), :created_at=>current_time
-    end
-  end
   before { @user = users(:totaling) }
   
   #####################################################################

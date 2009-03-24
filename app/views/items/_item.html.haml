@@ -1,5 +1,5 @@
 %tr
-  %td= link_to item.date.strftime('%B %e'), item, :rel=>:facebox
+  %td.date= link_to item.date.to_s(:full), item, :rel=>:facebox
   %td.vendor= vendor_name item
   %td.description
     = h item.description

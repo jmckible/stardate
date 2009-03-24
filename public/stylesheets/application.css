@@ -34,6 +34,10 @@ input[type=text] {
   width: 15em;
 }
 
+input[type=text].long {
+  width: 32em;
+}
+
 input.money {
   background: #ffffff url(/images/dollar_sign.png) no-repeat center left;
   padding-left: 1em;

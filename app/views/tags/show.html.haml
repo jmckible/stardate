@@ -1,10 +1,11 @@
 - content_for :sidebar do 
   %dl
-    %dt #
-    %dd= @items.size
+    %dt= @items.size
+    %dd #
   
-    %dt $
-    %dd= color_money @items.sum(&:value)
+    %dt= color_money @items.sum(&:value)
+    %dd $
+    
 
 %h1= h @tag.name
 

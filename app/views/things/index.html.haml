@@ -1,16 +1,16 @@
 - content_for :sidebar do
   %dl
-    %dt 7
-    %dd= color_money current_user.total_past_week
+    %dt= color_money current_user.total_past_week
+    %dd 7
   
-    %dt 30
-    %dd= color_money current_user.total_past_month
+    %dt= color_money current_user.total_past_month
+    %dd 30
   
-    %dt 365
-    %dd= color_money current_user.total_past_year
+    %dt= color_money current_user.total_past_year
+    %dd 365
   
-    %dt ∞
-    %dd= color_money current_user.items.sum(:value)
+    %dt= color_money current_user.items.sum(:value)
+    %dd ∞
 
 - form_tag things_path do 
   %p= text_field_tag 'thing'

@@ -59,6 +59,17 @@ describe Item do
   it 'should have a during scope' do
     Item.on(Date.new(2008, 1, 1)).size.should == 3
   end
+  
+  #####################################################################
+  #                        L I F E    C Y C L E                       #
+  #####################################################################
+  it 'should assign amortization values if none provided' do
+    item = Item.new :date=>Date.today, :explicit_value=>10
+    item.save
+    item.start.should == Date.today
+    item.end.should == Date.today
+    item.per_diem.should == -10
+  end
 
   #####################################################################
   #                       V A L I D A T I O N S                       #

@@ -67,7 +67,7 @@ describe Item do
     item = Item.new :date=>Date.today, :explicit_value=>10
     item.save
     item.start.should == Date.today
-    item.end.should == Date.today
+    item.finish.should == Date.today
     item.per_diem.should == -10
   end
 

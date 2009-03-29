@@ -15,11 +15,11 @@ class Item < ActiveRecord::Base
   before_validation_on_create :initialize_amortization
   def initialize_amortization
     self.start    = date  unless start
-    self.end      = date  unless self.end
+    self.finish   = date  unless finish
     self.per_diem = value unless per_diem
   end
   
-  attr_accessible :date, :description, :end, :explicit_value, :paycheck, :per_diem, :start, :tag_list
+  attr_accessible :date, :description, :finish, :explicit_value, :paycheck, :per_diem, :start, :tag_list
   
   validates_presence_of     :date, :user_id
   validates_numericality_of :value, :only_integer=>true

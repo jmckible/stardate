@@ -5,7 +5,7 @@ default:
   user: default
   vendor: default
   start: 2008-01-01
-  end: 2008-01-01
+  finish: 2008-01-01
   per_diem: -10
 
 other:
@@ -16,7 +16,7 @@ other:
   vendor: default
   recurring: last
   start: 2008-01-01
-  end: 2008-01-01
+  finish: 2008-01-01
   per_diem: -10
 
 last_year:
@@ -24,7 +24,7 @@ last_year:
   value: -1
   user: totaling
   start: 2007-01-01
-  end: 2007-01-01
+  finish: 2007-01-01
   per_diem: -1
   
 last_month:
@@ -32,7 +32,7 @@ last_month:
   value: -1
   user: totaling
   start: 2007-12-01
-  end: 2007-12-01
+  finish: 2007-12-01
   per_diem: -1
   
 last_week:
@@ -40,7 +40,7 @@ last_week:
   value: -1
   user: totaling
   start: 2007-12-25
-  end: 2007-12-25
+  finish: 2007-12-25
   per_diem: -1
   
 yesterday:
@@ -48,7 +48,7 @@ yesterday:
   value: 10
   user: totaling
   start: 2007-12-31
-  end: 2007-12-31
+  finish: 2007-12-31
   per_diem: 10
   
 today:
@@ -56,7 +56,7 @@ today:
   value: -1
   user: totaling
   start: 2008-01-01
-  end: 2008-01-01
+  finish: 2008-01-01
   per_diem: -1
   
 tomorrow:
@@ -64,5 +64,5 @@ tomorrow:
   value: -1
   user: totaling
   start: 2008-01-02
-  end: 2008-01-02
+  finish: 2008-01-02
   per_diem: -1

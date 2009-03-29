@@ -21,12 +21,12 @@ ActiveRecord::Schema.define(:version => 20090329211805) do
     t.datetime "updated_at"
     t.integer  "recurring_id"
     t.date     "start"
-    t.date     "end"
+    t.date     "finish"
     t.integer  "per_diem"
   end
 
   add_index "items", ["date"], :name => "index_items_on_date"
-  add_index "items", ["end"], :name => "index_items_on_end"
+  add_index "items", ["finish"], :name => "index_items_on_finish"
   add_index "items", ["recurring_id"], :name => "index_items_on_recurring_id"
   add_index "items", ["start"], :name => "index_items_on_start"
   add_index "items", ["user_id"], :name => "index_items_on_user_id"

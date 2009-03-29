@@ -12,14 +12,16 @@ class Item < ActiveRecord::Base
   named_scope :during, lambda { |date| {:conditions=>{:date=>date}} }
   named_scope :on,     lambda { |date| {:conditions=>{:date=>date}} }
   
-  before_validation_on_create :initialize_amortization
-  def initialize_amortization
-    self.start    = date  unless start
-    self.finish   = date  unless finish
-    self.per_diem = value unless per_diem
+  before_validation :amortize, :if=>:date
+  def amortize
+    self.start  = date unless start
+    self.finish = date unless finish
+    self.start, self.finish = finish, start if start > finish
+    self.per_diem = value / ((finish - start).to_i + 1)
+    true # Never halt
   end
   
-  attr_accessible :date, :description, :finish, :explicit_value, :paycheck, :per_diem, :start, :tag_list
+  attr_accessible :date, :description, :finish, :explicit_value, :paycheck, :start, :tag_list
   
   validates_presence_of     :date, :user_id
   validates_numericality_of :value, :only_integer=>true

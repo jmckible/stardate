@@ -70,6 +70,30 @@ describe Item do
     item.finish.should == Date.today
     item.per_diem.should == -10
   end
+  
+  it 'should not overwrite provided amortization period' do
+    item = Item.new :date=>Date.today, :start=>(Date.today - 9), :finish=>Date.today, :explicit_value=>'+10'
+    item.save
+    item.start.should == Date.today - 9
+    item.finish.should == Date.today
+    item.per_diem.should == 1
+  end
+  
+  it 'should correct reversed start/finish' do
+    item = Item.new :date=>Date.today, :finish=>(Date.today - 9), :start=>Date.today, :explicit_value=>'+10'
+    item.save
+    item.start.should == Date.today - 9
+    item.finish.should == Date.today
+    item.per_diem.should == 1
+  end
+  
+  it 'should update per diem if existing amortization period changed' do
+    item = items(:default)
+    item.finish = Date.today + 9
+    item.save
+    item.finish.should == Date.today + 9
+    item.per_diem.should == -1
+  end
 
   #####################################################################
   #                       V A L I D A T I O N S                       #

@@ -22,10 +22,10 @@ ActiveRecord::Schema.define(:version => 20081208021754) do
     t.integer  "recurring_id"
   end
 
-  add_index "items", ["user_id"], :name => "index_items_on_user_id"
   add_index "items", ["date"], :name => "index_items_on_date"
-  add_index "items", ["vendor_id"], :name => "index_items_on_vendor_id"
   add_index "items", ["recurring_id"], :name => "index_items_on_recurring_id"
+  add_index "items", ["user_id"], :name => "index_items_on_user_id"
+  add_index "items", ["vendor_id"], :name => "index_items_on_vendor_id"
 
   create_table "jobs", :force => true do |t|
     t.integer  "user_id",                                                    :null => false
@@ -57,8 +57,8 @@ ActiveRecord::Schema.define(:version => 20081208021754) do
     t.decimal  "value",       :precision => 8, :scale => 2, :default => 0.0, :null => false
   end
 
-  add_index "paychecks", ["job_id"], :name => "index_paychecks_on_job_id"
   add_index "paychecks", ["item_id"], :name => "index_paychecks_on_item_id"
+  add_index "paychecks", ["job_id"], :name => "index_paychecks_on_job_id"
 
   create_table "recurrings", :force => true do |t|
     t.integer "user_id",                    :null => false
@@ -68,8 +68,8 @@ ActiveRecord::Schema.define(:version => 20081208021754) do
     t.integer "vendor_id"
   end
 
-  add_index "recurrings", ["user_id"], :name => "index_recurrings_on_user_id"
   add_index "recurrings", ["day"], :name => "index_recurrings_on_day"
+  add_index "recurrings", ["user_id"], :name => "index_recurrings_on_user_id"
   add_index "recurrings", ["vendor_id"], :name => "index_recurrings_on_vendor_id"
 
   create_table "runs", :force => true do |t|
@@ -110,9 +110,9 @@ ActiveRecord::Schema.define(:version => 20081208021754) do
     t.integer  "paycheck_id"
   end
 
+  add_index "tasks", ["date"], :name => "index_tasks_on_date"
   add_index "tasks", ["job_id"], :name => "index_tasks_on_project_id"
   add_index "tasks", ["paycheck_id"], :name => "index_tasks_on_paycheck_id"
-  add_index "tasks", ["date"], :name => "index_tasks_on_date"
 
   create_table "tweets", :force => true do |t|
     t.integer  "user_id"

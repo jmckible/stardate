@@ -47,9 +47,9 @@ yesterday:
   date: 2007-12-31
   value: 10
   user: totaling
-  start: 2007-12-31
+  start: 2007-12-22
   finish: 2007-12-31
-  per_diem: 10
+  per_diem: 1
   
 today:
   date: 2008-01-01

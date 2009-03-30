@@ -125,10 +125,32 @@ class User < ActiveRecord::Base
   
   def sum_directional(period, operator)
     if period.is_a? Range
-      items.sum(:value, :conditions=>["date >= ? and date <= ? and value #{operator} 0", period.first, period.last]) || 0
+      sum = 0
+      items.find(:all, :conditions=>["per_diem #{operator} 0 and ((start between ? and ?) or (finish between ? and ?) or (start <= ? and finish >= ?))", period.first, period.last, period.first, period.last, period.first, period.last]).each do |item|
+        sum = sum + (days_overlap(item, period) * item.per_diem)
+      end
+      sum
     else
-      items.sum(:value, :conditions=>["date = ? and value #{operator} 0", period]) || 0
+      items.sum(:per_diem, :conditions=>["start <= ? and finish >= ? and per_diem #{operator} 0", period, period]) || 0
     end
+  end
+  
+  def days_overlap(item, period)
+    if item.start <= period.first
+      start = period.first
+    else
+      start = item.start
+    end
+    
+    if item.finish <= period.last
+      finish = item.finish
+    else
+      finish = period.last
+    end
+    
+    return 0 if finish < start
+    
+    (start..finish).to_a.size
   end
 
 end

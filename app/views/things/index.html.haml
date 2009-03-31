@@ -42,7 +42,7 @@
             - if thing.start == thing.finish
               = color_money thing.value
             - else
-              = "#{color_money thing.value} / #{thing.finish - thing.start}"
+              = "#{color_money thing.value} / #{thing.finish - thing.start + 1}"
         
       - elsif thing.is_a?(Note)
         %tr.note

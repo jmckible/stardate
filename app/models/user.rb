@@ -36,8 +36,7 @@ class User < ActiveRecord::Base
   #                    O B J E C T    M E T H O D S                   #
   #####################################################################  
   def total_on(date)
-    items.sum(:value, :conditions=>{:date=>date}) +
-    value_unpaid_tasks_on(date)
+    sum_income(date) + sum_expenses(date)
   end
   alias :total_during :total_on
   

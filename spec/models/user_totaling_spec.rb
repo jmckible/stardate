@@ -22,7 +22,8 @@ describe User do
   end
 
   it 'should total for the week' do
-    @user.total_past_week(Date.new(2008, 1, 1)).should == 8
+    @user.total_past_week(Date.new(2008, 1, 1)).should == 5
+    # Would be 8 if you value unpaid tasks
   end
 
   it 'should total this month' do

@@ -142,7 +142,7 @@ td.description {
 }
 
 td.money {
-  width: 3em;
+  max-width: 5em;
   text-align: right;
 }
 

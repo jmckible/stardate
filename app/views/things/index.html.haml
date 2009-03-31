@@ -38,7 +38,11 @@
             = h thing.description
             %span.tags= linked_tag_list thing
           %td.vendor= vendor_name thing
-          %td.money= color_money thing.value
+          %td.money
+            - if thing.start == thing.finish
+              = color_money thing.value
+            - else
+              = "#{color_money thing.value} / #{thing.finish - thing.start}"
         
       - elsif thing.is_a?(Note)
         %tr.note

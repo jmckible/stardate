@@ -5,4 +5,9 @@
     = h item.description
     %span.tags= linked_tag_list item
   
-  %td.money= color_money item.value
+  %td.money
+    
+    - if item.start == item.finish
+      = color_money item.value
+    - else
+      = "#{color_money item.value} / #{item.finish - item.start}"

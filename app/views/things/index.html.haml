@@ -1,5 +1,8 @@
 - content_for :sidebar do
   %dl
+    %dt= color_money current_user.total_on(Date.today)
+    %dd 1
+    
     %dt= color_money current_user.total_past_week
     %dd 7
   

@@ -44,6 +44,8 @@ input.money {
   width: 9em;
 }
 
+.amortize .show a { color: #0c0;}
+
 /****************************/
 /*       L A Y O U T        */
 /****************************/

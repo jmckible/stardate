@@ -6,7 +6,17 @@
   %p= f.text_field  :vendor_name,    :default=>'vendor'
   %p= f.text_field  :description,    :default=>'description'
   %p= f.text_field  :tag_list,       :default=>'tags'
-  
+    
+  .amortize
+    .show{:class=>(@item.start == @item.finish ? '' : 'hide')}= link_to 'Amortize', '#'
+    .dates{:class=>(@item.start == @item.finish ? 'hide' : '')}
+      %p
+        = f.date_select :start, :order=>[:month, :day, :year]
+        Start
+      %p
+        = f.date_select :finish, :order=>[:month, :day, :year]
+        End
+
   %p
     = submit_tag 'Update'
     or

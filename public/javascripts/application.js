@@ -13,8 +13,18 @@ $(document).ready(function() {
   
   $('a[rel*=facebox]').facebox();
   
+  $('.hide').livequery(function(){
+    $(this).hide();
+  })
+  
   $('.date_selector select').change(function(){
     $(this).parent().submit();
+  });
+  
+  $('.amortize .show a').livequery('click', function(){
+    $(this).parent().next().show();
+    $(this).hide();
+    return false;
   });
   
   $('table.sortable').tablesorter();

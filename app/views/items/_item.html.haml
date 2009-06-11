@@ -1,5 +1,7 @@
 %tr
-  %td.date= link_to item.date.to_s(:full), item, :rel=>:facebox
+  %td.date
+    = link_to item.date.to_s(:full), date_link(item.date)
+    = link_to '»', item, :rel=>:facebox
   %td.vendor= vendor_name item
   %td.description
     = h item.description

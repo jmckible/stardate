@@ -31,36 +31,4 @@
     running.render("Running");
 .clear
 
-%table
-  %tbody
-    - @things.each do |thing|
-      - if thing.is_a?(Item)
-        %tr.item
-          %td.date= link_to thing.date.to_s(:full), thing, :rel=>:facebox
-          %td.description
-            = h thing.description
-            %span.tags= linked_tag_list thing
-          %td.vendor= vendor_name thing
-          %td.money
-            - if thing.start == thing.finish
-              = color_money thing.value
-            - else
-              = "#{color_money thing.value} / #{thing.finish - thing.start + 1}"
-        
-      - elsif thing.is_a?(Note)
-        %tr.note
-          %td.date= link_to thing.date.to_s(:full), thing, :rel=>:facebox
-          %td.description{:colspan=>3}= h thing.body
-        
-      - elsif thing.is_a?(Run)
-        %tr.run
-          %td.date= link_to thing.date.to_s(:full), thing, :rel=>:facebox
-          %td.description{:colspan=>3}= "Ran #{thing.distance}mi/#{minutes_to_time thing.minutes}"
-          
-      - elsif thing.is_a?(Tweet)
-        %tr.tweet
-          %td.date= link_to thing.created_at.to_date.to_s(:full), thing.url
-          %td.description{:colspan=>2}= thing.autolink_text
-          %td
-            - if current_user.twitter_profile_image_url
-              = image_tag current_user.twitter_profile_image_url, :class=>:twitter_profile
+= render :partial=>'things', :object=>@things

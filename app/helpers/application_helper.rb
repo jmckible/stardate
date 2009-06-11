@@ -57,5 +57,9 @@ module ApplicationHelper
     minutes = "0#{minutes}" if minutes < 10
     [hours, minutes].join(':')
   end
+  
+  def date_link(date)
+    date_path(:year=>date.year, :month=>date.month, :day=>date.day)
+  end
 
 end

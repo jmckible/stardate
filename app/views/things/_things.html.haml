@@ -5,8 +5,8 @@
         - if thing.is_a?(Item)
           %tr.item
             %td.date
+              = link_to '«', thing, :rel=>:facebox
               = link_to thing.date.to_s(:full), date_link(thing.date)
-              = link_to '»', thing, :rel=>:facebox
             %td.description
               = h thing.description
               %span.tags= linked_tag_list thing
@@ -21,21 +21,21 @@
           %tr.note
             %td.date
               = link_to thing.date.to_s(:full), date_link(thing.date)
-              = link_to '»', thing, :rel=>:facebox
+              = link_to '«', thing, :rel=>:facebox
             %td.description{:colspan=>3}= h thing.body
         
         - elsif thing.is_a?(Run)
           %tr.run
             %td.date
+              = link_to '«', thing, :rel=>:facebox
               = link_to thing.date.to_s(:full), date_link(thing.date)
-              = link_to '»', thing, :rel=>:facebox
             %td.description{:colspan=>3}= "Ran #{thing.distance}mi/#{minutes_to_time thing.minutes}"
           
         - elsif thing.is_a?(Tweet)
           %tr.tweet
             %td.date
+              = link_to '«', thing.url
               = link_to thing.created_at.to_date.to_s(:full), date_link(thing.date)
-              = link_to '»', thing.url
             %td.description{:colspan=>2}= thing.autolink_text
             %td
               - if current_user.twitter_profile_image_url

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090611060538) do
+ActiveRecord::Schema.define(:version => 20090611061026) do
 
   create_table "items", :force => true do |t|
     t.integer  "user_id",                     :null => false
@@ -102,9 +102,11 @@ ActiveRecord::Schema.define(:version => 20090611060538) do
 
   create_table "tags", :force => true do |t|
     t.string "name"
+    t.string "permalink"
   end
 
   add_index "tags", ["name"], :name => "index_tags_on_name"
+  add_index "tags", ["permalink"], :name => "index_tags_on_permalink"
 
   create_table "tasks", :force => true do |t|
     t.integer  "job_id",                     :null => false

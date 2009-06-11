@@ -136,7 +136,7 @@ module ActiveRecord #:nodoc:
           group_by  = "#{Tag.table_name}.id, #{Tag.table_name}.name HAVING COUNT(*) > 0"
           group_by << " AND #{having}" unless having.blank?
           
-          { :select     => "#{Tag.table_name}.id, #{Tag.table_name}.name, COUNT(*) AS count", 
+          { :select     => "#{Tag.table_name}.id, #{Tag.table_name}.name, #{Tag.table_name}.permalink, COUNT(*) AS count", 
             :joins      => joins.join(" "),
             :conditions => conditions,
             :group      => group_by

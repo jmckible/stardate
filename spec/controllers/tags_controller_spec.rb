@@ -9,7 +9,7 @@ describe TagsController do
   end
   
   it 'handles /tags/:id with GET' do
-    get :show, :id=>tags(:default)
+    get :show, :id=>tags(:default).to_param
     response.should be_success
   end
   

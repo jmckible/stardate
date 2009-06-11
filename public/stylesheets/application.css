@@ -46,6 +46,12 @@ input.money {
 
 .amortize .show a { color: #0c0;}
 
+textarea {
+  border: 2px solid #ddd;
+  width: 30em;
+  height: 25em;
+}
+
 /****************************/
 /*       L A Y O U T        */
 /****************************/

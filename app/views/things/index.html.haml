@@ -16,7 +16,9 @@
     %dd ∞
 
 - form_tag things_path do 
-  %p= text_field_tag 'thing', '', :class=>'long'
+  = text_field_tag 'thing', '', :class=>'long'
+  = link_to '...', new_thing_path, :class=>:long_entry, :rel=>:facebox
+  
 
 #Graphs
   #Spending

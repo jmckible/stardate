@@ -15,6 +15,11 @@ describe ThingsController do
     response.should be_success
   end
   
+  it 'handles /things/new with GET' do
+    get :new
+    response.should be_success
+  end
+  
   it 'handles /things with note attributes and PUT' do
     running {
       post :create, :thing=>'a note'

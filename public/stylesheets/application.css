@@ -187,3 +187,29 @@ th.headerSortUp {
   color: #000;
   font-weight: bold;
 }
+
+/****************************/
+/*   P A G I N A T I O N    */
+/****************************/
+.pagination {
+  text-align: center;
+  padding: 1em; 
+}
+.pagination a, .pagination span {
+  padding: .2em .3em; 
+}
+.pagination span.disabled {
+  color: #AAA; 
+}
+.pagination span.current {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+.pagination a {
+  text-decoration: none;
+  color: black; 
+}
+.pagination a:hover, .pagination a:focus {
+  text-decoration: underline; 
+}
+

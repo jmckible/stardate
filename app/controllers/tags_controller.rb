@@ -8,7 +8,7 @@ class TagsController < ApplicationController
   # GET /tags/:id
   def show
     @tag = Tag.find params[:id]
-    @items = current_user.items.find_tagged_with @tag, :order=>'date desc'
+    @items = current_user.items.find_tagged_with(@tag, :order=>'date desc').paginate :page=>params[:page]
   end
   
 end

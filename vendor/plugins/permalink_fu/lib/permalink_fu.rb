@@ -106,7 +106,6 @@ module PermalinkFu
 
   # This contains instance methods for ActiveRecord models that have permalinks.
   module InstanceMethods
-  protected
     def create_common_permalink
       return unless should_create_permalink?
       if read_attribute(self.class.permalink_field).blank? || permalink_fields_changed?

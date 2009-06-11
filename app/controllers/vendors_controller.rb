@@ -7,7 +7,7 @@ class VendorsController < ApplicationController
   
   # GET /vendors/:id
   def show
-    @vendor = Vendor.find params[:id]
+    @vendor = Vendor.find_by_permalink params[:id]
     @items  = @vendor.items.from(current_user).paginate :page=>params[:page]
   end
   

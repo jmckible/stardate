@@ -20,8 +20,8 @@
         - elsif thing.is_a?(Note)
           %tr.note
             %td.date
-              = link_to thing.date.to_s(:full), date_link(thing.date)
               = link_to '«', thing, :rel=>:facebox
+              = link_to thing.date.to_s(:full), date_link(thing.date)
             %td.description{:colspan=>3}= h thing.body
         
         - elsif thing.is_a?(Run)

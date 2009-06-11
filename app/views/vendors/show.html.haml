@@ -1,6 +1,6 @@
 - content_for :sidebar do 
   %dl
-    %dt= @vendor.items.count_from(current_user)
+    %dt= number_with_delimiter @vendor.items.count_from(current_user)
     %dd #
     
     %dt= color_money @vendor.items.sum_from(current_user)

@@ -1,9 +1,9 @@
 - content_for :sidebar do 
   %dl
-    %dt= @items.size
+    %dt= number_with_delimiter @items_count
     %dd #
   
-    %dt= color_money @items.sum(&:value)
+    %dt= color_money @items_sum
     %dd $
     
 

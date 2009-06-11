@@ -12,6 +12,6 @@
 
 %table
   %tbody
-    = render :partial=>'items/item', :collection=>@vendor.items.from(current_user)
+    = render :partial=>'items/item', :collection=>@items
     
-      
+= will_paginate @items

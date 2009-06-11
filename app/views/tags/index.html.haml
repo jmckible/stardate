@@ -11,4 +11,4 @@
       %tr
         %td.vendor= link_to h(tag.name), tag
         %td.count= tag.count
-        %td.sum= color_explicit_money current_user.items.find_tagged_with(tag).sum(&:value)
+        %td.sum= number_with_delimiter(color_explicit_money(current_user.items.find_tagged_with(tag).sum(&:value)))

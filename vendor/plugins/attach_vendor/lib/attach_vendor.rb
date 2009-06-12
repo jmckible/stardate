@@ -24,7 +24,7 @@ module AttachVendor
       if string.nil? || string.chop.blank?
         self.vendor = nil
       else
-        Vendor.find_or_create_by_name string
+        self.vendor = Vendor.find_or_create_by_name string
       end
     end
   end

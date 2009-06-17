@@ -197,8 +197,8 @@ th.headerSortUp {
   width: 35em;
 }
 
-.note .title{
-
+.note p{
+  margin-bottom: 1em;
 }
 
 .note .title a {

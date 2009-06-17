@@ -18,11 +18,11 @@ class User < ActiveRecord::Base
   #####################################################################
   #                     R E L A T I O N S H I P S                     #
   #####################################################################
-  has_many :items,      :order=>:date, :dependent=>:destroy
-  has_many :jobs,       :order=>:name, :dependent=>:destroy
-  has_many :notes,      :order=>:date, :dependent=>:destroy
-  has_many :recurrings, :order=>:day,  :dependent=>:destroy
-  has_many :runs,       :order=>:date, :dependent=>:destroy
+  has_many :items,      :order=>'date',      :dependent=>:destroy
+  has_many :jobs,       :order=>'name',      :dependent=>:destroy
+  has_many :notes,      :order=>'date desc', :dependent=>:destroy
+  has_many :recurrings, :order=>'day',       :dependent=>:destroy
+  has_many :runs,       :order=>'date',      :dependent=>:destroy
   has_many :tasks,      :through=>:jobs 
   has_many :tweets,     :order=>'created_at desc', :dependent=>:destroy
   has_many :vendors,    :through=>:items, :uniq=>true, :order=>'name'

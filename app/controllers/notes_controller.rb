@@ -1,5 +1,10 @@
 class NotesController < ApplicationController
   
+  # GET /notes
+  def index
+    @notes = current_user.notes.paginate :page=>params[:page]
+  end
+  
   # GET /notes/:id
   def show
     @note = current_user.notes.find params[:id]

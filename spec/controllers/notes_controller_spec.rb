@@ -3,6 +3,11 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe NotesController do
   before { login_as :default }
   
+  it 'handles /notes with GET' do
+    get :index
+    response.should be_success
+  end
+  
   it 'handles /notes/:id with GET' do
     get :show, :id=>notes(:default)
     response.should be_success

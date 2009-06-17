@@ -189,6 +189,24 @@ th.headerSortUp {
 }
 
 /****************************/
+/*          N O T E         */
+/****************************/
+.note {
+  margin: 0 0 7em 0;
+  line-height: 1.5em;
+  width: 35em;
+}
+
+.note .title{
+
+}
+
+.note .title a {
+  color: #000;
+  text-decoration: underline;
+}
+
+/****************************/
 /*   P A G I N A T I O N    */
 /****************************/
 .pagination {

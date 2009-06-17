@@ -36,11 +36,7 @@ describe Item do
   end
   
   it 'should set vendor name with new vendor' do
-    @item.vendor_name = 'New Vendor'
-    @item.vendor.should be_new_record
-    running {
-      @item.save
-    }.should change(Vendor, :count).by(1)
+    running { @item.vendor_name = 'New Vendor' }.should change(Vendor, :count).by(1)
   end
   
   it 'should clear vendor when name set to nil' do

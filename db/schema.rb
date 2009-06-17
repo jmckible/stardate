@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090611061026) do
+ActiveRecord::Schema.define(:version => 20090617051501) do
 
   create_table "items", :force => true do |t|
     t.integer  "user_id",                     :null => false
@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(:version => 20090611061026) do
 
   create_table "tweets", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "tweet_id"
+    t.string   "tweet_id"
     t.string   "text"
     t.datetime "created_at"
     t.datetime "updated_at"

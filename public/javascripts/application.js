@@ -21,6 +21,12 @@ $(document).ready(function() {
     $(this).parent().submit();
   });
   
+  $('a.expand_note').click(function(){
+    $(this).parent().hide();
+    $(this).parent().next().show();
+    return false;
+  });
+  
   $('.amortize .show a').livequery('click', function(){
     $(this).parent().next().show();
     $(this).hide();

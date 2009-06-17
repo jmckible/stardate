@@ -22,7 +22,12 @@
             %td.date
               = link_to '«', thing, :rel=>:facebox
               = link_to thing.date.to_s(:full), date_link(thing.date)
-            %td.description{:colspan=>3}= truncate(h(thing.body), :length=>90)
+            %td.description{:colspan=>3}
+              - if thing.body.length < 80
+                = h thing.body
+              - else
+                .preview= "#{h thing.body.first(80)} #{link_to '...', '', :class=>:expand_note}"
+                .hide= simple_format thing.body
         
         - elsif thing.is_a?(Run)
           %tr.run

@@ -1,0 +1,13 @@
+%h1= humanize_period @period
+
+#SpendingYear
+%script{:type=>'text/javascript'}
+  var spending = new FusionCharts("/flash/MSArea.swf", "Spending", "940", "300", "0", "0");
+  = "spending.setDataURL(\"#{spending_year_url(:format=>'xml')}\");"
+  spending.render("SpendingYear");
+
+#RunningYear
+%script{:type=>'text/javascript'}
+  var running = new FusionCharts("/flash/MSCombiDY2D.swf", "Running", "940", "300", "0", "0");
+  = "running.setDataURL(\"#{running_year_url(:format=>'xml')}\");"
+  running.render("RunningYear");

@@ -29,7 +29,7 @@ module Lucifer
     
     def key_decrypt(value)
       key.decrypt value
-    rescue OpenSSL::CipherError
+    rescue # OpenSSL::CipherError # Specifying this class led to errors with Rails 2.3.4
       return nil
     end
   end
@@ -40,6 +40,16 @@ module Lucifer
       self.class.decrypted_columns.each do |col|
         send "#{col}#{self.class.suffix}=", self.class.key_encrypt(eval(col))
       end
+    end
+    
+    # Starting with Rails 2.3.3, this ActiveRecord exception was being raised
+    # on certain associations related to a model with encrypt_attributes.
+    # As a patch, only raise the exception if the method really doesn't exist
+    # Warning: this method is designed to protect against uses of ActiveRecord#find
+    # with the :select option, so be careful
+    def missing_attribute(attr_name, stack)
+      return nil if respond_to?(attr_name)
+      raise ActiveRecord::MissingAttributeError, "missing attribute: #{attr_name}", stack
     end
     
     # Have to call it like this for performance reasons

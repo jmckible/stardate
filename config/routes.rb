@@ -13,10 +13,8 @@ ActionController::Routing::Routes.draw do |map|
   map.date 'date/:year/:month/:day', :controller=>'date', :action=>'show', :requirements=>{:year=>/(19|20)\d\d/, :month=>/[01]?\d/, :day=>/[0-3]?\d/}
   
   map.with_options :controller=>'graphs' do |g|
-    g.running_month  'graphs/running_month.:format',  :action=>'running_month'
-    g.running_year   'graphs/running_year.:format',   :action=>'running_year'
-    g.spending_month 'graphs/spending_month.:format', :action=>'spending_month'
-    g.spending_year  'graphs/spending_year.:format',  :action=>'spending_year'
+    g.running  'graphs/running/:start/:finish.:format',  :action=>'running'
+    g.spending 'graphs/spending/:start/:finish.:format', :action=>'spending'
   end
 
   map.root :controller=>'things'

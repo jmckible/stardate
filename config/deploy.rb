@@ -1,5 +1,5 @@
 set :application, 'stardate'
-set :deploy_to,   "/var/#{application}"
+set :deploy_to,   "/data/#{application}"
 
 role :app, 'mckible.com'
 role :web, 'mckible.com' 

@@ -6,9 +6,13 @@
       %th.first.headerSortDown Name
       %th Count
       %th Amount
+      %th ASP
   %tbody
     - for vendor in @vendors
+      - count = vendor.items.count_from(current_user)
+      - sum = vendor.items.sum_from(current_user)
       %tr
         %td.vendor= link_to h(vendor.name), vendor
-        %td.count= number_with_delimiter vendor.items.count_from(current_user)
-        %td.sum= number_with_delimiter color_explicit_money(vendor.items.sum_from(current_user))
+        %td.count= number_with_delimiter count
+        %td.sum= number_with_delimiter color_explicit_money(sum)
+        %td.sum= color_explicit_money((sum / count.to_f).round)

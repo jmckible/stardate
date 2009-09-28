@@ -19,6 +19,8 @@ class ReportsController < ApplicationController
     @expenses = current_user.sum_expenses @period
     @net      = current_user.total_during @period
     
+    @tags = current_user.items.tag_counts :order=>'count desc', :limit=>10
+    
     @miles   = current_user.runs.during(@period).sum 'distance'
     @minutes = current_user.runs.during(@period).sum 'minutes'
   end

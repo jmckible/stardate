@@ -30,6 +30,9 @@
     %tr
       %td Savings Rate
       %td= "#{(@net / @income.to_f * 100).round(1)}%"
+
+= render :partial=>'tags/tags', :object=>@tags
+
       
 
 #RunningYear

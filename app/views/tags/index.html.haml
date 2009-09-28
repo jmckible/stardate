@@ -1,14 +1,3 @@
 %h1 Tags
 
-%table.sortable
-  %thead
-    %tr
-      %th.first Name
-      %th.headerSortDown Count
-      %th Amount
-  %tbody
-    - for tag in @tags
-      %tr
-        %td.vendor= link_to h(tag.name), tag
-        %td.count= number_with_delimiter tag.count
-        %td.sum= number_with_delimiter(color_explicit_money(current_user.items.find_tagged_with(tag).sum(&:value)))
+= render :partial=>'tags', :object=>@tags

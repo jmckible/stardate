@@ -21,3 +21,18 @@
   var running = new FusionCharts("/flash/MSCombiDY2D.swf", "Running", "940", "300", "0", "0");
   = "running.setDataURL(\"#{running_url(:start=>@start, :finish=>@finish, :format=>'xml')}\");"
   running.render("RunningYear");
+
+%table
+  %tr
+    %td Distance:
+    %td
+      = number_with_delimiter @miles
+      miles
+  %tr
+    %td Time:
+    %td= minutes_to_time @minutes
+  %tr
+    %td Average Pace:
+    %td
+      = (@minutes / @miles).round 2
+      min/mi

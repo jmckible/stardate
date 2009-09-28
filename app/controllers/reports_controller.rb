@@ -14,6 +14,9 @@ class ReportsController < ApplicationController
       @finish = Time.now.to_date
     end
     @period = @start..@finish
+    
+    @miles   = current_user.runs.during(@period).sum 'distance'
+    @minutes = current_user.runs.during(@period).sum 'minutes'
   end
   
 end

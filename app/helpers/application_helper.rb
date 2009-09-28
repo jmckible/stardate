@@ -34,9 +34,9 @@ module ApplicationHelper
   
   def minutes_to_time(minutes)
     if minutes < 60
-      "#{minutes}min"
+      "#{minutes} min"
     else
-      "#{minutes.div 60}:#{minutes.modulo 60}hr"
+      "#{minutes.div 60}:#{minutes.modulo 60} hr"
     end
   end
   

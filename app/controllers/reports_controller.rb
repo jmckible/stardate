@@ -15,6 +15,10 @@ class ReportsController < ApplicationController
     end
     @period = @start..@finish
     
+    @income   = current_user.sum_income   @period
+    @expenses = current_user.sum_expenses @period
+    @net      = current_user.total_during @period
+    
     @miles   = current_user.runs.during(@period).sum 'distance'
     @minutes = current_user.runs.during(@period).sum 'minutes'
   end

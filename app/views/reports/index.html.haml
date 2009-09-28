@@ -15,6 +15,22 @@
   var spending = new FusionCharts("/flash/MSArea.swf", "Spending", "940", "300", "0", "0");
   = "spending.setDataURL(\"#{spending_url(:start=>@start, :finish=>@finish, :format=>'xml')}\");"
   spending.render("SpendingYear");
+  
+%table
+  %tr
+    %td Income
+    %td= color_money @income
+  %tr
+    %td Expenses
+    %td= color_money @expenses
+  %tr
+    %td Net
+    %td= color_money @net
+  - unless @income == 0
+    %tr
+      %td Savings Rate
+      %td= "#{(@net / @income.to_f * 100).round(1)}%"
+      
 
 #RunningYear
 %script{:type=>'text/javascript'}
@@ -24,15 +40,16 @@
 
 %table
   %tr
-    %td Distance:
+    %td Distance
     %td
       = number_with_delimiter @miles
       miles
   %tr
-    %td Time:
+    %td Time
     %td= minutes_to_time @minutes
-  %tr
-    %td Average Pace:
-    %td
-      = (@minutes / @miles).round 2
-      min/mi
+  - unless @miles == 0
+    %tr
+      %td Average Pace
+      %td
+        = (@minutes / @miles).round 2
+        min/mi

@@ -5,6 +5,18 @@ function insert_default(element) {
   }
 }
 
+jQuery.tablesorter.addParser({
+  id: "commaDigit",
+  is: function(s, table) {
+    var c = table.config;
+    return jQuery.tablesorter.isDigit(s.replace(/,/g, ""), c);
+  },
+  format: function(s) {
+    return jQuery.tablesorter.formatFloat(s.replace(/,/g, ""));
+  },
+  type: "numeric"
+});
+
 $(window).load(function(){
   $('input#thing').focus();
 });
@@ -33,7 +45,7 @@ $(document).ready(function() {
     return false;
   });
   
-  $('table.sortable').tablesorter();
+  $('table.sortable').tablesorter({textExtraction: 'commaDigit'});
   
   // Form Defaults
   $('input[type=text][default]').livequery(function(){

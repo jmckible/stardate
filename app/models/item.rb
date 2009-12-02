@@ -7,7 +7,9 @@ class Item < ActiveRecord::Base
   belongs_to :recurring
   belongs_to :user
   
-  has_one    :paycheck,  :dependent=>:nullify
+  has_one :paycheck,  :dependent=>:nullify
+  
+  has_many :images
   
   named_scope :during, lambda { |date| {:conditions=>{:date=>date}} }
   named_scope :on,     lambda { |date| {:conditions=>{:date=>date}} }

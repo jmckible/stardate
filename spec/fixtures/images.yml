@@ -1,2 +1,13 @@
 default:
   item: default
+  source_file_name: default.jpg
+  source_content_type: image/jpeg
+  source_file_size: 100
+  source_updated_at: <%= Time.now.to_s :db %>
+  
+other:
+  item: other
+  source_file_name: other.jpg
+  source_content_type: image/jpeg
+  source_file_size: 100
+  source_updated_at: <%= Time.now.to_s :db %>

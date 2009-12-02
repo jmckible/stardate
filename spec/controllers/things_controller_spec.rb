@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+require 'spec_helper'
 
 describe ItemsController, 'without logging in' do
   it 'handles / with GET' do

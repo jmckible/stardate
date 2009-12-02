@@ -1,7 +1,7 @@
 class Image < ActiveRecord::Base
   belongs_to :item
   
-  has_attached_file :source
+  has_attached_file :source, :styles=>{:large=>'500x500>', :tiny=>'20x20>'}
   
   delegate :url, :to=>:source
   

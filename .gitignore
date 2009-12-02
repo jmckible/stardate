@@ -4,3 +4,4 @@
 config/*.yml
 log/*
 tmp/**/*
+public/system/*

@@ -11,14 +11,12 @@
               = h thing.description
               %span.tags= linked_tag_list thing
             %td.vendor= vendor_name thing
-            %td.images
-              - for image in thing.images
-                = link_to image_tag(image.url(:small)), image, :rel=>:facebox
             %td.money
               - if thing.start == thing.finish
                 = color_money thing.value
               - else
                 = "#{color_money thing.value} / #{thing.finish - thing.start + 1}"
+              %td.images= link_to(image_tag(thing.image.url(:small)), thing.image, :rel=>:facebox) if thing.image
         
         - elsif thing.is_a?(Note)
           %tr.note
@@ -37,7 +35,7 @@
             %td.date
               = link_to '«', thing, :rel=>:facebox
               = link_to thing.date.to_s(:full), date_link(thing.date)
-            %td.description{:colspan=>3}= "Ran #{thing.distance}mi/#{minutes_to_time thing.minutes}"
+            %td.description{:colspan=>4}= "Ran #{thing.distance}mi/#{minutes_to_time thing.minutes}"
           
         - elsif thing.is_a?(Tweet)
           %tr.tweet

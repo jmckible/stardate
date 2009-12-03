@@ -3,7 +3,8 @@ class ImagesController < ApplicationController
   # GET /images/:id
   def show
     @image = Image.find params[:id]
-    render :file=>"#{Rails.root}/public/404.html", :status=>404 and return unless @image.item.user == current_user
+    @item  = @image.item
+    render :file=>"#{Rails.root}/public/404.html", :status=>404 and return unless @item.user == current_user
     render :layout=>false
   end
   

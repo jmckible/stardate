@@ -1,2 +1,5 @@
-= image_tag @image.url(:large)
-= link_to 'x', @image, :method=>:delete
+.main= image_tag @image.url(:large)
+- for image in @item.images
+  = link_to image_tag(image.url(:small)), image.url(:large), :rel=>:slideshow
+  
+.delete= link_to 'Delete', @image, :method=>:delete

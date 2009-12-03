@@ -13,7 +13,7 @@
             %td.vendor= vendor_name thing
             %td.images
               - for image in thing.images
-                = link_to image_tag(image.url(:tiny)), image, :rel=>:facebox
+                = link_to image_tag(image.url(:small)), image, :rel=>:facebox
             %td.money
               - if thing.start == thing.finish
                 = color_money thing.value

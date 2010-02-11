@@ -1,3 +1,7 @@
+== Rails 3
+
+stardate is being ported to Rails 3. Follow the progress on the rails3 branch!
+
 = stardate
 
 stardate was originally called ActiveBudget.  It used to just track income/expenses and hourly work.  I stopped working hourly, so I removed that section and added a microblogging element. It'll archive your twitter feed and keep track of how much you run.  The goal of stardate is to pretty much archive my life.

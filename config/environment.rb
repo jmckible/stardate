@@ -12,7 +12,7 @@ require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here
-  config.gem 'aws-s3',  :lib=>false
+  config.gem 'aws-s3'
   config.gem 'haml',    :version=>'>= 2.0'
   config.gem 'httparty'
   config.gem 'ezcrypto'

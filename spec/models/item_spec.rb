@@ -22,10 +22,6 @@ describe Item do
     @item.vendor.should == vendors(:default)
   end
   
-  it 'should have many images' do
-    @item.should have(1).images
-  end
-  
   it 'should access vendor name' do
     @item.vendor_name.should == vendors(:default).name
     Item.new.vendor_name.should be_nil

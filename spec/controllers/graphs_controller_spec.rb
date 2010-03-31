@@ -34,4 +34,11 @@ describe GraphsController do
     response.should be_success
   end
   
+  it 'handles /graphs/weighing with valid date and GET' do
+    get :weighing, :start=>'2009-01-01', :finish=>'2009-02-02'
+    assigns(:start).should == Date.new(2009, 1, 1)
+    assigns(:finish).should == Date.new(2009, 2, 2)
+    response.should be_success
+  end
+  
 end

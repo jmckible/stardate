@@ -16,6 +16,7 @@ ActionController::Routing::Routes.draw do |map|
   map.with_options :controller=>'graphs' do |g|
     g.running  'graphs/running/:start/:finish.:format',  :action=>'running'
     g.spending 'graphs/spending/:start/:finish.:format', :action=>'spending'
+    g.weighing 'graphs/weighing/:start/:finish.:format', :action=>'weighing'
   end
 
   map.root :controller=>'things'

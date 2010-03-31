@@ -28,6 +28,14 @@ class GraphsController < ApplicationController
     end
   end
   
+  # GET /graphs/weighing
+  def weighing
+    set_period
+    respond_to do |format|
+      format.xml
+    end
+  end
+  
   protected
   def set_period
     begin

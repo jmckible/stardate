@@ -21,16 +21,21 @@
   
 
 #Graphs
-  #SpendingMonth
+  #WeightMonth
   %script{:type=>'text/javascript'}
-    var spending = new FusionCharts("/flash/MSArea.swf", "Spending", "430", "250", "0", "0");
-    = "spending.setDataURL(\"#{spending_url(:start=>@start, :finish=>@finish, :format=>'xml')}\");"
-    spending.render("SpendingMonth");
+    var weight = new FusionCharts("/flash/MSArea.swf", "Weight", "410", "250", "0", "0");
+    = "weight.setDataURL(\"#{weighing_url(:start=>@start, :finish=>@finish, :format=>'xml')}\");"
+    weight.render("WeightMonth");
   #RunningMonth
   %script{:type=>'text/javascript'}
     var running = new FusionCharts("/flash/MSCombiDY2D.swf", "Running", "410", "250", "0", "0");
     = "running.setDataURL(\"#{running_url(:start=>@start, :finish=>@finish, :format=>'xml')}\");"
     running.render("RunningMonth");
+  #SpendingMonth
+  %script{:type=>'text/javascript'}
+    var spending = new FusionCharts("/flash/MSArea.swf", "Spending", "800", "250", "0", "0");
+    = "spending.setDataURL(\"#{spending_url(:start=>@start, :finish=>@finish, :format=>'xml')}\");"
+    spending.render("SpendingMonth");
 .clear
 
 = render :partial=>'things', :object=>@things

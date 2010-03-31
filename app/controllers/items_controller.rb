@@ -17,7 +17,6 @@ class ItemsController < ApplicationController
   # GET /items/:id
   def show
     @item = current_user.items.find params[:id]
-    @item.images.build
     render :layout=>false
   end
 
@@ -25,8 +24,6 @@ class ItemsController < ApplicationController
   def update
     @item = current_user.items.find params[:id]
     @item.update_attributes params[:item]
-    @image = @item.images.build params[:image]
-    @image.save
     redirect_to request.env['HTTP_REFERER'] || root_url
   end
 

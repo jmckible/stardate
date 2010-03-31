@@ -1,6 +1,6 @@
 %h1 Edit Transaction
 
-- form_for @item, :html=>{:multipart=>true} do |f|
+- form_for @item do |f|
   %p= f.date_select :date,           :order=>[:month, :day, :year]
   %p= f.text_field  :explicit_value, :class=>:money
   %p= f.text_field  :vendor_name,    :default=>'vendor'
@@ -16,17 +16,6 @@
       %p
         = f.date_select :finish, :order=>[:month, :day, :year]
         End
-  
-  .upload_image
-    .show= link_to 'Upload Image', '#'
-    .form.hide
-      - fields_for :image do |i|
-        %p= i.file_field :source
-    
-  - for image in @item.images
-    - unless image.new_record?
-      = link_to 'x', image, :method=>:delete
-      = image_tag image.url 
 
   %p
     = submit_tag 'Update'

@@ -1,5 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :images
   map.resources :items
   map.resources :notes
   map.resources :recurrings

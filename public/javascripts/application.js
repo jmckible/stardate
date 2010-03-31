@@ -45,12 +45,6 @@ $(document).ready(function() {
     return false;
   });
   
-  $('.upload_image .show a').livequery('click', function(){
-    $(this).parent().next().show();
-    $(this).hide();
-    return false;
-  });
-  
   $('table.sortable').tablesorter({textExtraction: 'commaDigit'});
   
   // Form Defaults

@@ -1,11 +1,7 @@
 class Image < ActiveRecord::Base
   belongs_to :item
   
-  has_attached_file :source, 
-    :styles=>{:large=>'500x500>', :tiny=>'20x20>'},
-    :storage=>:s3,
-    :s3_credentials=>"#{RAILS_ROOT}/config/s3.yml",
-    :path=>"images/:id/:style.:extension"
+  has_attached_file :source, :styles=>{:large=>'500x500>', :tiny=>'20x20>'}
   
   delegate :url, :to=>:source
   

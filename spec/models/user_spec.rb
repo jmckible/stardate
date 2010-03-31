@@ -57,6 +57,10 @@ describe User do
     @user.should have(1).vendors
   end
   
+  it 'should have many weights' do
+    @user.should have(1).weights
+  end
+  
   #####################################################################
   #                    O B J E C T   M E T H O D S                    #
   #####################################################################
@@ -136,6 +140,10 @@ describe User do
   
   it 'should delete tweets on destroy' do
     running { @user.destroy }.should change(Tweet, :count).by(-1)
+  end
+  
+  it 'should delete weights on destroy' do
+    running { @user.destroy }.should change(Weight, :count).by(-1)
   end
   
 end

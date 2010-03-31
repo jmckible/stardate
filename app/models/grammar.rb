@@ -21,6 +21,9 @@ class Grammar
     elsif string =~ /^(Ran|ran)/
       distance, minutes = string.split(/^(Ran|ran) /).last.split(' ')
       Run.new :date=>date, :distance=>distance, :minutes=>minutes
+    elsif string =~ /^(weight|w )/
+      weight, body_fat = string.split(/^(weight |w )/).last.split(' ')
+      Weight.new :date=>date, :weight=>weight, :body_fat=>body_fat
     else
       Note.new :date=>date, :body=>string
     end

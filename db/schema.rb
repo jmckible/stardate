@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090617051501) do
+ActiveRecord::Schema.define(:version => 20100331010330) do
 
   create_table "items", :force => true do |t|
     t.integer  "user_id",                     :null => false
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(:version => 20090617051501) do
 
   create_table "jobs", :force => true do |t|
     t.integer  "user_id",                                                    :null => false
-    t.string   "name",                                     :default => "",   :null => false
+    t.string   "name",                                                       :null => false
     t.boolean  "active",                                   :default => true
     t.datetime "created_at"
     t.decimal  "rate",       :precision => 6, :scale => 2, :default => 0.0,  :null => false
@@ -130,9 +130,9 @@ ActiveRecord::Schema.define(:version => 20090617051501) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                     :default => "",                    :null => false
-    t.string   "password_salt",             :default => "",                    :null => false
-    t.string   "password_hash",             :default => "",                    :null => false
+    t.string   "email",                                                        :null => false
+    t.string   "password_salt",                                                :null => false
+    t.string   "password_hash",                                                :null => false
     t.string   "time_zone"
     t.datetime "created_at",                :default => '2007-05-24 15:49:54'
     t.string   "twitter_username"
@@ -150,5 +150,17 @@ ActiveRecord::Schema.define(:version => 20090617051501) do
   end
 
   add_index "vendors", ["permalink"], :name => "index_vendors_on_permalink"
+
+  create_table "weights", :force => true do |t|
+    t.integer  "user_id"
+    t.date     "date"
+    t.decimal  "weight",     :precision => 4, :scale => 1
+    t.decimal  "body_fat",   :precision => 4, :scale => 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "weights", ["date"], :name => "index_weights_on_date"
+  add_index "weights", ["user_id"], :name => "index_weights_on_user_id"
 
 end

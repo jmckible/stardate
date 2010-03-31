@@ -76,6 +76,33 @@ describe Grammar do
   end
   
   #####################################################################
+  #                            W E I G H T                            #
+  #####################################################################
+  it 'should parse starting with weight' do
+    weight = Grammar.parse 'weight 150.2 10.5'
+    weight.should be_is_a(Weight)
+    weight.date.should == Time.zone.now.to_date
+    weight.weight.should == 150.2
+    weight.body_fat.should == 10.5
+  end
+  
+  it 'should parse starting with w' do
+    weight = Grammar.parse 'w 150 10.5'
+    weight.should be_is_a(Weight)
+    weight.date.should == Time.zone.now.to_date
+    weight.weight.should == 150
+    weight.body_fat.should == 10.5
+  end
+  
+  it 'should parse starting with weight and date' do
+    weight = Grammar.parse '2/1/09 weight 150.2 10'
+    weight.should be_is_a(Weight)
+    weight.date.should == Date.new(2009, 2, 1)
+    weight.weight.should == 150.2
+    weight.body_fat.should == 10
+  end
+  
+  #####################################################################
   #                              I T E M                              #
   #####################################################################
   it 'should parse just an assumed negative value' do

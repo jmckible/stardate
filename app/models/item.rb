@@ -10,7 +10,7 @@ class Item < ActiveRecord::Base
   has_one :paycheck, :dependent=>:nullify
   
   has_many :images
-  def image() images.first end
+  accepts_nested_attributes_for :images
   
   named_scope :during, lambda { |date| {:conditions=>{:date=>date}} }
   named_scope :on,     lambda { |date| {:conditions=>{:date=>date}} }

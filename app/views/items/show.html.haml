@@ -16,9 +16,17 @@
       %p
         = f.date_select :finish, :order=>[:month, :day, :year]
         End
-
-  - fields_for :image do |i|
-    %p= i.file_field :source
+  
+  .upload_image
+    .show= link_to 'Upload Image', '#'
+    .form.hide
+      - fields_for :image do |i|
+        %p= i.file_field :source
+    
+  - for image in @item.images
+    - unless image.new_record?
+      = link_to 'x', image, :method=>:delete
+      = image_tag image.url 
 
   %p
     = submit_tag 'Update'

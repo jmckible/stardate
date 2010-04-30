@@ -1,14 +1,14 @@
 class GraphsController < ApplicationController
   
-  # GET /graphs/running
-  def running
+  # GET /graphs/health
+  def health
     set_period
     respond_to do |format|
       format.xml do
         if @period.to_a.length > 31
-          render :action=>'running_year.xml.builder'
+          render :action=>'health_year.xml.builder'
         else
-          render :action=>'running_month.xml.builder'
+          render :action=>'health_month.xml.builder'
         end
       end
     end
@@ -27,15 +27,7 @@ class GraphsController < ApplicationController
       end
     end
   end
-  
-  # GET /graphs/weighing
-  def weighing
-    set_period
-    respond_to do |format|
-      format.xml
-    end
-  end
-  
+
   protected
   def set_period
     begin

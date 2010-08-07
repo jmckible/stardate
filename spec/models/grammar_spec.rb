@@ -57,6 +57,25 @@ describe Grammar do
   end
   
   #####################################################################
+  #                              B I K E                              #
+  #####################################################################
+  it 'should parse starting with Bike' do
+    bike = Grammar.parse 'Bike 5 50'
+    bike.should be_is_a(Bike)
+    bike.date.should == Time.zone.now.to_date
+    bike.distance.to_s.should == '5.0'
+    bike.minutes.should == 50
+  end
+  
+  it 'should parse starting with ran and date' do
+    bike = Grammar.parse '2/1/09 bike 4.5 60'
+    bike.should be_is_a(Bike)
+    bike.date.should == Date.new(2009, 2, 1)
+    bike.distance.to_s.should == '4.5'
+    bike.minutes.should == 60
+  end
+  
+  #####################################################################
   #                                R U N                              #
   #####################################################################
   it 'should parse starting with Ran' do

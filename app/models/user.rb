@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   #####################################################################
   #                     R E L A T I O N S H I P S                     #
   #####################################################################
+  has_many :bikes,      :order=>'date',      :dependent=>:destroy
   has_many :items,      :order=>'date',      :dependent=>:destroy
   has_many :jobs,       :order=>'name',      :dependent=>:destroy
   has_many :notes,      :order=>'date desc', :dependent=>:destroy
@@ -67,7 +68,7 @@ class User < ActiveRecord::Base
   alias :value_unpaid_tasks_during :value_unpaid_tasks_on
   
   def things_during(period)
-    (items.during(period) + notes.during(period) + runs.during(period) + tweets.during(period) + weights.during(period)).sort do |x,y|
+    (bikes.during(period) + items.during(period) + notes.during(period) + runs.during(period) + tweets.during(period) + weights.during(period)).sort do |x,y|
       if x.date == y.date
         y.created_at <=> x.created_at
       else

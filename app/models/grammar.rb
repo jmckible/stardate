@@ -17,7 +17,10 @@ class Grammar
       end
       Item.new :date=>date, :explicit_value=>explicit_value, :vendor_name=>vendor, 
                :description=>description, :tag_list=>tag_list
-    
+               
+    elsif string =~ /^(Bike|bike)/
+      distance, minutes = string.split(/^(Bike|bike) /).last.split(' ')
+      Bike.new :date=>date, :distance=>distance, :minutes=>minutes
     elsif string =~ /^(Ran|ran)/
       distance, minutes = string.split(/^(Ran|ran) /).last.split(' ')
       Run.new :date=>date, :distance=>distance, :minutes=>minutes

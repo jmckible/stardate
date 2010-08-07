@@ -29,6 +29,14 @@
                 .preview= "#{h thing.body.first(80)} #{link_to '...', '', :class=>:expand_note}"
                 .hide= simple_format thing.body
         
+        - elsif thing.is_a?(Bike)
+          %tr.run
+            %td.date
+              = link_to '«', thing, :rel=>:facebox
+              = link_to thing.date.to_s(:full), date_link(thing.date)
+            %td.description{:colspan=>3}= "Biked #{thing.distance}mi/#{minutes_to_time thing.minutes}"
+        
+        
         - elsif thing.is_a?(Run)
           %tr.run
             %td.date

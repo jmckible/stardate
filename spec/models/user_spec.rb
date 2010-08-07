@@ -25,6 +25,10 @@ describe User do
   #####################################################################
   #                     R E L A T I O N S H I P S                     #
   #####################################################################
+  it 'should have many bikes' do
+    @user.should have(1).bikes
+  end
+  
   it 'should have many items' do
     @user.should have(1).items
   end
@@ -122,6 +126,10 @@ describe User do
   #####################################################################
   #                       D E S T R U C T I O N                       #
   #####################################################################
+  it 'should delete bikes on destroy' do
+    running { @user.destroy }.should change(Bike, :count).by(-1)
+  end
+  
   it 'should delete items on destroy' do
     running { @user.destroy }.should change(Item, :count).by(-1)
   end

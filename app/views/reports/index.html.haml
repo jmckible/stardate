@@ -35,24 +35,40 @@
 
       
 
-#RunningYear
+#HealthYear
 %script{:type=>'text/javascript'}
-  var running = new FusionCharts("/flash/MSCombiDY2D.swf", "Running", "940", "300", "0", "0");
-  = "running.setDataURL(\"#{running_url(:start=>@start, :finish=>@finish, :format=>'xml')}\");"
-  running.render("RunningYear");
+  var health = new FusionCharts("/flash/MSCombiDY2D.swf", "Health", "940", "300", "0", "0");
+  = "health.setDataURL(\"#{health_url(:start=>@start, :finish=>@finish, :format=>'xml')}\");"
+  health.render("HealthYear");
 
 %table
   %tr
-    %td Distance
+    %td Running Distance
     %td
-      = number_with_delimiter @miles
+      = number_with_delimiter @run
       miles
   %tr
-    %td Time
-    %td= minutes_to_time @minutes
-  - unless @miles == 0
+    %td Running Time
+    %td= minutes_to_time @run_time
+  - unless @run == 0
     %tr
-      %td Average Pace
+      %td Run Pace
       %td
-        = (@minutes / @miles).round 2
+        = (@run_time / @run).round 2
         min/mi
+        
+        
+  %tr
+    %td Biking Distance
+    %td
+      = number_with_delimiter @bike
+      miles
+  %tr
+    %td Biking Time
+    %td= minutes_to_time @bike_time
+  - unless @bike_time == 0
+    %tr
+      %td Bike Pace
+      %td
+        = (@bike/ (@bike_time / 60.0)).round 2
+        mi/hr

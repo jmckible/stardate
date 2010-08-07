@@ -21,8 +21,11 @@ class ReportsController < ApplicationController
     
     @tags = current_user.items.tag_counts :order=>'count desc', :limit=>10
     
-    @miles   = current_user.runs.during(@period).sum 'distance'
-    @minutes = current_user.runs.during(@period).sum 'minutes'
+    @run       = current_user.runs.during(@period).sum 'distance'
+    @run_time  = current_user.runs.during(@period).sum 'minutes'
+    
+    @bike      = current_user.bikes.during(@period).sum 'distance'
+    @bike_time = current_user.bikes.during(@period).sum 'minutes'
   end
   
 end

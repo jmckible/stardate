@@ -1,4 +1,4 @@
-xml.chart :showValues=>'0', :showBorder=>0, :bgColor=>'ffffff',  :plotGradientColor=>'', :showLegend=>0, :SYAxisMinValue=>150 do 
+xml.chart :showValues=>'0', :showBorder=>0, :bgColor=>'ffffff',  :plotGradientColor=>'', :showLegend=>0, :SYAxisMinValue=>140 do 
   
   xml.categories do
     @period.each do |date|
@@ -11,20 +11,14 @@ xml.chart :showValues=>'0', :showBorder=>0, :bgColor=>'ffffff',  :plotGradientCo
     end
   end
   
-  xml.dataset :seriesName=>'Milage' do
+  xml.dataset :seriesName=>'Time' do
     @period.each do |date|
-      distance = current_user.runs.on(date).sum(:distance)
-      time = current_user.runs.on(date).sum(:minutes)
-      if distance == 0
-        intensity = 'FF'
-      else
-        intensity = (((time / distance.to_f) - 8) / 4.0 * 255).round.to_s(16)
-      end
-      xml.set :value=>distance, :color=>"ff#{intensity}00", :toolText=>"#{distance}mi #{time}min"
+      time = current_user.bikes.on(date).sum(:minutes) + current_user.runs.on(date).sum(:minutes)
+      xml.set :value=>time, :toolText=>"#{time}min"
     end
   end
   
-  xml.dataset :seriesName=>'Weight', :parentYAxis=>'S', :color=>'00ccff', :anchorBgColor=>'00ccff' do
+  xml.dataset :seriesName=>'Weight', :parentYAxis=>'S' do
     @period.each do |date|
       weight = current_user.weights.on(date).first
       if weight

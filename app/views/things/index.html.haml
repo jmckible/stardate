@@ -29,7 +29,7 @@
   #HealthMonth
   %script{:type=>'text/javascript'}
     var health = new FusionCharts("/flash/MSCombiDY2D.swf", "Health", "410", "250", "0", "0");
-    = "health.setDataURL(\"#{running_url(:start=>@start, :finish=>@finish, :format=>'xml')}\");"
+    = "health.setDataURL(\"#{health_url(:start=>@start, :finish=>@finish, :format=>'xml')}\");"
     health.render("HealthMonth");
 .clear
 

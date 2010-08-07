@@ -15,7 +15,7 @@ ActionController::Routing::Routes.draw do |map|
   map.date 'date/:year/:month/:day', :controller=>'date', :action=>'show', :requirements=>{:year=>/(19|20)\d\d/, :month=>/[01]?\d/, :day=>/[0-3]?\d/}
   
   map.with_options :controller=>'graphs' do |g|
-    g.running  'graphs/health/:start/:finish.:format',   :action=>'health'
+    g.health   'graphs/health/:start/:finish.:format',   :action=>'health'
     g.spending 'graphs/spending/:start/:finish.:format', :action=>'spending'
   end
 

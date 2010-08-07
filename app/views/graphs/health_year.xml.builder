@@ -1,4 +1,4 @@
-xml.chart :showValues=>'0', :showBorder=>0, :bgColor=>'ffffff',  :plotGradientColor=>'', :showLegend=>0 do 
+xml.chart :showValues=>'0', :showBorder=>0, :bgColor=>'ffffff',  :plotGradientColor=>'', :showLegend=>0, :SYAxisMinValue=>140 do 
   
   xml.categories do
     @period.step(7) do |date|
@@ -10,22 +10,26 @@ xml.chart :showValues=>'0', :showBorder=>0, :bgColor=>'ffffff',  :plotGradientCo
     end
   end
   
-  xml.dataset :seriesName=>'Milage' do
+  xml.dataset :seriesName=>'Time' do
     @period.step(7) do |date|
-      xml.set :value=>current_user.runs.on(date..(date+6)).sum(:distance), :color=>'99dd99'
+      runs  = current_user.runs.during(date..(date+6))
+      bikes = current_user.bikes.during(date..(date+6))
+      total = runs.sum(:minutes) + bikes.sum(:minutes)
+      xml.set :value=>total, :toolText=>minutes_to_time(total)
     end
   end
   
-  xml.dataset :seriesName=>'Time', :parentYAxis=>'S', :color=>'DD3333', :anchorBgColor=>'DD3333' do
+  xml.dataset :seriesName=>'Weight', :parentYAxis=>'S' do
     @period.step(7) do |date|
-      value = current_user.runs.on(date..(date+6)).sum(:minutes)
-      if value == 0
+      weights = current_user.weights.during(date..(date+6))
+      if weights.empty?
         xml.set
       else
-        distance = current_user.runs.on(date..(date+6)).sum(:distance)
-        xml.set :value=>(value / distance.to_f)
+        weight   = weights.sum(:weight) / weights.size.to_f
+        body_fat = weights.sum(:body_fat) / weights.size.to_f
+        xml.set :value=>weight, :toolText=>"#{weight}lbs @ #{body_fat}% BF"
       end
     end
   end
-  
+
 end

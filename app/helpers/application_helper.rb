@@ -36,7 +36,7 @@ module ApplicationHelper
     if minutes < 60
       "#{minutes} min"
     else
-      "#{minutes.div 60}:#{minutes.modulo 60} hr"
+      "#{minutes.div 60}hr #{minutes.modulo 60}min"
     end
   end
   

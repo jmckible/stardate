@@ -41,9 +41,6 @@ class GraphsController < ApplicationController
       @finish = Time.now.to_date
     end
     @period = @start..@finish
-    logger.info "start: #{@start}"
-    logger.info "finish: #{@finish}"
-    logger.info "period: #{@period.first}-#{@period.last}"
   end
 
 end

@@ -31,9 +31,7 @@
       %td Savings Rate
       %td= "#{(@net / @income.to_f * 100).round(1)}%"
 
-= render :partial=>'tags/tags', :object=>@tags
-
-      
+= render :partial=>'tags/tags', :object=>@tags      
 
 #HealthYear
 %script{:type=>'text/javascript'}

@@ -9,8 +9,12 @@ class Item < ActiveRecord::Base
   
   has_one    :paycheck,  :dependent=>:nullify
   
-  named_scope :during, lambda { |period| 
-    {:conditions=>["(start between ? and ?) or (finish between ? and ?) or (start <= ? and finish >= ?)", period.first, period.last, period.first, period.last, period.first, period.last]}
+  named_scope :during, lambda { |period|
+    if period.nil?
+      {}
+    else
+      {:conditions=>["(start between ? and ?) or (finish between ? and ?) or (start <= ? and finish >= ?)", period.first, period.last, period.first, period.last, period.first, period.last]}
+    end
   }
   named_scope :on,     lambda { |date| {:conditions=>{:date=>date}} }
   named_scope :from_vendor, lambda { |vendor| vendor.nil? ? {} : {:conditions=>{:vendor_id=>vendor.id}}}

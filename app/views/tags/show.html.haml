@@ -9,6 +9,12 @@
 
 %h1= h @tag.name
 
+#TagGraph
+%script{:type=>'text/javascript'}
+  var tag = new FusionCharts("/flash/Column2D.swf", "Tag", "940", "300", "0", "0");
+  = "tag.setDataURL(\"#{tag_url(@tag, :format=>'xml')}\");"
+  tag.render("TagGraph");
+
 %table
   %tbody
     = render :partial=>'items/item', :collection=>@items

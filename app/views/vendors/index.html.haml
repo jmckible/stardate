@@ -9,8 +9,8 @@
       %th ASP
   %tbody
     - for vendor in @vendors
-      - count = vendor.items.count_from(current_user)
-      - sum = vendor.items.sum_from(current_user)
+      - count = current_user.items.from_vendor(vendor).count
+      - sum = current_user.items.from_vendor(vendor).sum(:value)
       %tr
         %td.vendor= link_to h(vendor.name), vendor
         %td.count= number_with_delimiter count

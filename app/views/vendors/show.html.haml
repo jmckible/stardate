@@ -1,14 +1,20 @@
 - content_for :sidebar do 
   %dl
-    %dt= number_with_delimiter @vendor.items.count_from(current_user)
+    %dt= number_with_delimiter current_user.items.from_vendor(@vendor).count
     %dd #
     
-    %dt= color_money @vendor.items.sum_from(current_user)
+    %dt= color_money current_user.items.from_vendor(@vendor).sum(:value)
     %dd $
     
 
 %h1= h @vendor.name
   
+  
+#VendorGraph
+%script{:type=>'text/javascript'}
+  var vendor = new FusionCharts("/flash/Column2D.swf", "Vendor", "940", "300", "0", "0");
+  = "vendor.setDataURL(\"#{vendor_url(@vendor, :format=>'xml')}\");"
+  vendor.render("VendorGraph");
 
 %table
   %tbody

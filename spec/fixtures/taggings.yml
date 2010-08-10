@@ -1,3 +1,7 @@
 default:
   taggable: default (Item)
   tag: default
+  
+default_today:
+  taggable: today (Item)
+  tag: default

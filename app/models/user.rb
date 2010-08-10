@@ -62,12 +62,22 @@ class User < ActiveRecord::Base
     sum_directional period, '<'
   end
   
+  def sum_value(items, period)
+    sum = 0
+    items.each do |item|
+      sum = sum + (days_overlap(item, period) * item.per_diem)
+    end
+    sum
+  end
+  
   def value_unpaid_tasks_on(date)
     tasks.unpaid.on(date).collect{|t| t.job.rate * t.minutes / 60.0 }.sum.round
   end
   alias :value_unpaid_tasks_during :value_unpaid_tasks_on
   
   def things_during(period)
+    period = period..period unless period.is_a?(Range)
+    
     (bikes.during(period) + items.during(period) + notes.during(period) + runs.during(period) + tweets.during(period) + weights.during(period)).sort do |x,y|
       if x.date == y.date
         y.created_at <=> x.created_at

@@ -10,7 +10,7 @@ class VendorsController < ApplicationController
     @vendor = Vendor.find_by_permalink params[:id]
     
     respond_to do |format|
-      format.html { @items  = current_user.items.from_vendor(@vendor).paginate :page=>params[:page]}
+      format.html { @items  = current_user.items.from_vendor(@vendor).paginate :order=>'date desc', :page=>params[:page]}
       format.xml  { @period = Date.new(2007,1,1)..Time.now.to_date }
     end
   end

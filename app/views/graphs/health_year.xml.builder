@@ -14,7 +14,8 @@ xml.chart :showValues=>'0', :showBorder=>0, :bgColor=>'ffffff',  :plotGradientCo
     @period.step(7) do |date|
       runs  = current_user.runs.during(date..(date+6))
       bikes = current_user.bikes.during(date..(date+6))
-      total = runs.sum(:minutes) + bikes.sum(:minutes)
+      ellipticals = current_user.ellipticals.during(date..(date+6))
+      total = runs.sum(:minutes) + bikes.sum(:minutes) + ellipticals.sum(:minutes)
       xml.set :value=>total, :toolText=>minutes_to_time(total)
     end
   end

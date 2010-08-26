@@ -1,0 +1,10 @@
+%h1 Edit Elliptical
+
+- form_for @elliptical do |f|
+  %p= f.date_select :date, :order=>[:month, :day, :year]
+  %p= f.text_field  :distance, :default=>'distance'
+  %p= f.text_field  :minutes,  :default=>'minutes'
+  %p
+    = submit_tag 'Update'
+    or
+    %span.delete= link_to 'delete', @elliptical, :method=>:delete

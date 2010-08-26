@@ -1,0 +1,5 @@
+default:
+  user: default
+  distance: 3
+  minutes: 30
+  date: 2008-01-01

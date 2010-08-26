@@ -26,6 +26,9 @@ class ReportsController < ApplicationController
     
     @bike      = current_user.bikes.during(@period).sum 'distance'
     @bike_time = current_user.bikes.during(@period).sum 'minutes'
+    
+    @elliptical      = current_user.ellipticals.during(@period).sum 'distance'
+    @elliptical_time = current_user.ellipticals.during(@period).sum 'minutes'
   end
   
 end

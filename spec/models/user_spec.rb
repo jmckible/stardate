@@ -29,6 +29,10 @@ describe User do
     @user.should have(1).bikes
   end
   
+  it 'should have many ellipticals' do
+    @user.should have(1).ellipticals
+  end
+  
   it 'should have many items' do
     @user.should have(1).items
   end
@@ -128,6 +132,10 @@ describe User do
   #####################################################################
   it 'should delete bikes on destroy' do
     running { @user.destroy }.should change(Bike, :count).by(-1)
+  end
+  
+  it 'should delete ellipticals on destroy' do
+    running { @user.destroy }.should change(Elliptical, :count).by(-1)
   end
   
   it 'should delete items on destroy' do

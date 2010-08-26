@@ -18,11 +18,14 @@ class Grammar
       Item.new :date=>date, :explicit_value=>explicit_value, :vendor_name=>vendor, 
                :description=>description, :tag_list=>tag_list
                
-    elsif string =~ /^(Bike|bike)/
-      distance, minutes = string.split(/^(Bike|bike) /).last.split(' ')
+    elsif string =~ /^(Bike|bike|b )/
+      distance, minutes = string.split(/^(Bike|bike|b) /).last.split(' ')
       Bike.new :date=>date, :distance=>distance, :minutes=>minutes
-    elsif string =~ /^(Ran|ran)/
-      distance, minutes = string.split(/^(Ran|ran) /).last.split(' ')
+    elsif string =~ /^(Elliptical|elliptical|e )/
+      distance, minutes = string.split(/^(Elliptical|elliptical|e) /).last.split(' ')
+      Elliptical.new :date=>date, :distance=>distance, :minutes=>minutes
+    elsif string =~ /^(Ran|ran|r )/
+      distance, minutes = string.split(/^(Ran|ran|r) /).last.split(' ')
       Run.new :date=>date, :distance=>distance, :minutes=>minutes
     elsif string =~ /^(weight|w )/
       weight, body_fat = string.split(/^(weight |w )/).last.split(' ')

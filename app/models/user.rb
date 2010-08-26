@@ -18,16 +18,17 @@ class User < ActiveRecord::Base
   #####################################################################
   #                     R E L A T I O N S H I P S                     #
   #####################################################################
-  has_many :bikes,      :order=>'date',      :dependent=>:destroy
-  has_many :items,      :order=>'date',      :dependent=>:destroy
-  has_many :jobs,       :order=>'name',      :dependent=>:destroy
-  has_many :notes,      :order=>'date desc', :dependent=>:destroy
-  has_many :recurrings, :order=>'day',       :dependent=>:destroy
-  has_many :runs,       :order=>'date',      :dependent=>:destroy
-  has_many :tasks,      :through=>:jobs 
-  has_many :tweets,     :order=>'created_at desc', :dependent=>:destroy
-  has_many :vendors,    :through=>:items, :uniq=>true, :order=>'name'
-  has_many :weights,    :order=>'date',      :dependent=>:destroy
+  has_many :bikes,       :order=>'date',      :dependent=>:destroy
+  has_many :ellipticals, :order=>'date',      :dependent=>:destroy
+  has_many :items,       :order=>'date',      :dependent=>:destroy
+  has_many :jobs,        :order=>'name',      :dependent=>:destroy
+  has_many :notes,       :order=>'date desc', :dependent=>:destroy
+  has_many :recurrings,  :order=>'day',       :dependent=>:destroy
+  has_many :runs,        :order=>'date',      :dependent=>:destroy
+  has_many :tasks,       :through=>:jobs 
+  has_many :tweets,      :order=>'created_at desc', :dependent=>:destroy
+  has_many :vendors,     :through=>:items, :uniq=>true, :order=>'name'
+  has_many :weights,     :order=>'date',      :dependent=>:destroy
   
   #####################################################################
   #                             S C O P E                             #
@@ -78,7 +79,8 @@ class User < ActiveRecord::Base
   def things_during(period)
     period = period..period unless period.is_a?(Range)
     
-    (bikes.during(period) + items.during(period) + notes.during(period) + runs.during(period) + tweets.during(period) + weights.during(period)).sort do |x,y|
+    (bikes.during(period) + items.during(period) + notes.during(period) + runs.during(period) + 
+     ellipticals.during(period) + tweets.during(period) + weights.during(period)).sort do |x,y|
       if x.date == y.date
         y.created_at <=> x.created_at
       else

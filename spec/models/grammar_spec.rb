@@ -67,6 +67,14 @@ describe Grammar do
     bike.minutes.should == 50
   end
   
+  it 'should parse starting with b' do
+    bike = Grammar.parse 'b 5 50'
+    bike.should be_is_a(Bike)
+    bike.date.should == Time.zone.now.to_date
+    bike.distance.to_s.should == '5.0'
+    bike.minutes.should == 50
+  end
+  
   it 'should parse starting with ran and date' do
     bike = Grammar.parse '2/1/09 bike 4.5 60'
     bike.should be_is_a(Bike)
@@ -76,10 +84,45 @@ describe Grammar do
   end
   
   #####################################################################
+  #                        E L L I P T I C A L                        #
+  #####################################################################
+  it 'should parse starting with Elliptical' do
+    elliptical = Grammar.parse 'Elliptical 2 20'
+    elliptical.should be_is_a(Elliptical)
+    elliptical.date.should == Time.zone.now.to_date
+    elliptical.distance.to_s.should == '2.0'
+    elliptical.minutes.should == 20
+  end
+  
+  it 'should parse starting with e' do
+    elliptical = Grammar.parse 'e 1 10'
+    elliptical.should be_is_a(Elliptical)
+    elliptical.date.should == Time.zone.now.to_date
+    elliptical.distance.to_s.should == '1.0'
+    elliptical.minutes.should == 10
+  end
+  
+  it 'should parse starting with ran and date' do
+    elliptical = Grammar.parse '2/1/09 elliptical 4.5 60'
+    elliptical.should be_is_a(Elliptical)
+    elliptical.date.should == Date.new(2009, 2, 1)
+    elliptical.distance.to_s.should == '4.5'
+    elliptical.minutes.should == 60
+  end
+  
+  #####################################################################
   #                                R U N                              #
   #####################################################################
   it 'should parse starting with Ran' do
     run = Grammar.parse 'Ran 4 40'
+    run.should be_is_a(Run)
+    run.date.should == Time.zone.now.to_date
+    run.distance.to_s.should == '4.0'
+    run.minutes.should == 40
+  end
+  
+  it 'should parse starting with r' do
+    run = Grammar.parse 'r 4 40'
     run.should be_is_a(Run)
     run.date.should == Time.zone.now.to_date
     run.distance.to_s.should == '4.0'

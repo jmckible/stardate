@@ -2,23 +2,15 @@
   $(document).ready(function(){
     healthMonth = new Highcharts.Chart({
       chart: {
-        renderTo: 'HealthMonth'
+        renderTo: 'HealthMonth',
+        width: 400,
+        height: 300
       },
       title:  { text: false },
       legend: { enabled: false },
-      yAxis: [{ // Primary yAxis
-        labels: {
-          formatter: function() {
-            return this.value +'min';
-          }
-        },
+      yAxis: [{ // Excercise
        title: false
-      }, { // Secondary yAxis
-        labels: {
-          formatter: function() {
-            return this.value +'lbs';
-          }
-        },
+      }, { // Weight
        title: false,
        opposite: true
     }],

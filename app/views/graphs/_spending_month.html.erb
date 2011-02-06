@@ -18,8 +18,14 @@
         }
       },
       xAxis: {
-        categories: <%= @month.collect{|day|day.day}.to_json %>,
-        labels: { step: 2 }
+        type: 'datetime',
+        tickInterval: 24 * 3600 * 1000, 
+        labels: {
+          step: 7,
+          formatter: function(){
+            return(Highcharts.dateFormat('%b %e',this.value));
+          }
+        }
       },
       plotOptions: {
         area: {
@@ -35,15 +41,19 @@
       },
       tooltip: {
         formatter: function(){
-          return(this.x + ': $' + Highcharts.numberFormat(this.y, 0));
+          return(Highcharts.dateFormat('%B %e, %Y',this.x) + ': <b>$' + Highcharts.numberFormat(this.y, 0)+'</b>');
         }
       },
       series: [{
         name: 'Income',
-        data: <%= @month.collect{|date| current_user.sum_income @month.first..date}.to_json %>
+        data: <%= @month.collect{|date| current_user.sum_income @month.first..date}.to_json %>,
+        pointInterval: 24 * 3600 * 1000,
+        pointStart: Date.UTC(<%= @month.first.year %>, <%= @month.first.month %>, <%= @month.first.day %>)
       }, {
         name: 'Expense',
-        data: <%= @month.collect{|date| current_user.sum_expenses(@month.first..date) * -1}.to_json %>
+        data: <%= @month.collect{|date| current_user.sum_expenses(@month.first..date) * -1}.to_json %>,
+        pointInterval: 24 * 3600 * 1000,
+        pointStart: Date.UTC(<%= @month.first.year %>, <%= @month.first.month %>, <%= @month.first.day %>)
       }]
     });
   });

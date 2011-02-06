@@ -18,19 +18,7 @@
 - form_tag things_path do 
   = text_field_tag 'thing', '', :class=>'long'
   = link_to '...', new_thing_path, :class=>:long_entry, :rel=>:facebox
-  
 
-#Graphs
-  #SpendingMonth
-  %script{:type=>'text/javascript'}
-    var spending = new FusionCharts("/flash/MSArea.swf", "Spending", "410", "250", "0", "0");
-    = "spending.setDataURL(\"#{spending_url(:start=>@start, :finish=>@finish, :format=>'xml')}\");"
-    spending.render("SpendingMonth");
-  #HealthMonth
-  %script{:type=>'text/javascript'}
-    var health = new FusionCharts("/flash/MSCombiDY2D.swf", "Health", "410", "250", "0", "0");
-    = "health.setDataURL(\"#{health_url(:start=>@start, :finish=>@finish, :format=>'xml')}\");"
-    health.render("HealthMonth");
-.clear
+#SpendingMonth= render :partial=>'graphs/spending_month'
 
 = render :partial=>'things', :object=>@things

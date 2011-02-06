@@ -1,0 +1,50 @@
+<script type='text/javascript'>
+  $(document).ready(function(){
+    spendingMonth = new Highcharts.Chart({
+      chart: {
+        renderTo: 'SpendingMonth',
+        defaultSeriesType: 'area',
+        width: 430,
+        height: 300
+      },
+      title:  { text: false },
+      legend: { enabled: false },
+      yAxis: {
+        title: false,
+        labels: {
+          formatter: function(){
+            return('$' + this.value / 1000 + 'k');
+          }
+        }
+      },
+      xAxis: {
+        categories: <%= @month.collect{|day|day.day}.to_json %>,
+        labels: { step: 2 }
+      },
+      plotOptions: {
+        area: {
+          marker: {
+            enabled: false,
+            states: {
+              hover: {
+                enabled: true
+              }
+            }
+          }
+        }
+      },
+      tooltip: {
+        formatter: function(){
+          return(this.x + ': $' + Highcharts.numberFormat(this.y, 0));
+        }
+      },
+      series: [{
+        name: 'Income',
+        data: <%= @month.collect{|date| current_user.sum_income @month.first..date}.to_json %>
+      }, {
+        name: 'Expense',
+        data: <%= @month.collect{|date| current_user.sum_expenses(@month.first..date) * -1}.to_json %>
+      }]
+    });
+  });
+</script>

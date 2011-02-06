@@ -3,8 +3,7 @@ class ThingsController < ApplicationController
   # GET /
   def index
     @things = current_user.things_during((Time.now.to_date - 4)..Time.now.to_date)
-    @start  = Time.now.to_date - 30
-    @finish = Time.now.to_date
+    @month  = (Date.today - 30)..Date.today
   end
   
   # GET /things/new

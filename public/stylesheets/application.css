@@ -108,6 +108,10 @@ textarea {
   font-size: 0.9em;
 }
 
+#Graphs #SpendingMonth {
+  float: left;
+}
+
 
 /****************************/
 /*        T A B L E         */

@@ -1,0 +1,52 @@
+<script type='text/javascript'>
+  $(document).ready(function(){
+    healthMonth = new Highcharts.Chart({
+      chart: {
+        renderTo: 'HealthMonth'
+      },
+      title:  { text: false },
+      legend: { enabled: false },
+      yAxis: [{ // Primary yAxis
+        labels: {
+          formatter: function() {
+            return this.value +'min';
+          }
+        },
+       title: false
+      }, { // Secondary yAxis
+        labels: {
+          formatter: function() {
+            return this.value +'lbs';
+          }
+        },
+       title: false,
+       opposite: true
+    }],
+      xAxis: {
+        type: 'datetime',
+        tickInterval: 24 * 3600 * 1000, 
+        labels: {
+          step: 7,
+          formatter: function(){
+            return(Highcharts.dateFormat('%b %e',this.value));
+          }
+        }
+      },
+      series: [{
+        type: 'column',
+        name: 'Exercise',
+        data: <%= @month.collect{|date| current_user.bikes.on(date).sum(:minutes) + current_user.runs.on(date).sum(:minutes) + current_user.ellipticals.on(date).sum(:minutes)}.to_json %>,
+        pointInterval: 24 * 3600 * 1000,
+        pointStart: Date.UTC(<%= @month.first.year %>, <%= @month.first.month %>, <%= @month.first.day %>),
+        yAxis: 0
+      }, {
+        type: 'spline',
+        name: 'Weight',
+        data: <%= @month.collect{|date| current_user.weights.on(date).first.try(:weight)}.to_json %>,
+        pointInterval: 24 * 3600 * 1000,
+        pointStart: Date.UTC(<%= @month.first.year %>, <%= @month.first.month %>, <%= @month.first.day %>),
+        yAxis: 1
+      }]
+    });
+  });
+</script>

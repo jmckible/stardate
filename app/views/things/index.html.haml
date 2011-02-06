@@ -19,6 +19,9 @@
   = text_field_tag 'thing', '', :class=>'long'
   = link_to '...', new_thing_path, :class=>:long_entry, :rel=>:facebox
 
-#SpendingMonth= render :partial=>'graphs/spending_month'
+#Graphs
+  #SpendingMonth= render :partial=>'graphs/spending_month'
+  #HealthMonth= render :partial=>'graphs/health_month'
+.clear
 
 = render :partial=>'things', :object=>@things

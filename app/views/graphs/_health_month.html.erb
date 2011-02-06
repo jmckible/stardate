@@ -8,12 +8,15 @@
       },
       title:  { text: false },
       legend: { enabled: false },
-      yAxis: [{ // Excercise
-       title: false
-      }, { // Weight
-       title: false,
-       opposite: true
-    }],
+      yAxis:[
+        { // Excercise
+          title: false
+        }, 
+        { // Weight
+          title: false,
+          opposite: true
+        }
+      ],
       xAxis: {
         type: 'datetime',
         tickInterval: 24 * 3600 * 1000, 
@@ -30,7 +33,10 @@
         data: <%= @month.collect{|date| current_user.bikes.on(date).sum(:minutes) + current_user.runs.on(date).sum(:minutes) + current_user.ellipticals.on(date).sum(:minutes)}.to_json %>,
         pointInterval: 24 * 3600 * 1000,
         pointStart: Date.UTC(<%= @month.first.year %>, <%= @month.first.month %>, <%= @month.first.day %>),
-        yAxis: 0
+        yAxis: 0,
+        pointWidth: 10,
+        pointPadding: 0,
+        shadow: false
       }, {
         type: 'spline',
         name: 'Weight',

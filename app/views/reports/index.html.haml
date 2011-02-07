@@ -33,11 +33,7 @@
 
 = render :partial=>'tags/tags', :object=>@tags      
 
-#HealthYear
-%script{:type=>'text/javascript'}
-  var health = new FusionCharts("/flash/MSCombiDY2D.swf", "Health", "940", "300", "0", "0");
-  = "health.setDataURL(\"#{health_url(:start=>@start, :finish=>@finish, :format=>'xml')}\");"
-  health.render("HealthYear");
+#HealthYear= render :partial=>'graphs/health_year'
 
 %table
   %tr

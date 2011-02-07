@@ -89,6 +89,21 @@ class User < ActiveRecord::Base
     end
   end
   
+  def weight_json(period)
+    array = []
+    period.step(7) do |date|
+      weight_ins = weights.during(date..(date+6))
+      if weight_ins.empty?
+        array << nil
+      else
+        weight   = weight_ins.sum(:weight) / weight_ins.size.to_f
+        body_fat = weight_ins.sum(:body_fat) / weight_ins.size.to_f        
+        array << {:y=>weight, :radius=>((body_fat - 10) / 28.0 * 20).round }
+      end
+    end    
+    array.to_json
+  end
+  
   def import_tweet(tweet_hash)
     tweet = tweets.find_by_tweet_id tweet_hash['id']
     return tweet if tweet 

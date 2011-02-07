@@ -5,7 +5,7 @@
         renderTo: 'SpendingMonth',
         defaultSeriesType: 'area',
         width: 400,
-        height: 300
+        height: 280
       },
       title:  { text: false },
       legend: { enabled: false },
@@ -48,12 +48,14 @@
         name: 'Income',
         data: <%= @month.collect{|date| current_user.sum_income @month.first..date}.to_json %>,
         pointInterval: 24 * 3600 * 1000,
-        pointStart: Date.UTC(<%= @month.first.year %>, <%= @month.first.month %>, <%= @month.first.day %>)
+        pointStart: Date.UTC(<%= @month.first.year %>, <%= @month.first.month %>, <%= @month.first.day %>),
+        color: '#00CCFF'
       }, {
         name: 'Expense',
         data: <%= @month.collect{|date| current_user.sum_expenses(@month.first..date) * -1}.to_json %>,
         pointInterval: 24 * 3600 * 1000,
-        pointStart: Date.UTC(<%= @month.first.year %>, <%= @month.first.month %>, <%= @month.first.day %>)
+        pointStart: Date.UTC(<%= @month.first.year %>, <%= @month.first.month %>, <%= @month.first.day %>),
+        color: '#FF00CC'
       }]
     });
   });

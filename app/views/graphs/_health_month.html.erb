@@ -4,7 +4,7 @@
       chart: {
         renderTo: 'HealthMonth',
         width: 400,
-        height: 300
+        height: 280
       },
       title:  { text: false },
       legend: { enabled: false },
@@ -36,14 +36,16 @@
         yAxis: 0,
         pointWidth: 10,
         pointPadding: 0,
-        shadow: false
+        shadow: false,
+        color: '#00CCFF'
       }, {
         type: 'spline',
         name: 'Weight',
         data: <%= @month.collect{|date| current_user.weights.on(date).first.try(:weight)}.to_json %>,
         pointInterval: 24 * 3600 * 1000,
         pointStart: Date.UTC(<%= @month.first.year %>, <%= @month.first.month %>, <%= @month.first.day %>),
-        yAxis: 1
+        yAxis: 1,
+        color: '#FF00CC'
       }]
     });
   });

@@ -10,11 +10,7 @@
   = select_year  @finish, :prefix=>'finish', :start_year=>2007, :end_year=>Date.today.year
   = submit_tag 'Go'
 
-#SpendingYear
-%script{:type=>'text/javascript'}
-  var spending = new FusionCharts("/flash/MSArea.swf", "Spending", "940", "300", "0", "0");
-  = "spending.setDataURL(\"#{spending_url(:start=>@start, :finish=>@finish, :format=>'xml')}\");"
-  spending.render("SpendingYear");
+#SpendingYear= render :partial=>'graphs/spending_year'
   
 %table
   %tr

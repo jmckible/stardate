@@ -19,7 +19,7 @@
         type: 'datetime',
         tickInterval: 7 * 24 * 3600 * 1000, 
         labels: {
-          step: 7,
+          step: 4,
           formatter: function(){
             return(Highcharts.dateFormat('%b %e',this.value));
           }
@@ -34,7 +34,6 @@
         yAxis: 0,
         pointWidth: 10,
         pointPadding: 0,
-        //shadow: false,
         color: '#00CCFF'
       }, {
         type: 'spline',

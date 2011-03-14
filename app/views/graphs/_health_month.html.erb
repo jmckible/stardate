@@ -19,7 +19,7 @@
       ],
       xAxis: {
         type: 'datetime',
-        tickInterval: 24 * 3600 * 1000, 
+        tickInterval: 24 * 3600000,
         labels: {
           step: 7,
           formatter: function(){
@@ -31,8 +31,8 @@
         type: 'column',
         name: 'Exercise',
         data: <%= @month.collect{|date| current_user.bikes.on(date).sum(:minutes) + current_user.runs.on(date).sum(:minutes) + current_user.ellipticals.on(date).sum(:minutes)}.to_json %>,
-        pointInterval: 24 * 3600 * 1000,
-        pointStart: Date.UTC(<%= @month.first.year %>, <%= @month.first.month %>, <%= @month.first.day %>),
+        pointInterval: 24 * 3600000,
+        pointStart: Date.UTC(<%= (@month.first - 1.month).year %>, <%= (@month.first - 1.month).month %>, <%= (@month.first - 1.month).day %>),
         yAxis: 0,
         pointWidth: 10,
         pointPadding: 0,
@@ -42,8 +42,8 @@
         type: 'spline',
         name: 'Weight',
         data: <%= @month.collect{|date| {:y=>current_user.weights.on(date).first.try(:weight), :radius=>(((current_user.weights.on(date).first.try(:body_fat) || 10) - 10) / 24.0 * 20).round}}.to_json %>,
-        pointInterval: 24 * 3600 * 1000,
-        pointStart: Date.UTC(<%= @month.first.year %>, <%= @month.first.month %>, <%= @month.first.day %>),
+        pointInterval: 24 * 3600000,
+        pointStart: Date.UTC(<%= (@month.first - 1.month).year %>, <%= (@month.first - 1.month).month %>, <%= (@month.first - 1.month).day %>),
         yAxis: 1,
         color: '#FF00CC'
       }]

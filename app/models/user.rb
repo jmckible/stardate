@@ -89,6 +89,24 @@ class User < ActiveRecord::Base
     end
   end
   
+  def import_tweet(tweet_hash)
+    tweet = tweets.find_by_tweet_id tweet_hash['id']
+    return tweet if tweet 
+    tweet            = Tweet.new
+    tweet.user       = self
+    tweet.tweet_id   = tweet_hash['id']
+    tweet.text       = tweet_hash['text']
+    tweet.created_at = Time.parse tweet_hash['created_at']
+    tweet.save
+    
+    update_attribute :twitter_profile_image_url, tweet_hash['user']['profile_image_url']
+    
+    tweet
+  end
+  
+  #####################################################################
+  #                       C H A R T   J S O N                         #
+  #####################################################################
   def weight_json(period)
     array = []
     period.step(7) do |date|
@@ -104,19 +122,15 @@ class User < ActiveRecord::Base
     array.to_json
   end
   
-  def import_tweet(tweet_hash)
-    tweet = tweets.find_by_tweet_id tweet_hash['id']
-    return tweet if tweet 
-    tweet            = Tweet.new
-    tweet.user       = self
-    tweet.tweet_id   = tweet_hash['id']
-    tweet.text       = tweet_hash['text']
-    tweet.created_at = Time.parse tweet_hash['created_at']
-    tweet.save
-    
-    update_attribute :twitter_profile_image_url, tweet_hash['user']['profile_image_url']
-    
-    tweet
+  def tag_json(tag)
+    array = []
+    period.step(7) do |date|
+      all_items = items.during(date..(date+6)).find_tagged_with(tag)
+      sum = sum_value all_items, period
+      sum = sum * -1 if sum < 0
+      array << sum
+    end
+    array.to_json
   end
   
   #####################################################################

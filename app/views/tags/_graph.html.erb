@@ -1,0 +1,32 @@
+<script type='text/javascript'>
+  $(document).ready(function(){
+    healthMonth = new Highcharts.Chart({
+      chart: {
+        renderTo: 'TagGraph'
+      },
+      title:  { text: false },
+      legend: { enabled: false },
+      yAxis: {
+        title: false
+      },
+      xAxis: {
+        type: 'datetime',
+        tickInterval: 30 * 24 * 3600 * 1000, 
+        labels: {
+          step: 1,
+          formatter: function(){
+            return(Highcharts.dateFormat('%B',this.value));
+          }
+        }
+      },
+      series: [{
+        type: 'column',
+        name: 'Spending',
+        data: <%= current_user.tag_json @tag %>,
+        pointInterval: 30 * 24 * 3600 * 1000,
+        pointStart: Date.UTC(2007, 1, 1),
+        color: '#00CCFF'
+      }]
+    });
+  });
+</script>

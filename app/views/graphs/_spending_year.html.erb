@@ -46,13 +46,13 @@
         name: 'Income',
         data: <%= @period.step(7).collect{|date| current_user.sum_income @period.first..date}.to_json %>,
         pointInterval: 7 * 24 * 3600 * 1000,
-        pointStart: Date.UTC(<%= @period.first.year %>, <%= @period.first.month %>, <%= @period.first.day %>),
+        pointStart: Date.UTC(<%= (@period.first - 1.month).year %>, <%= (@period.first - 1.month).month %>, <%= (@period.first - 1.month).day %>),
         color: '#00CCFF'
       }, {
         name: 'Expense',
         data: <%= @period.step(7).collect{|date| current_user.sum_expenses(@period.first..date) * -1}.to_json %>,
         pointInterval: 7 * 24 * 3600 * 1000,
-        pointStart: Date.UTC(<%= @period.first.year %>, <%= @period.first.month %>, <%= @period.first.day %>),
+        pointStart: Date.UTC(<%= (@period.first - 1.month).year %>, <%= (@period.first - 1.month).month %>, <%= (@period.first - 1.month).day %>),
         color: '#FF00CC'
       }]
     });

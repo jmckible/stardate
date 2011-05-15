@@ -122,7 +122,7 @@ class User < ActiveRecord::Base
     array.to_json
   end
   
-  def tag_json(tag)
+  def tag_json(period, tag)
     array = []
     period.step(7) do |date|
       all_items = items.during(date..(date+6)).find_tagged_with(tag)

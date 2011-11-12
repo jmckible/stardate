@@ -3,3 +3,8 @@ default:
   description: Got paid
   value: 300
   item: default
+  
+unpaid:
+  job: default
+  description: Awaiting
+  value: 200

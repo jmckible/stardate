@@ -11,7 +11,7 @@ describe Job do
   end
 
   it 'should have many paychecks' do
-    @job.should have(1).paychecks
+    @job.should have(2).paychecks
   end
 
   it 'should have many tasks' do
@@ -44,7 +44,7 @@ describe Job do
   #                       D E S T R U C T I O N                       #
   #####################################################################
   it 'should destroy paychecks' do
-    running { @job.destroy }.should change(Paycheck, :count).by(-1)
+    running { @job.destroy }.should change(Paycheck, :count).by(-2)
   end
 
   it 'should destroy tasks' do

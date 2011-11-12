@@ -61,11 +61,11 @@ describe Item do
     Item.from_vendor(nil).size.should == Item.count
   end
   
-  it 'should find by tag' do
-    Item.find_tagged_with('default').size.should == 2
-    Item.find_tagged_with(tags(:default)).size.should == 2
-    Item.from_vendor(vendors(:default)).find_tagged_with(tags(:default)).size.should == 1
-  end
+  # it 'should find by tag' do
+  #   Item.find_tagged_with('default').size.should == 2
+  #   Item.find_tagged_with(tags(:default)).size.should == 2
+  #   Item.from_vendor(vendors(:default)).find_tagged_with(tags(:default)).size.should == 1
+  # end
   
   #####################################################################
   #                        L I F E    C Y C L E                       #

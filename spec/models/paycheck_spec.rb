@@ -2,10 +2,7 @@ require 'spec_helper'
 
 describe Paycheck do
   before do
-    @paycheck    = paychecks(:default)
-    @unpaid      = @paycheck.clone
-    @unpaid.item = nil
-    @unpaid.save
+    @paycheck = paychecks(:default)
   end
   
   #####################################################################
@@ -34,29 +31,30 @@ describe Paycheck do
   #                    O B J E C T    M E T H O D S                   #
   #####################################################################
   it 'should have a paid? attribute based on item' do
-    @unpaid.should_not be_paid
+    Paycheck.new.should_not be_paid
     @paycheck.should be_paid
   end
 
   it 'should set paid attribute with boolean' do
-    paycheck = Paycheck.new :paid=>false
+    paycheck = Paycheck.new paid: false
     paycheck.should_not be_paid
     paycheck.paid = true
     paycheck.should be_paid
   end
 
   it 'should set paid attribute with an integer (a la form set)' do
-    paycheck = Paycheck.new :paid=>0
+    paycheck = Paycheck.new paid: 0
     paycheck.should_not be_paid
     paycheck.paid = 1
     paycheck.should be_paid
   end
 
   it 'should create an item on save if paid is set and no previous item' do
-    @unpaid.paid = true
+    paycheck = paychecks(:unpaid)
+    paycheck.paid = true
     running {
-      @unpaid.save
-      @unpaid.item(true).should_not be_nil
+      paycheck.save
+      paycheck.item(true).should_not be_nil
     }.should change(Item, :count).by(1)
   end
 
@@ -68,7 +66,7 @@ describe Paycheck do
   end
 
   it 'should have a numeric value' do
-    Paycheck.new(:value=>'not numeric').should have(1).error_on(:value)
+    Paycheck.new(value: 'not numeric').should have(1).error_on(:value)
   end
 
   #####################################################################

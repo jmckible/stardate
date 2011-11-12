@@ -86,10 +86,4 @@ describe Task do
   it 'should have a date' do
     Task.new.should have(1).error_on(:date)
   end
-
-  it 'should not have a paycheck from the same job' do
-    task = tasks(:other)
-    task.paycheck = paychecks(:default)
-    task.should have(1).error_on(:paycheck)
-  end
 end

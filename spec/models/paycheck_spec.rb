@@ -71,11 +71,6 @@ describe Paycheck do
     Paycheck.new(:value=>'not numeric').should have(1).error_on(:value)
   end
 
-  it 'should have an item and job belong to same person' do
-    @unpaid.item = items(:other)
-    @unpaid.should have(1).error_on(:item)
-  end
-
   #####################################################################
   #                       D E S T R U C T I O N                       #
   #####################################################################

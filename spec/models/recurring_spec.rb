@@ -52,7 +52,7 @@ describe Recurring do
   #####################################################################
   it 'should nullify items on destroy' do
     recurrings(:last).destroy
-    items(:other).reload.recurring.should be_nil
+    items(:other).recurring.should be_nil
   end
   
 end

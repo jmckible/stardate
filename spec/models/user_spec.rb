@@ -57,37 +57,12 @@ describe User do
     @user.should have(3).tasks
   end
   
-  it 'should have many tweets' do
-    @user.should have(1).tweets
-  end
-  
   it 'should have many vendors' do
     @user.should have(1).vendors
   end
   
   it 'should have many weights' do
     @user.should have(1).weights
-  end
-  
-  #####################################################################
-  #                    O B J E C T   M E T H O D S                    #
-  #####################################################################
-  it 'should import a new tweet' do
-    hash = {'id'=>2, 'text'=>'New text', 'created_at'=>"Sun Nov 30 06:21:33 +0000 2008", 'user'=>{'profile_image_url'=>'url'}}
-    running {
-      tweet = @user.import_tweet hash
-      tweet.tweet_id.should == 2
-      tweet.text.should == 'New text'
-      @user.reload.twitter_profile_image_url.should == 'url'
-      tweet.created_at.to_s(:db).should == "2008-11-30 06:21:33"
-    }.should change(Tweet, :count).by(1)
-  end
-  
-  it 'should skip import on know tweet id' do
-    hash = {'id'=>1, 'text'=>'New text', 'created_at'=>"Sun Nov 30 06:21:33 +0000 2008", 'user'=>{'profile_image_url'=>'url'}}
-    running {
-      @user.import_tweet hash
-    }.should_not change(Tweet, :count)
   end
 
   #####################################################################
@@ -119,7 +94,7 @@ describe User do
   end
 
   it 'should have a unique email' do
-    user = @user.clone
+    user = User.new email: @user.email
     user.should have(1).error_on(:email)
   end
 
@@ -152,10 +127,6 @@ describe User do
 
   it 'should delete recurrings on destroy' do
     running { @user.destroy }.should change(Recurring, :count).by(-1)
-  end
-  
-  it 'should delete tweets on destroy' do
-    running { @user.destroy }.should change(Tweet, :count).by(-1)
   end
   
   it 'should delete weights on destroy' do

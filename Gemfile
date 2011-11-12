@@ -3,6 +3,7 @@ source :rubygems
 gem 'rails',  '~> 3.1.1'
 gem 'mysql2', '0.3.7'
 
+gem 'acts-as-taggable-on', '~>2.1.0'
 gem 'haml'
 gem 'jquery-rails'
 gem 'permalink_fu'

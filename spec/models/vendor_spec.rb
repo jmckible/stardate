@@ -12,7 +12,7 @@ describe Vendor, 'validations' do
   end
   
   it 'should have a unique name' do
-    vendor = vendors(:default).clone
+    vendor = Vendor.new name: vendors(:default).name
     vendor.should have(1).error_on(:name)
   end
 end

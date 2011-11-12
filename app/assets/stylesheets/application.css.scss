@@ -1,3 +1,43 @@
+/*
+ *= require facebox
+ *= require_self
+*/
+
+/****************************/
+/*        R E S E T         */
+/****************************/
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { 
+	margin:0;
+	padding:0;
+}
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+}
+fieldset,img { 
+	border:0;
+}
+address,caption,cite,code,dfn,em,strong,th,var {
+	font-style:normal;
+	font-weight:normal;
+}
+ol,ul {
+	list-style:none;
+}
+caption,th {
+	text-align:left;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-size:100%;
+	font-weight:normal;
+}
+q:before,q:after {
+	content:'';
+}
+abbr,acronym { border:0;
+}
+
+
 /****************************/
 /*      G E N E R A L       */
 /****************************/
@@ -41,7 +81,7 @@ input[type=text].long {
 }
 
 input.money {
-  background: #ffffff url(/images/dollar_sign.png) no-repeat center left;
+  background: #ffffff image-url('dollar_sign.png') no-repeat center left;
   padding-left: 1em;
   width: 9em;
 }

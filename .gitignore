@@ -1,6 +1,6 @@
-.svn
-/**/.svn
 .DS_Store
+.sass-cache/*
 config/*.yml
 log/*
+public/assets
 tmp/**/*

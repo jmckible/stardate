@@ -1,3 +1,9 @@
+//= require jquery
+//= require jquery_ujs
+//= require jquery_plugins
+//= require facebox
+//= require highcharts
+
 function insert_default(element) {
   if($(element).attr('value') == ''){
     $(element).addClass('defaulted');

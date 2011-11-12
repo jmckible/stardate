@@ -1,7 +1,4 @@
-require 'digest/sha1'
-class User < ActiveRecord::Base
-  encrypt_attributes
-  
+class User < ActiveRecord::Base  
   ##########################################
   #       C L A S S   M E T H O D S        #
   ##########################################
@@ -26,15 +23,9 @@ class User < ActiveRecord::Base
   has_many :recurrings,  :order=>'day',       :dependent=>:destroy
   has_many :runs,        :order=>'date',      :dependent=>:destroy
   has_many :tasks,       :through=>:jobs 
-  has_many :tweets,      :order=>'created_at desc', :dependent=>:destroy
   has_many :vendors,     :through=>:items, :uniq=>true, :order=>'name'
   has_many :weights,     :order=>'date',      :dependent=>:destroy
-  
-  #####################################################################
-  #                             S C O P E                             #
-  #####################################################################
-  named_scope :with_twitter, :conditions=>"twitter_username is not null and twitter_password_b is not null"
-  
+
   #####################################################################
   #                    O B J E C T    M E T H O D S                   #
   #####################################################################  
@@ -80,28 +71,13 @@ class User < ActiveRecord::Base
     period = period..period unless period.is_a?(Range)
     
     (bikes.during(period) + items.during(period) + notes.during(period) + runs.during(period) + 
-     ellipticals.during(period) + tweets.during(period) + weights.during(period)).sort do |x,y|
+     ellipticals.during(period) + weights.during(period)).sort do |x,y|
       if x.date == y.date
         y.created_at <=> x.created_at
       else
         y.date <=> x.date
       end
     end
-  end
-  
-  def import_tweet(tweet_hash)
-    tweet = tweets.find_by_tweet_id tweet_hash['id']
-    return tweet if tweet 
-    tweet            = Tweet.new
-    tweet.user       = self
-    tweet.tweet_id   = tweet_hash['id']
-    tweet.text       = tweet_hash['text']
-    tweet.created_at = Time.parse tweet_hash['created_at']
-    tweet.save
-    
-    update_attribute :twitter_profile_image_url, tweet_hash['user']['profile_image_url']
-    
-    tweet
   end
   
   #####################################################################
@@ -168,12 +144,13 @@ class User < ActiveRecord::Base
   def sum_directional(period, operator)
     if period.is_a? Range
       sum = 0
-      items.find(:all, :conditions=>["per_diem #{operator} 0 and ((start between ? and ?) or (finish between ? and ?) or (start <= ? and finish >= ?))", period.first, period.last, period.first, period.last, period.first, period.last]).each do |item|
-        sum = sum + (days_overlap(item, period) * item.per_diem)
+      items.where("per_diem #{operator} 0 and ((start between ? and ?) or (finish between ? and ?) or (start <= ? and finish >= ?))", 
+        period.first, period.last, period.first, period.last, period.first, period.last).each do |item|
+          sum = sum + (days_overlap(item, period) * item.per_diem)
       end
       sum
     else
-      items.sum(:per_diem, :conditions=>["start <= ? and finish >= ? and per_diem #{operator} 0", period, period]) || 0
+      items.where("start <= ? and finish >= ? and per_diem #{operator} 0", period, period).sum(:per_diem)
     end
   end
   

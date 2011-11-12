@@ -7,15 +7,15 @@ module ApplicationHelper
   end
   
   def linked_tag_list(thing)
-    thing.tags.collect{|tag| link_to h(tag.name), tag}.join(', ')
+    thing.tags.collect{|tag| link_to tag.name, tag}.join(', ').html_safe
   end
   
   def color_money(value)
     return '0' if value.nil?
     if value < 0
-      content_tag :span, number_with_delimiter(value*-1), :class=>'negative'
+      content_tag :span, number_with_delimiter(value*-1), class: 'negative'
     elsif value > 0
-      content_tag :span, number_with_delimiter(value), :class=>'positive'
+      content_tag :span, number_with_delimiter(value), class: 'positive' 
     else
        '0'
     end
@@ -24,9 +24,9 @@ module ApplicationHelper
   def color_explicit_money(value)
     return '0' if value.nil?
     if value < 0
-      content_tag :span, value, :class=>'negative'
+      content_tag :span, value, class: 'negative'
     elsif value > 0
-      content_tag :span, value, :class=>'positive'
+      content_tag :span, value, class: 'positive'
     else
        '0'
     end

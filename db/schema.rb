@@ -1,15 +1,17 @@
-# This file is auto-generated from the current state of the database. Instead of editing this file, 
-# please use the migrations feature of Active Record to incrementally modify your database, and
-# then regenerate this schema definition.
+# encoding: UTF-8
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your database schema. If you need
-# to create the application database on another system, you should be using db:schema:load, not running
-# all the migrations from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# Note that this schema.rb definition is the authoritative source for your
+# database schema. If you need to create the application database on another
+# system, you should be using db:schema:load, not running all the migrations
+# from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100826000758) do
+ActiveRecord::Schema.define(:version => 20111112200132) do
 
   create_table "bikes", :force => true do |t|
     t.date     "date"
@@ -143,23 +145,12 @@ ActiveRecord::Schema.define(:version => 20100826000758) do
   add_index "tasks", ["job_id"], :name => "index_tasks_on_project_id"
   add_index "tasks", ["paycheck_id"], :name => "index_tasks_on_paycheck_id"
 
-  create_table "tweets", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "tweet_id"
-    t.string   "text"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "users", :force => true do |t|
-    t.string   "email",                                                        :null => false
-    t.string   "password_salt",                                                :null => false
-    t.string   "password_hash",                                                :null => false
+    t.string   "email",                                            :null => false
+    t.string   "password_salt",                                    :null => false
+    t.string   "password_hash",                                    :null => false
     t.string   "time_zone"
-    t.datetime "created_at",                :default => '2007-05-24 15:49:54'
-    t.string   "twitter_username"
-    t.binary   "twitter_password_b"
-    t.string   "twitter_profile_image_url"
+    t.datetime "created_at",    :default => '2007-05-24 15:49:54'
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

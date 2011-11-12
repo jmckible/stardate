@@ -1,4 +1,4 @@
-- content_for :sidebar do
+= content_for :sidebar do
   %dl
     %dt= color_money current_user.total_on(Date.today)
     %dd 1
@@ -15,13 +15,13 @@
     %dt= color_money current_user.items.sum(:value)
     %dd ∞
 
-- form_tag things_path do 
+= form_tag things_path do 
   = text_field_tag 'thing', '', :class=>'long'
   = link_to '...', new_thing_path, :class=>:long_entry, :rel=>:facebox
 
 #Graphs
-  #SpendingMonth= render :partial=>'graphs/spending_month'
-  #HealthMonth= render :partial=>'graphs/health_month'
+  #SpendingMonth= render partial: 'graphs/spending_month'
+  #HealthMonth= render partial: 'graphs/health_month'
 .clear
 
-= render :partial=>'things', :object=>@things
+= render partial: 'things', object: @things

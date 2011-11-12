@@ -11,7 +11,7 @@ class Paycheck < ActiveRecord::Base
   #####################################################################
   #                             S C O P E                             #
   #####################################################################
-  named_scope :unpaid, :conditions=>{:item_id=>nil}
+  scope :unpaid, where(item_id:nil)
   
   #####################################################################
   #                    O B J E C T    M E T H O D S                   #
@@ -25,7 +25,8 @@ class Paycheck < ActiveRecord::Base
   before_save :create_item
   def create_item
     if paid && !item
-      job.user.items.create :paycheck=>self, :explicit_value=>"+#{value}", :description=>description, :date=>Date.today
+      job.user.items.create paycheck: self, explicit_value: "+#{value}", 
+        description: description, date: Date.today
     end
   end
   
@@ -36,11 +37,5 @@ class Paycheck < ActiveRecord::Base
   
   validates_presence_of     :job_id
   validates_numericality_of :value
-  
-  protected
-  def validate
-    if item && job
-      errors.add(:item, "doesn't belong to you") unless item.user_id == job.user_id
-    end
-  end
+
 end

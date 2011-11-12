@@ -7,17 +7,16 @@ class Item < ActiveRecord::Base
   belongs_to :recurring
   belongs_to :user
   
-  has_one    :paycheck,  :dependent=>:nullify
+  has_one :paycheck,  :dependent=>:nullify
   
-  named_scope :during, lambda { |period|
-    if period.nil?
-      {}
-    else
-      {:conditions=>["(start between ? and ?) or (finish between ? and ?) or (start <= ? and finish >= ?)", period.first, period.last, period.first, period.last, period.first, period.last]}
+  scope :during, lambda { |period|
+    if period
+      where "(start between ? and ?) or (finish between ? and ?) or (start <= ? and finish >= ?)", 
+        period.first, period.last, period.first, period.last, period.first, period.last
     end
   }
-  named_scope :on,     lambda { |date| {:conditions=>{:date=>date}} }
-  named_scope :from_vendor, lambda { |vendor| vendor.nil? ? {} : {:conditions=>{:vendor_id=>vendor.id}}}
+  scope :on, lambda { |date| where date: date }
+  scope :from_vendor, lambda { |vendor| where(vendor_id: vendor.id) if vendor }
   
   before_validation :amortize, :if=>:date
   def amortize

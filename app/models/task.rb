@@ -9,8 +9,8 @@ class Task < ActiveRecord::Base
   #####################################################################
   #                            S C O P E                              #
   #####################################################################
-  named_scope :on,      lambda { |date| {:conditions=>{:date=>date}} }
-  named_scope :unpaid, :conditions=>{:paycheck_id=>nil}
+  scope :on,      lambda { |date| where date: date }
+  scope :unpaid,  where(paycheck_id: nil)
   
   #####################################################################
   #                    O B J E C T    M E T H O D S                   #
@@ -42,11 +42,4 @@ class Task < ActiveRecord::Base
   
   validates_presence_of :date, :job_id
   
-  protected
-  def validate
-    if paycheck && job
-      errors.add :paycheck, "doesn't belong to the job" if paycheck.job_id != job_id
-    end
-  end
-
 end

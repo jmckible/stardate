@@ -3,10 +3,10 @@ class Job < ActiveRecord::Base
   belongs_to :user
   belongs_to :vendor
   
-  has_many   :paychecks, :order=>:created_at, :dependent=>:destroy
-  has_many   :tasks,     :order=>:date,       :dependent=>:destroy
+  has_many   :paychecks, :order=>'created_at', :dependent=>:destroy
+  has_many   :tasks,     :order=>'date',       :dependent=>:destroy
   
-  named_scope :active, :conditions=>{:active=>true}
+  scope :active, where(active: true)
   
   attr_accessible :active, :name, :rate
   

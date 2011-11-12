@@ -2,8 +2,8 @@ class Weight < ActiveRecord::Base
   
   belongs_to :user
   
-  named_scope :during, lambda { |date| {:conditions=>{:date=>date}} }
-  named_scope :on,     lambda { |date| {:conditions=>{:date=>date}} }
+  scope :during, lambda { |date| where date: date }
+  scope :on,     lambda { |date| where date: date }
   
   attr_accessible :date, :weight, :body_fat
   

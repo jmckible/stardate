@@ -48,8 +48,8 @@ module AuthorizationSystem
   
   def session_and_cookie_for(user)
     session[:user_id] = user.id
-    cookies[:user_id] = {:value=>user.id.to_s, :expires=>2.years.from_now}
-    cookies[:password_hash] = {:value=>user.password_hash, :expires=>2.years.from_now}
+    cookies[:user_id] = {value: user.id.to_s, expires: 2.years.from_now}
+    cookies[:password_hash] = {value: user.password_hash, expires: 2.years.from_now}
   end
   
   def clear_session_and_cookies

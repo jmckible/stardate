@@ -1,4 +1,0 @@
-default:
-  user: default
-  text: A @tweet http://www.test.com/something okay
-  tweet_id: 1

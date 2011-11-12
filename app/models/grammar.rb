@@ -15,26 +15,26 @@ class Grammar
       else
         vendor = string
       end
-      Item.new :date=>date, :explicit_value=>explicit_value, :vendor_name=>vendor, 
-               :description=>description, :tag_list=>tag_list
+      Item.new date: date, explicit_value: explicit_value, vendor_name: vendor, 
+               description: description, tag_list: tag_list
                
     elsif string =~ /^(Bike|bike|b )/
       distance, minutes = string.split(/^(Bike|bike|b) /).last.split(' ')
-      Bike.new :date=>date, :distance=>distance, :minutes=>minutes
+      Bike.new date: date, distance: distance, minutes: minutes
     elsif string =~ /^(Elliptical|elliptical|e )/
       distance, minutes = string.split(/^(Elliptical|elliptical|e) /).last.split(' ')
-      Elliptical.new :date=>date, :distance=>distance, :minutes=>minutes
+      Elliptical.new date: date, distance: distance, minutes: minutes
     elsif string =~ /^(Ran|ran|r )/
       distance, minutes = string.split(/^(Ran|ran|r) /).last.split(' ')
-      Run.new :date=>date, :distance=>distance, :minutes=>minutes
+      Run.new date: date, distance: distance, minutes: minutes
     elsif string =~ /^(weight|w )/
       weight, body_fat = string.split(/^(weight |w )/).last.split(' ')
-      Weight.new :date=>date, :weight=>weight, :body_fat=>body_fat
+      Weight.new date: date, weight: weight, body_fat: body_fat
     else
-      Note.new :date=>date, :body=>string
+      Note.new date: date, body: string
     end
   rescue
-    Note.new :date=>Time.zone.now.to_date, :body=>'Failed to parse'
+    Note.new date: Time.zone.now.to_date, body: 'Failed to parse'
   end
   
   def self.parse_date(string=nil)

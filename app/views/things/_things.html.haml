@@ -6,65 +6,53 @@
           %tr.item
             %td.date
               = link_to '«', thing, :rel=>:facebox
-              = link_to thing.date.to_s(:full), date_link(thing.date)
+              = link_to thing.date, date_link(thing.date)
             %td.description
-              = h thing.description
+              = thing.description
               %span.tags= linked_tag_list thing
             %td.vendor= vendor_name thing
             %td.money
-              - if thing.start == thing.finish
-                = color_money thing.value
-              - else
-                = "#{color_money thing.value} / #{thing.finish - thing.start + 1}"
+              = color_money thing.value
+              - unless thing.start == thing.finish
+                = '/'
+                = (thing.finish - thing.start).to_i + 1
         
         - elsif thing.is_a?(Note)
           %tr.note
             %td.date
               = link_to '«', thing, :rel=>:facebox
-              = link_to thing.date.to_s(:full), date_link(thing.date)
+              = link_to thing.date, date_link(thing.date)
             %td.description{:colspan=>3}
               - if thing.body.length < 80
-                = h thing.body
+                = thing.body
               - else
-                .preview= "#{h thing.body.first(80)} #{link_to '...', '', :class=>:expand_note}"
+                .preview= "#{thing.body.first(80)} #{link_to '...', '', :class=>:expand_note}"
                 .hide= simple_format thing.body
         
         - elsif thing.is_a?(Bike)
           %tr.run
             %td.date
               = link_to '«', thing, :rel=>:facebox
-              = link_to thing.date.to_s(:full), date_link(thing.date)
+              = link_to thing.date, date_link(thing.date)
             %td.description{:colspan=>3}= "Biked #{thing.distance}mi/#{minutes_to_time thing.minutes}"
-            
             
         - elsif thing.is_a?(Elliptical)
           %tr.run
             %td.date
               = link_to '«', thing, :rel=>:facebox
-              = link_to thing.date.to_s(:full), date_link(thing.date)
+              = link_to thing.date, date_link(thing.date)
             %td.description{:colspan=>3}= "Elliptical #{thing.distance}mi/#{minutes_to_time thing.minutes}"
-        
         
         - elsif thing.is_a?(Run)
           %tr.run
             %td.date
               = link_to '«', thing, :rel=>:facebox
-              = link_to thing.date.to_s(:full), date_link(thing.date)
+              = link_to thing.date, date_link(thing.date)
             %td.description{:colspan=>3}= "Ran #{thing.distance}mi/#{minutes_to_time thing.minutes}"
 
         - elsif thing.is_a?(Weight)
           %tr.run
             %td.date
               = link_to '«', thing, :rel=>:facebox
-              = link_to thing.date.to_s(:full), date_link(thing.date)
+              = link_to thing.date, date_link(thing.date)
             %td.description{:colspan=>3}= "Weight #{thing.weight}lbs @ #{thing.body_fat}% body fat"
-          
-        - elsif thing.is_a?(Tweet)
-          %tr.tweet
-            %td.date
-              = link_to '«', thing.url
-              = link_to thing.created_at.to_date.to_s(:full), date_link(thing.date)
-            %td.description{:colspan=>2}= thing.autolink_text
-            %td
-              - if current_user.twitter_profile_image_url
-                = image_tag current_user.twitter_profile_image_url, :class=>:twitter_profile

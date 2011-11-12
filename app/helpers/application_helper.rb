@@ -2,12 +2,12 @@
 module ApplicationHelper
   
   def vendor_name(thing)
-    return '&nbsp;' unless thing.vendor
-    link_to h(thing.vendor.name), thing.vendor
+    return '' unless thing.vendor
+    link_to thing.vendor.name, thing.vendor
   end
   
   def linked_tag_list(thing)
-    thing.tags.collect{|tag| link_to tag.name, tag}.join(', ').html_safe
+    thing.tags.collect{|t|link_to t.name, tag_path(t)}.join(', ').html_safe
   end
   
   def color_money(value)

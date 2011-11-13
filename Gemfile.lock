@@ -52,6 +52,7 @@ GEM
     mime-types (1.17.2)
     multi_json (1.0.3)
     mysql2 (0.3.7)
+    newrelic_rpm (3.1.2)
     permalink_fu (1.0.0)
     polyglot (0.3.3)
     rack (1.3.5)
@@ -126,6 +127,7 @@ DEPENDENCIES
   haml
   jquery-rails
   mysql2 (= 0.3.7)
+  newrelic_rpm
   permalink_fu
   rails (~> 3.1.1)
   rspec-rails

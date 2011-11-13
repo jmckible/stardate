@@ -1,6 +1,6 @@
 .DS_Store
 .sass-cache/*
-config/*.yml
+config/database.yml
 log/*
 public/assets
 tmp/**/*

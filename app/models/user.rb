@@ -86,16 +86,17 @@ class User < ActiveRecord::Base
   #####################################################################
   def weight_json(period)
     array = []
-    period.step(7) do |date|
-      weight_ins = weights.during(date..(date+6))
+    step = period.to_a.length > 31 ? 7 : 1
+    
+    period.step(step) do |date|
+      weight_ins = weights.during(date..(date+(step - 1)))
       if weight_ins.empty?
         array << nil
       else
-        weight   = weight_ins.sum(:weight) / weight_ins.size.to_f
-        body_fat = weight_ins.sum(:body_fat) / weight_ins.size.to_f        
-        array << {:y=>weight, :radius=>((body_fat - 10) / 28.0 * 20).round }
+        weight = weight_ins.sum(:weight) / weight_ins.size.to_f
+        array <<  weight.to_f
       end
-    end    
+    end 
     array.to_json
   end
   

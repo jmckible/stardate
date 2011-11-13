@@ -27,25 +27,60 @@
           }
         }
       },
+      plotOptions:{
+        spline:{
+          marker: {
+            enabled: false
+          },
+          shadow: false
+        },
+        column:{
+          stacking: 'normal',
+          shadow: false,
+          pointWidth: 10,
+          pointPadding: 0
+        }
+      },
       series: [{
         type: 'column',
-        name: 'Exercise',
-        data: <%= @month.collect{|date| current_user.bikes.on(date).sum(:minutes) + current_user.runs.on(date).sum(:minutes) + current_user.ellipticals.on(date).sum(:minutes)}.to_json %>,
+        name: 'Bike',
+        data: <%= @month.collect{|date|current_user.bikes.on(date).sum(:minutes)}.to_json %>,
         pointInterval: 24 * 3600000,
         pointStart: Date.UTC(<%= (@month.first - 1.month).year %>, <%= (@month.first - 1.month).month %>, <%= (@month.first - 1.month).day %>),
         yAxis: 0,
-        pointWidth: 10,
-        pointPadding: 0,
-        shadow: false,
-        color: '#00CCFF'
-      }, {
+        color: '#0CF'
+      },{
+        type: 'column',
+        name: 'Elliptical',
+        data: <%= @month.collect{|date|current_user.ellipticals.on(date).sum(:minutes)}.to_json %>,
+        pointInterval: 24 * 3600000,
+        pointStart: Date.UTC(<%= (@month.first - 1.month).year %>, <%= (@month.first - 1.month).month %>, <%= (@month.first - 1.month).day %>),
+        yAxis: 0,
+        color: '#FC0'
+      },{
+        type: 'column',
+        name: 'Run',
+        data: <%= @month.collect{|date|current_user.runs.on(date).sum(:minutes)}.to_json %>,
+        pointInterval: 24 * 3600000,
+        pointStart: Date.UTC(<%= (@month.first - 1.month).year %>, <%= (@month.first - 1.month).month %>, <%= (@month.first - 1.month).day %>),
+        yAxis: 0,
+        color: '#F0F'
+      },{
+        type: 'column',
+        name: 'Nike',
+        data: <%= @month.collect{|date|current_user.nikes.on(date).sum(:minutes)}.to_json %>,
+        pointInterval: 24 * 3600000,
+        pointStart: Date.UTC(<%= (@month.first - 1.month).year %>, <%= (@month.first - 1.month).month %>, <%= (@month.first - 1.month).day %>),
+        yAxis: 0,
+        color: '#C00'
+      },{
         type: 'spline',
         name: 'Weight',
-        data: <%= @month.collect{|date| {y: current_user.weights.on(date).first.try(:weight), }}.to_json.html_safe %>,
+        data: <%= current_user.weight_json @month %>,
         pointInterval: 24 * 3600000,
         pointStart: Date.UTC(<%= (@month.first - 1.month).year %>, <%= (@month.first - 1.month).month %>, <%= (@month.first - 1.month).day %>),
         yAxis: 1,
-        color: '#FF00CC'
+        lineWidth: 4
       }]
     });
   });

@@ -72,7 +72,7 @@ class User < ActiveRecord::Base
     period = period..period unless period.is_a?(Range)
     
     (bikes.during(period) + items.during(period) + notes.during(period) + runs.during(period) + 
-     ellipticals.during(period) + weights.during(period)).sort do |x,y|
+     ellipticals.during(period) + nikes.during(period) + weights.during(period)).sort do |x,y|
       if x.date == y.date
         y.created_at <=> x.created_at
       else

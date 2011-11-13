@@ -114,24 +114,27 @@ describe Grammar do
   #                               N I K E                             #
   #####################################################################
   it 'should parse starting with Nike' do
-    nike = Grammar.parse 'Nike 45'
+    nike = Grammar.parse 'Nike 45 Advanced - trainer'
     nike.should be_is_a(Nike)
     nike.date.should == Time.zone.now.to_date
     nike.minutes.should == 45
+    nike.description.should == 'Advanced - trainer'
   end
   
   it 'should parse starting with n' do
-    nike = Grammar.parse 'n 40'
+    nike = Grammar.parse 'n 40 strength'
     nike.should be_is_a(Nike)
     nike.date.should == Time.zone.now.to_date
     nike.minutes.should == 40
+    nike.description.should == 'strength'
   end
   
   it 'should parse starting with nike and date' do
-    nike = Grammar.parse '2/1/09 nike 45'
+    nike = Grammar.parse '2/1/09 nike 45 lean strong'
     nike.should be_is_a(Nike)
     nike.date.should == Date.new(2009, 2, 1)
     nike.minutes.should == 45
+    nike.description.should == 'lean strong'
   end
   
   #####################################################################

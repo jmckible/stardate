@@ -5,7 +5,7 @@ class Nike < ActiveRecord::Base
   scope :during, lambda { |date| where date: date }
   scope :on,     lambda { |date| where date: date }
   
-  attr_accessible :date, :minutes, :user
+  attr_accessible :date, :minutes, :user, :description
   
   validates_presence_of :date, :user_id
   

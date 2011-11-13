@@ -7,6 +7,7 @@ gem 'acts-as-taggable-on', '~>2.1.0'
 gem 'haml'
 gem 'jquery-rails'
 gem 'permalink_fu'
+gem 'sass-rails'
 gem 'uglifier'
 gem 'will_paginate'
 

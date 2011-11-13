@@ -28,8 +28,8 @@ class Grammar
       distance, minutes = string.split(/^(Ran|ran|r) /).last.split(' ')
       Run.new date: date, distance: distance, minutes: minutes
     elsif string =~ /^(weight|w )/
-      weight, body_fat = string.split(/^(weight |w )/).last.split(' ')
-      Weight.new date: date, weight: weight, body_fat: body_fat
+      weight = string.split(/^(weight |w )/).last
+      Weight.new date: date, weight: weight
     else
       Note.new date: date, body: string
     end

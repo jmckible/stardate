@@ -41,7 +41,7 @@
       }, {
         type: 'spline',
         name: 'Weight',
-        data: <%= @month.collect{|date| {:y=>current_user.weights.on(date).first.try(:weight), :radius=>(((current_user.weights.on(date).first.try(:body_fat) || 10) - 10) / 24.0 * 20).round}}.to_json %>,
+        data: <%= @month.collect{|date| {y: current_user.weights.on(date).first.try(:weight), }}.to_json.html_safe %>,
         pointInterval: 24 * 3600000,
         pointStart: Date.UTC(<%= (@month.first - 1.month).year %>, <%= (@month.first - 1.month).month %>, <%= (@month.first - 1.month).day %>),
         yAxis: 1,

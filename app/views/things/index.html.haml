@@ -1,6 +1,6 @@
 = content_for :sidebar do
   %dl
-    %dt= color_money current_user.total_on(Date.today)
+    %dt= color_money current_user.total_on(Time.now.to_date)
     %dd 1
     
     %dt= color_money current_user.total_past_week
@@ -16,8 +16,8 @@
     %dd ∞
 
 = form_tag things_path do 
-  = text_field_tag 'thing', '', :class=>'long'
-  = link_to '...', new_thing_path, :class=>:long_entry, :rel=>:facebox
+  = text_field_tag 'thing', '', class: 'long'
+  = link_to '...', new_thing_path, class: 'long_entry', rel: 'facebox'
 
 #Graphs
   #SpendingMonth= render partial: 'graphs/spending_month'

@@ -1,20 +1,20 @@
 %h1 Edit Transaction
 
-- form_for @item do |f|
-  %p= f.date_select :date,           :order=>[:month, :day, :year]
-  %p= f.text_field  :explicit_value, :class=>:money
-  %p= f.text_field  :vendor_name,    :default=>'vendor'
-  %p= f.text_field  :description,    :default=>'description'
-  %p= f.text_field  :tag_list,       :default=>'tags'
+= form_for @item do |f|
+  %p= f.date_select :date,           order: [:month, :day, :year]
+  %p= f.text_field  :explicit_value, class: 'money'
+  %p= f.text_field  :vendor_name,    default: 'vendor'
+  %p= f.text_field  :description,    default: 'description'
+  %p= f.text_field  :tag_list,       default: 'tags'
     
   .amortize
-    .show{:class=>(@item.start == @item.finish ? '' : 'hide')}= link_to 'Amortize', '#'
-    .dates{:class=>(@item.start == @item.finish ? 'hide' : '')}
+    .show{class: (@item.start == @item.finish ? '' : 'hide')}= link_to 'Amortize', '#'
+    .dates{class: (@item.start == @item.finish ? 'hide' : '')}
       %p
-        = f.date_select :start, :order=>[:month, :day, :year]
+        = f.date_select :start, order: [:month, :day, :year]
         Start
       %p
-        = f.date_select :finish, :order=>[:month, :day, :year]
+        = f.date_select :finish, order: [:month, :day, :year]
         End
 
   %p

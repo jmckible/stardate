@@ -2,4 +2,3 @@ default:
   user: default
   date: 2008-01-01
   weight: 150
-  body_fat: 20

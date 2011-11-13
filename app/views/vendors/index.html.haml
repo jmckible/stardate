@@ -8,11 +8,11 @@
       %th Amount
       %th ASP
   %tbody
-    - for vendor in @vendors
+    - @vendors.each do |vendor|
       - count = current_user.items.from_vendor(vendor).count
       - sum = current_user.items.from_vendor(vendor).sum(:value)
       %tr
-        %td.vendor= link_to h(vendor.name), vendor
+        %td.vendor= link_to vendor.name, vendor
         %td.count= number_with_delimiter count
         %td.sum= number_with_delimiter color_explicit_money(sum)
         %td.sum= number_with_delimiter color_explicit_money((sum / count.to_f).round)

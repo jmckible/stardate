@@ -10,7 +10,7 @@
       - count = tag.count
       - sum = current_user.items.during(@period).find_tagged_with(tag).sum(&:value)
       %tr
-        %td.vendor= link_to h(tag.name), tag
+        %td.vendor= link_to tag.name, tag
         %td.count= number_with_delimiter count
         %td.sum= number_with_delimiter color_explicit_money(sum)
         %td.sum= number_with_delimiter color_explicit_money((sum / count.to_f).round)

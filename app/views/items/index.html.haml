@@ -1,9 +1,9 @@
 %h1= humanize_period @period
 
 .date_selector
-  - form_tag items_path, :method=>:get do
+  = form_tag items_path, :method=>:get do
     = select_month @period.first
-    = select_year  @period.first, :start_year=>2007, :end_year=>Date.today.year
+    = select_year  @period.first, start_year: 2007, end_year: Date.today.year
 .clear
 
 - if @items.empty?
@@ -11,10 +11,10 @@
 - else
   %table
     %tbody
-      = render :partial=>'item', :collection=>@items
+      = render partial: 'item', collection: @items
 
 .date_selector
-  - form_tag items_path, :method=>:get do
+  = form_tag items_path, :method=>:get do
     = select_month @period.first
-    = select_year  @period.first, :start_year=>2007, :end_year=>Date.today.year
+    = select_year  @period.first, start_year: 2007, end_year: Date.today.year
 .clear

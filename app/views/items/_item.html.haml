@@ -1,15 +1,14 @@
 %tr
   %td.date
-    = link_to '«', item, :rel=>:facebox
-    = link_to item.date.to_s(:full), date_link(item.date)
+    = link_to '«', item, rel: 'facebox'
+    = link_to item.date, date_link(item.date)
   %td.vendor= vendor_name item
   %td.description
-    = h item.description
+    = item.description
     %span.tags= linked_tag_list item
   
   %td.money
-    
-    - if item.start == item.finish
-      = color_money item.value
-    - else
-      = "#{color_money item.value} / #{item.finish - item.start + 1}"
+    = color_money item.value
+    - unless item.start == item.finish
+      = '/'
+      = (item.finish - item.start).to_i + 1

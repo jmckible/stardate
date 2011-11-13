@@ -1,9 +1,9 @@
 %h1 Edit Bike
 
-- form_for @bike do |f|
-  %p= f.date_select :date, :order=>[:month, :day, :year]
-  %p= f.text_field  :distance, :default=>'distance'
-  %p= f.text_field  :minutes,  :default=>'minutes'
+= form_for @bike do |f|
+  %p= f.date_select :date, order: [:month, :day, :year]
+  %p= f.text_field  :distance, default: 'distance'
+  %p= f.text_field  :minutes,  default: 'minutes'
   %p
     = submit_tag 'Update'
     or

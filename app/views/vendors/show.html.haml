@@ -1,4 +1,4 @@
-- content_for :sidebar do 
+= content_for :sidebar do 
   %dl
     %dt= number_with_delimiter current_user.items.from_vendor(@vendor).count
     %dd #
@@ -7,7 +7,7 @@
     %dd $
     
 
-%h1= h @vendor.name
+%h1= @vendor.name
 
 #VendorGraph
 %script{:type=>'text/javascript'}
@@ -17,6 +17,6 @@
 
 %table
   %tbody
-    = render :partial=>'items/item', :collection=>@items
+    = render partial: 'items/item', collection: @items
     
 = will_paginate @items

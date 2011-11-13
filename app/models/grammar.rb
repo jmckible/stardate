@@ -24,6 +24,9 @@ class Grammar
     elsif string =~ /^(Elliptical|elliptical|e )/
       distance, minutes = string.split(/^(Elliptical|elliptical|e) /).last.split(' ')
       Elliptical.new date: date, distance: distance, minutes: minutes
+    elsif string =~ /^(Nike|nike|n )/
+      minutes = string.split(/^(Nike|nike|n )/).last
+      Nike.new date: date, minutes: minutes
     elsif string =~ /^(Ran|ran|r )/
       distance, minutes = string.split(/^(Ran|ran|r) /).last.split(' ')
       Run.new date: date, distance: distance, minutes: minutes

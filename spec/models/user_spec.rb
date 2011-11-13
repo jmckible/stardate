@@ -52,6 +52,10 @@ describe User do
   it 'should have many runs' do
     @user.should have(1).runs
   end
+  
+  it 'should have many nikes' do
+    @user.should have(1).nikes
+  end
 
   it 'should have many tasks' do
     @user.should have(3).tasks

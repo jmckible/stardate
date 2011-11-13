@@ -1,0 +1,4 @@
+default:
+  user: default
+  minutes: 30
+  date: 2008-01-01

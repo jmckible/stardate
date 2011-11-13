@@ -19,11 +19,12 @@ class User < ActiveRecord::Base
   has_many :ellipticals, :order=>'date',      :dependent=>:destroy
   has_many :items,       :order=>'date',      :dependent=>:destroy
   has_many :jobs,        :order=>'name',      :dependent=>:destroy
+  has_many :nikes,       :order=>'date',      :dependent=>:destroy
   has_many :notes,       :order=>'date desc', :dependent=>:destroy
   has_many :recurrings,  :order=>'day',       :dependent=>:destroy
   has_many :runs,        :order=>'date',      :dependent=>:destroy
   has_many :tasks,       :through=>:jobs 
-  has_many :vendors,     :through=>:items, :uniq=>true, :order=>'name'
+  has_many :vendors,     :through=>:items,    :uniq=>true, :order=>'name'
   has_many :weights,     :order=>'date',      :dependent=>:destroy
 
   #####################################################################

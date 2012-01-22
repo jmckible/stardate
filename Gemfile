@@ -1,9 +1,9 @@
 source :rubygems
 
-gem 'rails',  '~> 3.1.1'
-gem 'mysql2', '0.3.7'
+gem 'rails', '3.2'
+gem 'mysql2'
 
-gem 'acts-as-taggable-on', '~>2.1.0'
+gem 'acts-as-taggable-on'
 gem 'haml'
 gem 'jquery-rails'
 gem 'newrelic_rpm'

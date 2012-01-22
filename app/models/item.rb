@@ -1,11 +1,10 @@
 class Item < ActiveRecord::Base
 
-  attach_vendor
-  explicit_integer :value
   acts_as_taggable
 
   belongs_to :recurring
   belongs_to :user
+  belongs_to :vendor
   
   has_one :paycheck,  :dependent=>:nullify
   
@@ -27,7 +26,31 @@ class Item < ActiveRecord::Base
     true # Never halt
   end
   
-  attr_accessible :date, :description, :finish, :explicit_value, :paycheck, :start, :tag_list
+  def explicit_value
+    return if value.nil?
+    "#{'+' if value > 0}#{value}"
+  end
+  
+  def explicit_value=(new_integer)
+    new_integer = new_integer.to_s
+    return if new_integer.blank?
+    new_integer = '-' + new_integer unless new_integer =~ /^(\+|-)/
+    self.value = new_integer.to_f.round
+  end
+  
+  def vendor_name
+    vendor.try :name
+  end
+
+  def vendor_name=(string)
+    if string.nil? || string.chop.blank?
+      self.vendor = nil
+    else
+      self.vendor = Vendor.find_or_create_by_name string
+    end
+  end
+  
+  attr_accessible :date, :description, :finish, :explicit_value, :paycheck, :start, :tag_list, :vendor_name
   
   validates_presence_of     :date, :user_id
   validates_numericality_of :value, :only_integer=>true

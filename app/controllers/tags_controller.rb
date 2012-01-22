@@ -7,14 +7,14 @@ class TagsController < ApplicationController
   
   # GET /tags/:id
   def show
-    @tag = Tag.find_by_permalink params[:id]
+    @tag = ActsAsTaggableOn::Tag.find params[:id]
     @period = Date.new(2007,1,1)..Time.now.to_date
     
     respond_to do |format|
       format.html do
-        @items = current_user.items.find_tagged_with(@tag.name, :order=>'date desc').paginate :page=>params[:page]
-        @items_count = current_user.items.find_tagged_with(@tag.name).size
-        @items_sum = current_user.items.find_tagged_with(@tag.name).sum &:value
+        @items = current_user.items.tagged_with(@tag.name, :order=>'date desc').page(params[:page])
+        @items_count = current_user.items.tagged_with(@tag.name).size
+        @items_sum = current_user.items.tagged_with(@tag.name).sum &:value
       end
       format.xml
     end

@@ -6,9 +6,9 @@ class GraphsController < ApplicationController
     respond_to do |format|
       format.xml do
         if @period.to_a.length > 31
-          render :action=>'health_year.xml.builder'
+          render action: 'health_year'
         else
-          render :action=>'health_month.xml.builder'
+          render action: 'health_month'
         end
       end
     end
@@ -20,9 +20,9 @@ class GraphsController < ApplicationController
     respond_to do |format|
       format.xml do
         if @period.to_a.length > 31
-          render :action=>'spending_year.xml.builder'
+          render action: 'spending_year'
         else
-          render :action=>'spending_month.xml.builder'
+          render action: 'spending_month'
         end
       end
     end

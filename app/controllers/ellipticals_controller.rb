@@ -3,7 +3,7 @@ class EllipticalsController < ApplicationController
   # GET /ellipticals/:id
   def show
     @elliptical = current_user.ellipticals.find params[:id]
-    render :layout=>false
+    render layout: false
   end
   
   # PUT /ellipticals/:id

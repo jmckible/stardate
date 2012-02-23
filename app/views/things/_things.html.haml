@@ -55,7 +55,7 @@
             %td.date
               = link_to '«', thing, :rel=>:facebox
               = link_to thing.date, date_link(thing.date)
-            %td.description{colspan: 3}= "P90X: #{thing.minutes}min - #{thing.description}"
+            %td.description{colspan: 3}= "P90X #{thing.description}"
         
         - elsif thing.is_a?(Run)
           %tr.run

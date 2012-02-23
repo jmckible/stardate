@@ -15,6 +15,7 @@ Stardate::Application.routes.draw do
   resources :users
   resources :vendors
   resources :weights
+  resources :workouts
   
   match 'date/:year/:month/:day'=>'date#show', as: 'date'
 

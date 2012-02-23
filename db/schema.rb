@@ -11,29 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120223190626) do
-
-  create_table "bikes", :force => true do |t|
-    t.date     "date"
-    t.decimal  "distance",   :precision => 10, :scale => 2
-    t.integer  "user_id"
-    t.integer  "minutes"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "bikes", ["user_id"], :name => "index_bikes_on_user_id"
-
-  create_table "ellipticals", :force => true do |t|
-    t.date     "date"
-    t.decimal  "distance",   :precision => 10, :scale => 2
-    t.integer  "user_id"
-    t.integer  "minutes"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "ellipticals", ["user_id"], :name => "index_ellipticals_on_user_id"
+ActiveRecord::Schema.define(:version => 20120223195117) do
 
   create_table "items", :force => true do |t|
     t.integer  "user_id",                     :null => false
@@ -68,17 +46,6 @@ ActiveRecord::Schema.define(:version => 20120223190626) do
   add_index "jobs", ["user_id"], :name => "index_projects_on_user_id"
   add_index "jobs", ["vendor_id"], :name => "index_jobs_on_vendor_id"
 
-  create_table "nikes", :force => true do |t|
-    t.date     "date"
-    t.integer  "user_id"
-    t.integer  "minutes",     :default => 0
-    t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "nikes", ["user_id"], :name => "index_nikes_on_user_id"
-
   create_table "notes", :force => true do |t|
     t.text     "body"
     t.date     "date"
@@ -88,18 +55,6 @@ ActiveRecord::Schema.define(:version => 20120223190626) do
   end
 
   add_index "notes", ["user_id"], :name => "index_notes_on_user_id"
-
-  create_table "p90xes", :force => true do |t|
-    t.date     "date"
-    t.integer  "user_id"
-    t.integer  "minutes"
-    t.string   "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
-  add_index "p90xes", ["date"], :name => "index_p90xes_on_date"
-  add_index "p90xes", ["user_id"], :name => "index_p90xes_on_user_id"
 
   create_table "paychecks", :force => true do |t|
     t.integer  "job_id",                                                     :null => false
@@ -123,17 +78,6 @@ ActiveRecord::Schema.define(:version => 20120223190626) do
   add_index "recurrings", ["day"], :name => "index_recurrings_on_day"
   add_index "recurrings", ["user_id"], :name => "index_recurrings_on_user_id"
   add_index "recurrings", ["vendor_id"], :name => "index_recurrings_on_vendor_id"
-
-  create_table "runs", :force => true do |t|
-    t.date     "date"
-    t.decimal  "distance",   :precision => 10, :scale => 2
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "minutes",                                   :default => 0
-  end
-
-  add_index "runs", ["user_id"], :name => "index_runs_on_user_id"
 
   create_table "taggings", :force => true do |t|
     t.datetime "created_at"
@@ -199,5 +143,20 @@ ActiveRecord::Schema.define(:version => 20120223190626) do
 
   add_index "weights", ["date"], :name => "index_weights_on_date"
   add_index "weights", ["user_id"], :name => "index_weights_on_user_id"
+
+  create_table "workouts", :force => true do |t|
+    t.string   "type"
+    t.integer  "user_id"
+    t.date     "date"
+    t.integer  "minutes"
+    t.decimal  "distance",    :precision => 10, :scale => 2
+    t.string   "description"
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+  end
+
+  add_index "workouts", ["date"], :name => "index_workouts_on_date"
+  add_index "workouts", ["type"], :name => "index_workouts_on_type"
+  add_index "workouts", ["user_id"], :name => "index_workouts_on_user_id"
 
 end

@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
   has_many :tasks,       :through=>:jobs 
   has_many :vendors,     :through=>:items,    :uniq=>true, :order=>'name'
   has_many :weights,     :order=>'date',      :dependent=>:destroy
+  has_many :workouts,    :dependent=>:destroy
 
   #####################################################################
   #                    O B J E C T    M E T H O D S                   #

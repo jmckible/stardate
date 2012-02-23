@@ -1,0 +1,5 @@
+default:
+  user: default
+  minutes: 60
+  date: 2008-01-01
+  description: Yoga X

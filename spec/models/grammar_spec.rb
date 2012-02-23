@@ -138,6 +138,33 @@ describe Grammar do
   end
   
   #####################################################################
+  #                               P 9 0 X                             #
+  #####################################################################
+  it 'should parse starting with P90X' do
+    p90x = Grammar.parse 'P90X 60 Back'
+    p90x.should be_is_a(P90x)
+    p90x.date.should == Time.zone.now.to_date
+    p90x.minutes.should == 60
+    p90x.description.should == 'Back'
+  end
+  
+  it 'should parse starting with p' do
+    p90x = Grammar.parse 'p 90 yoga'
+    p90x.should be_is_a(P90x)
+    p90x.date.should == Time.zone.now.to_date
+    p90x.minutes.should == 90
+    p90x.description.should == 'yoga'
+  end
+  
+  it 'should parse starting with p90x and date' do
+    p90x = Grammar.parse '2/1/09 p90x 60 plyo'
+    p90x.should be_is_a(P90x)
+    p90x.date.should == Date.new(2009, 2, 1)
+    p90x.minutes.should == 60
+    p90x.description.should == 'plyo'
+  end
+  
+  #####################################################################
   #                                R U N                              #
   #####################################################################
   it 'should parse starting with Ran' do

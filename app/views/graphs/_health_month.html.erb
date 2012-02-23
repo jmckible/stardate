@@ -73,7 +73,15 @@
         pointStart: Date.UTC(<%= (@month.first - 1.month).year %>, <%= (@month.first - 1.month).month %>, <%= (@month.first - 1.month).day %>),
         yAxis: 0,
         color: '#C00'
-      },{
+      } ,{
+        type: 'column',
+        name: 'P90X',
+        data: <%= @month.collect{|date|current_user.p90xes.on(date).sum(:minutes)}.to_json %>,
+        pointInterval: 24 * 3600000,
+        pointStart: Date.UTC(<%= (@month.first - 1.month).year %>, <%= (@month.first - 1.month).month %>, <%= (@month.first - 1.month).day %>),
+        yAxis: 0,
+        color: '#C0C'
+        },{
         type: 'spline',
         name: 'Weight',
         data: <%= current_user.weight_json @month %>,

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111113000815) do
+ActiveRecord::Schema.define(:version => 20120223190626) do
 
   create_table "bikes", :force => true do |t|
     t.date     "date"
@@ -88,6 +88,18 @@ ActiveRecord::Schema.define(:version => 20111113000815) do
   end
 
   add_index "notes", ["user_id"], :name => "index_notes_on_user_id"
+
+  create_table "p90xes", :force => true do |t|
+    t.date     "date"
+    t.integer  "user_id"
+    t.integer  "minutes"
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "p90xes", ["date"], :name => "index_p90xes_on_date"
+  add_index "p90xes", ["user_id"], :name => "index_p90xes_on_user_id"
 
   create_table "paychecks", :force => true do |t|
     t.integer  "job_id",                                                     :null => false

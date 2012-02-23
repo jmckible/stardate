@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
   has_many :jobs,        :order=>'name',      :dependent=>:destroy
   has_many :nikes,       :order=>'date',      :dependent=>:destroy
   has_many :notes,       :order=>'date desc', :dependent=>:destroy
+  has_many :p90xes,      :order=>'date',      :dependent=>:destroy
   has_many :recurrings,  :order=>'day',       :dependent=>:destroy
   has_many :runs,        :order=>'date',      :dependent=>:destroy
   has_many :tasks,       :through=>:jobs 
@@ -72,7 +73,7 @@ class User < ActiveRecord::Base
     period = period..period unless period.is_a?(Range)
     
     (bikes.during(period) + items.during(period) + notes.during(period) + runs.during(period) + 
-     ellipticals.during(period) + nikes.during(period) + weights.during(period)).sort do |x,y|
+     ellipticals.during(period) + nikes.during(period) + p90xes.during(period) + weights.during(period)).sort do |x,y|
       if x.date == y.date
         y.created_at <=> x.created_at
       else

@@ -1,9 +1,11 @@
 Stardate::Application.routes.draw do
+  
   resources :bikes
   resources :ellipticals
   resources :items
   resources :nikes
   resources :notes
+  resources :p90xes
   resources :recurrings
   resources :reports
   resources :runs

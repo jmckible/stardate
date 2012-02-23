@@ -49,6 +49,13 @@
               = link_to '«', thing, :rel=>:facebox
               = link_to thing.date, date_link(thing.date)
             %td.description{colspan: 3}= "Nike Training Club: #{thing.minutes}min - #{thing.description}"
+            
+        - elsif thing.is_a?(P90x)
+          %tr.run
+            %td.date
+              = link_to '«', thing, :rel=>:facebox
+              = link_to thing.date, date_link(thing.date)
+            %td.description{colspan: 3}= "P90X: #{thing.minutes}min - #{thing.description}"
         
         - elsif thing.is_a?(Run)
           %tr.run

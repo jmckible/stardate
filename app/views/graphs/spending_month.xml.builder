@@ -12,7 +12,7 @@ xml.chart :chartLeftMargin=>0, :showBorder=>0, :bgColor=>'ffffff', :showValues=>
   xml.dataSet :seriesName=>'Income', :color=>'00CCFF' do
     sum = 0
     @period.each do |date|
-      sum += current_user.sum_income(date)
+      sum += @household.sum_income(date)
       xml.set :value=>sum
     end
   end
@@ -20,7 +20,7 @@ xml.chart :chartLeftMargin=>0, :showBorder=>0, :bgColor=>'ffffff', :showValues=>
   xml.dataSet :seriesName=>'Expenses', :color=>'FF00CC' do
     sum = 0
     @period.each do |date|
-      sum += (current_user.sum_expenses(date) * -1)
+      sum += (@household.sum_expenses(date) * -1)
       xml.set :value=>sum
     end
   end

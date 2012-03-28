@@ -4,12 +4,12 @@ describe NikesController do
   before { login_as :default }
   
   it 'handles /nikes/:id with GET' do
-    get :show, id: nikes(:default)
+    get :show, id: workouts(:nike)
     response.should be_success
   end
   
   it 'handles /nikes/:id with valid params and PUT' do
-    nike = nikes(:default)
+    nike = workouts(:nike)
     put :update, id: nike, nike: {minutes: 40}
     nike.reload.minutes.should == 40
     response.should redirect_to(root_path)
@@ -17,7 +17,7 @@ describe NikesController do
   
   it 'handles /nikes/:id with DELETE' do
     running {
-      delete :destroy, id: nikes(:default)
+      delete :destroy, id: workouts(:nike)
       response.should redirect_to(root_path)
     }.should change(Nike, :count).by(-1)
   end

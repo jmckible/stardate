@@ -7,7 +7,7 @@ describe User do
   #                            T H I N G S                            #
   #####################################################################
   it 'should find stuff on a day' do
-    @user.things_during(Date.new(2008, 1, 1)).size.should == 2 #[items(:today), notes(:today)]
+    @user.things_during(Date.new(2008, 1, 1)).size.should == 3 #[items(:today), notes(:today)]
   end
   
   it 'should find nothing on an empty day' do

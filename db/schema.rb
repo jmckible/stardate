@@ -11,12 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120223195117) do
+ActiveRecord::Schema.define(:version => 20120328195100) do
+
+  create_table "households", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "items", :force => true do |t|
-    t.integer  "user_id",                     :null => false
-    t.date     "date",                        :null => false
-    t.integer  "value",        :default => 0, :null => false
+    t.integer  "user_id",                         :null => false
+    t.date     "date",                            :null => false
+    t.integer  "value",        :default => 0,     :null => false
     t.text     "description"
     t.integer  "vendor_id"
     t.datetime "created_at"
@@ -25,10 +31,13 @@ ActiveRecord::Schema.define(:version => 20120223195117) do
     t.date     "start"
     t.date     "finish"
     t.integer  "per_diem"
+    t.integer  "household_id"
+    t.boolean  "secret",       :default => false
   end
 
   add_index "items", ["date"], :name => "index_items_on_date"
   add_index "items", ["finish"], :name => "index_items_on_finish"
+  add_index "items", ["household_id"], :name => "index_items_on_household_id"
   add_index "items", ["recurring_id"], :name => "index_items_on_recurring_id"
   add_index "items", ["start"], :name => "index_items_on_start"
   add_index "items", ["user_id"], :name => "index_items_on_user_id"
@@ -120,9 +129,12 @@ ActiveRecord::Schema.define(:version => 20120223195117) do
     t.string   "password_hash",                                    :null => false
     t.string   "time_zone"
     t.datetime "created_at",    :default => '2007-05-24 15:49:54'
+    t.integer  "household_id"
+    t.string   "name"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
+  add_index "users", ["household_id"], :name => "index_users_on_household_id"
 
   create_table "vendors", :force => true do |t|
     t.string   "name"

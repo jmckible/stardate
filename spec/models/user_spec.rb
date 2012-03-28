@@ -73,7 +73,7 @@ describe User do
   #                        C A L L B A C K S                          #
   #####################################################################
   it 'should encrypt password on save' do
-    user = User.create :email=>'new@user.com', :time_zone=>'Pacific Time (US & Canada)',
+    user = User.create :name=>'name', :email=>'new@user.com', :time_zone=>'Pacific Time (US & Canada)',
           :password=>'password', :password_confirmation=>'password'
     user.password_hash.should_not be_blank
     user.password_salt.should_not be_blank

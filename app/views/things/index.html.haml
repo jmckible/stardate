@@ -1,18 +1,18 @@
 = content_for :sidebar do
   %dl
-    %dt= color_money current_user.total_on(Time.now.to_date)
+    %dt= color_money @household.total_on(Time.now.to_date)
     %dd 1
     
-    %dt= color_money current_user.total_past_week
+    %dt= color_money @household.total_past_week
     %dd 7
   
-    %dt= color_money current_user.total_past_month
+    %dt= color_money @household.total_past_month
     %dd 30
   
-    %dt= color_money current_user.total_past_year
+    %dt= color_money @household.total_past_year
     %dd 365
   
-    %dt= color_money current_user.items.sum(:value)
+    %dt= color_money @household.items.sum(:value)
     %dd ∞
 
 = form_tag things_path do 
@@ -21,7 +21,8 @@
 
 #Graphs
   #SpendingMonth= render partial: 'graphs/spending_month'
-  #HealthMonth= render partial: 'graphs/health_month'
+  - if current_user.workouts.during(@month).count > 0
+    #HealthMonth= render partial: 'graphs/health_month'
 .clear
 
 = render partial: 'things', object: @things

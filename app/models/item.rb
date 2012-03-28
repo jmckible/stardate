@@ -2,6 +2,7 @@ class Item < ActiveRecord::Base
 
   acts_as_taggable
 
+  belongs_to :household
   belongs_to :recurring
   belongs_to :user
   belongs_to :vendor
@@ -49,9 +50,7 @@ class Item < ActiveRecord::Base
       self.vendor = Vendor.find_or_create_by_name string
     end
   end
-  
-  attr_accessible :date, :description, :finish, :explicit_value, :paycheck, :start, :tag_list, :vendor_name
-  
+    
   validates_presence_of     :date, :user_id
   validates_numericality_of :value, :only_integer=>true
 

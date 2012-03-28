@@ -1,0 +1,33 @@
+bike:
+  type: Bike
+  user: default
+  distance: 10
+  minutes: 40
+  date: 2008-01-01
+    
+elliptical:
+  type: Elliptical
+  user: default
+  distance: 3
+  minutes: 30
+  date: 2008-01-01
+
+nike:
+  type: Nike
+  user: default
+  minutes: 30
+  date: 2008-01-01
+  
+p90x:
+  type: P90x
+  user: default
+  minutes: 60
+  date: 2008-01-01
+  description: Yoga X
+  
+run:
+  type: Run
+  user: default
+  distance: 3.5
+  minutes: 60
+  date: 2008-01-01

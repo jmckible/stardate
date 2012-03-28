@@ -6,6 +6,10 @@
   %p= f.text_field  :vendor_name,    default: 'vendor'
   %p= f.text_field  :description,    default: 'description'
   %p= f.text_field  :tag_list,       default: 'tags'
+  
+  %p
+    = f.check_box   :secret
+    = f.label :secret, 'Top Secret'
     
   .amortize
     .show{class: (@item.start == @item.finish ? '' : 'hide')}= link_to 'Amortize', '#'

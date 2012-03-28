@@ -1,5 +1,10 @@
 = form_for @user do |f|
   %p
+    Name
+    %br
+    = f.text_field :name
+  
+  %p
     Email
     %br
     = f.text_field :email

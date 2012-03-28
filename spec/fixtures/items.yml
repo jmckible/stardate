@@ -1,4 +1,5 @@
 default:
+  household: default
   date: 2008-01-01
   description: What I bought
   value: -10
@@ -9,6 +10,7 @@ default:
   per_diem: -10
 
 other:
+  household: other
   date: 2008-01-01
   description: What I bought
   value: -10
@@ -20,6 +22,7 @@ other:
   per_diem: -10
 
 last_year:
+  household: default
   date: 2007-01-01
   value: -1
   user: totaling
@@ -28,6 +31,7 @@ last_year:
   per_diem: -1
   
 last_month:
+  household: default
   date: 2007-12-01
   value: -1
   user: totaling
@@ -36,6 +40,7 @@ last_month:
   per_diem: -1
   
 last_week:
+  household: default
   date: 2007-12-25
   value: -1
   user: totaling
@@ -44,6 +49,7 @@ last_week:
   per_diem: -1
   
 yesterday:
+  household: default
   date: 2007-12-31
   value: 10
   user: totaling
@@ -52,6 +58,7 @@ yesterday:
   per_diem: 1
   
 today:
+  household: default
   date: 2008-01-01
   value: -1
   user: totaling
@@ -60,6 +67,7 @@ today:
   per_diem: -1
   
 tomorrow:
+  household: default
   date: 2008-01-02
   value: -1
   user: totaling

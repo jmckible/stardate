@@ -3,26 +3,37 @@
     %tbody
       - things.each do |thing|
         - if thing.is_a?(Item)
-          %tr.item
-            %td.date
-              = link_to '«', thing, :rel=>:facebox
-              = link_to thing.date, date_link(thing.date)
-            %td.description
-              = thing.description
-              %span.tags= linked_tag_list thing
-            %td.vendor= vendor_name thing
-            %td.money
-              = color_money thing.value
-              - unless thing.start == thing.finish
-                = '/'
-                = (thing.finish - thing.start).to_i + 1
+          - if thing.secret? && thing.user != current_user
+            %tr.item
+              %td.date= link_to thing.date, date_link(thing.date)
+              %td.description{colspan: '3'} [REDACTED]
+              %td.user_name= thing.user.name.first
+          - else
+            %tr.item
+              %td.date
+                - if thing.user == current_user
+                  = link_to '«', thing, :rel=>:facebox
+                = link_to thing.date, date_link(thing.date)
+              %td.description
+                = thing.description
+                %span.tags= linked_tag_list thing
+              %td.vendor= vendor_name thing
+              %td.money
+                = color_money thing.value
+                - unless thing.start == thing.finish
+                  = '/'
+                  = (thing.finish - thing.start).to_i + 1
+              %td.user_name
+                = thing.user.name.first
+                - if thing.secret?
+                  %span{class: 'secret'} S
         
         - elsif thing.is_a?(Note)
           %tr.note
             %td.date
               = link_to '«', thing, :rel=>:facebox
               = link_to thing.date, date_link(thing.date)
-            %td.description{colspan: 3}
+            %td.description{colspan: 4}
               - if thing.body.length < 80
                 = thing.body
               - else
@@ -34,39 +45,39 @@
             %td.date
               = link_to '«', thing, :rel=>:facebox
               = link_to thing.date, date_link(thing.date)
-            %td.description{colspan: 3}= "Biked #{thing.distance}mi/#{minutes_to_time thing.minutes}"
+            %td.description{colspan: 4}= "Biked #{thing.distance}mi/#{minutes_to_time thing.minutes}"
             
         - elsif thing.is_a?(Elliptical)
           %tr.run
             %td.date
               = link_to '«', thing, :rel=>:facebox
               = link_to thing.date, date_link(thing.date)
-            %td.description{colspan: 3}= "Elliptical #{thing.distance}mi/#{minutes_to_time thing.minutes}"
+            %td.description{colspan: 4}= "Elliptical #{thing.distance}mi/#{minutes_to_time thing.minutes}"
             
         - elsif thing.is_a?(Nike)
           %tr.run
             %td.date
               = link_to '«', thing, :rel=>:facebox
               = link_to thing.date, date_link(thing.date)
-            %td.description{colspan: 3}= "Nike Training Club: #{thing.minutes}min - #{thing.description}"
+            %td.description{colspan: 4}= "Nike Training Club: #{thing.minutes}min - #{thing.description}"
             
         - elsif thing.is_a?(P90x)
           %tr.run
             %td.date
               = link_to '«', thing, :rel=>:facebox
               = link_to thing.date, date_link(thing.date)
-            %td.description{colspan: 3}= "P90X #{thing.description}"
+            %td.description{colspan: 4}= "P90X #{thing.description}"
         
         - elsif thing.is_a?(Run)
           %tr.run
             %td.date
               = link_to '«', thing, :rel=>:facebox
               = link_to thing.date, date_link(thing.date)
-            %td.description{colspan: 3}= "Ran #{thing.distance}mi/#{minutes_to_time thing.minutes}"
+            %td.description{colspan: 4}= "Ran #{thing.distance}mi/#{minutes_to_time thing.minutes}"
 
         - elsif thing.is_a?(Weight)
           %tr.run
             %td.date
               = link_to '«', thing, :rel=>:facebox
               = link_to thing.date, date_link(thing.date)
-            %td.description{colspan: 3}= "Weight #{thing.weight}lbs"
+            %td.description{colspan: 4}= "Weight #{thing.weight}lbs"

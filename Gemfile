@@ -16,6 +16,7 @@ group :development, :test do
 end
 
 group :production do
-  gem 'therubyracer'
   gem 'pg'
+  gem 'therubyracer'
+  gem 'thin'
 end

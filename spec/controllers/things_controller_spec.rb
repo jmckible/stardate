@@ -30,6 +30,7 @@ describe ThingsController do
   it 'handles /things with item attributes and PUT' do
     running {
       post :create, :thing=>'$5 Red Rock'
+      assigns(:thing).household.should == households(:default)
       response.should redirect_to(root_url)
     }.should change(Item, :count).by(1)
   end

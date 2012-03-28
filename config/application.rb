@@ -40,6 +40,8 @@ module Stardate
     # Enable the asset pipeline
     config.assets.enabled = true
     config.assets.paths += %W(#{Rails.root}/vendor/assets/javascripts/jquery)
+    
+    config.assets.initialize_on_precompile = false
   end
   
 end

@@ -27,6 +27,7 @@ class Recurring < ActiveRecord::Base
                     vendor_name: vendor_name
     item.recurring  = self
     item.user       = user
+    item.household  = user.household
     item
   end
   

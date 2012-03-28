@@ -1,7 +1,6 @@
 source :rubygems
 
 gem 'rails', '3.2'
-gem 'mysql2'
 
 gem 'acts-as-taggable-on'
 gem 'haml'
@@ -14,8 +13,9 @@ gem 'will_paginate'
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'mysql2'
 end
 
 group :production do
-  gem 'therubyracer'
+  gem 'pg'
 end

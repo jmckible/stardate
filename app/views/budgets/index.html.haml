@@ -1,0 +1,11 @@
+%h1 Budget
+
+%p.create= link_to 'Create...', new_budget_path, rel: 'facebox'
+
+- unless @budgets.empty?
+  %table
+    %tbody
+      - @budgets.each do |budget|
+        %tr
+          %td= link_to budget.amount, budget, rel: 'facebox'
+          %td= link_to budget.tag.name, tag_path(budget.tag)

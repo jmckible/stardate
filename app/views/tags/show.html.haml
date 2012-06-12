@@ -6,19 +6,26 @@
     %dt= color_money @items_sum
     %dd $
     
+    %dt= color_money @household.items.tagged_with(@tag).during(30.days.ago..Date.today).sum(&:value)
+    %dd 30
+    
+    %dt= color_money @household.items.tagged_with(@tag).during(60.days.ago..Date.today).sum(&:value)
+    %dd 60
+    
+    %dt= color_money @household.items.tagged_with(@tag).during(90.days.ago..Date.today).sum(&:value)
+    %dd 90
+    
+    %dt= color_money @household.items.tagged_with(@tag).during(365.days.ago..Date.today).sum(&:value)
+    %dd Year
+    
 
-%h1= h @tag.name
+%h1= @tag.name
 
-#OldTagGraph
-%script{:type=>'text/javascript'}
-  var tag = new FusionCharts("/flash/Column2D.swf", "Tag", "940", "300", "0", "0");
-  = "tag.setDataURL(\"#{tag_url(@tag, :format=>'xml')}\");"
-  tag.render("OldTagGraph");
-#TagGraph= render :partial=>'graph'
+#TagGraph= render partial: 'graph'
 
 %table
   %tbody
-    = render :partial=>'items/item', :collection=>@items
+    = render partial: 'items/item', collection: @items
     
 
 = will_paginate @items

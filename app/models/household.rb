@@ -1,6 +1,7 @@
 class Household < ActiveRecord::Base
   include Totalling
   
+  has_many :budgets
   has_many :users
   has_many :items
   

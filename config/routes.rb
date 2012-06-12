@@ -1,6 +1,7 @@
 Stardate::Application.routes.draw do
   
   resources :bikes
+  resources :budgets
   resources :ellipticals
   resources :items
   resources :nikes

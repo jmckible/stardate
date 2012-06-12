@@ -3,6 +3,7 @@ Stardate::Application.routes.draw do
   resources :bikes
   resources :budgets
   resources :ellipticals
+  resources :households
   resources :items
   resources :nikes
   resources :notes

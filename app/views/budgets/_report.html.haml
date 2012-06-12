@@ -18,3 +18,14 @@
       %td= color_money((6 * budget.amount) + @household.items.tagged_with(budget.tag).during(180.days.ago..Date.today).sum(&:value))
       %td= color_money((9 * budget.amount) + @household.items.tagged_with(budget.tag).during(270.days.ago..Date.today).sum(&:value))
       %td= color_money((12 * budget.amount) + @household.items.tagged_with(budget.tag).during(360.days.ago..Date.today).sum(&:value))
+  
+  %tr.strong
+    %td
+      Savings Goal
+      = "($#{@household.savings_goal})"
+    %td= color_money(@household.total_during((Date.today - 30.days)..Date.today) - @household.savings_goal)
+    %td= color_money(@household.total_during((Date.today - 60.days)..Date.today) - (@household.savings_goal * 2))
+    %td= color_money(@household.total_during((Date.today - 90.days)..Date.today) - (@household.savings_goal * 3))
+    %td= color_money(@household.total_during((Date.today - 180.days)..Date.today) - (@household.savings_goal * 6))
+    %td= color_money(@household.total_during((Date.today - 270.days)..Date.today) - (@household.savings_goal * 9))
+    %td= color_money(@household.total_during((Date.today - 360.days)..Date.today) - (@household.savings_goal * 12))

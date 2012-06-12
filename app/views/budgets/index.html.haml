@@ -1,5 +1,10 @@
 %h1 Budget
 
+= form_for @household do |f|
+  %p Household Monthly Savings Goal:
+  %p= f.text_field :savings_goal, class: 'money'
+  %p= f.submit 'Update'
+
 %p.create= link_to 'Create...', new_budget_path, rel: 'facebox'
 
 - unless @budgets.empty?

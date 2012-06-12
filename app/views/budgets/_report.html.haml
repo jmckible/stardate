@@ -4,6 +4,8 @@
     %th 30 Days
     %th 60 Days
     %th 90 Days
+    %th 6 Month
+    %th 9 Month
     %th Year
   - @household.budgets.order('amount DESC').each do |budget|
     %tr
@@ -13,4 +15,6 @@
       %td= color_money(budget.amount + @household.items.tagged_with(budget.tag).during(30.days.ago..Date.today).sum(&:value))
       %td= color_money((2 * budget.amount) +  @household.items.tagged_with(budget.tag).during(60.days.ago..Date.today).sum(&:value))
       %td= color_money((3 * budget.amount) + @household.items.tagged_with(budget.tag).during(90.days.ago..Date.today).sum(&:value))
-      %td= color_money((12 * budget.amount) + @household.items.tagged_with(budget.tag).during(365.days.ago..Date.today).sum(&:value))
+      %td= color_money((6 * budget.amount) + @household.items.tagged_with(budget.tag).during(180.days.ago..Date.today).sum(&:value))
+      %td= color_money((9 * budget.amount) + @household.items.tagged_with(budget.tag).during(270.days.ago..Date.today).sum(&:value))
+      %td= color_money((12 * budget.amount) + @household.items.tagged_with(budget.tag).during(360.days.ago..Date.today).sum(&:value))

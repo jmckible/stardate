@@ -3,6 +3,8 @@ class Budget < ActiveRecord::Base
   belongs_to :household
   belongs_to :tag, class_name: 'ActsAsTaggableOn::Tag'
   
+  default_scope order('budgets.amount DESC')
+  
   def tag_name
     tag.try :name
   end

@@ -14,12 +14,20 @@ class BudgetsController < ApplicationController
   # GET /budgets/:id
   def show
     @budget = @household.budgets.find params[:id]
+    render layout: false
   end
   
   # POST /budgets
   def create
     @budget = @household.budgets.build params[:budget]
     @budget.save!
+    redirect_to budgets_url
+  end
+  
+  # PUT /budgets/:id
+  def update
+    @budget = @household.budgets.find params[:id]
+    @budget.update_attributes params[:budget]
     redirect_to budgets_url
   end
   

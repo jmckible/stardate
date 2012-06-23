@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  skip_before_filter   :login_required
+  skip_before_filter :login_required
 
   # GET /sessions/new
   def new
@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
     user = User.authenticate params[:email], params[:password]
     if user.nil?
       flash[:notice] = 'Invalid username/password'
-      render :action=>'new'
+      render action: 'new'
     else
       session_and_cookie_for user
       redirect_to root_path

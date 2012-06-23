@@ -20,7 +20,7 @@ class BudgetsController < ApplicationController
   # POST /budgets
   def create
     @budget = @household.budgets.build params[:budget]
-    @budget.save!
+    @budget.save
     redirect_to budgets_url
   end
   

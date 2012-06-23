@@ -23,7 +23,7 @@ class Item < ActiveRecord::Base
     self.start  = date unless start
     self.finish = date unless finish
     self.start, self.finish = finish, start if start > finish
-    self.per_diem = value / ((finish - start).to_i + 1)
+    self.per_diem = value / ((finish - start).to_i + 1).to_f
     true # Never halt
   end
   

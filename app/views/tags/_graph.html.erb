@@ -22,7 +22,7 @@
       series: [{
         type: 'column',
         name: 'Spending',
-        data: <%= current_user.tag_json @period, @tag %>,
+        data: <%= user.tag_json @period, @tag %>,
         pointInterval: 30 * 24 * 3600 * 1000,
         pointStart: Date.UTC(2007, 1, 1),
         color: '#00CCFF'

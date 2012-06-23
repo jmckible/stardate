@@ -44,7 +44,7 @@
       series: [{
         type: 'column',
         name: 'Bike',
-        data: <%= @month.collect{|date|current_user.bikes.on(date).sum(:minutes)}.to_json %>,
+        data: <%= @month.collect{|date|@user.bikes.on(date).sum(:minutes)}.to_json %>,
         pointInterval: 24 * 3600000,
         pointStart: Date.UTC(<%= (@month.first - 1.month).year %>, <%= (@month.first - 1.month).month %>, <%= (@month.first - 1.month).day %>),
         yAxis: 0,
@@ -52,7 +52,7 @@
       },{
         type: 'column',
         name: 'Elliptical',
-        data: <%= @month.collect{|date|current_user.ellipticals.on(date).sum(:minutes)}.to_json %>,
+        data: <%= @month.collect{|date|@user.ellipticals.on(date).sum(:minutes)}.to_json %>,
         pointInterval: 24 * 3600000,
         pointStart: Date.UTC(<%= (@month.first - 1.month).year %>, <%= (@month.first - 1.month).month %>, <%= (@month.first - 1.month).day %>),
         yAxis: 0,
@@ -60,7 +60,7 @@
       },{
         type: 'column',
         name: 'Run',
-        data: <%= @month.collect{|date|current_user.runs.on(date).sum(:minutes)}.to_json %>,
+        data: <%= @month.collect{|date|@user.runs.on(date).sum(:minutes)}.to_json %>,
         pointInterval: 24 * 3600000,
         pointStart: Date.UTC(<%= (@month.first - 1.month).year %>, <%= (@month.first - 1.month).month %>, <%= (@month.first - 1.month).day %>),
         yAxis: 0,
@@ -68,7 +68,7 @@
       },{
         type: 'column',
         name: 'Nike',
-        data: <%= @month.collect{|date|current_user.nikes.on(date).sum(:minutes)}.to_json %>,
+        data: <%= @month.collect{|date|@user.nikes.on(date).sum(:minutes)}.to_json %>,
         pointInterval: 24 * 3600000,
         pointStart: Date.UTC(<%= (@month.first - 1.month).year %>, <%= (@month.first - 1.month).month %>, <%= (@month.first - 1.month).day %>),
         yAxis: 0,
@@ -76,7 +76,7 @@
       } ,{
         type: 'column',
         name: 'P90X',
-        data: <%= @month.collect{|date|current_user.p90xes.on(date).sum(:minutes)}.to_json %>,
+        data: <%= @month.collect{|date|@user.p90xes.on(date).sum(:minutes)}.to_json %>,
         pointInterval: 24 * 3600000,
         pointStart: Date.UTC(<%= (@month.first - 1.month).year %>, <%= (@month.first - 1.month).month %>, <%= (@month.first - 1.month).day %>),
         yAxis: 0,
@@ -84,7 +84,7 @@
         },{
         type: 'spline',
         name: 'Weight',
-        data: <%= current_user.weight_json @month %>,
+        data: <%= @user.weight_json @month %>,
         pointInterval: 24 * 3600000,
         pointStart: Date.UTC(<%= (@month.first - 1.month).year %>, <%= (@month.first - 1.month).month %>, <%= (@month.first - 1.month).day %>),
         yAxis: 1,

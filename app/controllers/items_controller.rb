@@ -11,27 +11,27 @@ class ItemsController < ApplicationController
     end
     
     @period = Date.new(year, month, 1)..Date.civil(year, month, -1)
-    @items  = current_user.items.during @period
+    @items  = @user.items.during @period
   end
 
   # GET /items/:id
   def show
-    @item = current_user.items.find params[:id]
-    render :layout=>false
+    @item = @user.items.find params[:id]
+    render layout: false
   end
 
   # PUT /items/:id
   def update
-    @item = current_user.items.find params[:id]
+    @item = @user.items.find params[:id]
     @item.update_attributes params[:item]
-    redirect_to request.env['HTTP_REFERER'] || root_url
+    redirect_back_or root_url
   end
 
   # DELETE /items/:id
   def destroy
-    @item = current_user.items.find params[:id]
+    @item = @user.items.find params[:id]
     @item.destroy
-    redirect_to request.env['HTTP_REFERER'] || root_url
+    redirect_back_or root_url
   end
 
 end

@@ -3,7 +3,7 @@
     %tbody
       - things.each do |thing|
         - if thing.is_a?(Item)
-          - if thing.secret? && thing.user != current_user
+          - if thing.secret? && thing.user != @user
             %tr.item
               %td.date= link_to thing.date, date_link(thing.date)
               %td.description{colspan: '3'} [REDACTED]
@@ -11,7 +11,7 @@
           - else
             %tr.item
               %td.date
-                - if thing.user == current_user
+                - if thing.user == @user
                   = link_to '«', thing, :rel=>:facebox
                 = link_to thing.date, date_link(thing.date)
               %td.description

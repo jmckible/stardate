@@ -96,10 +96,10 @@ describe Item do
   
   it 'should update per diem if existing amortization period changed' do
     item = items(:default)
-    item.finish = Date.today + 9
+    item.finish = item.date + 9
     item.save
-    item.finish.should == Date.today + 9
-    item.per_diem.should == -1
+    item.finish.should == item.date + 9
+    item.per_diem.to_f.should == -1
   end
 
   #####################################################################

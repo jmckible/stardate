@@ -87,17 +87,17 @@ class User < ActiveRecord::Base
   #####################################################################
   #                       V A L I D A T I O N S                       #
   #####################################################################
-  attr_accessor    :password
+  attr_accessor :password
   
-  validates_confirmation_of :password,                     :if=>:update_password?
-  validates_length_of       :password, :within=>4..40,     :if=>:update_password?
-  validates_presence_of     :password_confirmation,        :if=>:update_password?
+  validates_confirmation_of :password,                 :if=>:update_password?
+  validates_length_of       :password, :within=>4..40, :if=>:update_password?
+  validates_presence_of     :password_confirmation,    :if=>:update_password?
   
   validates_format_of     :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/
   validates_length_of     :email, :within=>5..100
   validates_uniqueness_of :email
   
-  validates_presence_of :time_zone, :name
+  validates_presence_of :household_id, :name, :time_zone
   
   before_save :encrypt_password
   

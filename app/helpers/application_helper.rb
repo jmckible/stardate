@@ -59,7 +59,7 @@ module ApplicationHelper
   end
   
   def date_link(date)
-    date_path(:year=>date.year, :month=>date.month, :day=>date.day)
+    date_path(year: date.year, month: date.month, day: date.day)
   end
 
 end

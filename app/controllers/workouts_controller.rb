@@ -16,7 +16,7 @@ class WorkoutsController < ApplicationController
     end
     @period = @start..@finish
     
-    @workouts = current_user.workouts.order('date DESC').page params[:page]
+    @workouts = @user.workouts.order('date DESC').page params[:page]
   end
   
 end

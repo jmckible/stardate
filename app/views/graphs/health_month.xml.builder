@@ -13,14 +13,14 @@ xml.chart :showValues=>'0', :showBorder=>0, :bgColor=>'ffffff',  :plotGradientCo
   
   xml.dataset :seriesName=>'Time' do
     @period.each do |date|
-      time = current_user.bikes.on(date).sum(:minutes) + current_user.runs.on(date).sum(:minutes) + current_user.ellipticals.on(date).sum(:minutes)
+      time = @user.bikes.on(date).sum(:minutes) + @user.runs.on(date).sum(:minutes) + @user.ellipticals.on(date).sum(:minutes)
       xml.set :value=>time, :toolText=>"#{time}min"
     end
   end
   
   xml.dataset :seriesName=>'Weight', :parentYAxis=>'S' do
     @period.each do |date|
-      weight = current_user.weights.on(date).first
+      weight = @user.weights.on(date).first
       if weight
         xml.set :value=>weight.weight, :toolText=>"#{weight.weight}lbs @ #{weight.body_fat}% BF"
       else

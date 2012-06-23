@@ -1,21 +1,11 @@
 module AuthorizationSystem
   def self.included(base)
-    base.send :helper_method, :current_user, :logged_in?
+    base.send :helper_method, :logged_in?
   end
   
   protected
   def logged_in?
-    !@current_user.nil?
-  end
-
-  def current_user
-    @current_user ||= User.find(session[:user_id])
-  end
-  
-  def current_user=(user)
-    return if user.nil?
-    @current_user = user
-    session_and_cookie_for user
+    !@user.nil?
   end
   
   def attempt_login
@@ -23,7 +13,7 @@ module AuthorizationSystem
   end
 
   def login_required
-    access_denied unless session_login || cookie_login
+    access_denied unless attempt_login
   end
 
   def access_denied
@@ -32,17 +22,21 @@ module AuthorizationSystem
   end
 
   def session_login
-    @current_user = User.find session[:user_id]
+    @user = User.find session[:user_id]
+    @household = @user.household
   rescue ActiveRecord::RecordNotFound
-    @current_user = nil
+    @user = nil
+    @household = nil
     return false
   end
 
   def cookie_login
-    @current_user = User.find cookies[:user_id]
-    return @current_user.password_hash == cookies[:password_hash] 
+    @user = User.find cookies[:user_id]
+    @household = @user.household
+    return @user.password_hash == cookies[:password_hash] 
   rescue
-    @current_user = nil
+    @user = nil
+    @household = nil
     return false
   end
   

@@ -12,9 +12,9 @@ xml.chart :showValues=>'0', :showBorder=>0, :bgColor=>'ffffff',  :plotGradientCo
   
   xml.dataset :seriesName=>'Time' do
     @period.step(7) do |date|
-      runs  = current_user.runs.during(date..(date+6))
-      bikes = current_user.bikes.during(date..(date+6))
-      ellipticals = current_user.ellipticals.during(date..(date+6))
+      runs  = @user.runs.during(date..(date+6))
+      bikes = @user.bikes.during(date..(date+6))
+      ellipticals = @user.ellipticals.during(date..(date+6))
       total = runs.sum(:minutes) + bikes.sum(:minutes) + ellipticals.sum(:minutes)
       xml.set :value=>total, :toolText=>minutes_to_time(total)
     end
@@ -22,7 +22,7 @@ xml.chart :showValues=>'0', :showBorder=>0, :bgColor=>'ffffff',  :plotGradientCo
   
   xml.dataset :seriesName=>'Weight', :parentYAxis=>'S' do
     @period.step(7) do |date|
-      weights = current_user.weights.during(date..(date+6))
+      weights = @user.weights.during(date..(date+6))
       if weights.empty?
         xml.set
       else

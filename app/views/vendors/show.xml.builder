@@ -7,8 +7,8 @@ xml.chart :numberPrefix=>'$', :rotateLabels=>1, :showValues=>'0', :showBorder=>0
     
     label = date.month == 1 ? date.strftime('%Y %b') : date.strftime('%b')
     
-    items = current_user.items.from_vendor(@vendor).during(period)
-    sum = current_user.sum_value items, period
+    items = user.items.from_vendor(@vendor).during(period)
+    sum = user.sum_value items, period
     
     sum = sum * -1 if sum < 0
     

@@ -1,7 +1,7 @@
 class Vendor < ActiveRecord::Base
   has_permalink :name
   
-  has_many :items, :order=>'created_at desc'
+  has_many :items, order: 'created_at desc'
   
   def to_param() permalink end
   

@@ -21,5 +21,5 @@
           %li= link_to 'tags', tags_path
           %li= link_to 'vendors', vendors_path
           %li= link_to 'reports', reports_path
-          %li= link_to 'settings', edit_user_path(current_user)
-          %li= link_to 'logout', session_path(current_user), :method=>:delete
+          %li= link_to 'settings', [:edit, @user]
+          %li= link_to 'logout', session_path(@user), :method=>:delete

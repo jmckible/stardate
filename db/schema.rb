@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120612172654) do
+ActiveRecord::Schema.define(:version => 20120614223836) do
 
   create_table "budgets", :force => true do |t|
     t.integer  "household_id"
@@ -33,9 +33,9 @@ ActiveRecord::Schema.define(:version => 20120612172654) do
   end
 
   create_table "items", :force => true do |t|
-    t.integer  "user_id",                         :null => false
-    t.date     "date",                            :null => false
-    t.integer  "value",        :default => 0,     :null => false
+    t.integer  "user_id",                                                        :null => false
+    t.date     "date",                                                           :null => false
+    t.integer  "value",                                       :default => 0,     :null => false
     t.text     "description"
     t.integer  "vendor_id"
     t.datetime "created_at"
@@ -43,9 +43,9 @@ ActiveRecord::Schema.define(:version => 20120612172654) do
     t.integer  "recurring_id"
     t.date     "start"
     t.date     "finish"
-    t.integer  "per_diem"
+    t.decimal  "per_diem",     :precision => 10, :scale => 2
     t.integer  "household_id"
-    t.boolean  "secret",       :default => false
+    t.boolean  "secret",                                      :default => false
   end
 
   add_index "items", ["date"], :name => "index_items_on_date"

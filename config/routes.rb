@@ -22,7 +22,7 @@ Stardate::Application.routes.draw do
   match 'date/:year/:month/:day'=>'date#show', as: 'date'
 
   match 'graphs/health/:start/:finish.:format'=>'graphs#health', as: 'health'
-  match 'graphs/spending/:start/:finish.:format'=>'graphs#spendign', as: 'spending'
+  match 'graphs/spending/:start/:finish.:format'=>'graphs#spending', as: 'spending'
 
   root to: 'things#index'
   

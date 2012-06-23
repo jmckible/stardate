@@ -1,6 +1,6 @@
 source :rubygems
 
-gem 'rails', '3.2'
+gem 'rails', '3.2.6'
 
 gem 'acts-as-taggable-on'
 gem 'haml'

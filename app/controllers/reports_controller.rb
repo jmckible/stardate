@@ -15,20 +15,20 @@ class ReportsController < ApplicationController
     end
     @period = @start..@finish
     
-    @income   = current_user.sum_income   @period
-    @expenses = current_user.sum_expenses @period
-    @net      = current_user.total_during @period
+    @income   = @user.sum_income   @period
+    @expenses = @user.sum_expenses @period
+    @net      = @user.total_during @period
     
-    @tags = current_user.items.during(@period).tag_counts :order=>'count desc', :limit=>20
+    @tags = @user.items.during(@period).tag_counts :order=>'count desc', :limit=>20
     
-    @run       = current_user.runs.during(@period).sum 'distance'
-    @run_time  = current_user.runs.during(@period).sum 'minutes'
+    @run       = @user.runs.during(@period).sum 'distance'
+    @run_time  = @user.runs.during(@period).sum 'minutes'
     
-    @bike      = current_user.bikes.during(@period).sum 'distance'
-    @bike_time = current_user.bikes.during(@period).sum 'minutes'
+    @bike      = @user.bikes.during(@period).sum 'distance'
+    @bike_time = @user.bikes.during(@period).sum 'minutes'
     
-    @elliptical      = current_user.ellipticals.during(@period).sum 'distance'
-    @elliptical_time = current_user.ellipticals.during(@period).sum 'minutes'
+    @elliptical      = @user.ellipticals.during(@period).sum 'distance'
+    @elliptical_time = @user.ellipticals.during(@period).sum 'minutes'
   end
   
 end

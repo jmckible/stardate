@@ -39,9 +39,9 @@ module Totalling
          period.first, period.last, period.first, period.last, period.first, period.last).each do |item|
            sum = sum + (days_overlap(item, period) * item.per_diem)
        end
-       sum
+       sum.round
      else
-       items.where("start <= ? and finish >= ? and per_diem #{operator} 0", period, period).sum(:per_diem)
+       items.where("start <= ? and finish >= ? and per_diem #{operator} 0", period, period).sum(:per_diem).round
      end
    end
 

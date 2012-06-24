@@ -8,9 +8,9 @@
   %tbody
     - for tag in tags
       - count = tag.count
-      - sum = user.items.during(@period).find_tagged_with(tag).sum(&:value)
+      - sum = @user.items.during(@period).tagged_with(tag).sum(&:value)
       %tr
-        %td.vendor= link_to tag.name, tag
+        %td.vendor= link_to tag.name, tag_path(tag)
         %td.count= number_with_delimiter count
         %td.sum= number_with_delimiter color_explicit_money(sum)
         %td.sum= number_with_delimiter color_explicit_money((sum / count.to_f).round)

@@ -16,7 +16,7 @@ class ThingsController < ApplicationController
     @thing = Grammar.parse params[:thing]
     @thing.user = @user
     @thing.household = @household if @thing.is_a?(Item)
-    @thing.save
+    @thing.save!
     redirect_to root_url
   end
   

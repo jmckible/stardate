@@ -1,2 +1,0 @@
-class Run < Workout
-end

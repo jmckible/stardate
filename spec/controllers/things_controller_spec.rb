@@ -39,7 +39,7 @@ describe ThingsController do
     running {
       post :create, :thing=>'Ran 2'
       response.should redirect_to(root_url)
-    }.should change(Run, :count).by(1)
+    }.should change(Workout, :count).by(1)
   end
   
 end

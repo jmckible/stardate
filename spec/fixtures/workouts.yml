@@ -1,32 +1,32 @@
 bike:
-  type: Bike
+  bike: true
   user: default
   distance: 10
   minutes: 40
   date: 2008-01-01
     
 elliptical:
-  type: Elliptical
+  elliptical: true
   user: default
   distance: 3
   minutes: 30
   date: 2008-01-01
 
 nike:
-  type: Nike
+  nike: true
   user: default
   minutes: 30
   date: 2008-01-01
   
 p90x:
-  type: P90x
+  p90x: true
   user: default
   minutes: 60
   date: 2008-01-01
   description: Yoga X
   
 run:
-  type: Run
+  run: true
   user: default
   distance: 3.5
   minutes: 60

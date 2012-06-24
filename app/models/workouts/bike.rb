@@ -1,2 +1,0 @@
-class Bike < Workout
-end

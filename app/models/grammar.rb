@@ -20,21 +20,21 @@ class Grammar
                
     elsif string =~ /^(Bike|bike|b )/
       distance, minutes = string.split(/^(Bike|bike|b) /).last.split(' ')
-      Bike.new date: date, distance: distance, minutes: minutes
+      Workout.new bike: true, date: date, distance: distance, minutes: minutes
     elsif string =~ /^(Elliptical|elliptical|e )/
       distance, minutes = string.split(/^(Elliptical|elliptical|e) /).last.split(' ')
-      Elliptical.new date: date, distance: distance, minutes: minutes
+      Workout.new elliptical:true, date: date, distance: distance, minutes: minutes
     elsif string =~ /^(Nike|nike|n )/
       minutes = string.split(/^(Nike|nike|n )/).last.split(' ').first
       description = string.split(/^(Nike|nike|n )/).last.split(' ')[1..-1].join(' ')
-      Nike.new date: date, minutes: minutes, description: description
+      Workout.new nike: true, date: date, minutes: minutes, description: description
     elsif string =~ /^(P90x|p90x|P90X|p )/
       minutes = string.split(/^(P90x|p90x|P90X|p90X|p )/).last.split(' ').first
       description = string.split(/^(P90x|p90x|P90X|p90X|p )/).last.split(' ')[1..-1].join(' ')
-      P90x.new date: date, minutes: minutes, description: description
+      Workout.new p90x: true, date: date, minutes: minutes, description: description
     elsif string =~ /^(Ran|ran|r )/
       distance, minutes = string.split(/^(Ran|ran|r) /).last.split(' ')
-      Run.new date: date, distance: distance, minutes: minutes
+      Workout.new run: true, date: date, distance: distance, minutes: minutes
     elsif string =~ /^(weight|w )/
       weight = string.split(/^(weight |w )/).last
       Weight.new date: date, weight: weight

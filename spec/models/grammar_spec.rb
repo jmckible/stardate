@@ -61,7 +61,8 @@ describe Grammar do
   #####################################################################
   it 'should parse starting with Bike' do
     bike = Grammar.parse 'Bike 5 50'
-    bike.should be_is_a(Bike)
+    bike.should be_is_a(Workout)
+    bike.should be_bike
     bike.date.should == Time.zone.now.to_date
     bike.distance.to_s.should == '5.0'
     bike.minutes.should == 50
@@ -69,7 +70,8 @@ describe Grammar do
   
   it 'should parse starting with b' do
     bike = Grammar.parse 'b 5 50'
-    bike.should be_is_a(Bike)
+    bike.should be_is_a(Workout)
+    bike.should be_bike
     bike.date.should == Time.zone.now.to_date
     bike.distance.to_s.should == '5.0'
     bike.minutes.should == 50
@@ -77,7 +79,8 @@ describe Grammar do
   
   it 'should parse starting with ran and date' do
     bike = Grammar.parse '2/1/09 bike 4.5 60'
-    bike.should be_is_a(Bike)
+    bike.should be_is_a(Workout)
+    bike.should be_bike
     bike.date.should == Date.new(2009, 2, 1)
     bike.distance.to_s.should == '4.5'
     bike.minutes.should == 60
@@ -88,7 +91,8 @@ describe Grammar do
   #####################################################################
   it 'should parse starting with Elliptical' do
     elliptical = Grammar.parse 'Elliptical 2 20'
-    elliptical.should be_is_a(Elliptical)
+    elliptical.should be_is_a(Workout)
+    elliptical.should be_elliptical
     elliptical.date.should == Time.zone.now.to_date
     elliptical.distance.to_s.should == '2.0'
     elliptical.minutes.should == 20
@@ -96,7 +100,8 @@ describe Grammar do
   
   it 'should parse starting with e' do
     elliptical = Grammar.parse 'e 1 10'
-    elliptical.should be_is_a(Elliptical)
+    elliptical.should be_is_a(Workout)
+    elliptical.should be_elliptical
     elliptical.date.should == Time.zone.now.to_date
     elliptical.distance.to_s.should == '1.0'
     elliptical.minutes.should == 10
@@ -104,7 +109,8 @@ describe Grammar do
   
   it 'should parse starting with ran and date' do
     elliptical = Grammar.parse '2/1/09 elliptical 4.5 60'
-    elliptical.should be_is_a(Elliptical)
+    elliptical.should be_is_a(Workout)
+    elliptical.should be_elliptical
     elliptical.date.should == Date.new(2009, 2, 1)
     elliptical.distance.to_s.should == '4.5'
     elliptical.minutes.should == 60
@@ -115,7 +121,8 @@ describe Grammar do
   #####################################################################
   it 'should parse starting with Nike' do
     nike = Grammar.parse 'Nike 45 Advanced - trainer'
-    nike.should be_is_a(Nike)
+    nike.should be_is_a(Workout)
+    nike.should be_nike
     nike.date.should == Time.zone.now.to_date
     nike.minutes.should == 45
     nike.description.should == 'Advanced - trainer'
@@ -123,7 +130,8 @@ describe Grammar do
   
   it 'should parse starting with n' do
     nike = Grammar.parse 'n 40 strength'
-    nike.should be_is_a(Nike)
+    nike.should be_is_a(Workout)
+    nike.should be_nike
     nike.date.should == Time.zone.now.to_date
     nike.minutes.should == 40
     nike.description.should == 'strength'
@@ -131,7 +139,8 @@ describe Grammar do
   
   it 'should parse starting with nike and date' do
     nike = Grammar.parse '2/1/09 nike 45 lean strong'
-    nike.should be_is_a(Nike)
+    nike.should be_is_a(Workout)
+    nike.should be_nike
     nike.date.should == Date.new(2009, 2, 1)
     nike.minutes.should == 45
     nike.description.should == 'lean strong'
@@ -142,7 +151,8 @@ describe Grammar do
   #####################################################################
   it 'should parse starting with P90X' do
     p90x = Grammar.parse 'P90X 60 Back'
-    p90x.should be_is_a(P90x)
+    p90x.should be_is_a(Workout)
+    p90x.should be_p90x
     p90x.date.should == Time.zone.now.to_date
     p90x.minutes.should == 60
     p90x.description.should == 'Back'
@@ -150,7 +160,8 @@ describe Grammar do
   
   it 'should parse starting with p' do
     p90x = Grammar.parse 'p 90 yoga'
-    p90x.should be_is_a(P90x)
+    p90x.should be_is_a(Workout)
+    p90x.should be_p90x
     p90x.date.should == Time.zone.now.to_date
     p90x.minutes.should == 90
     p90x.description.should == 'yoga'
@@ -158,7 +169,8 @@ describe Grammar do
   
   it 'should parse starting with p90x and date' do
     p90x = Grammar.parse '2/1/09 p90x 60 plyo'
-    p90x.should be_is_a(P90x)
+    p90x.should be_is_a(Workout)
+    p90x.should be_p90x
     p90x.date.should == Date.new(2009, 2, 1)
     p90x.minutes.should == 60
     p90x.description.should == 'plyo'
@@ -169,7 +181,8 @@ describe Grammar do
   #####################################################################
   it 'should parse starting with Ran' do
     run = Grammar.parse 'Ran 4 40'
-    run.should be_is_a(Run)
+    run.should be_is_a(Workout)
+    run.should be_run
     run.date.should == Time.zone.now.to_date
     run.distance.to_s.should == '4.0'
     run.minutes.should == 40
@@ -177,7 +190,8 @@ describe Grammar do
   
   it 'should parse starting with r' do
     run = Grammar.parse 'r 4 40'
-    run.should be_is_a(Run)
+    run.should be_is_a(Workout)
+    run.should be_run
     run.date.should == Time.zone.now.to_date
     run.distance.to_s.should == '4.0'
     run.minutes.should == 40
@@ -185,7 +199,8 @@ describe Grammar do
   
   it 'should parse starting with ran and date' do
     run = Grammar.parse '2/1/09 ran 3.5 45'
-    run.should be_is_a(Run)
+    run.should be_is_a(Workout)
+    run.should be_run
     run.date.should == Date.new(2009, 2, 1)
     run.distance.to_s.should == '3.5'
     run.minutes.should == 45

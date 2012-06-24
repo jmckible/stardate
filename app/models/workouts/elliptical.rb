@@ -1,2 +1,0 @@
-class Elliptical < Workout
-end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120614223836) do
+ActiveRecord::Schema.define(:version => 20120623232206) do
 
   create_table "budgets", :force => true do |t|
     t.integer  "household_id"
@@ -170,18 +170,26 @@ ActiveRecord::Schema.define(:version => 20120614223836) do
   add_index "weights", ["user_id"], :name => "index_weights_on_user_id"
 
   create_table "workouts", :force => true do |t|
-    t.string   "type"
     t.integer  "user_id"
     t.date     "date"
     t.integer  "minutes"
     t.decimal  "distance",    :precision => 10, :scale => 2
     t.string   "description"
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
+    t.datetime "created_at",                                                    :null => false
+    t.datetime "updated_at",                                                    :null => false
+    t.boolean  "bike",                                       :default => false
+    t.boolean  "elliptical",                                 :default => false
+    t.boolean  "nike",                                       :default => false
+    t.boolean  "p90x",                                       :default => false
+    t.boolean  "run",                                        :default => false
   end
 
+  add_index "workouts", ["bike"], :name => "index_workouts_on_bike"
   add_index "workouts", ["date"], :name => "index_workouts_on_date"
-  add_index "workouts", ["type"], :name => "index_workouts_on_type"
+  add_index "workouts", ["elliptical"], :name => "index_workouts_on_elliptical"
+  add_index "workouts", ["nike"], :name => "index_workouts_on_nike"
+  add_index "workouts", ["p90x"], :name => "index_workouts_on_p90x"
+  add_index "workouts", ["run"], :name => "index_workouts_on_run"
   add_index "workouts", ["user_id"], :name => "index_workouts_on_user_id"
 
 end

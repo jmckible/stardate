@@ -31,49 +31,49 @@
 
 #HealthYear= render partial: 'graphs/health_year'
 
-%table
-  %tr
-    %td Running Distance
-    %td
-      = number_with_delimiter @run
-      miles
-  %tr
-    %td Running Time
-    %td= minutes_to_time @run_time
-  - unless @run == 0
-    %tr
-      %td Run Pace
-      %td
-        = (@run_time / @run).round 2
-        min/mi
-        
-        
-  %tr
-    %td Biking Distance
-    %td
-      = number_with_delimiter @bike
-      miles
-  %tr
-    %td Biking Time
-    %td= minutes_to_time @bike_time
-  - unless @bike_time == 0
-    %tr
-      %td Bike Pace
-      %td
-        = (@bike/ (@bike_time / 60.0)).round 2
-        mi/hr
-        
-  %tr
-    %td Elliptical Distance
-    %td
-      = number_with_delimiter @elliptical
-      miles
-  %tr
-    %td Elliptical Time
-    %td= minutes_to_time @elliptical_time
-  - unless @elliptical == 0
-    %tr
-      %td Elliptical Pace
-      %td
-        = (@elliptical_time / @elliptical).round 2
-        min/mi
+/ %table
+/   %tr
+/     %td Running Distance
+/     %td
+/       = number_with_delimiter @run
+/       miles
+/   %tr
+/     %td Running Time
+/     %td= minutes_to_time @run_time
+/   - unless @run == 0
+/     %tr
+/       %td Run Pace
+/       %td
+/         = (@run_time / @run).round 2
+/         min/mi
+/         
+/         
+/   %tr
+/     %td Biking Distance
+/     %td
+/       = number_with_delimiter @bike
+/       miles
+/   %tr
+/     %td Biking Time
+/     %td= minutes_to_time @bike_time
+/   - unless @bike_time == 0
+/     %tr
+/       %td Bike Pace
+/       %td
+/         = (@bike/ (@bike_time / 60.0)).round 2
+/         mi/hr
+/         
+/   %tr
+/     %td Elliptical Distance
+/     %td
+/       = number_with_delimiter @elliptical
+/       miles
+/   %tr
+/     %td Elliptical Time
+/     %td= minutes_to_time @elliptical_time
+/   - unless @elliptical == 0
+/     %tr
+/       %td Elliptical Pace
+/       %td
+/         = (@elliptical_time / @elliptical).round 2
+/         min/mi

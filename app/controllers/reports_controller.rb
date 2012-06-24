@@ -20,15 +20,6 @@ class ReportsController < ApplicationController
     @net      = @user.total_during @period
     
     @tags = @user.items.during(@period).tag_counts :order=>'count desc', :limit=>20
-    
-    @run       = @user.runs.during(@period).sum 'distance'
-    @run_time  = @user.runs.during(@period).sum 'minutes'
-    
-    @bike      = @user.bikes.during(@period).sum 'distance'
-    @bike_time = @user.bikes.during(@period).sum 'minutes'
-    
-    @elliptical      = @user.ellipticals.during(@period).sum 'distance'
-    @elliptical_time = @user.ellipticals.during(@period).sum 'minutes'
   end
   
 end

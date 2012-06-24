@@ -38,42 +38,7 @@
                 = thing.body
               - else
                 .preview= "#{thing.body.first(80)} #{link_to '...', '', :class=>:expand_note}"
-                .hide= simple_format thing.body
-        
-        - elsif thing.is_a?(Bike)
-          %tr.run
-            %td.date
-              = link_to '«', thing, :rel=>:facebox
-              = link_to thing.date, date_link(thing.date)
-            %td.description{colspan: 4}= "Biked #{thing.distance}mi/#{minutes_to_time thing.minutes}"
-            
-        - elsif thing.is_a?(Elliptical)
-          %tr.run
-            %td.date
-              = link_to '«', thing, :rel=>:facebox
-              = link_to thing.date, date_link(thing.date)
-            %td.description{colspan: 4}= "Elliptical #{thing.distance}mi/#{minutes_to_time thing.minutes}"
-            
-        - elsif thing.is_a?(Nike)
-          %tr.run
-            %td.date
-              = link_to '«', thing, :rel=>:facebox
-              = link_to thing.date, date_link(thing.date)
-            %td.description{colspan: 4}= "Nike Training Club: #{thing.minutes}min - #{thing.description}"
-            
-        - elsif thing.is_a?(P90x)
-          %tr.run
-            %td.date
-              = link_to '«', thing, :rel=>:facebox
-              = link_to thing.date, date_link(thing.date)
-            %td.description{colspan: 4}= "P90X #{thing.description}"
-        
-        - elsif thing.is_a?(Run)
-          %tr.run
-            %td.date
-              = link_to '«', thing, :rel=>:facebox
-              = link_to thing.date, date_link(thing.date)
-            %td.description{colspan: 4}= "Ran #{thing.distance}mi/#{minutes_to_time thing.minutes}"
+                .hide= simple_format thing.body    
 
         - elsif thing.is_a?(Weight)
           %tr.run
@@ -81,3 +46,10 @@
               = link_to '«', thing, :rel=>:facebox
               = link_to thing.date, date_link(thing.date)
             %td.description{colspan: 4}= "Weight #{thing.weight}lbs"
+        
+        - elsif thing.is_a?(Workout)
+          %tr.run
+            %td.date
+              = link_to '«', thing, :rel=>:facebox
+              = link_to thing.date, date_link(thing.date)
+            %td.description{colspan: 4}= thing

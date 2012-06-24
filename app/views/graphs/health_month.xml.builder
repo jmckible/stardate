@@ -13,7 +13,7 @@ xml.chart :showValues=>'0', :showBorder=>0, :bgColor=>'ffffff',  :plotGradientCo
   
   xml.dataset :seriesName=>'Time' do
     @period.each do |date|
-      time = @user.bikes.on(date).sum(:minutes) + @user.runs.on(date).sum(:minutes) + @user.ellipticals.on(date).sum(:minutes)
+      time = @user.workouts.on(date).sum(:minutes)
       xml.set :value=>time, :toolText=>"#{time}min"
     end
   end

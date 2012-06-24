@@ -1,2 +1,0 @@
-class Nike < Workout
-end

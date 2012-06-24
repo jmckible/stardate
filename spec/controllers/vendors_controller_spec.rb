@@ -9,7 +9,7 @@ describe VendorsController do
   end
   
   it 'handles /vendors/:id with GET' do
-    get :show, :id=>vendors(:default).to_param
+    get :show, id: vendors(:default)
     response.should be_success
   end
   

@@ -58,7 +58,6 @@ GEM
     mime-types (1.19)
     multi_json (1.3.6)
     mysql2 (0.3.11)
-    permalink_fu (1.0.0)
     pg (0.14.0)
     polyglot (0.3.3)
     rack (1.4.1)
@@ -131,7 +130,6 @@ DEPENDENCIES
   haml
   jquery-rails
   mysql2
-  permalink_fu
   pg
   rails (= 3.2.6)
   rspec-rails

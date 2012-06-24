@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120624200418) do
+ActiveRecord::Schema.define(:version => 20120624220308) do
 
   create_table "budgets", :force => true do |t|
     t.integer  "household_id"
@@ -150,10 +150,7 @@ ActiveRecord::Schema.define(:version => 20120624200418) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "permalink"
   end
-
-  add_index "vendors", ["permalink"], :name => "index_vendors_on_permalink"
 
   create_table "weights", :force => true do |t|
     t.integer  "user_id"

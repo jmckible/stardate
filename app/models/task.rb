@@ -1,20 +1,11 @@
 class Task < ActiveRecord::Base
   
-  #####################################################################
-  #                     R E L A T I O N S H I P S                     #
-  #####################################################################
   belongs_to :job
   belongs_to :paycheck
-  
-  #####################################################################
-  #                            S C O P E                              #
-  #####################################################################
+
   scope :on,      lambda { |date| where date: date }
   scope :unpaid,  where(paycheck_id: nil)
   
-  #####################################################################
-  #                    O B J E C T    M E T H O D S                   #
-  #####################################################################
   attr_accessor :hours, :min
   def hours
     return if minutes.blank?
@@ -35,9 +26,7 @@ class Task < ActiveRecord::Base
     end
   end
   
-  #####################################################################
-  #                       V A L I D A T I O N S                       #
-  #####################################################################
+
   attr_accessible :date, :description, :hours, :min
   
   validates_presence_of :date, :job_id

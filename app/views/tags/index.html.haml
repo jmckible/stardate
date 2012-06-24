@@ -1,3 +1,5 @@
 %h1 Tags
 
-= render :partial=>'tags', :object=>@tags
+= render partial: 'tags', object: @tags
+
+= will_paginate @tags

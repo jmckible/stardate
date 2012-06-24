@@ -1,22 +1,12 @@
 class Paycheck < ActiveRecord::Base
   
-  #####################################################################
-  #                     R E L A T I O N S H I P S                     #
-  #####################################################################
   belongs_to :item
   belongs_to :job
   
   has_many :tasks, :dependent=>:nullify
   
-  #####################################################################
-  #                             S C O P E                             #
-  #####################################################################
   scope :unpaid, where(item_id: nil)
-  
-  #####################################################################
-  #                    O B J E C T    M E T H O D S                   #
-  #####################################################################
-  # Virtual attr paid for checkbox
+
   attr_accessor :paid
   def paid?
     item_id || paid == true || paid == 1
@@ -29,10 +19,7 @@ class Paycheck < ActiveRecord::Base
         description: description, date: Date.today
     end
   end
-  
-  #####################################################################
-  #                       V A L I D A T I O N S                       #
-  #####################################################################
+
   attr_accessible :value
   
   validates_presence_of     :job_id

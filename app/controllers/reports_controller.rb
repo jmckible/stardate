@@ -19,7 +19,7 @@ class ReportsController < ApplicationController
     @expenses = @user.sum_expenses @period
     @net      = @user.total_during @period
     
-    @tags = @user.items.during(@period).tag_counts :order=>'count desc', :limit=>20
+    #@tags = @user.items.during(@period).tag_counts :order=>'count desc', :limit=>20
   end
   
 end

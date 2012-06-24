@@ -1,7 +1,6 @@
 class Recurring < ActiveRecord::Base
+  include Taggable
   
-  acts_as_taggable
-
   belongs_to :user
   belongs_to :vendor
   

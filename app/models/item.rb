@@ -1,6 +1,5 @@
 class Item < ActiveRecord::Base
-
-  acts_as_taggable
+  include Taggable
 
   belongs_to :household
   belongs_to :recurring
@@ -17,6 +16,8 @@ class Item < ActiveRecord::Base
   }
   scope :on, lambda { |date| where date: date }
   scope :from_vendor, lambda { |vendor| where(vendor_id: vendor.id) if vendor }
+  
+  scope :tagged_with, lambda{|tag| includes(:taggings).where('taggings.tag_id = ?', tag.id)}
   
   before_validation :amortize, :if=>:date
   def amortize

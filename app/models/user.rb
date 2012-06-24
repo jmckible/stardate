@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
   has_many :jobs,        :order=>'name',      :dependent=>:destroy
   has_many :notes,       :order=>'date desc', :dependent=>:destroy
   has_many :recurrings,  :order=>'day',       :dependent=>:destroy
+  has_many :tags,        :through=>:items,    :uniq=>true
   has_many :tasks,       :through=>:jobs 
   has_many :vendors,     :through=>:items,    :uniq=>true, :order=>'name'
   has_many :weights,     :order=>'date',      :dependent=>:destroy
@@ -72,7 +73,7 @@ class User < ActiveRecord::Base
     array = []
     period.step(7) do |date|
       all_items = items.during(date..(date+6)).tagged_with(tag)
-      sum = sum_value all_items, period
+      sum = sum_value(all_items, period).round
       sum = sum * -1 if sum < 0
       array << sum
     end

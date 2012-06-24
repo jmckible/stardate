@@ -290,7 +290,7 @@ describe Grammar do
     item.value.should == -5
     item.vendor.name.should == 'Kool Korners'
     item.description.should == 'cuban'
-    item.tag_list.should == ['food', 'sandwich']
+    item.should have(2).tags
   end
   
 end

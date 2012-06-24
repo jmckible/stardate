@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120623232206) do
+ActiveRecord::Schema.define(:version => 20120624200418) do
 
   create_table "budgets", :force => true do |t|
     t.integer  "household_id"
@@ -107,13 +107,10 @@ ActiveRecord::Schema.define(:version => 20120623232206) do
     t.integer  "tag_id"
     t.integer  "taggable_id"
     t.string   "taggable_type"
-    t.string   "context"
-    t.integer  "tagger_id"
-    t.string   "tagger_type"
   end
 
   add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
-  add_index "taggings", ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
+  add_index "taggings", ["taggable_id", "taggable_type"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
   add_index "taggings", ["taggable_id"], :name => "index_taggings_on_item_id"
   add_index "taggings", ["taggable_type"], :name => "index_taggings_on_taggable_type"
 

@@ -6,8 +6,8 @@
       %th Amount
       %th ASP
   %tbody
-    - for tag in tags
-      - count = tag.count
+    - tags.each do |tag|
+      - count = @user.items.tagged_with(tag).count
       - sum = @user.items.during(@period).tagged_with(tag).sum(&:value)
       %tr
         %td.vendor= link_to tag.name, tag_path(tag)

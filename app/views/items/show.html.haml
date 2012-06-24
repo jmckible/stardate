@@ -1,5 +1,9 @@
 %h1 Edit Transaction
 
+%p
+  Added by
+  = @item.user.name
+
 = form_for @item do |f|
   %p= f.date_select :date,           order: [:month, :day, :year]
   %p= f.text_field  :explicit_value, class: 'money'

@@ -1,34 +1,28 @@
 @import 'facebox'
+@import 'layout'
+@import 'note'
+@import 'pagination'
+@import 'table'
 
-/****************************/
-/*      G E N E R A L       */
-/****************************/
 a
   color: #999
   text-decoration: none 
 a:hover
-  text-decoration: underline         
+  text-decoration: underline
+a.long_entry
+  color: #f00 
+  font-size: 1.5em         
 
 body
   margin: 0
   color: #333
-  font-family: helvetica, sans-serif
+  font-family: "helvetica neue", arial, helvetica, san-serif
   background: #ccc
-
-.clear
-  clear: both 
-.create a 
-  color: #0c0 
-.delete a 
-  color: #f00 
-
-a.long_entry
-  color: #f00 
-  font-size: 1.5em
 
 h1
   font-size: 2em
   margin: 0 0 1em 0
+  
 h2
   font-size: 1.75em
   margin: 0 0 0.5em 0
@@ -50,194 +44,20 @@ input.money
   padding-left: 1em
   width: 9em
 
-.amortize .show a 
-  color: #0c0
-
 textarea
   border: 2px solid #ddd
   width: 30em
   height: 25em
-
-/****************************/
-/*       L A Y O U T        */
-/****************************/
-#Content 
-  margin: 0 auto 40px auto
-  width: 980px
-  background: #fff
-  padding: 1em 0 2em 2em
-  border-left: 10px solid #999
-  border-right: 10px solid #999
-  border-bottom: 10px solid #999
-
-
-#Main 
-  padding-left: 30px
-  width: 800px
-
-
-#Menu  
-  margin: 3em 0 1em 0 
-
-#Menu li 
-  float: left
-  list-style: none
-  margin-right: 2em
-
+  
+.clear
+  clear: both 
+.create a 
+  color: #0c0 
+.delete a 
+  color: #f00 
+.amortize .show a 
+  color: #0c0
 .negative 
   color: #f0c 
 .positive 
-  color: #0cf 
-
-#Sidebar 
-  float: right
-  width: 130px
-
-#Sidebar dl 
-  font-family: serif
-
-#Sidebar dl dt 
-  font-size: 1.75em
-  line-height: 1em
-  font-weight: bold
-  float: left
-  clear: both
-  text-align: right
-  width: 90px
-  padding-right: 10px
-
-#Sidebar dl dd 
-  color: #ccc
-  line-height: 1.8em
-  font-size: 0.9em
-
-#Graphs #SpendingMonth 
-  float: left
-  width: 400px
-
-
-/****************************/
-/*        T A B L E         */
-/****************************/
-table 
-  margin: 2em 0
-  line-height: 1.75em
-
-
-table.list tbody tr:hover
-  background-color: #ffd
-
-td
-  border-bottom: 1px solid #ccc
-  padding: 0 0.5em
-
-
-td.count 
-  margin: 0 1em
-  text-align: right
-
-
-td.date
-  width: 9.5em
-  text-align: left
-  padding-left: 0.2em
-  font-size: 0.8em
-
-td.description 
-  padding: 0 1em
-
-
-td.money 
-  width: 5em
-  text-align: right
-
-
-td.sum 
-  margin: 0 1em
-  text-align: right
-
-
-td .tags 
-  font-size: 0.8em
-  color: #999
-
-
-td.user_name 
-  color: #666
-  font-size: 0.6em
-
-
-td .secret 
-  font-size: 0.6em
-  color: #900
-  font-weight: bold
-
-
-td.vendor a 
-  color: #66c
-
-th 
-  padding: 0 0.5em
-  font-size: 0.8em
-  background-color: #eee
-  min-width: 5em
-  text-align: right
-
-
-th.first
-  text-align: left
-
-
-th.headerSortDown 
-  color: #000
-  font-weight: bold
-
-
-th.headerSortUp 
-  color: #000
-  font-weight: bold
-
-
-/****************************/
-/*          N O T E         */
-/****************************/
-.note 
-  margin: 0 0 7em 0
-  line-height: 1.5em
-  width: 35em
-
-
-.note p
-  margin-bottom: 1em
-
-
-.note .title a 
-  color: #000
-  text-decoration: underline
-
-
-/****************************/
-/*   P A G I N A T I O N    */
-/****************************/
-.pagination 
-  text-align: center
-  padding: 1em 
-
-.pagination a, .pagination span 
-  padding: .2em .3em 
-
-.pagination span.disabled 
-  color: #AAA 
-
-.pagination span.current 
-  font-weight: bold
-  font-size: 1.5em
-
-.pagination a 
-  text-decoration: none
-  color: black 
-
-.pagination a:hover, .pagination a:focus 
-  text-decoration: underline 
-
-
+  color: #0cf

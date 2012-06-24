@@ -1,39 +1,38 @@
 - unless things.empty?
-  %table.list
+  %table
     %tbody
       - things.each do |thing|
         - if thing.is_a?(Item)
           - if thing.secret? && thing.user != @user
             %tr.item
               %td.date= link_to thing.date, date_link(thing.date)
-              %td.description{colspan: '3'} [REDACTED]
-              %td.user_name= thing.user.name.first
+              %td 
+                [REDACTED]
+                = thing.user.name.first
           - else
             %tr.item
               %td.date
-                - if thing.user == @user
-                  = link_to '«', thing, :rel=>:facebox
+                = link_to '«', thing, :rel=>:facebox
                 = link_to thing.date, date_link(thing.date)
-              %td.description
-                = thing.description
-                %span.tags= linked_tag_list thing
-              %td.vendor= vendor_name thing
-              %td.money
+              %td
                 = color_money thing.value
                 - unless thing.start == thing.finish
                   = '/'
                   = (thing.finish - thing.start).to_i + 1
-              %td.user_name
-                = thing.user.name.first
-                - if thing.secret?
-                  %span{class: 'secret'} S
+                %span.vendor= vendor_name thing
+                = thing.description
+                %span.tags= linked_tag_list thing
+                %span.user_name
+                  = thing.user.name.first
+                  - if thing.secret?
+                    %span.secret S
         
         - elsif thing.is_a?(Note)
-          %tr.note
+          %tr
             %td.date
               = link_to '«', thing, :rel=>:facebox
               = link_to thing.date, date_link(thing.date)
-            %td.description{colspan: 4}
+            %td
               - if thing.body.length < 80
                 = thing.body
               - else
@@ -41,15 +40,15 @@
                 .hide= simple_format thing.body    
 
         - elsif thing.is_a?(Weight)
-          %tr.run
+          %tr
             %td.date
               = link_to '«', thing, :rel=>:facebox
               = link_to thing.date, date_link(thing.date)
-            %td.description{colspan: 4}= "Weight #{thing.weight}lbs"
+            %td= "Weight #{thing.weight}lbs"
         
         - elsif thing.is_a?(Workout)
-          %tr.run
+          %tr
             %td.date
               = link_to '«', thing, :rel=>:facebox
               = link_to thing.date, date_link(thing.date)
-            %td.description{colspan: 4}= thing
+            %td= thing

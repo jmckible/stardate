@@ -9,16 +9,6 @@ insert_default = (element) ->
     $(element).addClass('defaulted')
     $(element).attr('value', $(element).attr('default'))
 
-jQuery.tablesorter.addParser({
-  id: "commaDigit"
-  is: (s, table) ->
-    c = table.config;
-    return jQuery.tablesorter.isDigit(s.replace(/,/g, ""), c)
-  format: (s) ->
-    return jQuery.tablesorter.formatFloat(s.replace(/,/g, ""))
-  type: "numeric"
-})
-
 $(window).load ->
   $('input#thing').focus()
 
@@ -41,9 +31,7 @@ $(document).ready ->
     $(this).parent().next().show()
     $(this).hide()
     event.preventDefault()
-  
-  $('table.sortable').tablesorter({textExtraction: 'commaDigit'})
-  
+    
   # Form Defaults
   $('input[type=text][default]').livequery ->
     insert_default(this);

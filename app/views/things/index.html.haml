@@ -1,20 +1,3 @@
-= content_for :sidebar do
-  %dl
-    %dt= color_money @household.total_on(Time.now.to_date)
-    %dd 1
-    
-    %dt= color_money @household.total_past_week
-    %dd 7
-  
-    %dt= color_money @household.total_past_month
-    %dd 30
-  
-    %dt= color_money @household.total_past_year
-    %dd 365
-  
-    %dt= color_money @household.items.sum(:value)
-    %dd ∞
-
 = form_tag things_path do 
   = text_field_tag 'thing', '', class: 'long'
   = link_to '...', new_thing_path, class: 'long_entry', rel: 'facebox'

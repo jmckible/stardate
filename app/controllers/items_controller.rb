@@ -16,20 +16,20 @@ class ItemsController < ApplicationController
 
   # GET /items/:id
   def show
-    @item = @user.items.find params[:id]
+    @item = @household.items.find params[:id]
     render layout: false
   end
 
   # PUT /items/:id
   def update
-    @item = @user.items.find params[:id]
+    @item = @household.items.find params[:id]
     @item.update_attributes params[:item]
     redirect_back_or root_url
   end
 
   # DELETE /items/:id
   def destroy
-    @item = @user.items.find params[:id]
+    @item = @household.items.find params[:id]
     @item.destroy
     redirect_back_or root_url
   end

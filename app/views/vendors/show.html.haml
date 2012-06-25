@@ -9,11 +9,11 @@
 
 %h1= @vendor.name
 
-#VendorGraph
-%script{:type=>'text/javascript'}
-  var vendor = new FusionCharts("/flash/Column2D.swf", "Vendor", "940", "300", "0", "0");
-  = "vendor.setDataURL(\"#{vendor_url(@vendor, :format=>'xml')}\");"
-  vendor.render("VendorGraph");
+/ #VendorGraph
+/ %script{:type=>'text/javascript'}
+/   var vendor = new FusionCharts("/flash/Column2D.swf", "Vendor", "940", "300", "0", "0");
+/   = "vendor.setDataURL(\"#{vendor_url(@vendor, :format=>'xml')}\");"
+/   vendor.render("VendorGraph");
 
 %table
   %tbody

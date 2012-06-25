@@ -12,7 +12,11 @@ class Household < ActiveRecord::Base
     end
   end
   
-  has_many :vendors, :through=>:items, :uniq=>true
+  has_many :vendors, :through=>:items, :uniq=>true, order: 'vendors.name' do
+    def since(date)
+      where("items.created_at >= ?", date)
+    end
+  end
   
   validates_presence_of :name
 end

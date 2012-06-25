@@ -17,6 +17,8 @@ class Item < ActiveRecord::Base
   scope :on, lambda { |date| where date: date }
   scope :from_vendor, lambda { |vendor| where(vendor_id: vendor.id) if vendor }
   
+  scope :since, lambda{|date| where("items.created_at >= ?", date)}
+  
   scope :tagged_with, lambda{|tag| includes(:taggings).where('taggings.tag_id = ?', tag.id)}
   
   before_validation :amortize, :if=>:date

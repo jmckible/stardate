@@ -19,9 +19,9 @@
 /     %dd Year
 /     
 
-%h1= @tag.name
+%h1= @tag.name.titleize
 
-#TagGraph= render partial: 'graph'
+/#TagGraph= render partial: 'graph'
 
 %table
   %tbody

@@ -7,10 +7,10 @@
       %th ASP
   %tbody
     - tags.each do |tag|
-      - count = @user.items.tagged_with(tag).count
-      - sum = @user.items.during(@period).tagged_with(tag).sum(&:value)
+      - count = @household.items.tagged_with(tag).since(@user.created_at).count
+      - sum = @household.items.since(@user.created_at).tagged_with(tag).sum(&:value)
       %tr
         %td.vendor= link_to tag.name, tag_path(tag)
         %td.count= number_with_delimiter count
-        %td.sum= number_with_delimiter color_explicit_money(sum)
-        %td.sum= number_with_delimiter color_explicit_money((sum / count.to_f).round)
+        %td.sum= color_explicit_money(sum)
+        %td.sum= color_explicit_money((sum / count.to_f).round)

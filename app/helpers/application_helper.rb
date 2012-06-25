@@ -23,9 +23,9 @@ module ApplicationHelper
   def color_explicit_money(value)
     return '0' if value.nil?
     if value < 0
-      content_tag :span, value, class: 'negative'
+      content_tag :span, number_with_delimiter(value), class: 'negative'
     elsif value > 0
-      content_tag :span, value, class: 'positive'
+      content_tag :span, number_with_delimiter(value), class: 'positive'
     else
        '0'
     end

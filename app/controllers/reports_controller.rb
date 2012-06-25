@@ -13,11 +13,14 @@ class ReportsController < ApplicationController
     rescue
       @finish = Time.now.to_date
     end
+    
+    @start = @user.created_at.to_date if @start < @user.created_at.to_date
     @period = @start..@finish
     
-    @income   = @user.sum_income   @period
-    @expenses = @user.sum_expenses @period
-    @net      = @user.total_during @period
+    
+    @income   = @household.sum_income   @period
+    @expenses = @household.sum_expenses @period
+    @net      = @household.total_during @period
     
     #@tags = @user.items.during(@period).tag_counts :order=>'count desc', :limit=>20
   end

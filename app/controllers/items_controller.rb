@@ -11,7 +11,12 @@ class ItemsController < ApplicationController
     end
     
     @period = Date.new(year, month, 1)..Date.civil(year, month, -1)
-    @items  = @user.items.during @period
+    
+    if @period.first < @user.created_at.to_date
+      @period = @user.created_at.beginning_of_month.to_date..@user.created_at.end_of_month.to_date
+    end
+    
+    @items  = @household.items.during @period
   end
 
   # GET /items/:id

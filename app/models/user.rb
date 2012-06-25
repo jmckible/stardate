@@ -72,7 +72,7 @@ class User < ActiveRecord::Base
   def tag_json(period, tag)
     array = []
     period.step(7) do |date|
-      all_items = items.during(date..(date+6)).tagged_with(tag)
+      all_items = household.items.during(date..(date+6)).tagged_with(tag)
       sum = sum_value(all_items, period).round
       sum = sum * -1 if sum < 0
       array << sum

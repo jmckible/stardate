@@ -3,7 +3,7 @@ class Household < ActiveRecord::Base
   
   has_many :budgets
   has_many :users
-  has_many :items
+  has_many :items, order: 'items.date'
   
   has_many :taggings, :through=>:items
   has_many :tags, :through=>:taggings, :uniq=>true, order: 'tags.name' do

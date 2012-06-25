@@ -8,13 +8,13 @@ class Household < ActiveRecord::Base
   has_many :taggings, :through=>:items
   has_many :tags, :through=>:taggings, :uniq=>true, order: 'tags.name' do
     def visible_by(user)
-      where("items.created_at >= ? AND (items.secret = 0 OR items.user_id = ?)", user.created_at, user.id)
+      where("items.created_at >= ? AND (items.secret = ? OR items.user_id = ?)", user.created_at, false, user.id)
     end
   end
   
   has_many :vendors, :through=>:items, :uniq=>true, order: 'vendors.name' do
     def visible_by(user)
-      where("items.created_at >= ? AND (items.secret = 0 OR items.user_id = ?)", user.created_at, user.id)
+      where("items.created_at >= ? AND (items.secret = ? OR items.user_id = ?)", user.created_at, false, user.id)
     end
   end
   

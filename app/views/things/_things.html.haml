@@ -15,24 +15,24 @@
                 = link_to '«', thing, :rel=>:facebox
                 = link_to thing.date, date_link(thing.date)
               %td
+                = vendor_name thing
+                - unless thing.description.blank?
+                  = "- #{thing.description}"
+                %span.tags= linked_tag_list thing
+                - if thing.secret?
+                  %span.secret SECRET
+              %td.money
                 = color_money thing.value
                 - unless thing.start == thing.finish
                   = '/'
                   = (thing.finish - thing.start).to_i + 1
-                %span.vendor= vendor_name thing
-                = thing.description
-                %span.tags= linked_tag_list thing
-                %span.user_name
-                  = thing.user.name.first
-                  - if thing.secret?
-                    %span.secret S
         
         - elsif thing.is_a?(Note)
           %tr
             %td.date
               = link_to '«', thing, :rel=>:facebox
               = link_to thing.date, date_link(thing.date)
-            %td
+            %td{colspan: 2}
               - if thing.body.length < 80
                 = thing.body
               - else
@@ -43,12 +43,12 @@
           %tr
             %td.date
               = link_to '«', thing, :rel=>:facebox
-              = link_to thing.date, date_link(thing.date)
-            %td= "Weight #{thing.weight}lbs"
+              = link_to thing.date, date_link(thing.date);
+            %td{colspan: 2}= "Weight #{thing.weight}lbs"
         
         - elsif thing.is_a?(Workout)
           %tr
             %td.date
               = link_to '«', thing, :rel=>:facebox
               = link_to thing.date, date_link(thing.date)
-            %td= thing
+            %td{colspan: 2}= thing

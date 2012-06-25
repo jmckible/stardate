@@ -2,8 +2,8 @@
   %td.date
     = link_to '«', item, rel: 'facebox'
     = link_to item.date, date_link(item.date)
-  %td.vendor= vendor_name item
-  %td.description
+  %td= vendor_name item
+  %td
     = item.description
     %span.tags= linked_tag_list item
   

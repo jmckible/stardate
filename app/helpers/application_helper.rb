@@ -1,9 +1,8 @@
-# Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   
   def vendor_name(thing)
     return '' unless thing.vendor
-    link_to thing.vendor.name, thing.vendor
+    link_to thing.vendor.name, thing.vendor, class: 'vendor'
   end
   
   def linked_tag_list(thing)

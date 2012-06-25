@@ -2,7 +2,7 @@ class VendorsController < ApplicationController
   
   # GET /vendors
   def index
-    @vendors = @household.vendors.since(@user.created_at).page params[:page]
+    @vendors = @household.vendors.visible_by(@user).page params[:page]
   end
   
   # GET /vendors/:id

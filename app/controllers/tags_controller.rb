@@ -2,7 +2,7 @@ class TagsController < ApplicationController
   
   # GET /tags
   def index
-    @tags = @household.tags.since(@user.created_at).page params[:page]
+    @tags = @household.tags.visible_by(@user).page params[:page]
   end
   
   # GET /tags/:id

@@ -19,8 +19,10 @@ class Workout < ActiveRecord::Base
       "Nike Training Club: #{minutes}min - #{description}"
     elsif p90x?
       "P90X #{description} - #{minutes}min"
-    elsif run
+    elsif run?
       "Ran #{distance}mi / #{minutes}min"
+    elsif walk?
+      "Walked #{distance}mi / #{minutes}min"
     else
       "Workout"
     end

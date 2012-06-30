@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120624220308) do
+ActiveRecord::Schema.define(:version => 20120630225338) do
 
   create_table "budgets", :force => true do |t|
     t.integer  "household_id"
@@ -176,6 +176,7 @@ ActiveRecord::Schema.define(:version => 20120624220308) do
     t.boolean  "nike",                                       :default => false
     t.boolean  "p90x",                                       :default => false
     t.boolean  "run",                                        :default => false
+    t.boolean  "walk",                                       :default => false
   end
 
   add_index "workouts", ["bike"], :name => "index_workouts_on_bike"
@@ -185,5 +186,6 @@ ActiveRecord::Schema.define(:version => 20120624220308) do
   add_index "workouts", ["p90x"], :name => "index_workouts_on_p90x"
   add_index "workouts", ["run"], :name => "index_workouts_on_run"
   add_index "workouts", ["user_id"], :name => "index_workouts_on_user_id"
+  add_index "workouts", ["walk"], :name => "index_workouts_on_walk"
 
 end

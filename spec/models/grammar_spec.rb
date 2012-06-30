@@ -207,6 +207,27 @@ describe Grammar do
   end
   
   #####################################################################
+  #                              W A L K                              #
+  #####################################################################
+  it 'should parse starting with Walk' do
+    run = Grammar.parse 'Walk 4 40'
+    run.should be_is_a(Workout)
+    run.should be_walk
+    run.date.should == Time.zone.now.to_date
+    run.distance.to_s.should == '4.0'
+    run.minutes.should == 40
+  end
+  
+  it 'should parse starting with walk and date' do
+    run = Grammar.parse '2/1/09 walk 3.5 45'
+    run.should be_is_a(Workout)
+    run.should be_walk
+    run.date.should == Date.new(2009, 2, 1)
+    run.distance.to_s.should == '3.5'
+    run.minutes.should == 45
+  end
+  
+  #####################################################################
   #                            W E I G H T                            #
   #####################################################################
   it 'should parse starting with weight' do

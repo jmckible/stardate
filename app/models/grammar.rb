@@ -35,6 +35,9 @@ class Grammar
     elsif string =~ /^(Ran|ran|r )/
       distance, minutes = string.split(/^(Ran|ran|r) /).last.split(' ')
       Workout.new run: true, date: date, distance: distance, minutes: minutes
+    elsif string =~ /^(Walk|walk)/
+      distance, minutes = string.split(/^(Walk|walk) /).last.split(' ')
+      Workout.new walk: true, date: date, distance: distance, minutes: minutes
     elsif string =~ /^(weight|w )/
       weight = string.split(/^(weight |w )/).last
       Weight.new date: date, weight: weight

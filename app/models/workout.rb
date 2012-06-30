@@ -10,6 +10,24 @@ class Workout < ActiveRecord::Base
   scope :nike,       where(nike: true)
   scope :run,        where(run: true)
   
+  def name
+    if bike?
+      "Bike"
+    elsif elliptical
+      "Elliptical"
+    elsif nike?
+      "Nike Training Club"
+    elsif p90x?
+      "P90X"
+    elsif run?
+      "Run"
+    elsif walk?
+      "Walk"
+    else
+      "Workout"
+    end
+  end
+  
   def to_s
     if bike?
       "Biked #{distance}mi / #{minutes}min"

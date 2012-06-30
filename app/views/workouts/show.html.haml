@@ -1,0 +1,21 @@
+%h1= "Edit #{@workout.name}"
+
+= form_for @workout do |f|
+  %p= f.date_select :date, order: [:month, :day, :year]
+  %p 
+    Minutes
+    = f.text_field  :minutes, default: 'minutes'
+  
+  - if @workout.nike? || @workout.p90x?
+    %p 
+      Description
+      = f.text_field  :description, default: 'description'
+  - else
+    %p 
+      Miles
+      = f.text_field  :distance, default: 'distance'
+  
+  %p
+    = submit_tag 'Update'
+    or
+    %span.delete= link_to 'delete', @workout, :method=>:delete

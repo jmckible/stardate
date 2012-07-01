@@ -1,0 +1,34 @@
+<script type='text/javascript'>
+  $(document).ready(function(){
+    budgetMonth = new Highcharts.Chart({
+      chart: {
+        renderTo: 'BudgetMonth',
+        type: 'column',
+        width: 800,
+        height: 280
+      },
+      title:  { text: false },
+      legend: { enabled: false },
+      yAxis:  { 
+        title: false,
+        labels: {
+         formatter: function() {
+           return '$' + this.value
+         } 
+        }
+      },
+      xAxis: {
+        categories: [<%= @household.budgets.collect{|b| "'#{b.name}'"}.join(', ') %>]
+      },
+      series: [{
+        name: 'Month',
+        data: [<%= @household.budgets.collect{ |budget| 
+          amount = budget.difference_during(@month)
+          "{y: #{amount}, color: '#{amount < 0 ? '#FF00CC' : '#00CCFF'}'}"
+        }.join(', ')
+        
+         %>],
+      }]
+    });
+  });
+</script>

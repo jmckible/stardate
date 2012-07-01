@@ -17,6 +17,10 @@ class Budget < ActiveRecord::Base
     (amount / 30.0 * period.count).round
   end
   
+  def difference_during(period)
+    expected_during(period) + household.items.tagged_with(tags).during(period).sum(&:value)
+  end
+  
   validates_presence_of :household_id
   
 end

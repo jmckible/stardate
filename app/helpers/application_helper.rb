@@ -62,7 +62,7 @@ module ApplicationHelper
   end
   
   def budget_link(budget, period)
-    link_to color_money(budget.expected_during(period) + @household.items.tagged_with(budget.tags).during(period).sum(&:value)), 
+    link_to color_money(budget.difference_during(period)), 
       budget_path(budget, start: {year: period.first.year, month: period.first.month, day: period.first.day}, 
         finish: {year: period.last.year, month: period.last.month, day: period.last.day})
   end

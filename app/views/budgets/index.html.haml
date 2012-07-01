@@ -3,9 +3,9 @@
 = form_for @household do |f|
   %p Household Monthly Savings Goal:
   %p= f.text_field :savings_goal, class: 'money'
-  %p= f.submit 'Update'
+  %p= f.submit 'Update Savings Goal'
 
-%p.create= link_to 'Create...', new_budget_path, rel: 'facebox'
+
 
 - unless @budgets.empty?
   %table
@@ -13,6 +13,11 @@
       - @budgets.each do |budget|
         %tr
           %td= link_to '«', [:edit, budget], rel: 'facebox'
-          %td= "$#{budget.amount}"
           %td= link_to budget.name, budget
+          %td= "$#{budget.amount}"
           %td= linked_tag_list budget
+          
+
+%p.create= link_to 'Create New Budget...', new_budget_path, rel: 'facebox'
+
+= render partial: 'report'

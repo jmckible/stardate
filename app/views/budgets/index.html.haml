@@ -12,5 +12,6 @@
     %tbody
       - @budgets.each do |budget|
         %tr
-          %td= link_to budget.amount, budget, rel: 'facebox'
-          %td= link_to budget.tag.name, tag_path(budget.tag)
+          %td= link_to '«', [:edit, budget], rel: 'facebox'
+          %td= link_to budget.amount, budget
+          %td= linked_tag_list budget

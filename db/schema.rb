@@ -11,19 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120630225338) do
+ActiveRecord::Schema.define(:version => 20120701004056) do
 
   create_table "budgets", :force => true do |t|
     t.integer  "household_id"
-    t.integer  "tag_id"
     t.integer  "amount"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
 
-  add_index "budgets", ["household_id", "tag_id"], :name => "index_budgets_on_household_id_and_tag_id", :unique => true
   add_index "budgets", ["household_id"], :name => "index_budgets_on_household_id"
-  add_index "budgets", ["tag_id"], :name => "index_budgets_on_tag_id"
 
   create_table "households", :force => true do |t|
     t.string   "name"

@@ -19,7 +19,13 @@ class Item < ActiveRecord::Base
   
   scope :since, lambda{|date| where("items.created_at >= ?", date)}
   
-  scope :tagged_with, lambda{|tag| includes(:taggings).where('taggings.tag_id = ?', tag.id)}
+  scope :tagged_with, lambda{|tag_or_tags| 
+    if tag_or_tags.is_a?(Array)
+      includes(:taggings).where('taggings.tag_id IN (?)', tag_or_tags.collect(&:id))
+    else
+      includes(:taggings).where('taggings.tag_id = ?', tag_or_tags.id)
+    end
+  }
   
   before_validation :amortize, :if=>:date
   def amortize

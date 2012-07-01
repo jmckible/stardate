@@ -67,6 +67,14 @@ describe Item do
   #   Item.from_vendor(vendors(:default)).find_tagged_with(tags(:default)).size.should == 1
   # end
   
+  it 'should find single tagged' do
+    Item.tagged_with(tags(:default)).count.should == 2
+  end
+
+  it 'should find multipe tags' do
+    Item.tagged_with(tags(:default, :other)).count.should == 3
+  end
+  
   #####################################################################
   #                        L I F E    C Y C L E                       #
   #####################################################################

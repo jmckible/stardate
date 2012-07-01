@@ -14,6 +14,32 @@ class BudgetsController < ApplicationController
   # GET /budgets/:id
   def show
     @budget = @household.budgets.find params[:id]
+    
+    begin
+      @start = Date.new params[:start][:year].to_i, params[:start][:month].to_i, params[:start][:day].to_i
+    rescue
+      @start = Time.now.to_date - 30
+    end
+    
+    begin
+      @finish = Date.new params[:finish][:year].to_i, params[:finish][:month].to_i, params[:finish][:day].to_i
+    rescue
+      @finish = Time.now.to_date
+    end
+    
+    @start = @user.created_at.to_date if @start < @user.created_at.to_date
+    @period = @start..@finish
+    
+    @items = @household.items.tagged_with(@budget.tags).during(@period).page(params[:page])
+    
+    @expected = @budget.expected_during @period
+    @value = @household.items.tagged_with(@budget.tags).during(@period).sum(&:value)
+    @count = @household.items.tagged_with(@budget.tags).during(@period).count
+  end
+  
+  # GET /budgets/:id/edit
+  def edit
+    @budget = @household.budgets.find params[:id]
     render layout: false
   end
   

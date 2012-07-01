@@ -1,2 +1,5 @@
 default:
   name: default
+  
+other:
+  name: other

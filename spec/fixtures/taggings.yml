@@ -1,0 +1,15 @@
+default_default:
+  taggable: default (Item)
+  tag: default
+  
+other_other:
+  taggable: other (Item)
+  tag: other
+  
+today_default:
+  taggable: today (Item)
+  tag: default
+  
+today_other:
+  taggable: today (Item)
+  tag: other

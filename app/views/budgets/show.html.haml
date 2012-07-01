@@ -1,8 +1,24 @@
-%h1 Edit Budget
+%h1= "Budget for #{linked_tag_list @budget}".html_safe
 
-= form_for @budget do |f|
-  = render partial: 'form', object: f
-  %p
-    = submit_tag 'Update'
-    or
-    %span.delete= link_to 'delete', @budget, :method=>:delete
+= form_tag @budget, :method=>:get do
+  = select_month @start, prefix: 'start'
+  = select_day   @start, prefix: 'start'
+  = select_year  @start, prefix: 'start', start_year: @user.created_at.year, end_year: Date.today.year
+  &mdash;
+  = select_month @finish, prefix: 'finish'
+  = select_day   @finish, prefix: 'finish'
+  = select_year  @finish, prefix: 'finish', start_year: @user.created_at.year, end_year: Date.today.year
+  = submit_tag 'Go'
+  
+%br
+%h3= "Monthly Budget: $#{@budget.amount}"
+%h3= "Budget Period: $#{number_with_delimiter @expected}"
+%h3= "Purchases: #{number_with_delimiter @count}"
+%h3= "Amount: #{color_money @value}".html_safe
+%h3= "Net: #{color_money(@expected + @value)}".html_safe
+
+%table
+  %tbody
+    = render partial: 'items/item', collection: @items
+    
+= will_paginate @items

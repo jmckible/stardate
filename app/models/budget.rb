@@ -1,19 +1,22 @@
 class Budget < ActiveRecord::Base
+  include Taggable
   
   belongs_to :household
-  belongs_to :tag
+  
+  scope :tagged_with, lambda{|tag_or_tags| 
+    if tag_or_tags.is_a?(Array)
+      includes(:taggings).where('taggings.tag_id IN (?)', tag_or_tags.collect(&:id))
+    else
+      includes(:taggings).where('taggings.tag_id = ?', tag_or_tags.id)
+    end
+  }
   
   default_scope order('budgets.amount DESC')
   
-  def tag_name
-    tag.try :name
+  def expected_during(period)
+    (amount / 30.0 * period.count).round
   end
   
-  def tag_name=(tag_name)
-    self.tag = Tag.find_or_create_by_name tag_name
-  end
-  
-  validates_presence_of   :household_id, :tag_id
-  validates_uniqueness_of :tag_id, :scope=>:household_id
+  validates_presence_of :household_id
   
 end

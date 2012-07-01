@@ -1,5 +1,7 @@
 default:
   name: default
+  permalink: default
   
 other:
   name: other
+  permalink: other

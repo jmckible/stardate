@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120701170625) do
+ActiveRecord::Schema.define(:version => 20120701171219) do
 
   create_table "budgets", :force => true do |t|
     t.integer  "household_id"
@@ -114,9 +114,11 @@ ActiveRecord::Schema.define(:version => 20120701170625) do
 
   create_table "tags", :force => true do |t|
     t.string "name"
+    t.string "permalink"
   end
 
   add_index "tags", ["name"], :name => "index_tags_on_name"
+  add_index "tags", ["permalink"], :name => "index_tags_on_permalink"
 
   create_table "tasks", :force => true do |t|
     t.integer  "job_id",                     :null => false
@@ -148,7 +150,10 @@ ActiveRecord::Schema.define(:version => 20120701170625) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "permalink"
   end
+
+  add_index "vendors", ["permalink"], :name => "index_vendors_on_permalink"
 
   create_table "weights", :force => true do |t|
     t.integer  "user_id"

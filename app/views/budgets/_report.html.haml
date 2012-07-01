@@ -1,6 +1,7 @@
 %table.budget
   %tr
     %th
+    %th Budget
     %th 30 Days
     %th 60 Days
     %th 90 Days
@@ -9,9 +10,8 @@
     %th Year
   - @household.budgets.order('amount DESC').each do |budget|
     %tr
-      %td
-        = linked_tag_list budget
-        = "($#{budget.amount})"
+      %td= link_to budget.name, budget
+      %td= "$#{budget.amount}"
       %td= budget_link budget, (30.days.ago.to_date..Date.today)
       %td= budget_link budget, (60.days.ago.to_date..Date.today)
       %td= budget_link budget, (90.days.ago.to_date..Date.today)
@@ -20,9 +20,8 @@
       %td= budget_link budget, (1.year.ago.to_date..Date.today)
   
   %tr.strong
-    %td
-      Savings Goal
-      = "($#{@household.savings_goal})"
+    %td Savings Goal
+    %td= "$#{@household.savings_goal}"
     %td= color_money(@household.total_during((Date.today - 30.days)..Date.today) - @household.savings_goal)
     %td= color_money(@household.total_during((Date.today - 60.days)..Date.today) - (@household.savings_goal * 2))
     %td= color_money(@household.total_during((Date.today - 90.days)..Date.today) - (@household.savings_goal * 3))

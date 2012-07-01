@@ -11,13 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120701004056) do
+ActiveRecord::Schema.define(:version => 20120701170625) do
 
   create_table "budgets", :force => true do |t|
     t.integer  "household_id"
     t.integer  "amount"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.string   "name"
   end
 
   add_index "budgets", ["household_id"], :name => "index_budgets_on_household_id"

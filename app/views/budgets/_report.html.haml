@@ -10,18 +10,18 @@
   - @household.budgets.order('amount DESC').each do |budget|
     %tr
       %td= link_to budget.name, budget
-      %td= budget_link budget, (30.days.ago.to_date..Time.now.to_date)
-      %td= budget_link budget, (60.days.ago.to_date..Time.now.to_date)
-      %td= budget_link budget, (90.days.ago.to_date..Time.now.to_date)
-      %td= budget_link budget, (6.months.ago.to_date..Time.now.to_date)
-      %td= budget_link budget, (9.months.ago.to_date..Time.now.to_date)
-      %td= budget_link budget, (1.year.ago.to_date..Time.now.to_date)
+      %td= budget_link budget, (30.days.ago.to_date..Date.today)
+      %td= budget_link budget, (60.days.ago.to_date..Date.today)
+      %td= budget_link budget, (90.days.ago.to_date..Date.today)
+      %td= budget_link budget, (6.months.ago.to_date..Date.today)
+      %td= budget_link budget, (9.months.ago.to_date..Date.today)
+      %td= budget_link budget, (1.year.ago.to_date..Date.today)
   
   %tr.strong
     %td Savings Goal
-    %td= color_money(@household.total_during((Time.now.to_date - 30.days)..Time.now.to_date) - @household.savings_goal)
-    %td= color_money(@household.total_during((Time.now.to_date - 60.days)..Time.now.to_date) - (@household.savings_goal * 2))
-    %td= color_money(@household.total_during((Time.now.to_date - 90.days)..Time.now.to_date) - (@household.savings_goal * 3))
-    %td= color_money(@household.total_during((Time.now.to_date - 180.days)..Time.now.to_date) - (@household.savings_goal * 6))
-    %td= color_money(@household.total_during((Time.now.to_date - 270.days)..Time.now.to_date) - (@household.savings_goal * 9))
-    %td= color_money(@household.total_during((Time.now.to_date - 360.days)..Time.now.to_date) - (@household.savings_goal * 12))
+    %td= color_money(@household.total_during((Date.today - 30.days)..Date.today) - @household.savings_goal)
+    %td= color_money(@household.total_during((Date.today - 60.days)..Date.today) - (@household.savings_goal * 2))
+    %td= color_money(@household.total_during((Date.today - 90.days)..Date.today) - (@household.savings_goal * 3))
+    %td= color_money(@household.total_during((Date.today - 180.days)..Date.today) - (@household.savings_goal * 6))
+    %td= color_money(@household.total_during((Date.today - 270.days)..Date.today) - (@household.savings_goal * 9))
+    %td= color_money(@household.total_during((Date.today - 360.days)..Date.today) - (@household.savings_goal * 12))

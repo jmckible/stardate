@@ -16,7 +16,7 @@ class Paycheck < ActiveRecord::Base
   def create_item
     if paid && !item
       job.user.items.create paycheck: self, explicit_value: "+#{value}", 
-        description: description, date: Time.now.to_date
+        description: description, date: Date.today
     end
   end
 

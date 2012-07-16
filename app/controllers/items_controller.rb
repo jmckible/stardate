@@ -3,11 +3,11 @@ class ItemsController < ApplicationController
   # GET /items
   def index
     if params[:date]
-      year  = params[:date][:year]  ? params[:date][:year].to_i  : Date.today.year
-      month = params[:date][:month] ? params[:date][:month].to_i : Date.today.month
+      year  = params[:date][:year]  ? params[:date][:year].to_i  : Time.now.to_date.year
+      month = params[:date][:month] ? params[:date][:month].to_i : Time.now.to_date.month
     else
-      year = Date.today.year
-      month = Date.today.month
+      year = Time.now.to_date.year
+      month = Time.now.to_date.month
     end
     
     @period = Date.new(year, month, 1)..Date.civil(year, month, -1)

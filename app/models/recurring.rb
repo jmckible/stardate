@@ -19,7 +19,7 @@ class Recurring < ActiveRecord::Base
   }
   
   def to_item
-    item = Item.new date: Date.today,
+    item = Item.new date: Time.now.to_date,
                     description: description,
                     explicit_value: explicit_value,
                     tag_list: tag_list,

@@ -3,11 +3,11 @@
 = form_tag reports_path, :method=>:get do
   = select_month @start, prefix: 'start'
   = select_day   @start, prefix: 'start'
-  = select_year  @start, prefix: 'start', start_year: @user.created_at.year, end_year: Date.today.year
+  = select_year  @start, prefix: 'start', start_year: @user.created_at.year, end_year: Time.now.to_date.year
   &mdash;
   = select_month @finish, prefix: 'finish'
   = select_day   @finish, prefix: 'finish'
-  = select_year  @finish, prefix: 'finish', start_year: @user.created_at.year, end_year: Date.today.year
+  = select_year  @finish, prefix: 'finish', start_year: @user.created_at.year, end_year: Time.now.to_date.year
   = submit_tag 'Go'
 
 #SpendingYear= render partial: 'graphs/spending_year'

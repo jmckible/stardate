@@ -1,12 +1,15 @@
 class Grammar
   
-  def self.parse(string)
+  def self.parse(string, household)
     date     = Grammar.parse_date string.slice!(/^\d+\/\d+(\/\d+)?\s/)
     tag_list = (string.slice!(/\s\[.+\]$/) || '').gsub(/(^\s\[)|(\]$)/, '')
 
     if string =~ /^(\$|\+)/
       words = string.split ' '
-      explicit_value = words.shift.gsub('$', '')
+      amount = words.shift.gsub('$', '')
+      amount = '-' + amount unless amount =~ /^(\+|-)/
+      amount = amount.to_f.round
+
       string = words.join ' '
       if string =~ /-/
         words  = string.split ' - '
@@ -15,8 +18,25 @@ class Grammar
       else
         vendor = string
       end
-      Item.new date: date, explicit_value: explicit_value, vendor_name: vendor, 
-               description: description, tag_list: tag_list
+      transaction = household.transactions.build vendor_name: vendor, description: description, tag_list: tag_list, date: date, start: date, finish: date
+
+      cash = household.accounts.asset.first # This needs better selection
+      key_tag = transaction.tags.detect{|t| household.accounts.expense.tagged_with t}
+      expense = household.accounts.expense.tagged_with(key_tag).first
+
+      # Minus is implied on input
+      if amount >= 0 
+        transaction.credit = cash
+        transaction.debit  = expense
+      else
+        transaction.credit = expense
+        transaction.debit  = cash
+      end
+
+      amount = amount * -1 if amount < 0
+      transaction.amount = amount
+
+      transaction
                
     elsif string =~ /^(Bike|bike|b )/
       distance, minutes = string.split(/^(Bike|bike|b) /).last.split(' ')

@@ -18,6 +18,14 @@ class Account < ActiveRecord::Base
   scope :income,    where(income: true)
   scope :liability, where(liability: true)
 
+  scope :tagged_with, lambda{|tag_or_tags| 
+    if tag_or_tags.is_a?(Array)
+      includes(:taggings).where('taggings.tag_id IN (?)', tag_or_tags.collect(&:id))
+    else
+      includes(:taggings).where('taggings.tag_id = ?', tag_or_tags.id)
+    end
+  }
+
   def pull_in(tag_list)
     tag_list = tag_list.split(',').collect{|t|Tag.find_by_name t.strip}.compact if tag_list.is_a?(String)
 

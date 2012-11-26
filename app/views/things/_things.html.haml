@@ -2,7 +2,7 @@
   %table
     %tbody
       - things.each do |thing|
-        - if thing.is_a?(Item)
+        - if thing.is_a?(Transaction)
           - if thing.secret? && thing.user != @user
             %tr.item
               %td.date
@@ -23,10 +23,12 @@
                 - if thing.secret?
                   %span.secret SECRET
               %td.money
-                = color_money thing.value
+                = thing.amount
                 - unless thing.start == thing.finish
                   = '/'
                   = (thing.finish - thing.start).to_i + 1
+              %td.debit= link_to thing.debit.name, thing.debit
+              %td.credit= link_to thing.credit.name, thing.credit
         
         - elsif thing.is_a?(Note)
           %tr

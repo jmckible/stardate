@@ -19,12 +19,12 @@ class User < ActiveRecord::Base
   #####################################################################
   belongs_to :household
   
-  has_many :items,       :order=>'date',      :dependent=>:destroy
   has_many :jobs,        :order=>'name',      :dependent=>:destroy
   has_many :notes,       :order=>'date desc', :dependent=>:destroy
   has_many :recurrings,  :order=>'day',       :dependent=>:destroy
   has_many :tags,        :through=>:items,    :uniq=>true
   has_many :tasks,       :through=>:jobs 
+  has_many :transactions, :order=>'date',      :dependent=>:destroy
   has_many :vendors,     :through=>:items,    :uniq=>true, :order=>'name'
   has_many :weights,     :order=>'date',      :dependent=>:destroy
   has_many :workouts,    :dependent=>:destroy
@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
   def things_during(period)
     period = period..period unless period.is_a?(Range)
     
-    (household.items.during(period) + notes.during(period) + 
+    (household.transactions.during(period) + notes.during(period) + 
      workouts.during(period) + weights.during(period)).sort do |x,y|
       if x.date == y.date
         y.created_at <=> x.created_at

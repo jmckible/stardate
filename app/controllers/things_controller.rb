@@ -13,9 +13,8 @@ class ThingsController < ApplicationController
   
   # POST /things
   def create
-    @thing = Grammar.parse params[:thing]
+    @thing = Grammar.parse params[:thing], @household
     @thing.user = @user
-    @thing.household = @household if @thing.is_a?(Item)
     @thing.save!
     redirect_to root_url
   end

@@ -17,11 +17,13 @@ module Totalling
   end
   
   def sum_income(period)
-    sum_directional period, '>'
+    #sum_directional period, '>'
+    transactions.income_credit.on(period).sum(:amount)
   end
   
   def sum_expenses(period)
-    sum_directional period, '<'
+    #sum_directional period, '<'
+    transactions.expense_debit.on(period).sum(:amount)
   end
   
   def sum_value(items, period)

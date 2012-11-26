@@ -2,11 +2,11 @@
   = text_field_tag 'thing', '', class: 'long'
   = link_to '...', new_thing_path, class: 'long_entry', rel: 'facebox'
 
-/ #Graphs
-/   #SpendingMonth= render partial: 'graphs/spending_month'
-/   - if @user.workouts.during(@month).count > 0 || @user.weights.during(@month).count > 0
-/     #HealthMonth= render partial: 'graphs/health_month'
-/ .clear
+#Graphs
+  #SpendingMonth= render partial: 'graphs/spending_month'
+  - if @user.workouts.during(@month).count > 0 || @user.weights.during(@month).count > 0
+    #HealthMonth= render partial: 'graphs/health_month'
+.clear
 
 / #BudgetMonth= render partial: 'budgets/graph'
 

@@ -1,0 +1,38 @@
+%h1= @account.name
+
+%table
+  %tr
+    %th Date
+    %th Vendor
+    %th Description
+    %th Debit
+    %th Credit
+
+  - @transactions.each do |transaction|
+    %tr
+      %td.date
+        = link_to '«', transaction, rel: 'facebox'
+        = link_to transaction.date, date_link(transaction.date)
+      %td= vendor_name transaction
+      %td
+        = transaction.description
+        %span.tags= linked_tag_list transaction
+      %td.debit
+        - if transaction.debit == @account
+          = transaction.amount
+        - else
+          = link_to transaction.debit.name, transaction.debit
+      %td.credit
+        - if transaction.credit == @account
+          = transaction.amount
+        - else
+          = link_to transaction.credit.name, transaction.credit
+
+  %tr
+    %td Total
+    %td
+    %td
+    %td.debit= number_with_delimiter @account.debits.sum(:amount)
+    %td.credit= number_with_delimiter @account.credits.sum(:amount)
+
+= will_paginate @transactions

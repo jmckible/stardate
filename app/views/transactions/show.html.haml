@@ -1,0 +1,27 @@
+%h1 Edit Transaction
+
+%p
+  Added by
+  = @transaction.user.name
+
+= form_for @transaction do |f|
+  %p= f.date_select :date,           order: [:month, :day, :year]
+  %p= f.text_field  :amount,         class: 'money'
+  %p= f.text_field  :vendor_name,    default: 'vendor'
+  %p= f.text_field  :description,    default: 'description'
+  %p= f.text_field  :tag_list,       default: 'tags'
+  
+  %p
+    = f.check_box   :secret
+    = f.label :secret, 'Top Secret'
+
+  %p
+    Debit: 
+    = f.collection_select :debit_id, @household.accounts, :id, :name, include_blank: true
+  %p
+    Credit: 
+    = f.collection_select :credit_id, @household.accounts, :id, :name, include_blank: true    
+  %p
+    = submit_tag 'Update'
+    or
+    %span.delete= link_to 'delete', @transaction, :method=>:delete

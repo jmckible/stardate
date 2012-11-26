@@ -1,12 +1,23 @@
-class Item < ActiveRecord::Base
+class Transaction < ActiveRecord::Base
   include Taggable
 
+  belongs_to :credit, class_name: 'Account'
+  belongs_to :debit, class_name: 'Account'
   belongs_to :household
   belongs_to :recurring
   belongs_to :user
   belongs_to :vendor
   
-  has_one :paycheck,  :dependent=>:nullify
+  has_one :paycheck
+
+  scope :asset_credit, includes(:credit).where('accounts.asset = ?', true)
+  scope :asset_debit,  includes(:debit).where('accounts.asset = ?', true)
+
+  scope :expense_credit, includes(:credit).where('accounts.expense = ?', true)
+  scope :expense_debit,  includes(:debit).where('accounts.expense = ?', true)
+
+  scope :income_credit, includes(:credit).where('accounts.income = ?', true)
+  scope :income_debit,  includes(:debit).where('accounts.income = ?', true)
   
   scope :during, lambda { |period|
     if period
@@ -27,26 +38,14 @@ class Item < ActiveRecord::Base
     end
   }
   
-  before_validation :amortize, :if=>:date
-  def amortize
-    self.start  = date unless start
-    self.finish = date unless finish
-    self.start, self.finish = finish, start if start > finish
-    self.per_diem = value / ((finish - start).to_i + 1).to_f
-    true # Never halt
-  end
-  
-  def explicit_value
-    return if value.nil?
-    "#{'+' if value > 0}#{value}"
-  end
-  
-  def explicit_value=(new_integer)
-    new_integer = new_integer.to_s
-    return if new_integer.blank?
-    new_integer = '-' + new_integer unless new_integer =~ /^(\+|-)/
-    self.value = new_integer.to_f.round
-  end
+  # before_validation :amortize, :if=>:date
+  # def amortize
+  #   self.start  = date unless start
+  #   self.finish = date unless finish
+  #   self.start, self.finish = finish, start if start > finish
+  #   self.per_diem = value / ((finish - start).to_i + 1).to_f
+  #   true # Never halt
+  # end
   
   def vendor_name
     vendor.try :name
@@ -60,7 +59,5 @@ class Item < ActiveRecord::Base
     end
   end
     
-  validates_presence_of     :date, :user_id
-  validates_numericality_of :value, :only_integer=>true
-
+  validates_presence_of :date, :user_id
 end

@@ -11,7 +11,31 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120701171219) do
+ActiveRecord::Schema.define(:version => 20121126012547) do
+
+  create_table "accounts", :force => true do |t|
+    t.integer  "household_id"
+    t.integer  "budget"
+    t.integer  "deferral_id"
+    t.boolean  "asset",        :default => false
+    t.boolean  "liability",    :default => false
+    t.boolean  "income",       :default => false
+    t.boolean  "equity",       :default => false
+    t.boolean  "expense",      :default => false
+    t.boolean  "deferred",     :default => false
+    t.string   "name"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+  end
+
+  add_index "accounts", ["asset"], :name => "index_accounts_on_asset"
+  add_index "accounts", ["deferral_id"], :name => "index_accounts_on_deferral_id"
+  add_index "accounts", ["deferred"], :name => "index_accounts_on_deferred"
+  add_index "accounts", ["equity"], :name => "index_accounts_on_equity"
+  add_index "accounts", ["expense"], :name => "index_accounts_on_expense"
+  add_index "accounts", ["household_id"], :name => "index_accounts_on_household_id"
+  add_index "accounts", ["income"], :name => "index_accounts_on_income"
+  add_index "accounts", ["liability"], :name => "index_accounts_on_liability"
 
   create_table "budgets", :force => true do |t|
     t.integer  "household_id"
@@ -29,30 +53,6 @@ ActiveRecord::Schema.define(:version => 20120701171219) do
     t.datetime "updated_at",                  :null => false
     t.integer  "savings_goal", :default => 0
   end
-
-  create_table "items", :force => true do |t|
-    t.integer  "user_id",                                                        :null => false
-    t.date     "date",                                                           :null => false
-    t.integer  "value",                                       :default => 0,     :null => false
-    t.text     "description"
-    t.integer  "vendor_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "recurring_id"
-    t.date     "start"
-    t.date     "finish"
-    t.decimal  "per_diem",     :precision => 10, :scale => 2
-    t.integer  "household_id"
-    t.boolean  "secret",                                      :default => false
-  end
-
-  add_index "items", ["date"], :name => "index_items_on_date"
-  add_index "items", ["finish"], :name => "index_items_on_finish"
-  add_index "items", ["household_id"], :name => "index_items_on_household_id"
-  add_index "items", ["recurring_id"], :name => "index_items_on_recurring_id"
-  add_index "items", ["start"], :name => "index_items_on_start"
-  add_index "items", ["user_id"], :name => "index_items_on_user_id"
-  add_index "items", ["vendor_id"], :name => "index_items_on_vendor_id"
 
   create_table "jobs", :force => true do |t|
     t.integer  "user_id",                                                    :null => false
@@ -108,7 +108,6 @@ ActiveRecord::Schema.define(:version => 20120701171219) do
   end
 
   add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
-  add_index "taggings", ["taggable_id", "taggable_type"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
   add_index "taggings", ["taggable_id"], :name => "index_taggings_on_item_id"
   add_index "taggings", ["taggable_type"], :name => "index_taggings_on_taggable_type"
 
@@ -132,6 +131,32 @@ ActiveRecord::Schema.define(:version => 20120701171219) do
   add_index "tasks", ["date"], :name => "index_tasks_on_date"
   add_index "tasks", ["job_id"], :name => "index_tasks_on_project_id"
   add_index "tasks", ["paycheck_id"], :name => "index_tasks_on_paycheck_id"
+
+  create_table "transactions", :force => true do |t|
+    t.integer  "user_id",                                                        :null => false
+    t.date     "date",                                                           :null => false
+    t.integer  "amount",                                      :default => 0,     :null => false
+    t.text     "description"
+    t.integer  "vendor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "recurring_id"
+    t.date     "start"
+    t.date     "finish"
+    t.decimal  "per_diem",     :precision => 10, :scale => 2
+    t.integer  "household_id"
+    t.boolean  "secret",                                      :default => false
+    t.integer  "debit_id"
+    t.integer  "credit_id"
+  end
+
+  add_index "transactions", ["date"], :name => "index_items_on_date"
+  add_index "transactions", ["finish"], :name => "index_items_on_finish"
+  add_index "transactions", ["household_id"], :name => "index_items_on_household_id"
+  add_index "transactions", ["recurring_id"], :name => "index_items_on_recurring_id"
+  add_index "transactions", ["start"], :name => "index_items_on_start"
+  add_index "transactions", ["user_id"], :name => "index_items_on_user_id"
+  add_index "transactions", ["vendor_id"], :name => "index_items_on_vendor_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                            :null => false

@@ -1,9 +1,10 @@
 class Household < ActiveRecord::Base
   include Totalling
-  
+
+  has_many :accounts, order: 'accounts.name'
   has_many :budgets
   has_many :users
-  has_many :items, order: 'items.date'
+  has_many :transactions, order: 'transactions.date'
   
   has_many :taggings, :through=>:items
   has_many :tags, :through=>:taggings, :uniq=>true, order: 'tags.name' do
@@ -18,5 +19,15 @@ class Household < ActiveRecord::Base
     end
   end
   
+  def spin_up(name, tag_string)
+    tag_list = tag_string.split(',').collect{|t|Tag.find_by_name t.strip}.compact
+    expense = accounts.build name: name, expense: true
+    expense.save
+    expense.tags = tag_list
+    expense.save
+
+    expense.pull_in tag_list
+  end
+
   validates_presence_of :name
 end

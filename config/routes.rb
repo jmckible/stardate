@@ -1,14 +1,15 @@
 Stardate::Application.routes.draw do
   
+  resources :accounts
   resources :budgets
   resources :households
-  resources :items
   resources :notes
   resources :recurrings
   resources :reports
   resources :sessions
   resources :tags
   resources :things
+  resources :transactions
   resources :users
   resources :vendors
   resources :weights

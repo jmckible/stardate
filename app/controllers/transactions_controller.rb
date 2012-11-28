@@ -25,6 +25,14 @@ class TransactionsController < ApplicationController
     render layout: false
   end
 
+  # POST /transactions/:id
+  def create
+    @transaction = @household.transactions.build params[:transaction]
+    @transaction.user = @user
+    @transaction.save
+    redirect_back_or @transaction.credit
+  end
+
   # PUT /items/:id
   def update
     @transaction = @household.transactions.find params[:id]

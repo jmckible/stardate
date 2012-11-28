@@ -2,10 +2,14 @@
 
 %p= link_to 'Edit', [:edit, @account], rel: 'facebox'
 
+- if @account.deferred?
+  %p= link_to 'Fund', [:fund, @account], rel: 'facebox'
+
 %table
   %tr
     %th Date
-    %th Vendor
+    - unless @account.deferred?
+      %th Vendor
     %th Description
     %th Debit
     %th Credit
@@ -15,7 +19,8 @@
       %td.date
         = link_to '«', transaction, rel: 'facebox'
         = link_to transaction.date, date_link(transaction.date)
-      %td= vendor_name transaction
+      - unless @account.deferred?
+        %td= vendor_name transaction
       %td
         = transaction.description
         %span.tags= linked_tag_list transaction
@@ -32,7 +37,8 @@
 
   %tr
     %td Total
-    %td
+    - unless @account.deferred?
+      %td
     %td
     %td.debit= number_with_delimiter @account.debits.sum(:amount)
     %td.credit= number_with_delimiter @account.credits.sum(:amount)

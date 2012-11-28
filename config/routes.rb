@@ -1,6 +1,8 @@
 Stardate::Application.routes.draw do
   
-  resources :accounts
+  resources :accounts do
+    get 'fund', :on=>:member
+  end
   resources :budgets
   resources :households
   resources :notes

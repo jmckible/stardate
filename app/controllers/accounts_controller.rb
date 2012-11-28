@@ -13,12 +13,19 @@ class AccountsController < ApplicationController
   # GET /accounts/:id
   def show
     @account = @household.accounts.find params[:id]
-    @transactions = @account.transactions.page params[:page]
+    @transactions = @account.transactions.order('date DESC').page params[:page]
   end
 
   # GET /accounts/:id/edit
   def edit
     @account = @household.accounts.find params[:id]
+    render layout: false
+  end
+
+  # GET /accounts/:id/fund
+  def fund
+    @account = @household.accounts.find params[:id]
+    @transaction = @household.transactions.build debit: @account
     render layout: false
   end
 

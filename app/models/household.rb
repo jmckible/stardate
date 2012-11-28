@@ -4,7 +4,7 @@ class Household < ActiveRecord::Base
   has_many :accounts, order: 'accounts.name'
   has_many :budgets
   has_many :users
-  has_many :transactions, order: 'transactions.date'
+  has_many :transactions
   
   has_many :taggings, :through=>:items
   has_many :tags, :through=>:taggings, :uniq=>true, order: 'tags.name' do

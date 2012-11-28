@@ -2,7 +2,7 @@
 
 %p= link_to 'Edit', [:edit, @account], rel: 'facebox'
 
-- if @account.deferred?
+- if (@account.asset? && !@account.cash?) || @account.deferred?
   %p= link_to 'Fund', [:fund, @account], rel: 'facebox'
 
 %table

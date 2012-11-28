@@ -30,7 +30,7 @@ class Grammar
       if expense && expense.deferral
         source = expense.deferral
       else
-        source = household.accounts.asset.first # This needs better selection household.cash
+        source = household.cash
       end
 
       # Minus is implied on input

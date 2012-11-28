@@ -18,6 +18,10 @@ class Household < ActiveRecord::Base
       where("items.created_at >= ? AND (items.secret = ? OR items.user_id = ?)", user.created_at, false, user.id)
     end
   end
+
+  def cash
+    accounts.cash.first
+  end
   
   def slush
     accounts.slush.first

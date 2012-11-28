@@ -12,9 +12,11 @@ class Account < ActiveRecord::Base
   end
 
   scope :asset,     where(asset: true)
+  scope :cash,      where(cash: true)
   scope :dashboard, where(dashboard: true)
   scope :deferred,  where(deferred: true)
   scope :equity,    where(equity: true)
+  scope :except,    lambda{|account| where('accounts.id != ?', account.id)}
   scope :expense,   where(expense: true)
   scope :income,    where(income: true)
   scope :liability, where(liability: true)

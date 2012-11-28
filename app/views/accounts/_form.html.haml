@@ -1,10 +1,24 @@
 %p= form.text_field :name, default: 'Name'
 %p= form.text_field :tag_list, default: 'tags'
 
+%h3 Visibility
+
+%p
+  = form.check_box :dashboard
+  = form.label :dashboard, 'Dashboard'
+
+
+%h3 There Can Be Only One
+
+%p
+  = form.check_box :cash
+  = form.label :cash, 'Cash'
+
 %p
   = form.check_box :slush
   = form.label :slush, 'Slush'
 
+%h3 Account Type
 %p
   = form.check_box :asset
   = form.label :asset, 'Asset'

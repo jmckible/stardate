@@ -10,7 +10,7 @@
 
 / #BudgetMonth= render partial: 'budgets/graph'
 
-- @household.accounts.asset.each do |account|
+- @household.accounts.asset.dashboard.each do |account|
   %h3
     = link_to account.name, account
     = color_money(account.debits.sum(:amount) - account.credits.sum(:amount))

@@ -21,7 +21,11 @@ class Grammar
       transaction = household.transactions.build vendor_name: vendor, description: description, tag_list: tag_list, date: date, start: date, finish: date
 
       key_tag = transaction.tags.detect{|t| household.accounts.expense.tagged_with t}
-      expense = household.accounts.expense.tagged_with(key_tag).first
+      if key_tag
+        expense = household.accounts.expense.tagged_with(key_tag).first
+      else
+        expense = household.slush
+      end
 
       if expense && expense.deferral
         source = expense.deferral
@@ -31,11 +35,11 @@ class Grammar
 
       # Minus is implied on input
       if amount >= 0 
-        transaction.credit = source
-        transaction.debit  = expense
-      else
         transaction.credit = expense
         transaction.debit  = source
+      else
+        transaction.credit = source
+        transaction.debit  = expense
       end
 
       amount = amount * -1 if amount < 0
@@ -69,8 +73,8 @@ class Grammar
     else
       Note.new date: date, body: string
     end
-  rescue
-    Note.new date: Time.zone.now.to_date, body: 'Failed to parse'
+  #rescue
+    #Note.new date: Time.zone.now.to_date, body: 'Failed to parse'
   end
   
   def self.parse_date(string=nil)

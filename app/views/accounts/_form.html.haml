@@ -1,5 +1,10 @@
 %p= form.text_field :name, default: 'Name'
 %p= form.text_field :tag_list, default: 'tags'
+
+%p
+  = form.check_box :slush
+  = form.label :slush, 'Slush'
+
 %p
   = form.check_box :asset
   = form.label :asset, 'Asset'

@@ -1,8 +1,10 @@
 %h1 Accounts
 
+%p= link_to 'New Account', new_account_path, rel: 'facebox'
+
 %h2= pluralize @household.transactions.where('debit_id is null or credit_id is null').count, 'Empty Transactions'
 %table
-  - @household.transactions.where('credit_id is null').each do |transaction|
+  - @household.transactions.where('debit_id is null OR credit_id is null').each do |transaction|
     %tr
       %td.date
         = link_to '«', transaction, rel: 'facebox'

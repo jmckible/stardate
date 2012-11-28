@@ -1,0 +1,24 @@
+%p= form.text_field :name, default: 'Name'
+%p= form.text_field :tag_list, default: 'tags'
+%p
+  = form.check_box :asset
+  = form.label :asset, 'Asset'
+%p
+  = form.check_box :deferred
+  = form.label :deferred, 'Deferred'
+%p
+  = form.check_box :liability
+  = form.label :liability, 'Liability'
+%p
+  = form.check_box :equity
+  = form.label :equity, 'Equity'
+%p
+  = form.check_box :expense
+  = form.label :expense, 'Expense'
+%p
+  = form.check_box :income
+  = form.label :income, 'Income'
+
+%p
+  Deferral
+  = form.collection_select :deferral_id, @household.accounts, :id, :name, include_blank: true

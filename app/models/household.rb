@@ -27,6 +27,10 @@ class Household < ActiveRecord::Base
     accounts.slush.first
   end
 
+  def general_income
+    accounts.general_income.first
+  end
+
   def spin_up(name, tag_string)
     tag_list = tag_string.split(',').collect{|t|Tag.find_by_name t.strip}.compact
     expense = accounts.build name: name, expense: true

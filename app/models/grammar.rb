@@ -20,29 +20,37 @@ class Grammar
       end
       transaction = household.transactions.build vendor_name: vendor, description: description, tag_list: tag_list, date: date, start: date, finish: date
 
-      key_tag = transaction.tags.detect{|t| household.accounts.expense.tagged_with t}
-      if key_tag
-        expense = household.accounts.expense.tagged_with(key_tag).first
-      else
-        expense = household.slush
-      end
+      if amount >= 0
+        income = household.accounts.income.where(name: vendor).first
+        if income
+          credit = income
+        else
+          credit = household.general_income
+        end
 
-      if expense && expense.deferral
-        source = expense.deferral
-      else
-        source = household.cash
-      end
+        transaction.debit = household.cash
+        transaction.credit = credit
 
-      # Minus is implied on input
-      if amount >= 0 
-        transaction.credit = expense
-        transaction.debit  = source
       else
+        key_tag = transaction.tags.detect{|t| household.accounts.expense.tagged_with t}
+        if key_tag
+          expense = household.accounts.expense.tagged_with(key_tag).first
+        else
+          expense = household.slush
+        end
+
+        if expense && expense.deferral
+          source = expense.deferral
+        else
+          source = household.cash
+        end
+
         transaction.credit = source
         transaction.debit  = expense
-      end
 
-      amount = amount * -1 if amount < 0
+        amount = amount * -1 if amount < 0
+      end
+      
       transaction.amount = amount
 
       transaction

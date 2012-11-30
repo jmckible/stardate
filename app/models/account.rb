@@ -12,15 +12,16 @@ class Account < ActiveRecord::Base
   end
 
   scope :asset,     where(asset: true)
-  scope :cash,      where(cash: true)
+  scope :cash,      where(asset: true, general: true)
   scope :dashboard, where(dashboard: true)
   scope :deferred,  where(deferred: true)
   scope :equity,    where(equity: true)
   scope :except,    lambda{|account| where('accounts.id != ?', account.id)}
   scope :expense,   where(expense: true)
+  scope :general_income, where(income: true, general: true)
   scope :income,    where(income: true)
   scope :liability, where(liability: true)
-  scope :slush,     where(slush: true)
+  scope :slush,     where(expense: true, general: true)
 
   scope :tagged_with, lambda{|tag_or_tags| 
     if tag_or_tags.is_a?(Array)

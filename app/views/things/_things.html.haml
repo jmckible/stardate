@@ -24,11 +24,16 @@
                   %span.secret SECRET
               %td.money
                 = thing.amount
-                - unless thing.start == thing.finish
-                  = '/'
-                  = (thing.finish - thing.start).to_i + 1
-              %td.debit= link_to thing.debit.name, thing.debit
-              %td.credit= link_to thing.credit.name, thing.credit
+              %td.debit
+                - if thing.debit
+                  = link_to thing.debit.name, thing.debit
+                - else
+                  FIX ME!!!
+              %td.credit
+                - if thing.credit
+                  = link_to thing.credit.name, thing.credit
+                - else
+                  FIX ME !!!
         
         - elsif thing.is_a?(Note)
           %tr

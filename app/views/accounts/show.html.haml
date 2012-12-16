@@ -15,6 +15,13 @@
     %th Credit
 
   - @transactions.each do |transaction|
+    - if transaction.secret? && transaction.user != @user
+      %tr
+        %td.date
+          = link_to transaction.date, date_link(transaction.date)
+        %td{colspan: 3}
+          %span.secret SECRET
+
     %tr
       %td.date
         = link_to '«', transaction, rel: 'facebox'

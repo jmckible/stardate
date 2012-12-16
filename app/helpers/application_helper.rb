@@ -67,4 +67,8 @@ module ApplicationHelper
         finish: {year: period.last.year, month: period.last.month, day: period.last.day})
   end
 
+  def not_zero(number)
+    number_with_delimiter(number) unless number.zero?
+  end
+
 end

@@ -18,9 +18,15 @@
 %h2 Balance
 %table
   %tr
+    %th 
+    %th Debits
+    %th Credits
+    %th Balance
+  %tr
     %td Assets
     %td.debit= number_with_delimiter @household.transactions.asset_debit.sum(:amount)
     %td.credit= number_with_delimiter @household.transactions.asset_credit.sum(:amount)
+    %td= color_money(@household.transactions.asset_debit.sum(:amount) - @household.transactions.asset_credit.sum(:amount))
   %tr
     %td Expenses
     %td.debit= number_with_delimiter @household.transactions.expense_debit.sum(:amount)
@@ -40,11 +46,17 @@
 %h2 Assets
 
 %table
+  %tr
+    %th Account
+    %th Debit
+    %th Credit
+    %th Balance
   - @household.accounts.asset.each do |account|
     %tr
       %td= link_to account.name, account
       %td.debit= number_with_delimiter account.debits.sum(:amount)
-      %td.credit= number_with_delimiter account.credits.sum(:amount)
+      %td.credit= not_zero account.credits.sum(:amount)
+      %td= color_money account.balance
 
   %tr
     %td Net
@@ -53,28 +65,34 @@
 %h2 Deferred
 
 %table
+  %tr
+    %th Account
+    %th Debit
+    %th Credit
+    %th Balance
   - @household.accounts.deferred.each do |account|
     %tr
       %td= link_to account.name, account
-      %td= linked_tag_list account
-      %td= account.budget
-      %td.debit= account.debits.sum(:amount)
-      %td.credit= account.credits.sum(:amount)
+      %td.debit= number_with_delimiter account.debits.sum(:amount)
+      %td.credit= number_with_delimiter account.credits.sum(:amount)
+      %td= color_money account.balance
 
 %h2 Expenses
 
 %table
+  %tr
+    %th Account
+    %th Debit
+    %th Credit
+    %th Balance
   - @household.accounts.expense.order('name').each do |account|
     %tr
       %td= link_to account.name, account
-      %td= linked_tag_list account
-      %td= account.budget
       %td.debit= number_with_delimiter account.debits.sum(:amount)
-      %td.credit= number_with_delimiter account.credits.sum(:amount)
+      %td.credit= not_zero account.credits.sum(:amount)
+      %td= color_money account.balance
   %tr
     %td Net
-    %td
-    %td
     %td.debit= number_with_delimiter @household.transactions.expense_debit.sum(:amount)
     %td.credit= number_with_delimiter @household.transactions.expense_credit.sum(:amount)
 
@@ -92,11 +110,17 @@
 %h2 Income
 
 %table
+  %tr
+    %th Account
+    %th Debit
+    %th Credit
+    %th Balance
   - @household.accounts.income.each do |account|
     %tr
       %td= link_to account.name, account
-      %td.debit= number_with_delimiter(account.debits.sum(:amount)) unless account.debits.sum(:amount).zero?
+      %td.debit= not_zero account.debits.sum(:amount)
       %td.credit= number_with_delimiter account.credits.sum(:amount)
+      %td= color_money account.balance
 
   %tr
     %td Net

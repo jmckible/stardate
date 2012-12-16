@@ -13,7 +13,7 @@ class AccountsController < ApplicationController
   # GET /accounts/:id
   def show
     @account = @household.accounts.find params[:id]
-    @transactions = @account.transactions.order('date DESC').page params[:page]
+    @transactions = @account.transactions.order('date DESC').where('transactions.date >= ?', @user.created_at).page params[:page]
   end
 
   # GET /accounts/:id/edit

@@ -18,14 +18,14 @@
         }
       },
       xAxis: {
-        categories: [<%= @household.budgets.collect{|b| "'#{b.name}'"}.join(', ') %>]
+        categories: [<%= @household.accounts.deferred.collect{|a| "'#{a.name.gsub(' Deferral', '')}'"}.join(', ').html_safe %>]
       },
       series: [{
         name: 'Month',
-        data: [<%= @household.budgets.collect{ |budget| 
-          amount = budget.difference_during(@month)
+        data: [<%= @household.accounts.deferred.collect{ |account| 
+          amount = account.balance
           "{y: #{amount}, color: '#{amount < 0 ? '#FF00CC' : '#00CCFF'}'}"
-        }.join(', ')
+        }.join(', ').html_safe
         
          %>],
       }]

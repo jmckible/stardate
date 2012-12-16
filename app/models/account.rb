@@ -31,18 +31,8 @@ class Account < ActiveRecord::Base
     end
   }
 
-  def pull_in(tag_list)
-    tag_list = tag_list.split(',').collect{|t|Tag.find_by_name t.strip}.compact if tag_list.is_a?(String)
-
-    tag_list.each{|t|tags << t unless tags.include?(t)}
-
-    household.transactions.tagged_with(tag_list).each do |transaction|
-      if transaction.amount < 0
-        transaction.update_attribute(:debit, self) if transaction.debit.nil?
-      else
-        transaction.update_attribute(:credit, self)  if transaction.credit.nil?
-      end
-    end
+  def balance
+    debits.sum(:amount) - credits.sum(:amount)
   end
   
 end

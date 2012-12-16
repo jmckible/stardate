@@ -31,15 +31,5 @@ class Household < ActiveRecord::Base
     accounts.general_income.first
   end
 
-  def spin_up(name, tag_string)
-    tag_list = tag_string.split(',').collect{|t|Tag.find_by_name t.strip}.compact
-    expense = accounts.build name: name, expense: true
-    expense.save
-    expense.tags = tag_list
-    expense.save
-
-    expense.pull_in tag_list
-  end
-
   validates_presence_of :name
 end

@@ -34,3 +34,10 @@
 %p
   Deferral
   = form.collection_select :deferral_id, @household.accounts, :id, :name, include_blank: true
+
+%p Biweekly Budget Balance
+%p= form.text_field :budget, default: 'Budget Balance', class: 'money'
+
+%p
+  = form.check_box :accruing
+  = form.label :accruing, 'Accrue Deferrals'

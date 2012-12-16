@@ -1,5 +1,14 @@
 %h1= @account.name
 
+%h3
+  Balance
+  = color_money @account.balance
+
+- if @account.budget
+  %h3
+    Biweekly Budget Balance
+    = @account.budget
+
 %p= link_to 'Edit', [:edit, @account], rel: 'facebox'
 
 - if (@account.asset? && !@account.general?) || @account.deferred?

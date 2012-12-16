@@ -31,5 +31,10 @@ class Household < ActiveRecord::Base
     accounts.general_income.first
   end
 
+  # For scheduled deferral funding
+  def default_user
+    users.first
+  end
+
   validates_presence_of :name
 end

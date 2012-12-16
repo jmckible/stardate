@@ -34,5 +34,23 @@ class Account < ActiveRecord::Base
   def balance
     debits.sum(:amount) - credits.sum(:amount)
   end
+
+  # For funding deferred accounts from cash
+  def fund
+    transaction = debits.build credit: household.cash, date: Date.today, user: household.default_user, household: household
+    transaction.start = Date.today
+    transaction.finish = Date.today
+    transaction.description = "Deferral Funding"
+
+    if accruing?
+      transaction.amount = budget
+    else
+      transaction.amount = budget - balance
+    end
+
+    transaction.save
+
+    transaction
+  end
   
 end

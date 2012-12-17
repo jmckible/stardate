@@ -1,9 +1,16 @@
 table 
   margin: 2em 0
   line-height: 1.75em
+  border-collapse: collapse
   tbody tr:hover
     background-color: #ffd
+
+  tr.total td
+    font-weight: bold
+    border-top: 2px solid #999
+
   th 
+    border: 0
     padding: 0 0.5em
     font-size: 0.8em
     background-color: #eee
@@ -11,9 +18,12 @@ table
     text-align: right
   th:first-child
     text-align: left
+
   td
-    border-bottom: 1px solid #ccc
+    border: 0
     padding: 0 0.5em
+    border: 1px solid #ccc
+    
     .user_name 
       color: #666
       font-size: 0.6em
@@ -29,8 +39,11 @@ table
     width: 5em
     text-align: right
   td.sum 
-    margin: 0 1em
     text-align: right
+
+  td.num
+    text-align: right
+
   td .tags 
     font-size: 0.8em
     color: #999
@@ -39,8 +52,3 @@ table
     font-size: 0.6em
     color: #900
     font-weight: bold
-
-table.budget
-  width: 800px
-  td:not(:first-child)
-    text-align: right

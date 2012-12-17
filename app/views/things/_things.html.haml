@@ -18,20 +18,20 @@
               %td
                 = vendor_name thing
                 - unless thing.description.blank?
-                  = "- #{thing.description}"
+                  = thing.description
                 %span.tags= linked_tag_list thing
                 - if thing.secret?
                   %span.secret SECRET
               %td.money
-                = thing.amount
+                = number_to_currency thing.amount, precision: 0
               %td.debit
                 - if thing.debit
-                  = link_to thing.debit.name, thing.debit
+                  = link_to thing.debit.name, thing.debit, class: 'debit'
                 - else
                   FIX ME!!!
               %td.credit
                 - if thing.credit
-                  = link_to thing.credit.name, thing.credit
+                  = link_to thing.credit.name, thing.credit, class: 'credit'
                 - else
                   FIX ME !!!
         
@@ -52,7 +52,7 @@
             %td.date
               = link_to '«', thing, :rel=>:facebox
               = link_to thing.date, date_link(thing.date);
-            %td{colspan: 2}= "Weight #{thing.weight}lbs"
+            %td{colspan: 4}= "Weight #{thing.weight}lbs"
         
         - elsif thing.is_a?(Workout)
           %tr

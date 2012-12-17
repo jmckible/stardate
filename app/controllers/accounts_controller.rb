@@ -2,6 +2,7 @@ class AccountsController < ApplicationController
 
   # GET /accounts
   def index
+    @missing = @household.transactions.where('debit_id is null or credit_id is null')
   end
 
   # GET /accounts/new

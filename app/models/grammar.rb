@@ -18,7 +18,7 @@ class Grammar
       else
         vendor = string
       end
-      transaction = household.transactions.build vendor_name: vendor, description: description, tag_list: tag_list, date: date, start: date, finish: date
+      transaction = household.transactions.build vendor_name: vendor, description: description, tag_list: tag_list, date: date
 
       if amount >= 0
         income = household.accounts.income.where(name: vendor).first

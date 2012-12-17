@@ -38,9 +38,6 @@ class Account < ActiveRecord::Base
   # For funding deferred accounts from cash
   def fund
     transaction = debits.build credit: household.cash, date: Date.today, user: household.default_user, household: household
-    transaction.start = Date.today
-    transaction.finish = Date.today
-    transaction.description = "Deferral Funding"
 
     if accruing?
       transaction.amount = budget

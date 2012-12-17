@@ -13,6 +13,9 @@ class Transaction < ActiveRecord::Base
   scope :asset_credit, includes(:credit).where('accounts.asset = ?', true)
   scope :asset_debit,  includes(:debit).where('accounts.asset = ?', true)
 
+  scope :deferred_credit, includes(:credit).where('accounts.deferred = ?', true)
+  scope :deferred_debit,  includes(:debit).where('accounts.deferred = ?', true)
+
   scope :expense_credit, includes(:credit).where('accounts.expense = ?', true)
   scope :expense_debit,  includes(:debit).where('accounts.expense = ?', true)
 
@@ -21,8 +24,7 @@ class Transaction < ActiveRecord::Base
   
   scope :during, lambda { |period|
     if period
-      where "(start between ? and ?) or (finish between ? and ?) or (start <= ? and finish >= ?)", 
-        period.first, period.last, period.first, period.last, period.first, period.last
+      where(date: period)
     end
   }
   scope :on, lambda { |date| where date: date }
@@ -37,15 +39,6 @@ class Transaction < ActiveRecord::Base
       includes(:taggings).where('taggings.tag_id = ?', tag_or_tags.id)
     end
   }
-  
-  # before_validation :amortize, :if=>:date
-  # def amortize
-  #   self.start  = date unless start
-  #   self.finish = date unless finish
-  #   self.start, self.finish = finish, start if start > finish
-  #   self.per_diem = value / ((finish - start).to_i + 1).to_f
-  #   true # Never halt
-  # end
   
   def vendor_name
     vendor.try :name

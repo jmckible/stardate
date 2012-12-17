@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121216193823) do
+ActiveRecord::Schema.define(:version => 20121216231602) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "household_id"
@@ -162,19 +162,16 @@ ActiveRecord::Schema.define(:version => 20121216193823) do
   add_index "tasks", ["paycheck_id"], :name => "index_tasks_on_paycheck_id"
 
   create_table "transactions", :force => true do |t|
-    t.integer  "user_id",                                                        :null => false
-    t.date     "date",                                                           :null => false
-    t.integer  "amount",                                      :default => 0,     :null => false
+    t.integer  "user_id",                         :null => false
+    t.date     "date",                            :null => false
+    t.integer  "amount",       :default => 0,     :null => false
     t.text     "description"
     t.integer  "vendor_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "recurring_id"
-    t.date     "start"
-    t.date     "finish"
-    t.decimal  "per_diem",     :precision => 10, :scale => 2
     t.integer  "household_id"
-    t.boolean  "secret",                                      :default => false
+    t.boolean  "secret",       :default => false
     t.integer  "debit_id"
     t.integer  "credit_id"
   end

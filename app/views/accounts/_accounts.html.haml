@@ -1,0 +1,11 @@
+%tr
+  %th Account
+  %th Debit
+  %th Credit
+  %th Balance
+- accounts.each do |account|
+  %tr
+    %td= link_to account.name, account
+    %td.num.debit= not_zero account.debits.sum(:amount)
+    %td.num.credit= not_zero account.credits.sum(:amount)
+    %td.num= color_money account.balance

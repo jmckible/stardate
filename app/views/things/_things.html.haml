@@ -1,5 +1,11 @@
 - unless things.empty?
   %table
+    %tr
+      %th Date
+      %th 
+      %th Amount
+      %th Debit
+      %th Credit
     %tbody
       - things.each do |thing|
         - if thing.is_a?(Transaction)

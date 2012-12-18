@@ -14,7 +14,7 @@
 - if (@account.asset? && !@account.general?) || @account.deferred?
   %p= link_to 'Fund', [:fund, @account], rel: 'facebox'
 
-%table
+%table.data
   %tr
     %th Date
     - unless @account.deferred?
@@ -40,23 +40,23 @@
       %td
         = transaction.description
         %span.tags= linked_tag_list transaction
-      %td.debit
+      %td.debit.num
         - if transaction.debit == @account
-          = transaction.amount
+          = number_with_delimiter transaction.amount
         - else
           = link_to transaction.debit.name, transaction.debit
-      %td.credit
+      %td.credit.num
         - if transaction.credit == @account
-          = transaction.amount
+          = number_with_delimiter transaction.amount
         - else
           = link_to transaction.credit.name, transaction.credit
 
-  %tr
+  %tr.total
     %td Total
     - unless @account.deferred?
       %td
     %td
-    %td.debit= number_with_delimiter @account.debits.sum(:amount)
-    %td.credit= number_with_delimiter @account.credits.sum(:amount)
+    %td.debit.num= number_with_delimiter @account.debits.sum(:amount)
+    %td.credit.num= number_with_delimiter @account.credits.sum(:amount)
 
 = will_paginate @transactions

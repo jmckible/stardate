@@ -4,12 +4,24 @@
 
 - unless @recurrings.empty?
   %table
-    %tbody
-      - @recurrings.each do |recurring|
-        %tr.recurring
-          %td.date= link_to recurring.day, recurring, rel: 'facebox'
-          %td.money= color_money recurring.value
-          %td.vendor= vendor_name recurring
-          %td.description
-            = recurring.description
-            %span.tags= linked_tag_list recurring
+    %tr
+      %th Day
+      %th 
+      %th Amount
+      %th Debit
+      %th Credit
+
+    - @recurrings.each do |recurring|
+      %tr.recurring
+        %td.date= link_to recurring.day, recurring, rel: 'facebox'
+        %td
+          = vendor_name recurring
+          %span.tags= linked_tag_list recurring
+        %td.num= number_to_currency recurring.amount, precision: 0
+
+        %td
+          - if recurring.debit
+            = link_to recurring.debit.name, recurring.debit, class: 'debit'
+        %td.credit
+          - if recurring.credit
+            = link_to recurring.credit.name, recurring.credit, class: 'credit'

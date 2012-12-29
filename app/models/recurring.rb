@@ -1,6 +1,8 @@
 class Recurring < ActiveRecord::Base
   include Taggable
   
+  belongs_to :credit, class_name: 'Account'
+  belongs_to :debit,  class_name: 'Account'
   belongs_to :user
   belongs_to :vendor
   
@@ -18,28 +20,16 @@ class Recurring < ActiveRecord::Base
     end
   }
   
-  def to_item
-    item = Item.new date: Date.today,
-                    description: description,
-                    explicit_value: explicit_value,
-                    tag_list: tag_list,
-                    vendor_name: vendor_name
-    item.recurring  = self
-    item.user       = user
-    item.household  = user.household
-    item
-  end
-  
-  def explicit_value
-    return if value.nil?
-    "#{'+' if value > 0}#{value}"
-  end
-  
-  def explicit_value=(new_integer)
-    new_integer = new_integer.to_s
-    return if new_integer.blank?
-    new_integer = '-' + new_integer unless new_integer =~ /^(\+|-)/
-    self.value = new_integer.to_f.round
+  def to_transaction
+    Transaction.new date: Date.today,
+      amount: amount,
+      vendor: vendor,
+      tag_list: tag_list,
+      debit: debit,
+      credit: credit,
+      recurring: self,
+      user: user,
+      household: user.household
   end
   
   def vendor_name
@@ -53,11 +43,9 @@ class Recurring < ActiveRecord::Base
       self.vendor = Vendor.find_or_create_by_name string
     end
   end
-
-  attr_accessible :day, :description, :explicit_value, :tag_list, :vendor_name
   
   validates_presence_of     :user_id
-  validates_numericality_of :value, only_integer: true
+  validates_numericality_of :amount, only_integer: true
   validates_numericality_of :day, in: 1..31
   
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121216231602) do
+ActiveRecord::Schema.define(:version => 20121229232034) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "household_id"
@@ -117,11 +117,12 @@ ActiveRecord::Schema.define(:version => 20121216231602) do
   add_index "paychecks", ["job_id"], :name => "index_paychecks_on_job_id"
 
   create_table "recurrings", :force => true do |t|
-    t.integer "user_id",                    :null => false
-    t.integer "day",         :default => 1, :null => false
-    t.integer "value",       :default => 0, :null => false
-    t.text    "description"
+    t.integer "user_id",                  :null => false
+    t.integer "day",       :default => 1, :null => false
+    t.integer "amount",    :default => 0, :null => false
     t.integer "vendor_id"
+    t.integer "debit_id"
+    t.integer "credit_id"
   end
 
   add_index "recurrings", ["day"], :name => "index_recurrings_on_day"

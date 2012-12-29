@@ -1,7 +1,7 @@
 class Vendor < ActiveRecord::Base
   include Permalink
     
-  has_many :items
+  has_many :transactions
   
   validates :name, presence: true, uniqueness: true
   

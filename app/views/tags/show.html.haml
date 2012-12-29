@@ -23,9 +23,7 @@
 
 /#TagGraph= render partial: 'graph'
 
-%table
-  %tbody
-    = render partial: 'things/things', object: @transactions
+= render partial: 'things/things', object: @transactions
     
 
 = will_paginate @transactions

@@ -15,8 +15,6 @@
 /   = "vendor.setDataURL(\"#{vendor_url(@vendor, :format=>'xml')}\");"
 /   vendor.render("VendorGraph");
 
-%table
-  %tbody
-    = render partial: 'items/item', collection: @items
+= render partial: 'things/things', object: @transactions
     
-= will_paginate @items
+= will_paginate @transactions

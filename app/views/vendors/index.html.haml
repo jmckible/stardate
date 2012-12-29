@@ -1,21 +1,16 @@
 %h1 Vendor
 
 %table
-  %thead
+  %tr
+    %th Name
+    %th Count
+    %th Amount
+    
+  - @vendors.each do |vendor|
     %tr
-      %th.first.headerSortDown Name
-      %th Count
-      %th Amount
-      %th ASP
-  %tbody
-    - @vendors.each do |vendor|
-      - count = @household.items.from_vendor(vendor).since(@user.created_at).count
-      - sum = @household.items.from_vendor(vendor).since(@user.created_at).sum(:value)
-      %tr
-        %td.vendor= link_to vendor.name, vendor
-        %td.count= number_with_delimiter count
-        %td.sum= number_with_delimiter color_explicit_money(sum)
-        %td.sum= number_with_delimiter color_explicit_money((sum / count.to_f).round)
+      %td= link_to vendor.name, vendor
+      %td.num= number_with_delimiter @household.transactions.visible_by(@user).from_vendor(vendor).count
+      %td.num= number_to_currency @household.transactions.visible_by(@user).from_vendor(vendor).sum(:amount), precision: 0
         
 
 = will_paginate @vendors

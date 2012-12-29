@@ -8,7 +8,7 @@ class VendorsController < ApplicationController
   # GET /vendors/:id
   def show
     @vendor = Vendor.find_by_permalink! params[:id]
-    @items  = @household.items.from_vendor(@vendor).since(@user.created_at).order('date DESC').page params[:page]
+    @transactions = @household.transactions.from_vendor(@vendor).visible_by(@user).order('date DESC').page params[:page]
   end
   
 end

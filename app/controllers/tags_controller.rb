@@ -8,8 +8,7 @@ class TagsController < ApplicationController
   # GET /tags/:id
   def show
     @tag = Tag.find_by_permalink! params[:id]
-    @period = @user.created_at.to_date..Date.today
-    @items = @household.items.tagged_with(@tag).since(@user.created_at).page(params[:page])
+    @transactions = @household.transactions.tagged_with(@tag).visible_by(@user).page(params[:page])
   end
   
 end

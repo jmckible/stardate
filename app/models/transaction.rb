@@ -39,6 +39,8 @@ class Transaction < ActiveRecord::Base
       includes(:taggings).where('taggings.tag_id = ?', tag_or_tags.id)
     end
   }
+
+  scope :visible_by, lambda{|user| where('transactions.date >= ? ', user.created_at)}
   
   def vendor_name
     vendor.try :name

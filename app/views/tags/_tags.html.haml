@@ -1,16 +1,12 @@
 %table
-  %thead
-    %tr
-      %th.first Name
-      %th.headerSortDown Count
-      %th Amount
-      %th ASP
+  %tr
+    %th Name
+    %th Count
+    %th Spent
+    
   %tbody
     - tags.each do |tag|
-      - count = @household.items.tagged_with(tag).since(@user.created_at).count
-      - sum = @household.items.since(@user.created_at).tagged_with(tag).sum(&:value)
       %tr
-        %td.vendor= link_to tag.name, tag_path(tag)
-        %td.count= number_with_delimiter count
-        %td.sum= color_explicit_money(sum)
-        %td.sum= color_explicit_money((sum / count.to_f).round)
+        %td= link_to tag.name, tag_path(tag)
+        %td.num= number_with_delimiter @household.transactions.visible_by(@user).tagged_with(tag).count
+        %td.num= number_to_currency @household.transactions.visible_by(@user).tagged_with(tag).sum(:amount), precision: 0

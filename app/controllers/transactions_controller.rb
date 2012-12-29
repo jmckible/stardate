@@ -1,23 +1,23 @@
 class TransactionsController < ApplicationController
 
-  # # GET /items
-  # def index
-  #   if params[:date]
-  #     year  = params[:date][:year]  ? params[:date][:year].to_i  : Date.today.year
-  #     month = params[:date][:month] ? params[:date][:month].to_i : Date.today.month
-  #   else
-  #     year = Date.today.year
-  #     month = Date.today.month
-  #   end
+  # GET /transactions
+  def index
+    if params[:date]
+      year  = params[:date][:year]  ? params[:date][:year].to_i  : Date.today.year
+      month = params[:date][:month] ? params[:date][:month].to_i : Date.today.month
+    else
+      year = Date.today.year
+      month = Date.today.month
+    end
     
-  #   @period = Date.new(year, month, 1)..Date.civil(year, month, -1)
+    @period = Date.new(year, month, 1)..Date.civil(year, month, -1)
     
-  #   if @period.first < @user.created_at.to_date
-  #     @period = @user.created_at.beginning_of_month.to_date..@user.created_at.end_of_month.to_date
-  #   end
+    if @period.first < @user.created_at.to_date
+      @period = @user.created_at.beginning_of_month.to_date..@user.created_at.end_of_month.to_date
+    end
     
-  #   @items = @household.items.during @period
-  # end
+    @transactions = @household.transactions.during @period
+  end
 
   # GET /transactions/:id
   def show

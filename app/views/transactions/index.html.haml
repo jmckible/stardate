@@ -1,20 +1,18 @@
 %h1= humanize_period @period
 
 .date_selector
-  = form_tag items_path, :method=>:get do
+  = form_tag transactions_path, :method=>:get do
     = select_month @period.first
     = select_year  @period.first, start_year: @user.created_at.year, end_year: Date.today.year
 .clear
 
-- if @items.empty?
+- if @transactions.empty?
   %p No Activity
 - else
-  %table
-    %tbody
-      = render partial: 'item', collection: @items
+  = render partial: 'things/things', object: @transactions
 
 .date_selector
-  = form_tag items_path, :method=>:get do
+  = form_tag transactions_path, :method=>:get do
     = select_month @period.first
     = select_year  @period.first, start_year: @user.created_at.year, end_year: Date.today.year
 .clear

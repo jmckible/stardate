@@ -6,7 +6,7 @@ class Recurring < ActiveRecord::Base
   belongs_to :user
   belongs_to :vendor
   
-  has_many :items, :dependent=>:nullify
+  has_many :transactions, :dependent=>:nullify
   
   scope :on, lambda { |date|
     if date.is_a?(Date)

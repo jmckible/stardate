@@ -11,36 +11,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121229232034) do
+ActiveRecord::Schema.define(:version => 20121230023155) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "household_id"
     t.integer  "budget"
     t.integer  "deferral_id"
     t.boolean  "asset",        :default => false
-    t.boolean  "liability",    :default => false
     t.boolean  "income",       :default => false
-    t.boolean  "equity",       :default => false
     t.boolean  "expense",      :default => false
-    t.boolean  "deferred",     :default => false
     t.string   "name"
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
     t.boolean  "dashboard",    :default => false
-    t.boolean  "general",      :default => false
     t.boolean  "accruing",     :default => false
   end
 
   add_index "accounts", ["asset"], :name => "index_accounts_on_asset"
   add_index "accounts", ["dashboard"], :name => "index_accounts_on_dashboard"
   add_index "accounts", ["deferral_id"], :name => "index_accounts_on_deferral_id"
-  add_index "accounts", ["deferred"], :name => "index_accounts_on_deferred"
-  add_index "accounts", ["equity"], :name => "index_accounts_on_equity"
   add_index "accounts", ["expense"], :name => "index_accounts_on_expense"
-  add_index "accounts", ["general"], :name => "index_accounts_on_general"
   add_index "accounts", ["household_id"], :name => "index_accounts_on_household_id"
   add_index "accounts", ["income"], :name => "index_accounts_on_income"
-  add_index "accounts", ["liability"], :name => "index_accounts_on_liability"
 
   create_table "budgets", :force => true do |t|
     t.integer  "household_id"
@@ -54,10 +46,17 @@ ActiveRecord::Schema.define(:version => 20121229232034) do
 
   create_table "households", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
-    t.integer  "savings_goal", :default => 0
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.integer  "savings_goal",      :default => 0
+    t.integer  "cash_id"
+    t.integer  "slush_id"
+    t.integer  "general_income_id"
   end
+
+  add_index "households", ["cash_id"], :name => "index_households_on_cash_id"
+  add_index "households", ["general_income_id"], :name => "index_households_on_general_income_id"
+  add_index "households", ["slush_id"], :name => "index_households_on_slush_id"
 
   create_table "items", :force => true do |t|
     t.integer  "user_id",                                                        :null => false

@@ -14,7 +14,6 @@ class Account < ActiveRecord::Base
   scope :asset,     where(asset: true)
   scope :cash,      where(asset: true, general: true)
   scope :dashboard, where(dashboard: true)
-  scope :deferred,  where(deferred: true)
   scope :equity,    where(equity: true)
   scope :except,    lambda{|account| where('accounts.id != ?', account.id)}
   scope :expense,   where(expense: true)
@@ -30,6 +29,12 @@ class Account < ActiveRecord::Base
       includes(:taggings).where('taggings.tag_id = ?', tag_or_tags.id)
     end
   }
+
+  def core?
+    household.cash           == self ||
+    household.slush          == self ||
+    household.general_income == self 
+  end
 
   def balance
     debits.sum(:amount) - credits.sum(:amount)

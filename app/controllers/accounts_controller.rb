@@ -8,7 +8,6 @@ class AccountsController < ApplicationController
   # GET /accounts/new
   def new
     @account = @household.accounts.build
-    render layout: false
   end
 
   # GET /accounts/:id
@@ -20,7 +19,6 @@ class AccountsController < ApplicationController
   # GET /accounts/:id/edit
   def edit
     @account = @household.accounts.find params[:id]
-    render layout: false
   end
 
   # GET /accounts/:id/fund

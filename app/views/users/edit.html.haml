@@ -28,3 +28,21 @@
     = f.password_field :password_confirmation
   
   %p= submit_tag 'Update Password'
+
+= form_for @household do |f|
+  %p
+    Cash Account
+    %br
+    = f.collection_select :cash_id, @household.accounts.asset, :id, :name
+
+  %p
+    Slush Expense
+    %br
+    = f.collection_select :slush_id, @household.accounts.expense, :id, :name
+
+  %p
+    General Income
+    %br
+    = f.collection_select :general_income_id, @household.accounts.income, :id, :name
+
+  %p= f.submit 'Update Accounts'

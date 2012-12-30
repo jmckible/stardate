@@ -1,6 +1,6 @@
 %h1 Accounts
 
-%p= link_to 'New Account', new_account_path, rel: 'facebox'
+%p= link_to 'New Account', new_account_path
 
 - unless @missing.empty?
   %h2= pluralize @missing.count, 'Empty Transactions'
@@ -56,15 +56,6 @@
     %td.num= color_money @household.transactions.asset_debit.sum(:amount)
     %td.credit.num= number_with_delimiter @household.transactions.asset_credit.sum(:amount)
     %td.num= color_money(@household.transactions.asset_debit.sum(:amount) - @household.transactions.asset_credit.sum(:amount))
-
-%h2 Deferrals
-%table.data
-  = render partial: 'accounts', object: @household.accounts.deferred
-  %tr.total
-    %td Net
-    %td.num= color_money @household.transactions.deferred_debit.sum(:amount)
-    %td.credit.num= number_with_delimiter @household.transactions.deferred_credit.sum(:amount)
-    %td.num= color_money(@household.transactions.deferred_debit.sum(:amount) - @household.transactions.deferred_credit.sum(:amount))
 
 
 %h2 Expenses

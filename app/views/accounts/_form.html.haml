@@ -1,43 +1,34 @@
 %p= form.text_field :name, default: 'Name'
-%p= form.text_field :tag_list, default: 'tags'
+- if @account.expense?
+  %p= form.text_field :tag_list, default: 'tags'
 
-%h3 Visibility
+- if @account.new_record?
+  %h3 Account Type
+  %p
+    = form.check_box :asset
+    = form.label :asset, 'Asset'
+  %p
+    = form.check_box :expense
+    = form.label :expense, 'Expense'
+  %p
+    = form.check_box :income
+    = form.label :income, 'Income'
 
-%p
-  = form.check_box :dashboard
-  = form.label :dashboard, 'Dashboard'
+- if @account.asset? && @account != @household.cash
+  %p Every Two Weeks Save:
+  %p= form.text_field :budget, default: 'Budget Balance', class: 'money'
 
-%p
-  = form.check_box :general
-  = form.label :general, 'General of this type (cash, slush, etc)'
+  %p
+    = form.check_box :accruing
+    = form.label :accruing, 'Accrue Savings'
 
-%h3 Account Type
-%p
-  = form.check_box :asset
-  = form.label :asset, 'Asset'
-%p
-  = form.check_box :deferred
-  = form.label :deferred, 'Deferred'
-%p
-  = form.check_box :liability
-  = form.label :liability, 'Liability'
-%p
-  = form.check_box :equity
-  = form.label :equity, 'Equity'
-%p
-  = form.check_box :expense
-  = form.label :expense, 'Expense'
-%p
-  = form.check_box :income
-  = form.label :income, 'Income'
+  %p
+    = form.check_box :dashboard
+    = form.label :dashboard, 'Show on Dashboard'
 
-%p
-  Deferral
-  = form.collection_select :deferral_id, @household.accounts, :id, :name, include_blank: true
 
-%p Biweekly Budget Balance
-%p= form.text_field :budget, default: 'Budget Balance', class: 'money'
+- if @account.expense?
+  %p
+    Deferral
+    = form.collection_select :deferral_id, @household.accounts, :id, :name, include_blank: true
 
-%p
-  = form.check_box :accruing
-  = form.label :accruing, 'Accrue Deferrals'

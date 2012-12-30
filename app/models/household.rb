@@ -1,6 +1,10 @@
 class Household < ActiveRecord::Base
   include Totalling
 
+  belongs_to :cash, class_name: 'Account'
+  belongs_to :general_income, class_name: 'Account'
+  belongs_to :slush, class_name: 'Account'
+
   has_many :accounts, order: 'accounts.name'
   has_many :budgets
   has_many :users
@@ -17,18 +21,6 @@ class Household < ActiveRecord::Base
     def visible_by(user)
       where("transactions.created_at >= ? AND (transactions.secret = ? OR transactions.user_id = ?)", user.created_at, false, user.id)
     end
-  end
-
-  def cash
-    accounts.cash.first
-  end
-  
-  def slush
-    accounts.slush.first
-  end
-
-  def general_income
-    accounts.general_income.first
   end
 
   # For scheduled deferral funding

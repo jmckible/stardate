@@ -9,16 +9,16 @@
     Biweekly Budget Balance
     = @account.budget
 
-%p= link_to 'Edit', [:edit, @account], rel: 'facebox'
+- unless @account.core?
+  %p= link_to 'Edit', [:edit, @account]
 
-- if (@account.asset? && !@account.general?) || @account.deferred?
+- if @account.asset? && !@account.core?
   %p= link_to 'Fund', [:fund, @account], rel: 'facebox'
 
 %table.data
   %tr
     %th Date
-    - unless @account.deferred?
-      %th Vendor
+    %th Vendor
     %th Description
     %th Debit
     %th Credit
@@ -35,8 +35,7 @@
       %td.date
         = link_to '«', transaction, rel: 'facebox'
         = link_to transaction.date, date_link(transaction.date)
-      - unless @account.deferred?
-        %td= vendor_name transaction
+      %td= vendor_name transaction
       %td
         = transaction.description
         %span.tags= linked_tag_list transaction
@@ -53,8 +52,7 @@
 
   %tr.total
     %td Total
-    - unless @account.deferred?
-      %td
+    %td
     %td
     %td.debit.num= number_with_delimiter @account.debits.sum(:amount)
     %td.credit.num= number_with_delimiter @account.credits.sum(:amount)

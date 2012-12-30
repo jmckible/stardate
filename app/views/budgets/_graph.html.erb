@@ -18,11 +18,11 @@
         }
       },
       xAxis: {
-        categories: [<%= @household.accounts.deferred.dashboard.collect{|a| "'#{a.name.gsub(' Deferral', '')}'"}.join(', ').html_safe %>]
+        categories: [<%= @household.accounts.dashboard.collect{|a| "'#{a.name.gsub(' Deferral', '')}'"}.join(', ').html_safe %>]
       },
       series: [{
         name: 'Month',
-        data: [<%= @household.accounts.deferred.dashboard.collect{ |account| 
+        data: [<%= @household.accounts.dashboard.collect{ |account| 
           amount = account.balance
           "{y: #{amount}, color: '#{amount < 0 ? '#FF00CC' : '#00CCFF'}'}"
         }.join(', ').html_safe

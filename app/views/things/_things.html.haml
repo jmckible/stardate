@@ -21,15 +21,6 @@
               %td.date
                 = link_to '«', thing, :rel=>:facebox
                 = link_to thing.date, date_link(thing.date)
-              %td
-                = vendor_name thing
-                - unless thing.description.blank?
-                  = thing.description
-                %span.tags= linked_tag_list thing
-                - if thing.secret?
-                  %span.secret SECRET
-              %td.money
-                = number_to_currency thing.amount, precision: 0
               %td.debit
                 - if thing.debit
                   = link_to thing.debit.name, thing.debit, class: 'debit'
@@ -40,6 +31,16 @@
                   = link_to thing.credit.name, thing.credit, class: 'credit'
                 - else
                   FIX ME !!!
+              %td
+                = vendor_name thing
+                - unless thing.description.blank?
+                  = thing.description
+                %span.tags= linked_tag_list thing
+                - if thing.secret?
+                  %span.secret SECRET
+              %td.money
+                = number_to_currency thing.amount, precision: 0
+
         
         - elsif thing.is_a?(Note)
           %tr
@@ -58,7 +59,8 @@
             %td.date
               = link_to '«', thing, :rel=>:facebox
               = link_to thing.date, date_link(thing.date);
-            %td{colspan: 4}= "Weight #{thing.weight}lbs"
+            %td{colspan: 2}
+            %td{colspan: 2}= "Weight #{thing.weight}lbs"
         
         - elsif thing.is_a?(Workout)
           %tr

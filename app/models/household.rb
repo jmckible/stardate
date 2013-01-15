@@ -28,5 +28,9 @@ class Household < ActiveRecord::Base
     users.first
   end
 
+  def cash_income(period)
+    cash.debits.on(period).sum(:amount)
+  end
+
   validates_presence_of :name
 end

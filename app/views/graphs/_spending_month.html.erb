@@ -46,7 +46,7 @@
       },
       series: [{
         name: 'Income',
-        data: <%= @month.collect{|date| @household.sum_income @month.first..date}.to_json %>,
+        data: <%= @month.collect{|date| @household.cash_income @month.first..date}.to_json %>,
         pointInterval: 24 * 3600 * 1000,
         pointStart: Date.UTC(<%= (@month.first - 1.month).year %>, <%= (@month.first - 1.month).month %>, <%= (@month.first - 1.month).day %>),
         color: '#00CCFF'

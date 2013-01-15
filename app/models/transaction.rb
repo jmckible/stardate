@@ -24,7 +24,7 @@ class Transaction < ActiveRecord::Base
   
   scope :during, lambda { |period|
     if period
-      where(date: period)
+      where(date: period).order('transactions.date, transactions.id')
     end
   }
   scope :on, lambda { |date| where date: date }

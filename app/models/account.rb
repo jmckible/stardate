@@ -45,13 +45,13 @@ class Account < ActiveRecord::Base
     transaction = debits.build credit: household.cash, date: Date.today, user: household.default_user, household: household
 
     if accruing?
+      transaction.amount = budget
+    else
       if balance < 0
         transaction.amount = budget + (balance * -1)
       else
-        transaction.amount = budget
+        transaction.amount = budget - balance
       end
-    else
-      transaction.amount = budget - balance
     end
 
     transaction.save

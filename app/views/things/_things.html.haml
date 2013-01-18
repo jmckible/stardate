@@ -2,10 +2,11 @@
   %table
     %tr
       %th Date
-      %th 
-      %th Amount
       %th Debit
       %th Credit
+      %th 
+      %th Amount
+
     %tbody
       - things.each do |thing|
         - if thing.is_a?(Transaction)

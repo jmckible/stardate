@@ -48,3 +48,6 @@ module Stardate
   end
   
 end
+
+# uninitialized constant Sass::Rails::Compressor - https://github.com/rails/sass-rails/issues/111
+Sprockets::Compressors.register_css_compressor(:scss, 'Sass::Rails::CssCompressor', :require => 'sass/rails/compressor')

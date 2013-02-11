@@ -128,7 +128,6 @@ DEPENDENCIES
   coffee-rails
   haml
   jquery-rails
-  json (= 1.7.7)
   mysql2
   pg
   rails (= 3.2.12)

@@ -30,7 +30,7 @@ class Transaction < ActiveRecord::Base
   scope :on, lambda { |date| where date: date }
   scope :from_vendor, lambda { |vendor| where(vendor_id: vendor.id) if vendor }
   
-  scope :since, lambda{|date| where("items.created_at >= ?", date)}
+  scope :since, lambda{|date| where("transactions.date >= ?", date)}
   
   scope :tagged_with, lambda{|tag_or_tags| 
     if tag_or_tags.is_a?(Array)

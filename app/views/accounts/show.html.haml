@@ -28,33 +28,35 @@
       %tr
         %td.date
           = link_to transaction.date, date_link(transaction.date)
-        %td{colspan: 3}
+        %td{colspan: 4}
           %span.secret SECRET
 
-    %tr
-      %td.date
-        = link_to '«', transaction, rel: 'facebox'
-        = link_to transaction.date, date_link(transaction.date)
-      %td= vendor_name transaction
-      %td
-        = transaction.description
-        %span.tags= linked_tag_list transaction
-      %td.debit.num
-        - if transaction.debit == @account
-          = number_with_delimiter transaction.amount
-        - else
-          = link_to transaction.debit.name, transaction.debit
-      %td.credit.num
-        - if transaction.credit == @account
-          = number_with_delimiter transaction.amount
-        - else
-          = link_to transaction.credit.name, transaction.credit
+
+    - else
+      %tr
+        %td.date
+          = link_to '«', transaction, rel: 'facebox'
+          = link_to transaction.date, date_link(transaction.date)
+        %td= vendor_name transaction
+        %td
+          = transaction.description
+          %span.tags= linked_tag_list transaction
+        %td.debit.num
+          - if transaction.debit == @account
+            = number_with_delimiter transaction.amount
+          - else
+            = link_to transaction.debit.name, transaction.debit
+        %td.credit.num
+          - if transaction.credit == @account
+            = number_with_delimiter transaction.amount
+          - else
+            = link_to transaction.credit.name, transaction.credit
 
   %tr.total
     %td Total
     %td
     %td
-    %td.debit.num= number_with_delimiter @account.debits.sum(:amount)
-    %td.credit.num= number_with_delimiter @account.credits.sum(:amount)
+    %td.debit.num= number_with_delimiter @account.debits.since(@user.created_at).sum(:amount)
+    %td.credit.num= number_with_delimiter @account.credits.since(@user.created_at).sum(:amount)
 
 = will_paginate @transactions

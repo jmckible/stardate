@@ -1,12 +1,5 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe ItemsController, 'without logging in' do
-  it 'handles / with GET' do
-    get :index
-    response.should redirect_to(new_session_path)
-  end
-end
-
 describe ThingsController do
   before { login_as :default }
   
@@ -27,7 +20,7 @@ describe ThingsController do
     }.should change(Note, :count).by(1)
   end
   
-  it 'handles /things with item attributes and PUT' do
+  it 'handles /things with transaction attributes and PUT' do
     running {
       post :create, :thing=>'$5 Red Rock'
       assigns(:thing).household.should == households(:default)

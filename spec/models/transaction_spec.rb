@@ -1,52 +1,52 @@
 require 'spec_helper'
 
-describe Item do
-  before { @item = items(:default) }
+describe Transaction do
+  before { @transaction = transactions(:default) }
   
   #####################################################################
   #                     R E L A T I O N S H I P S                     #
   #####################################################################
   it 'should belong to a user' do
-    @item.user.should == users(:default)
+    @transaction.user.should == users(:default)
   end
 
   it 'should belong to a paycheck' do
-    @item.paycheck.should == paychecks(:default)
+    @transaction.paycheck.should == paychecks(:default)
   end
   
   it 'should belong to a recurring' do
-    items(:other).recurring.should == recurrings(:last)
+    transactions(:other).recurring.should == recurrings(:last)
   end
 
   it 'should belong to a vendor' do
-    @item.vendor.should == vendors(:default)
+    @transaction.vendor.should == vendors(:default)
   end
   
   it 'should access vendor name' do
-    @item.vendor_name.should == vendors(:default).name
+    @transaction.vendor_name.should == vendors(:default).name
     Item.new.vendor_name.should be_nil
   end
   
   it 'should set vendor name with existing vendor' do
     running {
-      @item.vendor_name = vendors(:other).name
-      @item.save
-      @item.reload.vendor.should == vendors(:other)
+      @transaction.vendor_name = vendors(:other).name
+      @transaction.save
+      @transaction.reload.vendor.should == vendors(:other)
     }.should_not change(Vendor, :count)
   end
   
   it 'should set vendor name with new vendor' do
-    running { @item.vendor_name = 'New Vendor' }.should change(Vendor, :count).by(1)
+    running { @transaction.vendor_name = 'New Vendor' }.should change(Vendor, :count).by(1)
   end
   
   it 'should clear vendor when name set to nil' do
-    @item.vendor_name = nil
-    @item.vendor.should be_nil
+    @transaction.vendor_name = nil
+    @transaction.vendor.should be_nil
   end
   
   it 'should clear vendor when name set empty string' do
-    @item.vendor_name = ' '
-    @item.vendor.should be_nil
+    @transaction.vendor_name = ' '
+    @transaction.vendor.should be_nil
   end
   
   #####################################################################
@@ -79,35 +79,35 @@ describe Item do
   #                        L I F E    C Y C L E                       #
   #####################################################################
   it 'should assign amortization values if none provided' do
-    item = Item.new :date=>Date.today, :explicit_value=>10
-    item.save
-    item.start.should == Date.today
-    item.finish.should == Date.today
-    item.per_diem.should == -10
+    transaction = Item.new :date=>Date.today, :explicit_value=>10
+    transaction.save
+    transaction.start.should == Date.today
+    transaction.finish.should == Date.today
+    transaction.per_diem.should == -10
   end
   
   it 'should not overwrite provided amortization period' do
-    item = Item.new :date=>Date.today, :start=>(Date.today - 9), :finish=>Date.today, :explicit_value=>'+10'
-    item.save
-    item.start.should == Date.today - 9
-    item.finish.should == Date.today
-    item.per_diem.should == 1
+    transaction = Item.new :date=>Date.today, :start=>(Date.today - 9), :finish=>Date.today, :explicit_value=>'+10'
+    transaction.save
+    transaction.start.should == Date.today - 9
+    transaction.finish.should == Date.today
+    transaction.per_diem.should == 1
   end
   
   it 'should correct reversed start/finish' do
-    item = Item.new :date=>Date.today, :finish=>(Date.today - 9), :start=>Date.today, :explicit_value=>'+10'
-    item.save
-    item.start.should == Date.today - 9
-    item.finish.should == Date.today
-    item.per_diem.should == 1
+    transaction = Item.new :date=>Date.today, :finish=>(Date.today - 9), :start=>Date.today, :explicit_value=>'+10'
+    transaction.save
+    transaction.start.should == Date.today - 9
+    transaction.finish.should == Date.today
+    transaction.per_diem.should == 1
   end
   
   it 'should update per diem if existing amortization period changed' do
-    item = items(:default)
-    item.finish = item.date + 9
-    item.save
-    item.finish.should == item.date + 9
-    item.per_diem.to_f.should == -1
+    transaction = transactions(:default)
+    transaction.finish = transaction.date + 9
+    transaction.save
+    transaction.finish.should == transaction.date + 9
+    transaction.per_diem.to_f.should == -1
   end
 
   #####################################################################
@@ -125,8 +125,8 @@ describe Item do
   #                       D E S T R U C T I O N                       #
   #####################################################################
   it 'should nullify paycheck on destroy' do
-    @item.destroy
-    @item.paycheck(true).should be_nil
+    @transaction.destroy
+    @transaction.paycheck(true).should be_nil
   end
 
 end

@@ -17,10 +17,10 @@ Stardate::Application.routes.draw do
   resources :weights
   resources :workouts
   
-  match 'date/:year/:month/:day'=>'date#show', as: 'date'
+  get 'date/:year/:month/:day'=>'date#show', as: 'date'
 
-  match 'graphs/health/:start/:finish.:format'=>'graphs#health', as: 'health'
-  match 'graphs/spending/:start/:finish.:format'=>'graphs#spending', as: 'spending'
+  get 'graphs/health/:start/:finish.:format'=>'graphs#health', as: 'health'
+  get 'graphs/spending/:start/:finish.:format'=>'graphs#spending', as: 'spending'
 
   root to: 'things#index'
   

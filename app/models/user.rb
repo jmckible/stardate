@@ -19,14 +19,14 @@ class User < ActiveRecord::Base
   #####################################################################
   belongs_to :household
   
-  has_many :jobs,        :order=>'name',      :dependent=>:destroy
-  has_many :notes,       :order=>'date desc', :dependent=>:destroy
-  has_many :recurrings,  :order=>'day',       :dependent=>:destroy
-  has_many :tags,        :through=>:items,    :uniq=>true
+  has_many :jobs,        :dependent=>:destroy
+  has_many :notes,       :dependent=>:destroy
+  has_many :recurrings,  :dependent=>:destroy
+  has_many :tags,        :through=>:items
   has_many :tasks,       :through=>:jobs 
-  has_many :transactions, :order=>'date',      :dependent=>:destroy
-  has_many :vendors,     :through=>:items,    :uniq=>true, :order=>'name'
-  has_many :weights,     :order=>'date',      :dependent=>:destroy
+  has_many :transactions, :dependent=>:destroy
+  has_many :vendors,     :through=>:items
+  has_many :weights,     :dependent=>:destroy
   has_many :workouts,    :dependent=>:destroy
 
   #####################################################################
@@ -89,7 +89,7 @@ class User < ActiveRecord::Base
   validates_length_of       :password, :within=>4..40, :if=>:update_password?
   validates_presence_of     :password_confirmation,    :if=>:update_password?
   
-  validates_format_of     :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/
+  validates_format_of     :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/
   validates_length_of     :email, :within=>5..100
   validates_uniqueness_of :email
   

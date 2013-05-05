@@ -2,7 +2,7 @@ module Taggable
   
   def self.included(base)
     base.has_many :taggings, :as=>:taggable
-    base.has_many :tags, :through=>:taggings, :order=>'tags.name'
+    base.has_many :tags, :through=>:taggings
   end
   
   def tag_list

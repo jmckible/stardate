@@ -1,13 +1,13 @@
 class Grammar
   
   def self.parse(string, household)
-    date     = Grammar.parse_date string.slice!(/^\d+\/\d+(\/\d+)?\s/)
-    tag_list = (string.slice!(/\s\[.+\]$/) || '').gsub(/(^\s\[)|(\]$)/, '')
+    date     = Grammar.parse_date string.slice!(/\A\d+\/\d+(\/\d+)?\s/)
+    tag_list = (string.slice!(/\s\[.+\]\z/) || '').gsub(/(\A\s\[)|(\]\z)/, '')
 
-    if string =~ /^(\$|\+)/
+    if string =~ /\A(\\z|\+)/
       words = string.split ' '
-      amount = words.shift.gsub('$', '')
-      amount = '-' + amount unless amount =~ /^(\+|-)/
+      amount = words.shift.gsub('\z', '')
+      amount = '-' + amount unless amount =~ /\A(\+|-)/
       amount = amount.to_f.round
 
       string = words.join ' '
@@ -55,28 +55,28 @@ class Grammar
 
       transaction
                
-    elsif string =~ /^(Bike|bike|b )/
-      distance, minutes = string.split(/^(Bike|bike|b) /).last.split(' ')
+    elsif string =~ /\A(Bike|bike|b )/
+      distance, minutes = string.split(/\A(Bike|bike|b) /).last.split(' ')
       Workout.new bike: true, date: date, distance: distance, minutes: minutes
-    elsif string =~ /^(Elliptical|elliptical|e )/
-      distance, minutes = string.split(/^(Elliptical|elliptical|e) /).last.split(' ')
+    elsif string =~ /\A(Elliptical|elliptical|e )/
+      distance, minutes = string.split(/\A(Elliptical|elliptical|e) /).last.split(' ')
       Workout.new elliptical:true, date: date, distance: distance, minutes: minutes
-    elsif string =~ /^(Nike|nike|n )/
-      minutes = string.split(/^(Nike|nike|n )/).last.split(' ').first
-      description = string.split(/^(Nike|nike|n )/).last.split(' ')[1..-1].join(' ')
+    elsif string =~ /\A(Nike|nike|n )/
+      minutes = string.split(/\A(Nike|nike|n )/).last.split(' ').first
+      description = string.split(/\A(Nike|nike|n )/).last.split(' ')[1..-1].join(' ')
       Workout.new nike: true, date: date, minutes: minutes, description: description
-    elsif string =~ /^(P90x|p90x|P90X|p )/
-      minutes = string.split(/^(P90x|p90x|P90X|p90X|p )/).last.split(' ').first
-      description = string.split(/^(P90x|p90x|P90X|p90X|p )/).last.split(' ')[1..-1].join(' ')
+    elsif string =~ /\A(P90x|p90x|P90X|p )/
+      minutes = string.split(/\A(P90x|p90x|P90X|p90X|p )/).last.split(' ').first
+      description = string.split(/\A(P90x|p90x|P90X|p90X|p )/).last.split(' ')[1..-1].join(' ')
       Workout.new p90x: true, date: date, minutes: minutes, description: description
-    elsif string =~ /^(Ran|ran|r )/
-      distance, minutes = string.split(/^(Ran|ran|r) /).last.split(' ')
+    elsif string =~ /\A(Ran|ran|r )/
+      distance, minutes = string.split(/\A(Ran|ran|r) /).last.split(' ')
       Workout.new run: true, date: date, distance: distance, minutes: minutes
-    elsif string =~ /^(Walk|walk)/
-      distance, minutes = string.split(/^(Walk|walk) /).last.split(' ')
+    elsif string =~ /\A(Walk|walk)/
+      distance, minutes = string.split(/\A(Walk|walk) /).last.split(' ')
       Workout.new walk: true, date: date, distance: distance, minutes: minutes
-    elsif string =~ /^(weight|w )/
-      weight = string.split(/^(weight |w )/).last
+    elsif string =~ /\A(weight|w )/
+      weight = string.split(/\A(weight |w )/).last
       Weight.new date: date, weight: weight
     else
       Note.new date: date, body: string

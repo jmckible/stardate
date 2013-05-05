@@ -5,10 +5,10 @@ class Workout < ActiveRecord::Base
   scope :during, lambda { |date| where date: date }
   scope :on,     lambda { |date| where date: date }
   
-  scope :bike,       where(bike: true)
-  scope :elliptical, where(elliptical: true)
-  scope :nike,       where(nike: true)
-  scope :run,        where(run: true)
+  scope :bike,       -> {where(bike: true)}
+  scope :elliptical, -> {where(elliptical: true)}
+  scope :nike,       -> {where(nike: true)}
+  scope :run,        -> {where(run: true)}
   
   def name
     if bike?

@@ -5,7 +5,7 @@ class Paycheck < ActiveRecord::Base
   
   has_many :tasks, :dependent=>:nullify
   
-  scope :unpaid, where(item_id: nil)
+  scope :unpaid, -> {where(item_id: nil)}
 
   attr_accessor :paid
   def paid?
@@ -19,8 +19,6 @@ class Paycheck < ActiveRecord::Base
         description: description, date: Date.today
     end
   end
-
-  attr_accessible :value
   
   validates_presence_of     :job_id
   validates_numericality_of :value

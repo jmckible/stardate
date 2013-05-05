@@ -15,7 +15,6 @@ module Stardate
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
     config.autoload_paths += %W(
-      #{Rails.root}/app/models/workouts
       #{Rails.root}/lib
     )
 

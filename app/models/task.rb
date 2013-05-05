@@ -4,7 +4,7 @@ class Task < ActiveRecord::Base
   belongs_to :paycheck
 
   scope :on,      lambda { |date| where date: date }
-  scope :unpaid,  where(paycheck_id: nil)
+  scope :unpaid,  -> {where(paycheck_id: nil)}
   
   attr_accessor :hours, :min
   def hours
@@ -25,9 +25,6 @@ class Task < ActiveRecord::Base
       self.minutes = @hours.to_f * 60 + @min.to_i
     end
   end
-  
-
-  attr_accessible :date, :description, :hours, :min
   
   validates_presence_of :date, :job_id
   

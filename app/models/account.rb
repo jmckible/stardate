@@ -62,5 +62,38 @@ class Account < ActiveRecord::Base
 
     transaction
   end
+
+  def graph_step
+    if (graph_end - graph_start) < 365
+      7
+    else
+      30
+    end
+  end
+
+  def graph_start
+    transactions.order('date').first.date
+  end
+
+  def graph_end
+    transactions.order('date DESC').first.date
+  end
+
+  def graph_x_axis
+    (graph_start..graph_end).step(graph_step).collect{|d|d.strftime('%b %Y')}.to_json.html_safe
+  end
+
+  def graph_y_axis
+    data = []
+
+    (graph_start..graph_end).step(graph_step) do |date|
+      value = balance_on(date)
+      value = value * -1 if income?
+      color = value < 0 ? '#FF00CC' : '#00CCFF'
+      data << {y: value, marker:{fillColor: color}}
+    end
+
+    data.to_json.html_safe
+  end
   
 end

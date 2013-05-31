@@ -1,5 +1,8 @@
 %h1= @account.name
 
+#Balance
+= render partial: 'graphs/account_balance'
+
 %h3
   Balance
   = color_money @account.balance

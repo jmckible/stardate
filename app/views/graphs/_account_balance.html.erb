@@ -1,0 +1,43 @@
+<%- start_date = @account.transactions.order('date').first.date -%> 
+<%- step = 30 -%>
+
+<script type='text/javascript'>
+  $(document).ready(function(){
+    balance = new Highcharts.Chart({
+      chart: {
+        renderTo: 'Balance',
+        defaultSeriesType: 'area',
+        width: 800,
+        height: 280
+      },
+      title:  { text: false },
+      legend: { enabled: false },
+      yAxis: {
+        title: false
+      },
+      xAxis: {
+        categories: <%= (start_date..Date.today).step(step).to_json.html_safe %>,
+        labels:{
+          step: <%= step / 6 %>
+        }
+      },
+      plotOptions: {
+        area: {
+          marker: {
+            enabled: false,
+            states: {
+              hover: {
+                enabled: true
+              }
+            }
+          }
+        }
+      },
+      series: [{
+        name: 'Balance',
+        data: <%= (start_date..Date.today).step(step).collect{|date| @account.balance_on(date)}.to_json.html_safe %>,
+        color: '#00CCFF'
+      }]
+    });
+  });
+</script>

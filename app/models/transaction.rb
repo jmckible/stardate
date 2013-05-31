@@ -22,6 +22,7 @@ class Transaction < ActiveRecord::Base
   scope :income_credit, includes(:credit).where('accounts.income = ?', true)
   scope :income_debit,  includes(:debit).where('accounts.income = ?', true)
   
+  scope :before, lambda{|date| where("transactions.date <= ?", date)}
   scope :during, lambda { |period|
     if period
       where(date: period).order('transactions.date, transactions.id')

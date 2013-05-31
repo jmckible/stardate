@@ -40,6 +40,10 @@ class Account < ActiveRecord::Base
     debits.sum(:amount) - credits.sum(:amount)
   end
 
+  def balance_on(date)
+    debits.before(date).sum(:amount) - credits.before(date).sum(:amount)
+  end
+
   # For funding deferred accounts from cash
   def fund
     transaction = debits.build credit: household.cash, date: Date.today, user: household.default_user, household: household

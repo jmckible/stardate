@@ -1,7 +1,8 @@
 %h1= @account.name
 
-#Balance
-= render partial: 'graphs/account_balance'
+- unless @account.transactions.count.zero?
+  #Balance
+  = render partial: 'graphs/account_balance'
 
 %h3
   Balance

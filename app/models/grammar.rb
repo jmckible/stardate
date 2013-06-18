@@ -78,6 +78,10 @@ class Grammar
     elsif string =~ /^(weight|w )/
       weight = string.split(/^(weight |w )/).last
       Weight.new date: date, weight: weight
+    elsif string =~ /^(Yoga|yoga|y )/
+      minutes = string.split(/^(Yoga|yoga|y )/).last.split(' ').first
+      description = string.split(/^(Yoga|yoga|y )/).last.split(' ')[1..-1].join(' ')
+      Workout.new yoga: true, date: date, minutes: minutes, description: description
     else
       Note.new date: date, body: string
     end

@@ -1,5 +1,5 @@
 %p= form.text_field :name, default: 'Name'
-- if @account.expense?
+- unless @account.asset?
   %p= form.text_field :tag_list, default: 'tags'
 
 - if @account.new_record?

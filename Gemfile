@@ -1,21 +1,19 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.12'
+gem 'rails', '4.2.2'
+gem 'pg'
 
 gem 'coffee-rails'
 gem 'haml'
 gem 'jquery-rails'
-gem 'newrelic_rpm'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'will_paginate'
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'mysql2'
 end
 
 group :production do
-  gem 'pg'
   gem 'thin'
 end

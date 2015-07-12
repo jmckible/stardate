@@ -1,10 +1,10 @@
 module Taggable
-  
+
   def self.included(base)
-    base.has_many :taggings, :as=>:taggable
-    base.has_many :tags, :through=>:taggings, :order=>'tags.name'
+    base.has_many :taggings, as: :taggable
+    base.has_many :tags, ->{ order('tags.name') }, through: :taggings
   end
-  
+
   def tag_list
     tags.reload.map(&:name).join(', ')
   end
@@ -17,5 +17,5 @@ module Taggable
     taggings.each { |t| t.destroy unless new_tags.include?(t.tag) }
     new_tags.each { |t| tags << t unless tags.include?(t) }
   end
-  
+
 end

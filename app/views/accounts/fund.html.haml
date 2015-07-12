@@ -3,9 +3,9 @@
 
   %p= f.date_select :date, order: [:month, :day, :year]
 
-  %p 
+  %p
     Source
-    = f.collection_select :credit_id, @household.accounts.asset.except(@account), :id, :name
+    = f.collection_select :credit_id, @household.accounts.asset.other_than(@account), :id, :name
 
   %p= f.text_field :amount, default: 'Amount', class: 'money'
 

@@ -11,18 +11,18 @@ class Account < ActiveRecord::Base
     household.transactions.where('debit_id = ? OR credit_id = ?', id, id)
   end
 
-  scope :asset,     where(asset: true)
-  scope :cash,      where(asset: true, general: true)
-  scope :dashboard, where(dashboard: true)
-  scope :equity,    where(equity: true)
-  scope :except,    lambda{|account| where('accounts.id != ?', account.id)}
-  scope :expense,   where(expense: true)
-  scope :general_income, where(income: true, general: true)
-  scope :income,    where(income: true)
-  scope :liability, where(liability: true)
-  scope :slush,     where(expense: true, general: true)
+  scope :asset,          -> { where(asset: true) }
+  scope :cash,           -> { where(asset: true, general: true) }
+  scope :dashboard,      -> { where(dashboard: true) }
+  scope :equity,         -> { where(equity: true) }
+  scope :expense,        -> { where(expense: true) }
+  scope :general_income, -> { where(income: true, general: true) }
+  scope :income,         -> { where(income: true) }
+  scope :liability,      -> { where(liability: true) }
+  scope :slush,          -> { where(expense: true, general: true) }
+  scope :other_than,     ->(account){ where('accounts.id != ?', account.id) }
 
-  scope :tagged_with, lambda{|tag_or_tags| 
+  scope :tagged_with, ->(tag_or_tags){
     if tag_or_tags.is_a?(Array)
       includes(:taggings).where('taggings.tag_id IN (?)', tag_or_tags.collect(&:id))
     else
@@ -33,7 +33,7 @@ class Account < ActiveRecord::Base
   def core?
     household.cash           == self ||
     household.slush          == self ||
-    household.general_income == self 
+    household.general_income == self
   end
 
   def balance
@@ -95,5 +95,5 @@ class Account < ActiveRecord::Base
 
     data.to_json.html_safe
   end
-  
+
 end

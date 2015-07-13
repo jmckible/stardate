@@ -1,11 +1,11 @@
 class Task < ActiveRecord::Base
-  
+
   belongs_to :job
   belongs_to :paycheck
 
-  scope :on,      lambda { |date| where date: date }
-  scope :unpaid,  where(paycheck_id: nil)
-  
+  scope :on,      ->(date){ where date: date }
+  scope :unpaid,  ->{ where(paycheck_id: nil) }
+
   attr_accessor :hours, :min
   def hours
     return if minutes.blank?
@@ -16,7 +16,7 @@ class Task < ActiveRecord::Base
     modulo = minutes.modulo(60)
     modulo < 10 ? "0#{modulo}" : modulo
   end
-  
+
   before_validation :fix_minutes
   def fix_minutes
     unless @hours.blank? && @min.blank?
@@ -25,10 +25,10 @@ class Task < ActiveRecord::Base
       self.minutes = @hours.to_f * 60 + @min.to_i
     end
   end
-  
+
 
   attr_accessible :date, :description, :hours, :min
-  
+
   validates_presence_of :date, :job_id
-  
+
 end

@@ -26,9 +26,6 @@ class Task < ActiveRecord::Base
     end
   end
 
-
-  attr_accessible :date, :description, :hours, :min
-
   validates_presence_of :date, :job_id
 
 end

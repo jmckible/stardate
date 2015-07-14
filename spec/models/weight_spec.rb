@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Weight, 'relationships' do
   it 'should belong to a user' do
@@ -16,7 +16,7 @@ describe Weight, 'validations' do
   it 'should have a date' do
     Weight.new.should have(1).error_on(:date)
   end
-  
+
   it 'should have a user_id' do
     Weight.new.should have(1).error_on(:user_id)
   end

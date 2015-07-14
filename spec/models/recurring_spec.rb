@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Recurring do
   before { @recurring = recurrings(:default) }

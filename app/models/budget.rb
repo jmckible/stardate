@@ -3,7 +3,7 @@ class Budget < ActiveRecord::Base
 
   belongs_to :household
 
-  scope :tagged_with, ->(tag_or_tags){ 
+  scope :tagged_with, ->(tag_or_tags){
     if tag_or_tags.is_a?(Array)
       includes(:taggings).where('taggings.tag_id IN (?)', tag_or_tags.collect(&:id))
     else
@@ -11,7 +11,7 @@ class Budget < ActiveRecord::Base
     end
   }
 
-  default_scope order('budgets.amount DESC')
+  default_scope { order('budgets.amount DESC') }
 
   def expected_during(period)
     (amount / 30.0 * period.count).round

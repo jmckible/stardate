@@ -6,9 +6,7 @@ class Job < ActiveRecord::Base
   has_many   :paychecks, -> { order('created_at') }, dependent: :destroy
   has_many   :tasks,     -> { order('date')       }, dependent: :destroy
 
-  scope :active, where(active: true)
-
-  attr_accessible :active, :name, :rate
+  scope :active, -> { where(active: true) }
 
   validates_presence_of     :name, :user_id
   validates_numericality_of :rate

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Vendor, 'relationships' do
   it 'should have many items' do

@@ -20,8 +20,6 @@ class Paycheck < ActiveRecord::Base
     end
   end
 
-  attr_accessible :value
-
   validates_presence_of     :job_id
   validates_numericality_of :value
 

@@ -1,8 +1,8 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Job do
   before { @job = jobs(:default) }
-  
+
   #####################################################################
   #                     R E L A T I O N S H I P S                     #
   #####################################################################
@@ -28,7 +28,7 @@ describe Job do
   it 'should find active' do
     Job.should have(2).active
   end
-  
+
   #####################################################################
   #                       V A L I D A T I O N S                       #
   #####################################################################

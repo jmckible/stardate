@@ -7,24 +7,24 @@ describe Recurring do
   #                     R E L A T I O N S H I P S                     #
   #####################################################################
   it 'should belong to a user' do
-    @recurring.user.should == users(:default)
+    expect(@recurring.user).to eq(users(:default))
   end
 
   it 'should belong to a vendor' do
-    @recurring.vendor.should == vendors(:default)
+    expect(@recurring.vendor).to eq(vendors(:default))
   end
   
   it 'should have many items' do
-    recurrings(:last).should have(1).items
+    expect(recurrings(:last).items.size).to eq(1)
   end
 
   #####################################################################
   #                            S C O P E                              #
   #####################################################################
   it 'should have a during scope' do
-    Recurring.should have(1).on(1)
-    Recurring.should have(1).on(Date.new(2008, 1, 1))
-    Recurring.should have(1).on(Date.new(2007, 2, 28))
+    expect(Recurring.on(1).size).to eq(1)
+    expect(Recurring.on(Date.new(2008, 1, 1)).size).to eq(1)
+    expect(Recurring.on(Date.new(2007, 2, 28)).size).to eq(1)
   end
   
   #####################################################################
@@ -32,19 +32,19 @@ describe Recurring do
   #####################################################################
   it 'should convert to a new item' do
     item = recurrings(:default).to_item
-    item.date.should == Date.today
-    item.value.should == -100
-    item.user.should == users(:default)
-    item.description.should == 'Recurring'
-    item.vendor.should == vendors(:default)
-    item.recurring.should == recurrings(:default)
+    expect(item.date).to eq(Date.today)
+    expect(item.value).to eq(-100)
+    expect(item.user).to eq(users(:default))
+    expect(item.description).to eq('Recurring')
+    expect(item.vendor).to eq(vendors(:default))
+    expect(item.recurring).to eq(recurrings(:default))
   end
 
   #####################################################################
   #                       V A L I D A T I O N S                       #
   #####################################################################
   it 'should have a user_id' do
-    Recurring.new.should have(1).error_on(:user_id)
+    expect(Recurring.new).to have(1).error_on(:user_id)
   end
   
   #####################################################################
@@ -52,7 +52,7 @@ describe Recurring do
   #####################################################################
   it 'should nullify items on destroy' do
     recurrings(:last).destroy
-    items(:other).recurring.should be_nil
+    expect(items(:other).recurring).to be_nil
   end
   
 end

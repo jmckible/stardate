@@ -5,7 +5,7 @@ describe TagsController do
   
   it 'handles /tags with GET' do
     get :index
-    response.should be_success
+    expect(response).to be_success
   end
   
   # it 'handles /tags/:id with GET' do

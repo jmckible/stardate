@@ -7,50 +7,50 @@ describe User do
   #                      C L A S S     M E T H O D S                  #
   #####################################################################
   it 'should not authenticate an nil email' do
-    User.authenticate(nil, 'password').should be_nil
+    expect(User.authenticate(nil, 'password')).to be_nil
   end
 
   it 'should not authenticate a blank password' do
-    User.authenticate('default@email.com', '').should be_nil
+    expect(User.authenticate('default@email.com', '')).to be_nil
   end
 
   it 'should authenticate a valid email/password pair' do
-    User.authenticate('default@email.com', 'test').should == @user
+    expect(User.authenticate('default@email.com', 'test')).to eq(@user)
   end
 
   it 'should not authenticate an invalid email/password pair' do
-    User.authenticate('default@email.com', 'invalid').should be_nil
+    expect(User.authenticate('default@email.com', 'invalid')).to be_nil
   end
 
   #####################################################################
   #                     R E L A T I O N S H I P S                     #
   #####################################################################
   it 'should have many items' do
-    @user.should have(1).items
+    expect(@user.items.size).to eq(1)
   end
 
   it 'should have many jobs' do
-    @user.should have(1).jobs
+    expect(@user.jobs.size).to eq(1)
   end
   
   it 'should have many notes' do
-    @user.should have(1).notes
+    expect(@user.notes.size).to eq(1)
   end
 
   it 'should have many recurrings' do
-    @user.should have(1).recurrings
+    expect(@user.recurrings.size).to eq(1)
   end
   
   it 'should have many tasks' do
-    @user.should have(3).tasks
+    expect(@user.tasks.size).to eq(3)
   end
   
   it 'should have many vendors' do
-    @user.should have(1).vendors
+    expect(@user.vendors.size).to eq(1)
   end
   
   it 'should have many weights' do
-    @user.should have(1).weights
+    expect(@user.weights.size).to eq(1)
   end
 
   #####################################################################
@@ -61,8 +61,8 @@ describe User do
           household: households(:default),
           time_zone: 'Pacific Time (US & Canada)',
           password: 'password', password_confirmation: 'password'
-    user.password_hash.should_not be_blank
-    user.password_salt.should_not be_blank
+    expect(user.password_hash).not_to be_blank
+    expect(user.password_salt).not_to be_blank
   end
 
   #####################################################################
@@ -70,49 +70,49 @@ describe User do
   #####################################################################
   it 'should require password confirmation' do
     user = User.new :password=>'test'
-    user.should have(1).error_on(:password_confirmation)
+    expect(user).to have(1).error_on(:password_confirmation)
   end
 
   it 'should have at least a 4 char password' do
     user = User.new :password=>'cat'
-    user.should have(1).error_on(:password)
+    expect(user).to have(1).error_on(:password)
   end
 
   it 'should have a valid email address' do
     user = User.new :email=>'invalid'
-    user.should have(1).error_on(:email)
+    expect(user).to have(1).error_on(:email)
   end
 
   it 'should have a unique email' do
     user = User.new email: @user.email
-    user.should have(1).error_on(:email)
+    expect(user).to have(1).error_on(:email)
   end
 
   it 'should have a time zone' do
-    User.new.should have(1).error_on(:time_zone)
+    expect(User.new).to have(1).error_on(:time_zone)
   end
 
   #####################################################################
   #                       D E S T R U C T I O N                       #
   #####################################################################
   it 'should delete items on destroy' do
-    running { @user.destroy }.should change(Item, :count).by(-1)
+    expect(running { @user.destroy }).to change(Item, :count).by(-1)
   end
 
   it 'should delete jobs on destroy' do
-    running { @user.destroy }.should change(Job, :count).by(-1)
+    expect(running { @user.destroy }).to change(Job, :count).by(-1)
   end
   
   it 'should delete notes on destroy' do
-    running { @user.destroy }.should change(Note, :count).by(-1)
+    expect(running { @user.destroy }).to change(Note, :count).by(-1)
   end
 
   it 'should delete recurrings on destroy' do
-    running { @user.destroy }.should change(Recurring, :count).by(-1)
+    expect(running { @user.destroy }).to change(Recurring, :count).by(-1)
   end
   
   it 'should delete weights on destroy' do
-    running { @user.destroy }.should change(Weight, :count).by(-1)
+    expect(running { @user.destroy }).to change(Weight, :count).by(-1)
   end
   
 end

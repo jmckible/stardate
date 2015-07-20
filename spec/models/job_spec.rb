@@ -7,47 +7,47 @@ describe Job do
   #                     R E L A T I O N S H I P S                     #
   #####################################################################
   it 'should belong to a user' do
-    @job.user.should == users(:default)
+    expect(@job.user).to eq(users(:default))
   end
 
   it 'should have many paychecks' do
-    @job.should have(2).paychecks
+    expect(@job.paychecks.size).to eq(2)
   end
 
   it 'should have many tasks' do
-    @job.should have(3).tasks
+    expect(@job.tasks.size).to eq(3)
   end
 
   it 'should belong to a vendor' do
-    @job.vendor.should == vendors(:default)
+    expect(@job.vendor).to eq(vendors(:default))
   end
 
   #####################################################################
   #                               S C O P E                           #
   #####################################################################
   it 'should find active' do
-    Job.should have(2).active
+    expect(Job.active.size).to eq(2)
   end
 
   #####################################################################
   #                       V A L I D A T I O N S                       #
   #####################################################################
   it 'should have a name' do
-    Job.new.should have(1).error_on(:name)
+    expect(Job.new).to have(1).error_on(:name)
   end
 
   it 'should have a user_id' do
-    Job.new.should have(1).error_on(:user_id)
+    expect(Job.new).to have(1).error_on(:user_id)
   end
 
   #####################################################################
   #                       D E S T R U C T I O N                       #
   #####################################################################
   it 'should destroy paychecks' do
-    running { @job.destroy }.should change(Paycheck, :count).by(-2)
+    expect(running { @job.destroy }).to change(Paycheck, :count).by(-2)
   end
 
   it 'should destroy tasks' do
-    running { @job.destroy }.should change(Task, :count).by(-3)
+    expect(running { @job.destroy }).to change(Task, :count).by(-3)
   end
 end

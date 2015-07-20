@@ -5,21 +5,21 @@ describe WeightsController do
 
   it 'handles /weights/:id with GET' do
     get :show, :id=>weights(:default)
-    response.should be_success
+    expect(response).to be_success
   end
 
   it 'handles /weights/:id with valid params and PUT' do
     weight = weights(:default)
     put :update, :id=>weight, :weight=>{:weight=>150}
-    weight.reload.weight.should == 150.0
-    response.should redirect_to(root_path)
+    expect(weight.reload.weight).to eq(150.0)
+    expect(response).to redirect_to(root_path)
   end
 
   it 'handles /weights/:id with DELETE' do
-    running {
+    expect(running {
       delete :destroy, :id=>weights(:default)
-      response.should redirect_to(root_path)
-    }.should change(Weight, :count).by(-1)
+      expect(response).to redirect_to(root_path)
+    }).to change(Weight, :count).by(-1)
   end
 
 end

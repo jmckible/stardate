@@ -7,22 +7,22 @@ describe Task do
   #                     R E L A T I O N S H I P S                     #
   #####################################################################
   it 'should belong to a job' do
-    @task.job.should == jobs(:default)
+    expect(@task.job).to eq(jobs(:default))
   end
 
   it 'should belong to a paycheck' do
-    @task.paycheck.should == paychecks(:default)
+    expect(@task.paycheck).to eq(paychecks(:default))
   end
 
   #####################################################################
   #                            S C O P E                              #
   #####################################################################
   it 'should find by day' do
-    Task.should have(4).on(Date.new(2008, 1, 1))
+    expect(Task.on(Date.new(2008, 1, 1)).size).to eq(4)
   end
 
   it 'should find unpaid' do
-    Task.should have(0).unpaid
+    expect(Task.unpaid.size).to eq(0)
   end
 
   #####################################################################
@@ -30,20 +30,20 @@ describe Task do
   #####################################################################
   it 'should derive hours and min with null minutes' do
     task = Task.new
-    task.hours.should be_nil
-    task.min.should == '00'
+    expect(task.hours).to be_nil
+    expect(task.min).to eq('00')
   end
 
   it 'should derive hours and min with less than 60 minutes' do
     task = tasks(:short)
-    task.hours.should be_nil
-    task.min.should == 30
+    expect(task.hours).to be_nil
+    expect(task.min).to eq(30)
   end
 
   it 'should derive hours and min with more than 60 minutes' do
     task = tasks(:long)
-    task.hours.should == 2
-    task.min.should == '00'
+    expect(task.hours).to eq(2)
+    expect(task.min).to eq('00')
   end
 
   it 'should over write just hours' do
@@ -51,7 +51,7 @@ describe Task do
     task.hours = 2
     task.save
     task.reload
-    task.minutes.should == 120
+    expect(task.minutes).to eq(120)
   end
 
   it 'should overwrite hours and min' do
@@ -60,7 +60,7 @@ describe Task do
     task.min = 20
     task.save
     task.reload
-    task.minutes.should == 80
+    expect(task.minutes).to eq(80)
   end
 
   it 'should overwrite just minutes' do
@@ -68,22 +68,22 @@ describe Task do
     task.min = 40
     task.save
     task.reload
-    task.minutes.should == 40
+    expect(task.minutes).to eq(40)
   end
 
   it 'should set hours and min for a new task' do
     task = Task.create:date=>Date.today, :job=>jobs(:default), :hours=>1, :min=>20
-    task.minutes.should == 80
+    expect(task.minutes).to eq(80)
   end
 
   #####################################################################
   #                       V A L I D A T I O N S                       #
   #####################################################################
   it 'should belong to a job' do
-    Task.new.should have(1).error_on(:job_id)
+    expect(Task.new).to have(1).error_on(:job_id)
   end
 
   it 'should have a date' do
-    Task.new.should have(1).error_on(:date)
+    expect(Task.new).to have(1).error_on(:date)
   end
 end

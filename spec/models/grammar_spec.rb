@@ -6,22 +6,22 @@ describe Grammar do
   #                               D A T E                             #
   #####################################################################
   it 'should parse a date with nothing' do
-    Grammar.parse_date.should == Time.zone.now.to_date
+    expect(Grammar.parse_date).to eq(Time.zone.now.to_date)
   end
 
   it 'should parse a date with month and day' do
-    Grammar.parse_date('1/2').should   == Date.new(Date.today.year, 1, 2)
+    expect(Grammar.parse_date('1/2')).to   eq(Date.new(Date.today.year, 1, 2))
   end
 
   it 'should parse a date with mdy' do
-    Grammar.parse_date('1/2/03').should   == Date.new(2003, 1, 2)
-    Grammar.parse_date('1/2/2003').should == Date.new(2003, 1, 2)
+    expect(Grammar.parse_date('1/2/03')).to   eq(Date.new(2003, 1, 2))
+    expect(Grammar.parse_date('1/2/2003')).to eq(Date.new(2003, 1, 2))
   end
 
   it 'should handle an invalid date' do
-    Grammar.parse_date('32').should      == Time.zone.now.to_date
-    Grammar.parse_date('13/1').should    == Time.zone.now.to_date
-    Grammar.parse_date('14/7/08').should == Time.zone.now.to_date
+    expect(Grammar.parse_date('32')).to      eq(Time.zone.now.to_date)
+    expect(Grammar.parse_date('13/1')).to    eq(Time.zone.now.to_date)
+    expect(Grammar.parse_date('14/7/08')).to eq(Time.zone.now.to_date)
   end
 
 
@@ -30,30 +30,30 @@ describe Grammar do
   #####################################################################
   it 'should parse an empty string' do
     note = Grammar.parse ''
-    note.should be_is_a(Note)
-    note.date.should == Time.zone.now.to_date
-    note.body.should be_blank
+    expect(note).to be_is_a(Note)
+    expect(note.date).to eq(Time.zone.now.to_date)
+    expect(note.body).to be_blank
   end
 
   it 'should parse a note with just body' do
     note = Grammar.parse 'body'
-    note.should be_is_a(Note)
-    note.date.should == Time.zone.now.to_date
-    note.body.should == 'body'
+    expect(note).to be_is_a(Note)
+    expect(note.date).to eq(Time.zone.now.to_date)
+    expect(note.body).to eq('body')
   end
 
   it 'should parse a note that starts with a number' do
     note = Grammar.parse '4 is a number'
-    note.should be_is_a(Note)
-    note.date.should == Time.zone.now.to_date
-    note.body.should == '4 is a number'
+    expect(note).to be_is_a(Note)
+    expect(note.date).to eq(Time.zone.now.to_date)
+    expect(note.body).to eq('4 is a number')
   end
 
   it 'should parse a note with date and body' do
     note = Grammar.parse '2/1/2009 something happened'
-    note.should be_is_a(Note)
-    note.date.should == Date.new(2009, 2, 1)
-    note.body.should == 'something happened'
+    expect(note).to be_is_a(Note)
+    expect(note.date).to eq(Date.new(2009, 2, 1))
+    expect(note.body).to eq('something happened')
   end
 
   #####################################################################
@@ -61,29 +61,29 @@ describe Grammar do
   #####################################################################
   it 'should parse starting with Bike' do
     bike = Grammar.parse 'Bike 5 50'
-    bike.should be_is_a(Workout)
-    bike.should be_bike
-    bike.date.should == Time.zone.now.to_date
-    bike.distance.to_s.should == '5.0'
-    bike.minutes.should == 50
+    expect(bike).to be_is_a(Workout)
+    expect(bike).to be_bike
+    expect(bike.date).to eq(Time.zone.now.to_date)
+    expect(bike.distance.to_s).to eq('5.0')
+    expect(bike.minutes).to eq(50)
   end
 
   it 'should parse starting with b' do
     bike = Grammar.parse 'b 5 50'
-    bike.should be_is_a(Workout)
-    bike.should be_bike
-    bike.date.should == Time.zone.now.to_date
-    bike.distance.to_s.should == '5.0'
-    bike.minutes.should == 50
+    expect(bike).to be_is_a(Workout)
+    expect(bike).to be_bike
+    expect(bike.date).to eq(Time.zone.now.to_date)
+    expect(bike.distance.to_s).to eq('5.0')
+    expect(bike.minutes).to eq(50)
   end
 
   it 'should parse starting with ran and date' do
     bike = Grammar.parse '2/1/09 bike 4.5 60'
-    bike.should be_is_a(Workout)
-    bike.should be_bike
-    bike.date.should == Date.new(2009, 2, 1)
-    bike.distance.to_s.should == '4.5'
-    bike.minutes.should == 60
+    expect(bike).to be_is_a(Workout)
+    expect(bike).to be_bike
+    expect(bike.date).to eq(Date.new(2009, 2, 1))
+    expect(bike.distance.to_s).to eq('4.5')
+    expect(bike.minutes).to eq(60)
   end
 
   #####################################################################
@@ -91,29 +91,29 @@ describe Grammar do
   #####################################################################
   it 'should parse starting with Elliptical' do
     elliptical = Grammar.parse 'Elliptical 2 20'
-    elliptical.should be_is_a(Workout)
-    elliptical.should be_elliptical
-    elliptical.date.should == Time.zone.now.to_date
-    elliptical.distance.to_s.should == '2.0'
-    elliptical.minutes.should == 20
+    expect(elliptical).to be_is_a(Workout)
+    expect(elliptical).to be_elliptical
+    expect(elliptical.date).to eq(Time.zone.now.to_date)
+    expect(elliptical.distance.to_s).to eq('2.0')
+    expect(elliptical.minutes).to eq(20)
   end
 
   it 'should parse starting with e' do
     elliptical = Grammar.parse 'e 1 10'
-    elliptical.should be_is_a(Workout)
-    elliptical.should be_elliptical
-    elliptical.date.should == Time.zone.now.to_date
-    elliptical.distance.to_s.should == '1.0'
-    elliptical.minutes.should == 10
+    expect(elliptical).to be_is_a(Workout)
+    expect(elliptical).to be_elliptical
+    expect(elliptical.date).to eq(Time.zone.now.to_date)
+    expect(elliptical.distance.to_s).to eq('1.0')
+    expect(elliptical.minutes).to eq(10)
   end
 
   it 'should parse starting with ran and date' do
     elliptical = Grammar.parse '2/1/09 elliptical 4.5 60'
-    elliptical.should be_is_a(Workout)
-    elliptical.should be_elliptical
-    elliptical.date.should == Date.new(2009, 2, 1)
-    elliptical.distance.to_s.should == '4.5'
-    elliptical.minutes.should == 60
+    expect(elliptical).to be_is_a(Workout)
+    expect(elliptical).to be_elliptical
+    expect(elliptical.date).to eq(Date.new(2009, 2, 1))
+    expect(elliptical.distance.to_s).to eq('4.5')
+    expect(elliptical.minutes).to eq(60)
   end
 
   #####################################################################
@@ -121,29 +121,29 @@ describe Grammar do
   #####################################################################
   it 'should parse starting with Nike' do
     nike = Grammar.parse 'Nike 45 Advanced - trainer'
-    nike.should be_is_a(Workout)
-    nike.should be_nike
-    nike.date.should == Time.zone.now.to_date
-    nike.minutes.should == 45
-    nike.description.should == 'Advanced - trainer'
+    expect(nike).to be_is_a(Workout)
+    expect(nike).to be_nike
+    expect(nike.date).to eq(Time.zone.now.to_date)
+    expect(nike.minutes).to eq(45)
+    expect(nike.description).to eq('Advanced - trainer')
   end
 
   it 'should parse starting with n' do
     nike = Grammar.parse 'n 40 strength'
-    nike.should be_is_a(Workout)
-    nike.should be_nike
-    nike.date.should == Time.zone.now.to_date
-    nike.minutes.should == 40
-    nike.description.should == 'strength'
+    expect(nike).to be_is_a(Workout)
+    expect(nike).to be_nike
+    expect(nike.date).to eq(Time.zone.now.to_date)
+    expect(nike.minutes).to eq(40)
+    expect(nike.description).to eq('strength')
   end
 
   it 'should parse starting with nike and date' do
     nike = Grammar.parse '2/1/09 nike 45 lean strong'
-    nike.should be_is_a(Workout)
-    nike.should be_nike
-    nike.date.should == Date.new(2009, 2, 1)
-    nike.minutes.should == 45
-    nike.description.should == 'lean strong'
+    expect(nike).to be_is_a(Workout)
+    expect(nike).to be_nike
+    expect(nike.date).to eq(Date.new(2009, 2, 1))
+    expect(nike.minutes).to eq(45)
+    expect(nike.description).to eq('lean strong')
   end
 
   #####################################################################
@@ -151,29 +151,29 @@ describe Grammar do
   #####################################################################
   it 'should parse starting with P90X' do
     p90x = Grammar.parse 'P90X 60 Back'
-    p90x.should be_is_a(Workout)
-    p90x.should be_p90x
-    p90x.date.should == Time.zone.now.to_date
-    p90x.minutes.should == 60
-    p90x.description.should == 'Back'
+    expect(p90x).to be_is_a(Workout)
+    expect(p90x).to be_p90x
+    expect(p90x.date).to eq(Time.zone.now.to_date)
+    expect(p90x.minutes).to eq(60)
+    expect(p90x.description).to eq('Back')
   end
 
   it 'should parse starting with p' do
     p90x = Grammar.parse 'p 90 yoga'
-    p90x.should be_is_a(Workout)
-    p90x.should be_p90x
-    p90x.date.should == Time.zone.now.to_date
-    p90x.minutes.should == 90
-    p90x.description.should == 'yoga'
+    expect(p90x).to be_is_a(Workout)
+    expect(p90x).to be_p90x
+    expect(p90x.date).to eq(Time.zone.now.to_date)
+    expect(p90x.minutes).to eq(90)
+    expect(p90x.description).to eq('yoga')
   end
 
   it 'should parse starting with p90x and date' do
     p90x = Grammar.parse '2/1/09 p90x 60 plyo'
-    p90x.should be_is_a(Workout)
-    p90x.should be_p90x
-    p90x.date.should == Date.new(2009, 2, 1)
-    p90x.minutes.should == 60
-    p90x.description.should == 'plyo'
+    expect(p90x).to be_is_a(Workout)
+    expect(p90x).to be_p90x
+    expect(p90x.date).to eq(Date.new(2009, 2, 1))
+    expect(p90x.minutes).to eq(60)
+    expect(p90x.description).to eq('plyo')
   end
 
   #####################################################################
@@ -181,29 +181,29 @@ describe Grammar do
   #####################################################################
   it 'should parse starting with Ran' do
     run = Grammar.parse 'Ran 4 40'
-    run.should be_is_a(Workout)
-    run.should be_run
-    run.date.should == Time.zone.now.to_date
-    run.distance.to_s.should == '4.0'
-    run.minutes.should == 40
+    expect(run).to be_is_a(Workout)
+    expect(run).to be_run
+    expect(run.date).to eq(Time.zone.now.to_date)
+    expect(run.distance.to_s).to eq('4.0')
+    expect(run.minutes).to eq(40)
   end
 
   it 'should parse starting with r' do
     run = Grammar.parse 'r 4 40'
-    run.should be_is_a(Workout)
-    run.should be_run
-    run.date.should == Time.zone.now.to_date
-    run.distance.to_s.should == '4.0'
-    run.minutes.should == 40
+    expect(run).to be_is_a(Workout)
+    expect(run).to be_run
+    expect(run.date).to eq(Time.zone.now.to_date)
+    expect(run.distance.to_s).to eq('4.0')
+    expect(run.minutes).to eq(40)
   end
 
   it 'should parse starting with ran and date' do
     run = Grammar.parse '2/1/09 ran 3.5 45'
-    run.should be_is_a(Workout)
-    run.should be_run
-    run.date.should == Date.new(2009, 2, 1)
-    run.distance.to_s.should == '3.5'
-    run.minutes.should == 45
+    expect(run).to be_is_a(Workout)
+    expect(run).to be_run
+    expect(run.date).to eq(Date.new(2009, 2, 1))
+    expect(run.distance.to_s).to eq('3.5')
+    expect(run.minutes).to eq(45)
   end
 
   #####################################################################
@@ -211,20 +211,20 @@ describe Grammar do
   #####################################################################
   it 'should parse starting with Walk' do
     run = Grammar.parse 'Walk 4 40'
-    run.should be_is_a(Workout)
-    run.should be_walk
-    run.date.should == Time.zone.now.to_date
-    run.distance.to_s.should == '4.0'
-    run.minutes.should == 40
+    expect(run).to be_is_a(Workout)
+    expect(run).to be_walk
+    expect(run.date).to eq(Time.zone.now.to_date)
+    expect(run.distance.to_s).to eq('4.0')
+    expect(run.minutes).to eq(40)
   end
 
   it 'should parse starting with walk and date' do
     run = Grammar.parse '2/1/09 walk 3.5 45'
-    run.should be_is_a(Workout)
-    run.should be_walk
-    run.date.should == Date.new(2009, 2, 1)
-    run.distance.to_s.should == '3.5'
-    run.minutes.should == 45
+    expect(run).to be_is_a(Workout)
+    expect(run).to be_walk
+    expect(run.date).to eq(Date.new(2009, 2, 1))
+    expect(run.distance.to_s).to eq('3.5')
+    expect(run.minutes).to eq(45)
   end
 
   #####################################################################
@@ -232,23 +232,23 @@ describe Grammar do
   #####################################################################
   it 'should parse starting with weight' do
     weight = Grammar.parse 'weight 150.2'
-    weight.should be_is_a(Weight)
-    weight.date.should == Time.zone.now.to_date
-    weight.weight.should == 150.2
+    expect(weight).to be_is_a(Weight)
+    expect(weight.date).to eq(Time.zone.now.to_date)
+    expect(weight.weight).to eq(150.2)
   end
 
   it 'should parse starting with w' do
     weight = Grammar.parse 'w 150'
-    weight.should be_is_a(Weight)
-    weight.date.should == Time.zone.now.to_date
-    weight.weight.should == 150
+    expect(weight).to be_is_a(Weight)
+    expect(weight.date).to eq(Time.zone.now.to_date)
+    expect(weight.weight).to eq(150)
   end
 
   it 'should parse starting with weight and date' do
     weight = Grammar.parse '2/1/09 weight 150.2'
-    weight.should be_is_a(Weight)
-    weight.date.should == Date.new(2009, 2, 1)
-    weight.weight.should == 150.2
+    expect(weight).to be_is_a(Weight)
+    expect(weight.date).to eq(Date.new(2009, 2, 1))
+    expect(weight.weight).to eq(150.2)
   end
 
   #####################################################################
@@ -256,62 +256,62 @@ describe Grammar do
   #####################################################################
   it 'should parse just an assumed negative value' do
     item = Grammar.parse "$4"
-    item.should be_is_a(Item)
-    item.date.should == Time.zone.now.to_date
-    item.value.should == -4
-    item.vendor.should be_nil
-    item.description.should be_nil
-    item.should have(0).tags
+    expect(item).to be_is_a(Item)
+    expect(item.date).to eq(Time.zone.now.to_date)
+    expect(item.value).to eq(-4)
+    expect(item.vendor).to be_nil
+    expect(item.description).to be_nil
+    expect(item.size).to eq(0)
   end
 
   it 'should parse just a positive value' do
     item = Grammar.parse "+$4"
-    item.should be_is_a(Item)
-    item.date.should == Time.zone.now.to_date
-    item.value.should == 4
-    item.vendor.should be_nil
-    item.description.should be_nil
-    item.should have(0).tags
+    expect(item).to be_is_a(Item)
+    expect(item.date).to eq(Time.zone.now.to_date)
+    expect(item.value).to eq(4)
+    expect(item.vendor).to be_nil
+    expect(item.description).to be_nil
+    expect(item.size).to eq(0)
   end
 
   it 'should parse a date and a value' do
     item = Grammar.parse "5/6 $10"
-    item.should be_is_a(Item)
-    item.date.should == Date.new(Time.zone.now.to_date.year, 5, 6)
-    item.value.should == -10
-    item.vendor.should be_nil
-    item.description.should be_nil
-    item.should have(0).tags
+    expect(item).to be_is_a(Item)
+    expect(item.date).to eq(Date.new(Time.zone.now.to_date.year, 5, 6))
+    expect(item.value).to eq(-10)
+    expect(item.vendor).to be_nil
+    expect(item.description).to be_nil
+    expect(item.size).to eq(0)
   end
 
   it 'should parse a value and a vendor' do
     item = Grammar.parse "$10 Target"
-    item.should be_is_a(Item)
-    item.date.should == Time.zone.now.to_date
-    item.value.should == -10
-    item.vendor.name.should == 'Target'
-    item.description.should be_nil
-    item.should have(0).tags
+    expect(item).to be_is_a(Item)
+    expect(item.date).to eq(Time.zone.now.to_date)
+    expect(item.value).to eq(-10)
+    expect(item.vendor.name).to eq('Target')
+    expect(item.description).to be_nil
+    expect(item.size).to eq(0)
   end
 
   it 'should parse a value, vendor, and description' do
     item = Grammar.parse "+$20 Home Depot - lampshades"
-    item.should be_is_a(Item)
-    item.date.should == Time.zone.now.to_date
-    item.value.should == 20
-    item.vendor.name.should == 'Home Depot'
-    item.description.should == 'lampshades'
-    item.should have(0).tags
+    expect(item).to be_is_a(Item)
+    expect(item.date).to eq(Time.zone.now.to_date)
+    expect(item.value).to eq(20)
+    expect(item.vendor.name).to eq('Home Depot')
+    expect(item.description).to eq('lampshades')
+    expect(item.size).to eq(0)
   end
 
   it 'should parse a date, value, vendor, description, and tags' do
     item = Grammar.parse "1/2/03 $5 Kool Korners - cuban [food, sandwich]"
-    item.should be_is_a(Item)
-    item.date.should == Date.new(2003, 1, 2)
-    item.value.should == -5
-    item.vendor.name.should == 'Kool Korners'
-    item.description.should == 'cuban'
-    item.should have(2).tags
+    expect(item).to be_is_a(Item)
+    expect(item.date).to eq(Date.new(2003, 1, 2))
+    expect(item.value).to eq(-5)
+    expect(item.vendor.name).to eq('Kool Korners')
+    expect(item.description).to eq('cuban')
+    expect(item.size).to eq(2)
   end
 
 end

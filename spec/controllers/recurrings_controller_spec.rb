@@ -5,39 +5,39 @@ describe RecurringsController do
   
   it 'handles /recurrings with GET' do
     get :index
-    response.should be_success
+    expect(response).to be_success
   end
   
   it 'handles /recurrings/:id with GET' do
     get :show, :id=>recurrings(:default)
-    response.should be_success
+    expect(response).to be_success
   end
   
   it 'handles /recurrings/new with GET' do
     get :new
-    response.should be_success
+    expect(response).to be_success
   end
   
   it 'handles /recurrings with valid params and POST' do
-    running {
+    expect(running {
       post :create, :recurring=>{:day=>1, :explicit_value=>10}
-      assigns(:recurring).user.should == users(:default)
-      response.should redirect_to(recurrings_path)
-    }.should change(Recurring, :count).by(1)
+      expect(assigns(:recurring).user).to eq(users(:default))
+      expect(response).to redirect_to(recurrings_path)
+    }).to change(Recurring, :count).by(1)
   end
   
   it 'handles /recurrings/:id with valid params and GET' do
     recurring = recurrings(:default)
     put :update, :id=>recurring, :recurring=>{:description=>'updated'}
-    recurring.reload.description.should == 'updated'
-    response.should redirect_to(recurrings_path)
+    expect(recurring.reload.description).to eq('updated')
+    expect(response).to redirect_to(recurrings_path)
   end
   
   it 'handles /recurrings/:id with DELETE' do
-    running {
+    expect(running {
       delete :destroy, :id=>recurrings(:default)
-      response.should redirect_to(recurrings_path)
-    }.should change(Recurring, :count).by(-1)
+      expect(response).to redirect_to(recurrings_path)
+    }).to change(Recurring, :count).by(-1)
   end
   
 end

@@ -33,7 +33,7 @@ class TransactionsController < ApplicationController
     redirect_back_or @transaction.credit
   end
 
-  # PUT /items/:id
+  # PUT /transactions/:id
   def update
     @transaction = @household.transactions.find params[:id]
     @transaction.update_attributes! params[:transaction]

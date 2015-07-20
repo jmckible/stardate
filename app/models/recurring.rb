@@ -40,7 +40,7 @@ class Recurring < ActiveRecord::Base
     if string.nil? || string.chop.blank?
       self.vendor = nil
     else
-      self.vendor = Vendor.find_or_create_by_name string
+      self.vendor = Vendor.where(name: string).first_or_create
     end
   end
 

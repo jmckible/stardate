@@ -1,21 +1,21 @@
 / - content_for :sidebar do 
 /   %dl
-/     %dt= number_with_delimiter @items.total_entries
+/     %dt= number_with_delimiter @transactions.total_entries
 /     %dd #
 /   
-/     %dt= color_money @items_sum
+/     %dt= color_money @transactions_sum
 /     %dd $
 /     
-/     %dt= color_money @household.items.tagged_with(@tag).during(30.days.ago..Date.today).sum(&:value)
+/     %dt= color_money @household.transactions.tagged_with(@tag).during(30.days.ago..Date.today).sum(&:value)
 /     %dd 30
 /     
-/     %dt= color_money @household.items.tagged_with(@tag).during(60.days.ago..Date.today).sum(&:value)
+/     %dt= color_money @household.transactions.tagged_with(@tag).during(60.days.ago..Date.today).sum(&:value)
 /     %dd 60
 /     
-/     %dt= color_money @household.items.tagged_with(@tag).during(90.days.ago..Date.today).sum(&:value)
+/     %dt= color_money @household.transactions.tagged_with(@tag).during(90.days.ago..Date.today).sum(&:value)
 /     %dd 90
 /     
-/     %dt= color_money @household.items.tagged_with(@tag).during(365.days.ago..Date.today).sum(&:value)
+/     %dt= color_money @household.transactions.tagged_with(@tag).during(365.days.ago..Date.today).sum(&:value)
 /     %dd Year
 /     
 

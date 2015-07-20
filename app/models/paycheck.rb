@@ -1,24 +1,23 @@
 class Paycheck < ActiveRecord::Base
 
-  belongs_to :item
+  # belongs_to :transaction
   belongs_to :job
 
   has_many :tasks, dependent: :nullify
 
-  scope :unpaid, ->{ where(item_id: nil) }
+  scope :unpaid, ->{ where(transaction_id: nil) }
 
   attr_accessor :paid
   def paid?
-    item_id || paid == true || paid == 1
+    transaction_id || paid == true || paid == 1
   end
 
-  before_save :create_item
-  def create_item
-    if paid && !item
-      job.user.items.create paycheck: self, explicit_value: "+#{value}",
-        description: description, date: Date.today
-    end
-  end
+  # before_save :create_transaction
+  # def create_transaction
+  #   if paid && !transaction
+  #     job.user.transactions.create paycheck: self, explicit_value: "+#{value}", description: description, date: Date.today
+  #   end
+  # end
 
   validates_presence_of     :job_id
   validates_numericality_of :value

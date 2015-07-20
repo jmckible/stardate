@@ -22,10 +22,10 @@ class User < ActiveRecord::Base
   has_many :jobs,        ->{ order('name') },       dependent: :destroy
   has_many :notes,       ->{ order('date DESC') },  dependent: :destroy
   has_many :recurrings,  ->{ order('day') },        dependent: :destroy
-  has_many :tags,        ->{ uniq },                  through: :items
+  has_many :tags,        ->{ uniq },                  through: :transactions
   has_many :tasks,                                    through: :jobs
   has_many :transactions, ->{ order('date') },      dependent: :destroy
-  has_many :vendors,      ->{ order('name').uniq },   through: :items
+  has_many :vendors,      ->{ order('name').uniq },   through: :transactions
   has_many :weights,      ->{ order('date') },      dependent: :destroy
   has_many :workouts,                               dependent: :destroy
 
@@ -72,8 +72,8 @@ class User < ActiveRecord::Base
   def tag_json(period, tag)
     array = []
     period.step(7) do |date|
-      all_items = household.items.during(date..(date+6)).tagged_with(tag)
-      sum = sum_value(all_items, period).round
+      all_transactions = household.transactions.during(date..(date+6)).tagged_with(tag)
+      sum = sum_value(all_transactions, period).round
       sum = sum * -1 if sum < 0
       array << sum
     end

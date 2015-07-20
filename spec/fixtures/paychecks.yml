@@ -2,8 +2,8 @@ default:
   job: default
   description: Got paid
   value: 300
-  item: default
-  
+  # transaction: default
+
 unpaid:
   job: default
   description: Awaiting

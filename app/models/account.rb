@@ -22,13 +22,13 @@ class Account < ActiveRecord::Base
   scope :slush,          -> { where(expense: true, general: true) }
   scope :other_than,     ->(account){ where('accounts.id != ?', account.id) }
 
-  scope :tagged_with, ->(tag_or_tags){
-    if tag_or_tags.is_a?(Array)
-      includes(:taggings).where('taggings.tag_id IN (?)', tag_or_tags.collect(&:id))
-    else
-      includes(:taggings).where('taggings.tag_id = ?', tag_or_tags.id)
-    end
-  }
+  # scope :tagged_with, ->(tag_or_tags){
+  #   if tag_or_tags.is_a?(Array)
+  #     includes(:taggings).where('taggings.tag_id IN (?)', tag_or_tags.collect(&:id))
+  #   else
+  #     includes(:taggings).where('taggings.tag_id = ?', tag_or_tags.id)
+  #   end
+  # }
 
   def core?
     household.cash           == self ||

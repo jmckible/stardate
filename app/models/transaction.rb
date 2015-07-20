@@ -33,13 +33,15 @@ class Transaction < ActiveRecord::Base
 
   scope :since, ->(date){ where("transactions.date >= ?", date)}
 
-  scope :tagged_with, ->(tag_or_tags){
-    if tag_or_tags.is_a?(Array)
-      includes(:taggings).where('taggings.tag_id IN (?)', tag_or_tags.collect(&:id))
-    else
-      includes(:taggings).where('taggings.tag_id = ?', tag_or_tags.id)
-    end
-  }
+  # scope :tagged_with, ->(tag_or_tags){
+  #   includes(:taggings).where(taggings: { tag_id: tag_or_tags.pluck(:id)}).references(:taggings)
+  #
+  #   # if tag_or_tags.is_a?(Array)
+  #   #   includes(:taggings).where('taggings.tag_id IN (?)', tag_or_tags.collect(&:id)).references(:taggings)
+  #   # else
+  #   #   includes(:taggings).where('taggings.tag_id = ?', tag_or_tags.id).references(:taggings)
+  #   # end
+  # }
 
   scope :visible_by, ->(user){ where('transactions.date >= ? ', user.created_at)}
 
@@ -51,7 +53,7 @@ class Transaction < ActiveRecord::Base
     if string.nil? || string.chop.blank?
       self.vendor = nil
     else
-      self.vendor = Vendor.find_or_create_by_name string
+      self.vendor = Vendor.where(name: string).first_or_create
     end
   end
 

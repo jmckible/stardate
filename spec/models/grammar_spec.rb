@@ -29,28 +29,28 @@ describe Grammar do
   #                                N O T E                            #
   #####################################################################
   it 'should parse an empty string' do
-    note = Grammar.parse ''
+    note = Grammar.parse '', households(:default)
     expect(note).to be_is_a(Note)
     expect(note.date).to eq(Time.zone.now.to_date)
     expect(note.body).to be_blank
   end
 
   it 'should parse a note with just body' do
-    note = Grammar.parse 'body'
+    note = Grammar.parse 'body', households(:default)
     expect(note).to be_is_a(Note)
     expect(note.date).to eq(Time.zone.now.to_date)
     expect(note.body).to eq('body')
   end
 
   it 'should parse a note that starts with a number' do
-    note = Grammar.parse '4 is a number'
+    note = Grammar.parse '4 is a number', households(:default)
     expect(note).to be_is_a(Note)
     expect(note.date).to eq(Time.zone.now.to_date)
     expect(note.body).to eq('4 is a number')
   end
 
   it 'should parse a note with date and body' do
-    note = Grammar.parse '2/1/2009 something happened'
+    note = Grammar.parse '2/1/2009 something happened', households(:default)
     expect(note).to be_is_a(Note)
     expect(note.date).to eq(Date.new(2009, 2, 1))
     expect(note.body).to eq('something happened')
@@ -60,7 +60,7 @@ describe Grammar do
   #                              B I K E                              #
   #####################################################################
   it 'should parse starting with Bike' do
-    bike = Grammar.parse 'Bike 5 50'
+    bike = Grammar.parse 'Bike 5 50', households(:default)
     expect(bike).to be_is_a(Workout)
     expect(bike).to be_bike
     expect(bike.date).to eq(Time.zone.now.to_date)
@@ -69,7 +69,7 @@ describe Grammar do
   end
 
   it 'should parse starting with b' do
-    bike = Grammar.parse 'b 5 50'
+    bike = Grammar.parse 'b 5 50', households(:default)
     expect(bike).to be_is_a(Workout)
     expect(bike).to be_bike
     expect(bike.date).to eq(Time.zone.now.to_date)
@@ -78,7 +78,7 @@ describe Grammar do
   end
 
   it 'should parse starting with ran and date' do
-    bike = Grammar.parse '2/1/09 bike 4.5 60'
+    bike = Grammar.parse '2/1/09 bike 4.5 60', households(:default)
     expect(bike).to be_is_a(Workout)
     expect(bike).to be_bike
     expect(bike.date).to eq(Date.new(2009, 2, 1))
@@ -90,7 +90,7 @@ describe Grammar do
   #                        E L L I P T I C A L                        #
   #####################################################################
   it 'should parse starting with Elliptical' do
-    elliptical = Grammar.parse 'Elliptical 2 20'
+    elliptical = Grammar.parse 'Elliptical 2 20', households(:default)
     expect(elliptical).to be_is_a(Workout)
     expect(elliptical).to be_elliptical
     expect(elliptical.date).to eq(Time.zone.now.to_date)
@@ -99,7 +99,7 @@ describe Grammar do
   end
 
   it 'should parse starting with e' do
-    elliptical = Grammar.parse 'e 1 10'
+    elliptical = Grammar.parse 'e 1 10', households(:default)
     expect(elliptical).to be_is_a(Workout)
     expect(elliptical).to be_elliptical
     expect(elliptical.date).to eq(Time.zone.now.to_date)
@@ -108,7 +108,7 @@ describe Grammar do
   end
 
   it 'should parse starting with ran and date' do
-    elliptical = Grammar.parse '2/1/09 elliptical 4.5 60'
+    elliptical = Grammar.parse '2/1/09 elliptical 4.5 60', households(:default)
     expect(elliptical).to be_is_a(Workout)
     expect(elliptical).to be_elliptical
     expect(elliptical.date).to eq(Date.new(2009, 2, 1))
@@ -120,7 +120,7 @@ describe Grammar do
   #                               N I K E                             #
   #####################################################################
   it 'should parse starting with Nike' do
-    nike = Grammar.parse 'Nike 45 Advanced - trainer'
+    nike = Grammar.parse 'Nike 45 Advanced - trainer', households(:default)
     expect(nike).to be_is_a(Workout)
     expect(nike).to be_nike
     expect(nike.date).to eq(Time.zone.now.to_date)
@@ -129,7 +129,7 @@ describe Grammar do
   end
 
   it 'should parse starting with n' do
-    nike = Grammar.parse 'n 40 strength'
+    nike = Grammar.parse 'n 40 strength', households(:default)
     expect(nike).to be_is_a(Workout)
     expect(nike).to be_nike
     expect(nike.date).to eq(Time.zone.now.to_date)
@@ -138,7 +138,7 @@ describe Grammar do
   end
 
   it 'should parse starting with nike and date' do
-    nike = Grammar.parse '2/1/09 nike 45 lean strong'
+    nike = Grammar.parse '2/1/09 nike 45 lean strong', households(:default)
     expect(nike).to be_is_a(Workout)
     expect(nike).to be_nike
     expect(nike.date).to eq(Date.new(2009, 2, 1))
@@ -150,7 +150,7 @@ describe Grammar do
   #                               P 9 0 X                             #
   #####################################################################
   it 'should parse starting with P90X' do
-    p90x = Grammar.parse 'P90X 60 Back'
+    p90x = Grammar.parse 'P90X 60 Back', households(:default)
     expect(p90x).to be_is_a(Workout)
     expect(p90x).to be_p90x
     expect(p90x.date).to eq(Time.zone.now.to_date)
@@ -159,7 +159,7 @@ describe Grammar do
   end
 
   it 'should parse starting with p' do
-    p90x = Grammar.parse 'p 90 yoga'
+    p90x = Grammar.parse 'p 90 yoga', households(:default)
     expect(p90x).to be_is_a(Workout)
     expect(p90x).to be_p90x
     expect(p90x.date).to eq(Time.zone.now.to_date)
@@ -168,7 +168,7 @@ describe Grammar do
   end
 
   it 'should parse starting with p90x and date' do
-    p90x = Grammar.parse '2/1/09 p90x 60 plyo'
+    p90x = Grammar.parse '2/1/09 p90x 60 plyo', households(:default)
     expect(p90x).to be_is_a(Workout)
     expect(p90x).to be_p90x
     expect(p90x.date).to eq(Date.new(2009, 2, 1))
@@ -180,7 +180,7 @@ describe Grammar do
   #                                R U N                              #
   #####################################################################
   it 'should parse starting with Ran' do
-    run = Grammar.parse 'Ran 4 40'
+    run = Grammar.parse 'Ran 4 40', households(:default)
     expect(run).to be_is_a(Workout)
     expect(run).to be_run
     expect(run.date).to eq(Time.zone.now.to_date)
@@ -189,7 +189,7 @@ describe Grammar do
   end
 
   it 'should parse starting with r' do
-    run = Grammar.parse 'r 4 40'
+    run = Grammar.parse 'r 4 40', households(:default)
     expect(run).to be_is_a(Workout)
     expect(run).to be_run
     expect(run.date).to eq(Time.zone.now.to_date)
@@ -198,7 +198,7 @@ describe Grammar do
   end
 
   it 'should parse starting with ran and date' do
-    run = Grammar.parse '2/1/09 ran 3.5 45'
+    run = Grammar.parse '2/1/09 ran 3.5 45', households(:default)
     expect(run).to be_is_a(Workout)
     expect(run).to be_run
     expect(run.date).to eq(Date.new(2009, 2, 1))
@@ -210,7 +210,7 @@ describe Grammar do
   #                              W A L K                              #
   #####################################################################
   it 'should parse starting with Walk' do
-    run = Grammar.parse 'Walk 4 40'
+    run = Grammar.parse 'Walk 4 40', households(:default)
     expect(run).to be_is_a(Workout)
     expect(run).to be_walk
     expect(run.date).to eq(Time.zone.now.to_date)
@@ -219,7 +219,7 @@ describe Grammar do
   end
 
   it 'should parse starting with walk and date' do
-    run = Grammar.parse '2/1/09 walk 3.5 45'
+    run = Grammar.parse '2/1/09 walk 3.5 45', households(:default)
     expect(run).to be_is_a(Workout)
     expect(run).to be_walk
     expect(run.date).to eq(Date.new(2009, 2, 1))
@@ -231,21 +231,21 @@ describe Grammar do
   #                            W E I G H T                            #
   #####################################################################
   it 'should parse starting with weight' do
-    weight = Grammar.parse 'weight 150.2'
+    weight = Grammar.parse 'weight 150.2', households(:default)
     expect(weight).to be_is_a(Weight)
     expect(weight.date).to eq(Time.zone.now.to_date)
     expect(weight.weight).to eq(150.2)
   end
 
   it 'should parse starting with w' do
-    weight = Grammar.parse 'w 150'
+    weight = Grammar.parse 'w 150', households(:default)
     expect(weight).to be_is_a(Weight)
     expect(weight.date).to eq(Time.zone.now.to_date)
     expect(weight.weight).to eq(150)
   end
 
   it 'should parse starting with weight and date' do
-    weight = Grammar.parse '2/1/09 weight 150.2'
+    weight = Grammar.parse '2/1/09 weight 150.2', households(:default)
     expect(weight).to be_is_a(Weight)
     expect(weight.date).to eq(Date.new(2009, 2, 1))
     expect(weight.weight).to eq(150.2)
@@ -254,64 +254,58 @@ describe Grammar do
   #####################################################################
   #                              I T E M                              #
   #####################################################################
-  it 'should parse just an assumed negative value' do
-    item = Grammar.parse "$4"
-    expect(item).to be_is_a(Item)
-    expect(item.date).to eq(Time.zone.now.to_date)
-    expect(item.value).to eq(-4)
-    expect(item.vendor).to be_nil
-    expect(item.description).to be_nil
-    expect(item.size).to eq(0)
+  it 'should parse just an assumed negative amount' do
+    transaction = Grammar.parse "$4", households(:default)
+    expect(transaction).to be_is_a(Transaction)
+    expect(transaction.date).to eq(Time.zone.now.to_date)
+    expect(transaction.amount).to eq(4)
+    expect(transaction.vendor).to be_nil
+    expect(transaction.description).to be_nil
   end
 
-  it 'should parse just a positive value' do
-    item = Grammar.parse "+$4"
-    expect(item).to be_is_a(Item)
-    expect(item.date).to eq(Time.zone.now.to_date)
-    expect(item.value).to eq(4)
-    expect(item.vendor).to be_nil
-    expect(item.description).to be_nil
-    expect(item.size).to eq(0)
+  it 'should parse just a positive amount' do
+    transaction = Grammar.parse "+$4", households(:default)
+    expect(transaction).to be_is_a(Transaction)
+    expect(transaction.date).to eq(Time.zone.now.to_date)
+    expect(transaction.amount).to eq(4)
+    expect(transaction.vendor).to be_nil
+    expect(transaction.description).to be_nil
   end
 
-  it 'should parse a date and a value' do
-    item = Grammar.parse "5/6 $10"
-    expect(item).to be_is_a(Item)
-    expect(item.date).to eq(Date.new(Time.zone.now.to_date.year, 5, 6))
-    expect(item.value).to eq(-10)
-    expect(item.vendor).to be_nil
-    expect(item.description).to be_nil
-    expect(item.size).to eq(0)
+  it 'should parse a date and a amount' do
+    transaction = Grammar.parse "5/6 $10", households(:default)
+    expect(transaction).to be_is_a(Transaction)
+    expect(transaction.date).to eq(Date.new(Time.zone.now.to_date.year, 5, 6))
+    expect(transaction.amount).to eq(10)
+    expect(transaction.vendor).to be_nil
+    expect(transaction.description).to be_nil
   end
 
-  it 'should parse a value and a vendor' do
-    item = Grammar.parse "$10 Target"
-    expect(item).to be_is_a(Item)
-    expect(item.date).to eq(Time.zone.now.to_date)
-    expect(item.value).to eq(-10)
-    expect(item.vendor.name).to eq('Target')
-    expect(item.description).to be_nil
-    expect(item.size).to eq(0)
+  it 'should parse a amount and a vendor' do
+    transaction = Grammar.parse "$10 Target", households(:default)
+    expect(transaction).to be_is_a(Transaction)
+    expect(transaction.date).to eq(Time.zone.now.to_date)
+    expect(transaction.amount).to eq(10)
+    expect(transaction.vendor.name).to eq('Target')
+    expect(transaction.description).to be_nil
   end
 
-  it 'should parse a value, vendor, and description' do
-    item = Grammar.parse "+$20 Home Depot - lampshades"
-    expect(item).to be_is_a(Item)
-    expect(item.date).to eq(Time.zone.now.to_date)
-    expect(item.value).to eq(20)
-    expect(item.vendor.name).to eq('Home Depot')
-    expect(item.description).to eq('lampshades')
-    expect(item.size).to eq(0)
+  it 'should parse a amount, vendor, and description' do
+    transaction = Grammar.parse "+$20 Home Depot - lampshades", households(:default)
+    expect(transaction).to be_is_a(Transaction)
+    expect(transaction.date).to eq(Time.zone.now.to_date)
+    expect(transaction.amount).to eq(20)
+    expect(transaction.vendor.name).to eq('Home Depot')
+    expect(transaction.description).to eq('lampshades')
   end
 
-  it 'should parse a date, value, vendor, description, and tags' do
-    item = Grammar.parse "1/2/03 $5 Kool Korners - cuban [food, sandwich]"
-    expect(item).to be_is_a(Item)
-    expect(item.date).to eq(Date.new(2003, 1, 2))
-    expect(item.value).to eq(-5)
-    expect(item.vendor.name).to eq('Kool Korners')
-    expect(item.description).to eq('cuban')
-    expect(item.size).to eq(2)
+  it 'should parse a date, amount, vendor, description, and tags' do
+    transaction = Grammar.parse "1/2/03 $5 Kool Korners - cuban [food, sandwich]", households(:default)
+    expect(transaction).to be_is_a(Transaction)
+    expect(transaction.date).to eq(Date.new(2003, 1, 2))
+    expect(transaction.amount).to eq(5)
+    expect(transaction.vendor.name).to eq('Kool Korners')
+    expect(transaction.description).to eq('cuban')
   end
 
 end

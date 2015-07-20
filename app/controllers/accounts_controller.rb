@@ -30,7 +30,7 @@ class AccountsController < ApplicationController
 
   # POST /accounts
   def create
-    @account = @household.accounts.build params[:account]
+    @account = @household.accounts.build account_params
     @account.save
     redirect_to @account
   end
@@ -38,8 +38,13 @@ class AccountsController < ApplicationController
   # PUT /accounts/:id
   def update
     @account = @household.accounts.find params[:id]
-    @account.update_attributes params[:account]
+    @account.update_attributes account_params
     redirect_to @account
+  end
+
+  protected
+  def account_params
+    params.require(:account).permit!
   end
 
 end

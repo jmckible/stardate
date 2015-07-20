@@ -1,9 +1,9 @@
 / = content_for :sidebar do 
 /   %dl
-/     %dt= number_with_delimiter @user.items.from_vendor(@vendor).count
+/     %dt= number_with_delimiter @user.transactions.from_vendor(@vendor).count
 /     %dd #
 /     
-/     %dt= color_money @user.items.from_vendor(@vendor).sum(:value)
+/     %dt= color_money @user.transactions.from_vendor(@vendor).sum(:value)
 /     %dd $
     
 

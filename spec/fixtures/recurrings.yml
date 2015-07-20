@@ -1,11 +1,11 @@
 default:
   day: 1
-  amount: -100
+  amount: 100
   user: default
   vendor: default
 
 last:
   day: 31
   user: other
-  amount: -100
+  amount: 100
   vendor: default

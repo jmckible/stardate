@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-# describe ItemsController, 'without logging in' do
+# describe transactionsController, 'without logging in' do
 #   it 'handles / with GET' do
 #     get :index
 #     response.should redirect_to(new_session_path)
@@ -27,12 +27,12 @@ describe ThingsController do
     }).to change(Note, :count).by(1)
   end
 
-  it 'handles /things with item attributes and PUT' do
+  it 'handles /things with transaction attributes and PUT' do
     expect(running {
       post :create, :thing=>'$5 Red Rock'
       expect(assigns(:thing).household).to eq(households(:default))
       expect(response).to redirect_to(root_url)
-    }).to change(Item, :count).by(1)
+    }).to change(transaction, :count).by(1)
   end
 
   it 'handles /things with run attributes and PUT' do

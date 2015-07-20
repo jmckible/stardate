@@ -11,14 +11,14 @@
       - things.each do |thing|
         - if thing.is_a?(Transaction)
           - if thing.secret? && thing.user != @user
-            %tr.item
+            %tr.transaction
               %td.date
                 &nbsp;
                 = link_to thing.date, date_link(thing.date)
               %td{colspan: 2}
                 %span.secret SECRET
           - else
-            %tr.item
+            %tr.transaction
               %td.date
                 = link_to '«', thing, :rel=>:facebox
                 = link_to thing.date, date_link(thing.date)

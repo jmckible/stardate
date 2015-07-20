@@ -1,5 +1,8 @@
 default:
   name: Default
-  
+  cash: cash
+  general_income: general_income
+  slush: slush
+
 other:
   name: Other

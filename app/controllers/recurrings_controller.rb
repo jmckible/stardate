@@ -40,7 +40,7 @@ class RecurringsController < ApplicationController
 
   protected
   def recurrings_params
-    params.require(:recurrings).permit!
+    params.require(:recurring).permit!
   end
 
 end

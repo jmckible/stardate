@@ -32,7 +32,7 @@ describe ThingsController do
       post :create, :thing=>'$5 Red Rock'
       expect(assigns(:thing).household).to eq(households(:default))
       expect(response).to redirect_to(root_url)
-    }).to change(transaction, :count).by(1)
+    }).to change(Transaction, :count).by(1)
   end
 
   it 'handles /things with run attributes and PUT' do

@@ -32,5 +32,5 @@ class Household < ActiveRecord::Base
     cash.debits.on(period).sum(:amount)
   end
 
-  validates_presence_of :name
+  validates :name, presence: true
 end

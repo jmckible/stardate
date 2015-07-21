@@ -13,10 +13,10 @@
     Biweekly Budget Balance
     = @account.budget
 
-- unless @account.core?
+- unless @account.general?
   %p= link_to 'Edit', [:edit, @account]
 
-- if @account.asset? && !@account.core?
+- if @account.asset? && !@account.general?
   %p= link_to 'Fund', [:fund, @account], rel: 'facebox'
 
 %table.data
@@ -32,9 +32,8 @@
       %tr
         %td.date
           = link_to transaction.date, date_link(transaction.date)
-        %td{colspan: 4}
+        %td{ colspan: 4 }
           %span.secret SECRET
-
 
     - else
       %tr

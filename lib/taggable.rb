@@ -2,12 +2,10 @@ module Taggable
   extend ActiveSupport::Concern
 
   included do
-    scope :tagged_with, ->(tag){ includes(:taggings).where(taggings: { tag_id: tag.id}).references(:taggings) }
-  end
+    has_many :taggings, as: :taggable
+    has_many :tags, ->{ order('tags.name') }, through: :taggings
 
-  def self.included(base)
-    base.has_many :taggings, as: :taggable
-    base.has_many :tags, ->{ order('tags.name') }, through: :taggings
+    scope :tagged_with, ->(tag){ includes(:taggings).where(taggings: { tag_id: tag.id}).references(:taggings) }
   end
 
   def tag_list

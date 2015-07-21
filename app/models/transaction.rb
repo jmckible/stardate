@@ -10,17 +10,17 @@ class Transaction < ActiveRecord::Base
 
   has_one :paycheck
 
-  scope :asset_credit, ->{ includes(:credit).where('accounts.asset = ?', true) }
-  scope :asset_debit,  ->{ includes(:debit).where('accounts.asset = ?', true) }
+  scope :asset_credit,    ->{ includes(:credit).where('accounts.asset = ?', true) }
+  scope :asset_debit,     ->{ includes(:debit).where('accounts.asset = ?', true) }
 
   scope :deferred_credit, ->{ includes(:credit).where('accounts.deferred = ?', true) }
   scope :deferred_debit,  ->{ includes(:debit).where('accounts.deferred = ?', true) }
 
-  scope :expense_credit, ->{ includes(:credit).where('accounts.expense = ?', true) }
-  scope :expense_debit,  ->{ includes(:debit).where('accounts.expense = ?', true) }
+  scope :expense_credit,  ->{ includes(:credit).where('accounts.expense = ?', true) }
+  scope :expense_debit,   ->{ includes(:debit).where('accounts.expense = ?', true) }
 
-  scope :income_credit, ->{ includes(:credit).where('accounts.income = ?', true) }
-  scope :income_debit,  ->{ includes(:debit).where('accounts.income = ?', true) }
+  scope :income_credit,   ->{ includes(:credit).where('accounts.income = ?', true) }
+  scope :income_debit,    ->{ includes(:debit).where('accounts.income = ?', true) }
 
   scope :before, ->(date){ where("transactions.date <= ?", date) }
   scope :during, ->(period){
@@ -32,16 +32,6 @@ class Transaction < ActiveRecord::Base
   scope :from_vendor, ->(vendor){ where(vendor_id: vendor.id) if vendor }
 
   scope :since, ->(date){ where("transactions.date >= ?", date)}
-
-  # scope :tagged_with, ->(tag_or_tags){
-  #   includes(:taggings).where(taggings: { tag_id: tag_or_tags.pluck(:id)}).references(:taggings)
-  #
-  #   # if tag_or_tags.is_a?(Array)
-  #   #   includes(:taggings).where('taggings.tag_id IN (?)', tag_or_tags.collect(&:id)).references(:taggings)
-  #   # else
-  #   #   includes(:taggings).where('taggings.tag_id = ?', tag_or_tags.id).references(:taggings)
-  #   # end
-  # }
 
   scope :visible_by, ->(user){ where('transactions.date >= ? ', user.created_at)}
 

@@ -22,14 +22,14 @@ class Recurring < ActiveRecord::Base
 
   def to_transaction
     Transaction.new date: Date.today,
-      amount: amount,
-      vendor: vendor,
-      tag_list: tag_list,
-      debit: debit,
-      credit: credit,
-      recurring: self,
-      user: user,
-      household: user.household
+                  amount: amount,
+                  vendor: vendor,
+                tag_list: tag_list,
+                   debit: debit,
+                  credit: credit,
+               recurring: self,
+                    user: user,
+               household: user.household
   end
 
   def vendor_name

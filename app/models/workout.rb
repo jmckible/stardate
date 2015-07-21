@@ -13,7 +13,7 @@ class Workout < ActiveRecord::Base
   def name
     if bike?
       'Bike'
-    elsif elliptical
+    elsif elliptical?
       'Elliptical'
     elsif nike?
       'Nike Training Club'

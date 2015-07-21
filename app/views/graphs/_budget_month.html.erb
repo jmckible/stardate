@@ -9,12 +9,12 @@
       },
       title:  { text: false },
       legend: { enabled: false },
-      yAxis:  { 
+      yAxis:  {
         title: false,
         labels: {
          formatter: function() {
            return '$' + this.value
-         } 
+         }
         }
       },
       xAxis: {
@@ -22,11 +22,11 @@
       },
       series: [{
         name: 'Month',
-        data: [<%= @household.accounts.dashboard.collect{ |account| 
+        data: [<%= @household.accounts.dashboard.collect{ |account|
           amount = account.balance
           "{y: #{amount}, color: '#{amount < 0 ? '#FF00CC' : '#00CCFF'}'}"
         }.join(', ').html_safe
-        
+
          %>],
       }]
     });

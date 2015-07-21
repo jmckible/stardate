@@ -1,4 +1,4 @@
-= form_tag things_path do 
+= form_tag things_path do
   = text_field_tag 'thing', '', class: 'long'
   = link_to '...', new_thing_path, class: 'long_entry', rel: 'facebox'
 
@@ -8,7 +8,7 @@
     #HealthMonth= render partial: 'graphs/health_month'
 .clear
 
-#BudgetMonth= render partial: 'budgets/graph'
+#BudgetMonth= render partial: 'graphs/budget_month'
 
 %h3
   = link_to @household.cash.name, @household.cash

@@ -3,7 +3,6 @@ Stardate::Application.routes.draw do
   resources :accounts do
     get 'fund', on: :member
   end
-  resources :budgets
   resources :households
   resources :notes
   resources :recurrings

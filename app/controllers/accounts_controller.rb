@@ -2,7 +2,7 @@ class AccountsController < ApplicationController
 
   # GET /accounts
   def index
-    @missing = @household.transactions.where('debit_id is null or credit_id is null')
+    @missing = @household.transactions.where('debit_id IS NULL OR credit_id IS NULL')
   end
 
   # GET /accounts/new
@@ -13,7 +13,7 @@ class AccountsController < ApplicationController
   # GET /accounts/:id
   def show
     @account = @household.accounts.find params[:id]
-    @transactions = @account.transactions.since(@user.created_at).order('date DESC').page params[:page]
+    @transactions = @account.transactions.since(@user.created_at).order(date: :desc).page params[:page]
   end
 
   # GET /accounts/:id/edit
@@ -44,7 +44,7 @@ class AccountsController < ApplicationController
 
   protected
   def account_params
-    params.require(:account).permit!
+    params.require(:account).permit(:tag_list, :asset, :expense, :income, :budget, :accuring, :dashboard, :deferral_id)
   end
 
 end

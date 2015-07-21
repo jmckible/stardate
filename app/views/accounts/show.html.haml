@@ -13,10 +13,10 @@
     Biweekly Budget Balance
     = @account.budget
 
-- unless @account.general?
+- unless @account.core?
   %p= link_to 'Edit', [:edit, @account]
 
-- if @account.asset? && !@account.general?
+- if @account.asset? && !@account.core?
   %p= link_to 'Fund', [:fund, @account], rel: 'facebox'
 
 %table.data
@@ -48,7 +48,7 @@
           - if transaction.debit == @account
             = number_with_delimiter transaction.amount
           - else
-            = link_to transaction.debit.name, transaction.debit
+            = link_to transaction.debit.try(:name), transaction.debit
         %td.credit.num
           - if transaction.credit == @account
             = number_with_delimiter transaction.amount

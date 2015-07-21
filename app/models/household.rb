@@ -32,5 +32,9 @@ class Household < ActiveRecord::Base
     cash.debits.on(period).sum(:amount)
   end
 
+  def core_accounts
+    [cash, general_income, slush].compact
+  end
+
   validates :name, presence: true
 end

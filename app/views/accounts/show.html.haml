@@ -1,6 +1,6 @@
 %h1= @account.name
 
-- unless @account.transactions.count.zero?
+- if @account.transactions.any?
   #Balance
   = render partial: 'graphs/account_balance'
 

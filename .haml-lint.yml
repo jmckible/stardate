@@ -25,6 +25,7 @@ linters:
       - Style/IfUnlessModifier
       - Style/IndentationWidth
       - Style/Next
+      - Style/SingleSpaceBeforeFirstArg
       - Style/SpaceAroundOperators
       - Style/TrailingComma
       - Style/TrailingWhitespace

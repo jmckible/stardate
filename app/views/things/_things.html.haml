@@ -20,7 +20,7 @@
           - else
             %tr.transaction
               %td.date
-                = link_to '«', thing, :rel=>:facebox
+                = link_to '«', thing, rel: :facebox
                 = link_to thing.date, date_link(thing.date)
               %td
                 = vendor_name thing
@@ -42,29 +42,28 @@
               %td.money
                 = number_to_currency thing.amount, precision: 0
 
-        
         - elsif thing.is_a?(Note)
           %tr
             %td.date
-              = link_to '«', thing, :rel=>:facebox
+              = link_to '«', thing, rel: :facebox
               = link_to thing.date, date_link(thing.date)
             %td{colspan: 4}
               - if thing.body.length < 80
                 = thing.body
               - else
-                .preview= "#{thing.body.first(80)} #{link_to '...', '', :class=>:expand_note}"
-                .hide= simple_format thing.body    
+                .preview #{thing.body.first(80)} #{link_to '...', '', class: 'expand_note'}
+                .hide= simple_format thing.body
 
         - elsif thing.is_a?(Weight)
           %tr
             %td.date
-              = link_to '«', thing, :rel=>:facebox
-              = link_to thing.date, date_link(thing.date);
-            %td{colspan: 4}= "Weight #{thing.weight}lbs"
-        
+              = link_to '«', thing, rel: :facebox
+              = link_to thing.date, date_link(thing.date)
+            %td{colspan: 4} Weight #{thing.weight}lbs
+
         - elsif thing.is_a?(Workout)
           %tr
             %td.date
-              = link_to '«', thing, :rel=>:facebox
+              = link_to '«', thing, rel: :facebox
               = link_to thing.date, date_link(thing.date)
             %td{colspan: 4}= thing

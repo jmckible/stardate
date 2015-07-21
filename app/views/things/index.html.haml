@@ -4,7 +4,7 @@
 
 #Graphs
   #SpendingMonth= render partial: 'graphs/spending_month'
-  - if @user.workouts.during(@month).count > 0 || @user.weights.during(@month).count > 0
+  - if @user.workouts.during(@month).any? || @user.weights.during(@month).any?
     #HealthMonth= render partial: 'graphs/health_month'
 .clear
 

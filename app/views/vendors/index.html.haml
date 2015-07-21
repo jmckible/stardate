@@ -5,12 +5,11 @@
     %th Name
     %th Count
     %th Amount
-    
+
   - @vendors.each do |vendor|
     %tr
       %td= link_to vendor.name, vendor
       %td.num= number_with_delimiter @household.transactions.visible_by(@user).from_vendor(vendor).count
       %td.num= number_to_currency @household.transactions.visible_by(@user).from_vendor(vendor).sum(:amount), precision: 0
         
-
 = will_paginate @vendors

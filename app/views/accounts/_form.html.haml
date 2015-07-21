@@ -26,9 +26,7 @@
     = form.check_box :dashboard
     = form.label :dashboard, 'Show on Dashboard'
 
-
 - if @account.expense?
   %p
     Deferral
     = form.collection_select :deferral_id, @household.accounts, :id, :name, include_blank: true
-

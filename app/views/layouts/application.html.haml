@@ -1,7 +1,7 @@
 !!! Strict
 %html{html_attrs('en-US')}
   %head
-    %meta{'http-equiv' => 'Content-Type', :content => 'text/html'}
+    %meta{'http-equiv' => 'Content-Type', content: 'text/html'}
     %title stardate
     = stylesheet_link_tag 'application'
     = javascript_include_tag 'application'
@@ -9,7 +9,7 @@
   %body
     #Content
       #Main= yield
-    
+
       - if logged_in?
         %ul#Menu
           %li= link_to 'home', root_path
@@ -21,4 +21,4 @@
           %li= link_to 'vendors', vendors_path
           %li= link_to 'reports', reports_path
           %li= link_to 'settings', [:edit, @user]
-          %li= link_to 'logout', session_path(@user), :method=>:delete
+          %li= link_to 'logout', session_path(@user), method: :delete

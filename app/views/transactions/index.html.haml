@@ -1,7 +1,7 @@
 %h1= humanize_period @period
 
 .date_selector
-  = form_tag transactions_path, :method=>:get do
+  = form_tag transactions_path, method: :get do
     = select_month @period.first
     = select_year  @period.first, start_year: @user.created_at.year, end_year: Date.today.year
 .clear
@@ -12,7 +12,7 @@
   = render partial: 'things/things', object: @transactions
 
 .date_selector
-  = form_tag transactions_path, :method=>:get do
+  = form_tag transactions_path, method: :get do
     = select_month @period.first
     = select_year  @period.first, start_year: @user.created_at.year, end_year: Date.today.year
 .clear

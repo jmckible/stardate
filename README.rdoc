@@ -6,7 +6,7 @@ Track your spending with easy double-entry bookkeeping.
 
 I'm not offering a hosted version of stardate.  So you'll want to install it yourself and figure out a hosting solution (I recommend Heroku).  There are some gem dependencies, but you can install those with:
 
-  bundle isntall
+  bundle install
 
 I haven't implemented a sign up screen (mostly because I don't want people signing up on my hosted version), so you'll have to create your user account via the console (+rails c+)
 

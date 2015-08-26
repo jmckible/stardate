@@ -70,9 +70,6 @@ Style/AlignParameters:
 Style/AndOr:
   Enabled: false
 
-Style/Blocks:
-  Enabled: false
-
 Style/BracesAroundHashParameters:
   Enabled: false
 
@@ -112,7 +109,10 @@ Style/EmptyLinesAroundClassBody:
 Style/EmptyLinesAroundModuleBody:
   Enabled: false
 
-Style/FileName
+Style/ExtraSpacing:
+  Enabled: false
+
+Style/FileName:
   Enabled: false
 
 Style/GuardClause:
@@ -167,6 +167,9 @@ Style/SingleLineMethods:
   Enabled: false
 
 Style/SingleSpaceBeforeFirstArg:
+  Enabled: false
+
+Style/SpaceAroundOperators:
   Enabled: false
 
 Style/SpaceAfterColon:

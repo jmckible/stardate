@@ -1,0 +1,5 @@
+%h1= @vendor.name
+
+= render partial: 'things/things', object: @transactions
+
+= will_paginate @transactions

@@ -1,45 +1,45 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+require 'rails_helper'
 
-describe ItemsController, 'without logging in' do
-  it 'handles / with GET' do
-    get :index
-    response.should redirect_to(new_session_path)
-  end
-end
+# describe transactionsController, 'without logging in' do
+#   it 'handles / with GET' do
+#     get :index
+#     response.should redirect_to(new_session_path)
+#   end
+# end
 
 describe ThingsController do
   before { login_as :default }
-  
+
   it 'handles / with GET' do
     get :index
-    response.should be_success
+    expect(response).to be_success
   end
-  
+
   it 'handles /things/new with GET' do
     get :new
-    response.should be_success
+    expect(response).to be_success
   end
-  
+
   it 'handles /things with note attributes and PUT' do
-    running {
+    expect(running {
       post :create, :thing=>'a note'
-      response.should redirect_to(root_url)
-    }.should change(Note, :count).by(1)
+      expect(response).to redirect_to(root_url)
+    }).to change(Note, :count).by(1)
   end
-  
-  it 'handles /things with item attributes and PUT' do
-    running {
+
+  it 'handles /things with transaction attributes and PUT' do
+    expect(running {
       post :create, :thing=>'$5 Red Rock'
-      assigns(:thing).household.should == households(:default)
-      response.should redirect_to(root_url)
-    }.should change(Item, :count).by(1)
+      expect(assigns(:thing).household).to eq(households(:default))
+      expect(response).to redirect_to(root_url)
+    }).to change(Transaction, :count).by(1)
   end
-  
+
   it 'handles /things with run attributes and PUT' do
-    running {
+    expect(running {
       post :create, :thing=>'Ran 2'
-      response.should redirect_to(root_url)
-    }.should change(Workout, :count).by(1)
+      expect(response).to redirect_to(root_url)
+    }).to change(Workout, :count).by(1)
   end
-  
+
 end

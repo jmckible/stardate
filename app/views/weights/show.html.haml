@@ -1,9 +1,0 @@
-%h1 Edit Weight
-
-= form_for @weight do |f|
-  %p= f.date_select :date, order: [:month, :day, :year]
-  %p= f.text_field  :weight, default: 'weight'
-  %p
-    = submit_tag 'Update'
-    or
-    %span.delete= link_to 'delete', @weight, :method=>:delete

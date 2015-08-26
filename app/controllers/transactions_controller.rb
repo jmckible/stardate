@@ -6,16 +6,16 @@ class TransactionsController < ApplicationController
       year  = params[:date][:year]  ? params[:date][:year].to_i  : Date.today.year
       month = params[:date][:month] ? params[:date][:month].to_i : Date.today.month
     else
-      year = Date.today.year
+      year  = Date.today.year
       month = Date.today.month
     end
-    
+
     @period = Date.new(year, month, 1)..Date.civil(year, month, -1)
-    
+
     if @period.first < @user.created_at.to_date
       @period = @user.created_at.beginning_of_month.to_date..@user.created_at.end_of_month.to_date
     end
-    
+
     @transactions = @household.transactions.during @period
   end
 
@@ -27,16 +27,16 @@ class TransactionsController < ApplicationController
 
   # POST /transactions/:id
   def create
-    @transaction = @household.transactions.build params[:transaction]
+    @transaction = @household.transactions.build transaction_params
     @transaction.user = @user
     @transaction.save
     redirect_back_or @transaction.credit
   end
 
-  # PUT /items/:id
+  # PUT /transactions/:id
   def update
     @transaction = @household.transactions.find params[:id]
-    @transaction.update_attributes! params[:transaction]
+    @transaction.update_attributes! transaction_params
     redirect_back_or root_url
   end
 
@@ -45,6 +45,11 @@ class TransactionsController < ApplicationController
     @transaction = @household.transactions.find params[:id]
     @transaction.destroy
     redirect_back_or root_url
+  end
+
+  protected
+  def transaction_params
+    params.require(:transaction).permit(:date, :amount, :vendor_name, :description, :tag_list, :secret, :debit_id, :credit_id)
   end
 
 end

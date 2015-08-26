@@ -1,0 +1,66 @@
+default:
+  household: default
+  date: 2008-01-01
+  description: What I bought
+  amount: 10
+  user: default
+  vendor: default
+  credit: cash
+  debit: slush
+
+other:
+  household: other
+  date: 2008-01-01
+  description: What I bought
+  amount: 10
+  user: other
+  vendor: default
+  recurring: last
+  credit: cash
+  debit: slush
+
+last_year:
+  household: default
+  date: 2007-01-01
+  amount: 1
+  user: totaling
+
+last_month:
+  household: default
+  date: 2007-12-01
+  amount: 1
+  user: totaling
+  credit: cash
+  debit: slush
+
+last_week:
+  household: default
+  date: 2007-12-25
+  amount: 1
+  user: totaling
+  credit: cash
+  debit: slush
+
+yesterday:
+  household: default
+  date: 2007-12-31
+  amount: 10
+  user: totaling
+  debit: cash
+  credit: general_income
+
+today:
+  household: default
+  date: 2008-01-01
+  amount: 1
+  user: totaling
+  credit: cash
+  debit: slush
+
+tomorrow:
+  household: default
+  date: 2008-01-02
+  amount: 1
+  user: totaling
+  credit: cash
+  debit: slush

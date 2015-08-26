@@ -1,15 +1,15 @@
 default_default:
-  taggable: default (Item)
+  taggable: default (transaction)
   tag: default
   
 other_other:
-  taggable: other (Item)
+  taggable: other (transaction)
   tag: other
   
 today_default:
-  taggable: today (Item)
+  taggable: today (transaction)
   tag: default
   
 today_other:
-  taggable: today (Item)
+  taggable: today (transaction)
   tag: other

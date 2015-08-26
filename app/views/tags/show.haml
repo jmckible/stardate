@@ -1,0 +1,5 @@
+%h1= @tag.name.titleize
+
+= render partial: 'things/things', object: @transactions
+
+= will_paginate @transactions

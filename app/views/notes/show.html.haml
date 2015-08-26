@@ -1,9 +1,0 @@
-%h1 Edit Note
-
-= form_for @note do |f|
-  %p= f.date_select :date, order: [:month, :day, :year]
-  %p= f.text_area  :body, default: 'note'
-  %p
-    = submit_tag 'Update'
-    or
-    %span.delete= link_to 'delete', @note, :method=>:delete, data: {confirm: 'Are you sure?'}

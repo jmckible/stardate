@@ -1,0 +1,16 @@
+= form_for @transaction do |f|
+  = f.hidden_field :debit_id
+
+  %p= f.date_select :date, order: [:month, :day, :year]
+
+  %p
+    Source
+    = f.collection_select :credit_id, @household.accounts.asset.other_than(@account), :id, :name
+
+  %p= f.text_field :amount, default: 'Amount', class: 'money'
+
+  %p= f.text_field :description, default: 'Description'
+
+  %p= f.text_field :tag_list, default: 'tags'
+
+  %p= f.submit 'Transfer'

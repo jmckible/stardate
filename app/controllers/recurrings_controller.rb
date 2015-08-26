@@ -1,5 +1,5 @@
 class RecurringsController < ApplicationController
-  
+
   # GET /recurrings
   def index
     @recurrings = @user.recurrings
@@ -19,7 +19,7 @@ class RecurringsController < ApplicationController
 
   # POST /recurrings
   def create
-    @recurring = @user.recurrings.build params[:recurring]
+    @recurring = @user.recurrings.build recurrings_params
     @recurring.save
     redirect_to recurrings_url
   end
@@ -27,7 +27,7 @@ class RecurringsController < ApplicationController
   # PUT /recurrings/:id
   def update
     @recurring = @user.recurrings.find params[:id]
-    @recurring.update_attributes params[:recurring]
+    @recurring.update_attributes recurrings_params
     redirect_to recurrings_url
   end
 
@@ -37,5 +37,10 @@ class RecurringsController < ApplicationController
     @recurring.destroy
     redirect_to recurrings_url
   end
-  
+
+  protected
+  def recurrings_params
+    params.require(:recurring).permit(:day, :amount, :vendor_name, :tag_list, :debit_id, :credit_id)
+  end
+
 end

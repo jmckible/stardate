@@ -1,8 +1,0 @@
-%h1 Edit Budget
-
-= form_for @budget do |f|
-  = render partial: 'form', object: f
-  %p
-    = submit_tag 'Update'
-    or
-    %span.delete= link_to 'delete', @budget, :method=>:delete

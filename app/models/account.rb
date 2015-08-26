@@ -11,37 +11,30 @@ class Account < ActiveRecord::Base
     household.transactions.where('debit_id = ? OR credit_id = ?', id, id)
   end
 
-  scope :asset,     where(asset: true)
-  scope :cash,      where(asset: true, general: true)
-  scope :dashboard, where(dashboard: true)
-  scope :equity,    where(equity: true)
-  scope :except,    lambda{|account| where('accounts.id != ?', account.id)}
-  scope :expense,   where(expense: true)
-  scope :general_income, where(income: true, general: true)
-  scope :income,    where(income: true)
-  scope :liability, where(liability: true)
-  scope :slush,     where(expense: true, general: true)
+  scope :asset,          -> { where(asset: true) }
+  scope :cash,           -> { where(asset: true, general: true) }
+  scope :dashboard,      -> { where(dashboard: true) }
+  scope :equity,         -> { where(equity: true) }
+  scope :expense,        -> { where(expense: true) }
+  scope :general_income, -> { where(income: true, general: true) }
+  scope :income,         -> { where(income: true) }
+  scope :liability,      -> { where(liability: true) }
+  scope :slush,          -> { where(expense: true, general: true) }
+  scope :other_than,     ->(account){ where.not(id: account.id) }
 
-  scope :tagged_with, lambda{|tag_or_tags| 
-    if tag_or_tags.is_a?(Array)
-      includes(:taggings).where('taggings.tag_id IN (?)', tag_or_tags.collect(&:id))
-    else
-      includes(:taggings).where('taggings.tag_id = ?', tag_or_tags.id)
-    end
-  }
-
-  def core?
-    household.cash           == self ||
-    household.slush          == self ||
-    household.general_income == self 
-  end
-
+  #############################################################################
+  #                                 B A L A N C E                             #
+  #############################################################################
   def balance
     debits.sum(:amount) - credits.sum(:amount)
   end
 
   def balance_on(date)
     debits.before(date).sum(:amount) - credits.before(date).sum(:amount)
+  end
+
+  def core?
+    household.core_accounts.include?(self)
   end
 
   # For funding deferred accounts from cash
@@ -63,12 +56,11 @@ class Account < ActiveRecord::Base
     transaction
   end
 
+  #############################################################################
+  #                                 G R A P H I N G                           #
+  #############################################################################
   def graph_step
-    if (graph_end - graph_start) < 365
-      7
-    else
-      30
-    end
+    (graph_end - graph_start) < 365 ? 7 : 30
   end
 
   def graph_start
@@ -90,10 +82,14 @@ class Account < ActiveRecord::Base
       value = balance_on(date)
       value = value * -1 if income?
       color = value < 0 ? '#FF00CC' : '#00CCFF'
-      data << {y: value, marker:{fillColor: color}}
+      data << { y: value, marker: { fillColor: color } }
     end
 
     data.to_json.html_safe
   end
-  
+
+  #############################################################################
+  #                             V A L I D A T I O N                           #
+  #############################################################################
+  validates_presence_of :household_id, :name
 end

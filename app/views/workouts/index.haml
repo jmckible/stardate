@@ -1,0 +1,17 @@
+%h1= humanize_period @period
+
+= form_tag workouts_path, method: :get do
+  = select_month @start, prefix: 'start'
+  = select_day   @start, prefix: 'start'
+  = select_year  @start, prefix: 'start', start_year: 2007, end_year: Date.today.year
+  &mdash;
+  = select_month @finish, prefix: 'finish'
+  = select_day   @finish, prefix: 'finish'
+  = select_year  @finish, prefix: 'finish', start_year: 2007, end_year: Date.today.year
+  = submit_tag 'Go'
+
+#HealthYear= render partial: 'graphs/health_year'
+
+= render partial: 'things/things', object: @workouts
+
+= will_paginate @workouts

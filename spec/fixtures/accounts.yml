@@ -1,0 +1,14 @@
+cash:
+  household: default
+  asset: true
+  name: cash
+
+general_income:
+  household: default
+  income: true
+  name: General Income
+
+slush:
+  household: default
+  expense: true
+  name: Slush

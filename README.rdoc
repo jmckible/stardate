@@ -1,26 +1,20 @@
-== Rails 3
-
-stardate is being ported to Rails 3. Follow the progress on the rails3 branch!
-
 = stardate
 
-stardate was originally called ActiveBudget.  It used to just track income/expenses and hourly work.  I stopped working hourly, so I removed that section and added a microblogging element. It'll archive your twitter feed and keep track of how much you run.  The goal of stardate is to pretty much archive my life.
+Track your spending with easy double-entry bookkeeping.
 
 == Running it
 
-I'm not offering a hosted version of stardate.  So you'll want to install it yourself and figure out a hosting solution (I recommend passenger + mysql, but whatever floats your boat).  There are some gem dependencies, but you can install those with:
+I'm not offering a hosted version of stardate.  So you'll want to install it yourself and figure out a hosting solution (I recommend Heroku).  There are some gem dependencies, but you can install those with:
 
-  sudo rake gems:install
-  
-I haven't implemented a sign up screen (mostly because I don't want people signing up on my hosted version), so you'll have to create your user account via the console (+script/console+)
+  bundle isntall
 
-  user = User.create :email=>'your@emailhere.com', :password=>'password', :password_confirmation=>'password_confirmation'
-  
+I haven't implemented a sign up screen (mostly because I don't want people signing up on my hosted version), so you'll have to create your user account via the console (+rails c+)
+
 == Using it
 
 99% of the time I just use the stardate homepage.  There is an input bar at the top.  Whatever you put in is fed into the parser and turned into some archival element.  Right now it tracks:
 
-*Items* - These are transactions.  Like you give someone money, or they give it to you.  Values are assumed to be negative unless you specify a plus sign.  
+*Items* - These are transactions.  Like you give someone money, or they give it to you.  Values are assumed to be negative unless you specify a plus sign.
 
 *Note* - This is just a small blog entry.  If you'd like to note the time you did something or other, just type it in et voila.
 
@@ -37,18 +31,8 @@ The first graph is your income vs. expense.  The second graph is run mileage per
 If you'd like an item to recur on a monthly basis, create a recurring.  You'll need to trigger a rake task once a day:
 
   rake recur
-  
+
 If you set a recurring date to a day that doesn't exist in a given month, it'll run on the last day of the month.
-
-== Twitter archive
-
-Input your twitter username and password.  Then run a rake task to import your tweets:
-
-  rake update:twitter
-
-== Budgeting
-
-Budgeting is stupid.  Just spend less than you make.
 
 == Author
 

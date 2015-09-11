@@ -20,4 +20,8 @@
       = link_to account.name, account
       = color_money account.balance
 
+%h3
+  = link_to 'Year to Date', '#'
+  = color_money @household.sum_expenses(1.year.ago..Time.zone.today)
+
 = render partial: 'things', object: @things

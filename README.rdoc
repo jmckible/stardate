@@ -1,3 +1,5 @@
+[![Build Status](https://semaphoreci.com/api/v1/projects/1351b894-47ab-4610-946a-26946d89550e/656921/badge.svg)](https://semaphoreci.com/jmckible/stardate)
+
 = stardate
 
 Track your spending with easy double-entry bookkeeping.

@@ -8,6 +8,7 @@
   = select_month @finish, prefix: 'finish'
   = select_day   @finish, prefix: 'finish'
   = select_year  @finish, prefix: 'finish', start_year: @user.created_at.year, end_year: Date.today.year
+  = check_box_tag :lump_sum, @lump_sum
   = submit_tag 'Go'
 
 #SpendingYear= render partial: 'graphs/spending_year'

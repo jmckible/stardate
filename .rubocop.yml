@@ -8,7 +8,9 @@ AllCops:
     - 'config/**/*.rb'
     - 'cookbooks/**/*.rb'
     - 'db/**/*.rb'
-  RunRailsCops: true
+
+Rails:
+  Enabled: true
 
 Lint/AmbiguousOperator:
   Enabled: false
@@ -164,9 +166,6 @@ Style/SignalException:
   Enabled: false
 
 Style/SingleLineMethods:
-  Enabled: false
-
-Style/SingleSpaceBeforeFirstArg:
   Enabled: false
 
 Style/SpaceAroundOperators:

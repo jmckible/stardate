@@ -27,3 +27,21 @@
     %tr
       %td Savings Rate
       %td #{(@net / @income.to_f * 100).round(1)}%
+  %tr
+    %td Non-exceptional Income
+    %td= color_money(@income - @exceptional)
+  %tr
+    %td Non-exceptional Net
+    %td= color_money((@income - @exceptional + @expenses))
+
+%h2 Top Expenses
+%table
+  %tr
+    %th Account
+    %th Transactions
+    %th Total
+  - @expense_accounts.each do |account|
+    %tr
+      %td= account.name
+      %td.count= account.transaction_count
+      %td.count= color_money(account.total * -1)

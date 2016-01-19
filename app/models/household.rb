@@ -10,6 +10,8 @@ class Household < ActiveRecord::Base
   has_many :users
   has_many :transactions
 
+  has_many :expense_accounts, ->{ select('accounts.*, COUNT(debit_id) AS transaction_count, SUM(amount) AS total').where(accounts: { expense: true}).group('accounts.id').order('total desc') }, through: :transactions, source: :debit
+
   has_many :taggings, through: :transactions
   has_many :tags, ->{ order('tags.name').uniq }, through: :taggings do
     def visible_by(user)

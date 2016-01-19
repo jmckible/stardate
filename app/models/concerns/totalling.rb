@@ -1,6 +1,6 @@
 module Totalling
   def total_on(date)
-    sum_income(date) + sum_expenses(date)
+    sum_income(date) - sum_expenses(date)
   end
   alias total_during total_on
 

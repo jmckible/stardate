@@ -10,6 +10,7 @@ class ReportsController < ApplicationController
     @net         = @income + @expenses
 
     @expense_accounts = @household.expense_accounts.where(transactions: { date: @period })
+    @expense_tags     = @household.expense_tags.where(transactions: { date: @period })
   end
 
 end

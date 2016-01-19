@@ -45,3 +45,15 @@
       %td= account.name
       %td.count= account.transaction_count
       %td.count= color_money(account.total * -1)
+
+
+%table
+  %tr
+    %th Account
+    %th Transactions
+    %th Total
+  - @expense_tags.each do |tag|
+    %tr
+      %td= tag.name
+      %td.count= tag.transaction_count
+      %td.count= color_money(tag.total * -1)

@@ -1,5 +1,9 @@
 %h1= @vendor.name
 
+%h3
+  Total
+  = color_money @transactions.sum(:amount)
+
 = render partial: 'things/things', object: @transactions
 
 = will_paginate @transactions

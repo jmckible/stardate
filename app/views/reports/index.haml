@@ -8,7 +8,6 @@
   = select_month @finish, prefix: 'finish'
   = select_day   @finish, prefix: 'finish'
   = select_year  @finish, prefix: 'finish', start_year: @user.created_at.year, end_year: Date.today.year
-  = check_box_tag :lump_sum, @lump_sum
   = submit_tag 'Go'
 
 #SpendingYear= render partial: 'graphs/spending_year'
@@ -33,6 +32,10 @@
   %tr
     %td Non-exceptional Net
     %td= color_money((@income - @exceptional + @expenses))
+  - unless (@income - @exceptional).zero?
+    %tr
+      %td Non-exceptional Savings Rate
+      %td #{((@income - @exceptional + @expenses) / (@income - @exceptional).to_f * 100).round(1)}%
 
 %h2 Top Expenses
 %table

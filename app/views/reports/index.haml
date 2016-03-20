@@ -14,6 +14,8 @@
 
 %table
   %tr
+    %td{colspan: 2} All
+  %tr
     %td Income
     %td= color_money @income
   %tr
@@ -26,16 +28,22 @@
     %tr
       %td Savings Rate
       %td #{(@net / @income.to_f * 100).round(1)}%
+
   %tr
-    %td Non-exceptional Income
-    %td= color_money(@income - @exceptional)
-  %tr
-    %td Non-exceptional Net
-    %td= color_money((@income - @exceptional + @expenses))
-  - unless (@income - @exceptional).zero?
+    %td{colspan: 2} Non-Exceptional
     %tr
-      %td Non-exceptional Savings Rate
-      %td #{((@income - @exceptional + @expenses) / (@income - @exceptional).to_f * 100).round(1)}%
+      %td Income
+      %td= color_money @exceptional_income
+    %tr
+      %td Expenses
+      %td= color_money @exceptional_expenses
+    %tr
+      %td Net
+      %td= color_money @exceptional_net
+    - unless @exceptional_income.zero?
+      %tr
+        %td Savings Rate
+        %td #{(@exceptional_net / @exceptional_income.to_f * 100).round(1)}%
 
 %h2 Top Expenses
 %table

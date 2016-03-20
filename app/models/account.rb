@@ -33,6 +33,10 @@ class Account < ActiveRecord::Base
     debits.before(date).sum(:amount) - credits.before(date).sum(:amount)
   end
 
+  def balance_during(date)
+    debits.during(date).sum(:amount) - credits.during(date).sum(:amount)
+  end
+
   def core?
     household.core_accounts.include?(self)
   end

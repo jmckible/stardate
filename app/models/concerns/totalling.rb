@@ -20,6 +20,10 @@ module Totalling
     transactions.income_credit.on(period).sum(:amount)
   end
 
+  def sum_non_exceptional_income(period)
+    transactions.income_credit.on(period).where(exceptional: false).sum(:amount)
+  end
+
   def sum_expenses(period)
     transactions.expense_debit.on(period).sum(:amount)
   end

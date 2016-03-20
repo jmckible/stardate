@@ -21,7 +21,13 @@
       = color_money account.balance
 
 %h3
-  = link_to 'Year to Date', '#'
-  = color_money @household.sum_non_exceptional_expenses(1.year.ago..Time.zone.today)
+  = link_to 'Regular Income This Year', '#'
+  = color_money @household.sum_non_exceptional_income(1.year.ago..Time.zone.today)
+%h3
+  = link_to 'Regular Spending This Year', '#'
+  = color_money(@household.sum_non_exceptional_expenses(1.year.ago..Time.zone.today) * -1)
+%h3
+  = link_to 'Yearly Balance', '#'
+  = color_money @household.total_on(1.year.ago..Time.zone.today)
 
 = render partial: 'things', object: @things

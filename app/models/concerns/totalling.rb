@@ -24,6 +24,10 @@ module Totalling
     transactions.expense_debit.on(period).sum(:amount)
   end
 
+  def sum_non_exceptional_expenses(period)
+    transactions.expense_debit.on(period).where(exceptional: false).sum(:amount)
+  end
+
   def sum_value(items, period)
     sum = 0
     items.each do |item|

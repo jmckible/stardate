@@ -19,7 +19,7 @@
       },
       xAxis: {
         type: 'datetime',
-        tickInterval: 24 * 3600 * 1000, 
+        tickInterval: 24 * 3600 * 1000,
         labels: {
           step: 7,
           formatter: function(){
@@ -52,7 +52,7 @@
         color: '#00CCFF'
       }, {
         name: 'Expense',
-        data: <%= @month.collect{|date| @household.sum_expenses(@month.first..date)}.to_json %>,
+        data: <%= @month.collect{|date| @household.sum_non_exceptional_expenses(@month.first..date)}.to_json %>,
         pointInterval: 24 * 3600 * 1000,
         pointStart: Date.UTC(<%= (@month.first - 1.month).year %>, <%= (@month.first - 1.month).month %>, <%= (@month.first - 1.month).day %>),
         color: '#FF00CC'

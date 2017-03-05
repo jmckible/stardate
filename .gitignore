@@ -4,3 +4,4 @@ config/database.yml
 log/*
 public/assets
 tmp/**/*
+latest.dump

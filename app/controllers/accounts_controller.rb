@@ -44,7 +44,7 @@ class AccountsController < ApplicationController
 
   protected
   def account_params
-    params.require(:account).permit(:tag_list, :asset, :expense, :income, :budget, :accuring, :dashboard, :deferral_id)
+    params.require(:account).permit(:accuring, :asset, :budget, :expense, :income, :dashboard, :deferral_id, :name, :tag_list)
   end
 
 end

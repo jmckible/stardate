@@ -73,7 +73,7 @@ GEM
       ast (~> 2.2)
     pg (0.18.2)
     powerpack (0.1.1)
-    puma (2.13.4)
+    puma (3.10.0)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -163,7 +163,7 @@ DEPENDENCIES
   haml (= 4.0.7)
   jquery-rails (= 4.0.4)
   pg (= 0.18.2)
-  puma (= 2.13.4)
+  puma (= 3.10.0)
   rails (= 4.2.5)
   rails_12factor (= 0.0.3)
   rspec-rails (= 3.3.2)
@@ -176,4 +176,4 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.14.3
+   1.15.1

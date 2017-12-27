@@ -2,7 +2,7 @@ class ThingsController < ApplicationController
   
   # GET /
   def index
-    @things = @user.things_during((Time.now.to_date - 4)..Time.now.to_date)
+    @things = @user.things_during((Time.zone.now.to_date - 4)..Time.zone.now.to_date)
     @month  = (Date.today - 30)..Date.today
   end
   

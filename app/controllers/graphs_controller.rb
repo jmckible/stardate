@@ -33,12 +33,12 @@ class GraphsController < ApplicationController
     begin
       @start = Date.parse params[:start]
     rescue
-      @start = Time.now.to_date - 30
+      @start = Time.zone.now.to_date - 30
     end
     begin
       @finish = Date.parse params[:finish]
     rescue
-      @finish = Time.now.to_date
+      @finish = Time.zone.now.to_date
     end
     @period = @start..@finish
   end

@@ -2,7 +2,7 @@ xml.chart numberPrefix: '$', rotateLabels: 1, showValues: '0', showBorder: 0, bg
 
   date = Date.new 2007,1,1
 
-  while date < Time.now.to_date do
+  while date < Time.zone.now.to_date do
     period       = date..date.end_of_month
     label        = date.month == 1 ? date.strftime('%Y %b') : date.strftime('%b')
     transactions = user.transactions.from_vendor(@vendor).during(period)

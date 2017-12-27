@@ -115,7 +115,7 @@ namespace :export do
   <HealthData locale="en_US">
   PREAMBLE
 
-  task :apple, [:user_id] => [:environment] do |t, args|
+  task :apple, [:user_id] => [:environment] do |_t, args|
 
     user = User.where(id: args[:user_id]).first
     unless user
@@ -129,19 +129,19 @@ namespace :export do
 
       file.write preamble
 
-      file.write "  <ExportDate value=\"#{Time.zone.now.to_s}\"/>\n"
+      file.write "  <ExportDate value=\"#{Time.zone.now}\"/>\n"
       file.write "  <Me HKCharacteristicTypeIdentifierDateOfBirth=\"\" HKCharacteristicTypeIdentifierBiologicalSex=\"HKBiologicalSexNotSet\" HKCharacteristicTypeIdentifierBloodType=\"HKBloodTypeNotSet\" HKCharacteristicTypeIdentifierFitzpatrickSkinType=\"HKFitzpatrickSkinTypeNotSet\"/>\n"
 
       user.weights.find_each do |weight|
-        file.write "  <Record type=\"HKQuantityTypeIdentifierBodyMass\" sourceName=\"Stardate\" sourceVersion=\"1\" unit=\"lb\" creationDate=\"#{weight.created_at.to_s}\" startDate=\"#{weight.export_start_at}\" endDate=\"#{weight.export_start_at}\" value=\"#{weight.weight}\"/>\n"
+        file.write "  <Record type=\"HKQuantityTypeIdentifierBodyMass\" sourceName=\"Stardate\" sourceVersion=\"1\" unit=\"lb\" creationDate=\"#{weight.created_at}\" startDate=\"#{weight.export_start_at}\" endDate=\"#{weight.export_start_at}\" value=\"#{weight.weight}\"/>\n"
       end
 
       user.workouts.run.where.not(minutes: nil).find_each do |run|
-        file.write "  <Record type=\"HKQuantityTypeIdentifierDistanceWalkingRunning\" sourceName=\"Stardate\" sourceVersion=\"1\" unit=\"mi\" creationDate=\"#{run.created_at.to_s}\" startDate=\"#{run.export_start_at}\" endDate=\"#{run.export_end_at}\" value=\"#{run.distance}\"/>\n"
+        file.write "  <Record type=\"HKQuantityTypeIdentifierDistanceWalkingRunning\" sourceName=\"Stardate\" sourceVersion=\"1\" unit=\"mi\" creationDate=\"#{run.created_at}\" startDate=\"#{run.export_start_at}\" endDate=\"#{run.export_end_at}\" value=\"#{run.distance}\"/>\n"
       end
 
       user.workouts.bike.where.not(minutes: nil).find_each do |run|
-        file.write "  <Record type=\"HKQuantityTypeIdentifierDistanceCycling\" sourceName=\"Stardate\" sourceVersion=\"1\" unit=\"mi\" creationDate=\"#{run.created_at.to_s}\" startDate=\"#{run.export_start_at}\" endDate=\"#{run.export_end_at}\" value=\"#{run.distance}\"/>\n"
+        file.write "  <Record type=\"HKQuantityTypeIdentifierDistanceCycling\" sourceName=\"Stardate\" sourceVersion=\"1\" unit=\"mi\" creationDate=\"#{run.created_at}\" startDate=\"#{run.export_start_at}\" endDate=\"#{run.export_end_at}\" value=\"#{run.distance}\"/>\n"
       end
 
       file.write "</HealthData>"

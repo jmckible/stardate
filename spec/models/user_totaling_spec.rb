@@ -7,7 +7,7 @@ describe User do
   #                            T H I N G S                            #
   #####################################################################
   it 'should find stuff on a day' do
-    expect(@user.things_during(Date.new(2008, 1, 1)).size).to eq(3) #[transactions(:today), notes(:today)]
+    expect(@user.things_during(Date.new(2008, 1, 1)).size).to eq(3) # [transactions(:today), notes(:today)]
   end
 
   it 'should find nothing on an empty day' do

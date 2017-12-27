@@ -22,3 +22,7 @@ group :development do
   gem 'spring-watcher-listen', '2.0.1'
   gem 'web-console', '3.5.1'
 end
+
+group :test do
+  gem 'rails-controller-testing', '1.0.2'
+end

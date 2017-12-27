@@ -4,7 +4,7 @@ default:
   email: default@email.com
   time_zone: Pacific Time (US & Canada)
   password_salt: salt
-  password_hash: f438229716cab43569496f3a3630b3727524b81b
+  password_hash: f438229716cab43569496f3a3630b3727524b81b # test
   created_at: <%= 20.year.ago %>
 
 other:
@@ -13,12 +13,12 @@ other:
   email: other@email.com
   time_zone: Pacific Time (US & Canada)
   password_salt: salt
-  password_hash: f438229716cab43569496f3a3630b3727524b81b
-  
+  password_hash: f438229716cab43569496f3a3630b3727524b81b # test
+
 totaling:
   name: Totaling
   household: default
   email: totaling@email.com
   time_zone: Pacific Time (US & Canada)
   password_salt: salt
-  password_hash: f438229716cab43569496f3a3630b3727524b81b
+  password_hash: f438229716cab43569496f3a3630b3727524b81b # test

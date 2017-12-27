@@ -4,7 +4,7 @@ class Weight < ActiveRecord::Base
   scope :during, ->(date){ where(date: date) }
   scope :on,     ->(date){ where(date: date) }
 
-  def export_start_date
+  def export_start_at
     if date == created_at.to_date
       created_at
     else

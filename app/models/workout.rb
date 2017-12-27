@@ -48,6 +48,18 @@ class Workout < ActiveRecord::Base
     end
   end
 
+  def export_start_at
+    export_end_at - minutes.minutes
+  end
+
+  def export_end_at
+    if date == created_at.to_date
+      created_at
+    else
+      date.beginning_of_day + 10.hours
+    end
+  end
+
   validates_presence_of :date, :user_id
 
 end

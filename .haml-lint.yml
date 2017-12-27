@@ -1,8 +1,21 @@
 linters:
+
   ClassesBeforeIds:
     enabled: false
 
-  HtmlAttributes:
+  ConsecutiveComments:
+    enabled: false
+
+  IdNames:
+    enabled: false
+
+  InlineStyles:
+    enabled: false
+
+  InstanceVariables:
+    enabled: false
+
+  LeadingCommentSpace:
     enabled: false
 
   LineLength:
@@ -11,31 +24,8 @@ linters:
   ObjectReferenceAttributes:
     enabled: false
 
-  RuboCop:
-    enabled: true
-    ignored_cops:
-      - Lint/BlockAlignment
-      - Lint/EndAlignment
-      - Lint/Void
-      - Metrics/BlockNesting
-      - Metrics/LineLength
-      - Style/AlignParameters
-      - Style/BlockNesting
-      - Style/FileName
-      - Style/IfUnlessModifier
-      - Style/IndentationWidth
-      - Style/Next
-      - Style/SingleSpaceBeforeFirstArg
-      - Style/SpaceAroundOperators
-      - Style/TrailingComma
-      - Style/TrailingWhitespace
-      - Style/WhileUntilModifier
-
-  RubyComments:
-    enabled: false
-
-  SpaceBeforeScript:
-    enabled: false
-
   SpaceInsideHashAttributes:
+    enabled: false
+
+  UnnecessaryStringOutput:
     enabled: false

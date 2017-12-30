@@ -3,11 +3,11 @@ class TransactionsController < ApplicationController
   # GET /transactions
   def index
     if params[:date]
-      year  = params[:date][:year]  ? params[:date][:year].to_i  : Date.today.year
-      month = params[:date][:month] ? params[:date][:month].to_i : Date.today.month
+      year  = params[:date][:year]  ? params[:date][:year].to_i  : Time.zone.today.year
+      month = params[:date][:month] ? params[:date][:month].to_i : Time.zone.today.month
     else
-      year  = Date.today.year
-      month = Date.today.month
+      year  = Time.zone.today.year
+      month = Time.zone.today.month
     end
 
     @period = Date.new(year, month, 1)..Date.civil(year, month, -1)

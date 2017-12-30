@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   include Totalling
 
   ########################################################################
@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
   ########################################################################
   def self.authenticate(email, password)
     return nil if email.blank? or password.blank?
-    user = User.find_by_email(email)
-    user and (self.encrypt(password, user.password_salt) == user.password_hash) ? user : nil
+    user = User.find_by email: email
+    self.encrypt(password, user&.password_salt) == user&.password_hash ? user : nil
   end
 
   def self.encrypt(password, salt)
@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   def value_unpaid_tasks_on(date)
     tasks.unpaid.on(date).collect{|t| t.job.rate * t.minutes / 60.0 }.sum.round
   end
-  alias :value_unpaid_tasks_during :value_unpaid_tasks_on
+  alias value_unpaid_tasks_during value_unpaid_tasks_on
 
   def things_during(period)
     period = period..period unless period.is_a?(Range)
@@ -74,7 +74,7 @@ class User < ActiveRecord::Base
     period.step(7) do |date|
       all_transactions = household.transactions.during(date..(date+6)).tagged_with(tag)
       sum = sum_value(all_transactions, period).round
-      sum = sum * -1 if sum < 0
+      sum = sum * -1 if sum.negative?
       array << sum
     end
     array.to_json
@@ -85,12 +85,12 @@ class User < ActiveRecord::Base
   #####################################################################
   attr_accessor :password
 
-  validates_confirmation_of :password,                 :if=>:update_password?
-  validates_length_of       :password, :within=>4..40, :if=>:update_password?
-  validates_presence_of     :password_confirmation,    :if=>:update_password?
+  validates_confirmation_of :password,                if: :update_password?
+  validates_length_of       :password, within: 4..40, if: :update_password?
+  validates_presence_of     :password_confirmation,   if: :update_password?
 
-  validates_format_of     :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/
-  validates_length_of     :email, :within=>5..100
+  validates_format_of     :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/
+  validates_length_of     :email, within: 5..100
   validates_uniqueness_of :email
 
   validates_presence_of :household_id, :name, :time_zone
@@ -102,7 +102,7 @@ class User < ActiveRecord::Base
   #####################################################################
   protected
   def update_password?
-    new_record? || !password.blank?
+    new_record? || password.present?
   end
 
   def encrypt_password
@@ -110,6 +110,5 @@ class User < ActiveRecord::Base
     self.password_salt = [Array.new(6){rand(256).chr}.join].pack("m").chomp if new_record?
     self.password_hash = self.class.encrypt(password, self.password_salt)
   end
-
 
 end

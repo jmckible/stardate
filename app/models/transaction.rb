@@ -1,14 +1,14 @@
-class Transaction < ActiveRecord::Base
+class Transaction < ApplicationRecord
   include Taggable
 
-  belongs_to :credit, class_name: 'Account'
-  belongs_to :debit,  class_name: 'Account'
+  belongs_to :credit, class_name: 'Account', optional: true
+  belongs_to :debit,  class_name: 'Account', optional: true
   belongs_to :household
-  belongs_to :recurring
+  belongs_to :recurring, optional: true
   belongs_to :user
-  belongs_to :vendor
+  belongs_to :vendor, optional: true
 
-  has_one :paycheck
+  has_one :paycheck, dependent: :nullify
 
   scope :asset_credit,    ->{ includes(:credit).where('accounts.asset = ?', true) }
   scope :asset_debit,     ->{ includes(:debit).where('accounts.asset = ?', true) }
@@ -23,11 +23,7 @@ class Transaction < ActiveRecord::Base
   scope :income_debit,    ->{ includes(:debit).where('accounts.income = ?', true) }
 
   scope :before, ->(date){ where("transactions.date <= ?", date) }
-  scope :during, ->(period){
-    if period
-      where(date: period).order('transactions.date, transactions.id')
-    end
-  }
+  scope :during, ->(period){ where(date: period).order('transactions.date, transactions.id') }
   scope :on, ->(date){ where date: date }
   scope :from_vendor, ->(vendor){ where(vendor_id: vendor.id) if vendor }
 
@@ -36,11 +32,11 @@ class Transaction < ActiveRecord::Base
   scope :visible_by, ->(user){ where('transactions.date >= ? ', user.created_at)}
 
   def vendor_name
-    vendor.try :name
+    vendor&.name
   end
 
   def vendor_name=(string)
-    if string.nil? || string.chop.blank?
+    if string.blank?
       self.vendor = nil
     else
       self.vendor = Vendor.where(name: string).first_or_create

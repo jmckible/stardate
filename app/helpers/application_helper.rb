@@ -2,12 +2,12 @@ module ApplicationHelper
 
   def color_money(value)
     return '0' if value.nil?
-    if value < 0
+    if value.negative?
       content_tag :span, number_with_delimiter(value*-1), class: 'negative'
-    elsif value > 0
+    elsif value.positive?
       content_tag :span, number_with_delimiter(value), class: 'positive'
     else
-       '0'
+      '0'
     end
   end
 
@@ -28,7 +28,7 @@ module ApplicationHelper
   end
 
   def linked_tag_list(thing)
-    thing.tags.collect{|t|link_to t.name, tag_path(t)}.join(', ').html_safe
+    thing.tags.collect{|t| link_to t.name, tag_path(t)}.join(', ').html_safe
   end
 
   def minutes_to_time(minutes)

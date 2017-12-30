@@ -3,6 +3,11 @@ cash:
   asset: true
   name: cash
 
+gas_savings:
+  household: default
+  asset: true
+  name: Gas Savings
+
 general_income:
   household: default
   income: true
@@ -12,3 +17,8 @@ slush:
   household: default
   expense: true
   name: Slush
+
+rent:
+  household: default
+  expense: true
+  name: Rent

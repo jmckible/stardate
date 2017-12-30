@@ -4,34 +4,34 @@ describe NotesController do
   before { login_as :default }
 
   it 'handles /notes with GET' do
-    get :index
+    get notes_path
     expect(response).to be_success
   end
 
   it 'handles /notes/:id with GET' do
-    get :show, :id=>notes(:default)
+    gt notes(:default)
     expect(response).to be_success
   end
 
-  it 'handles /notes/:id with valid params and PUT' do
+  it 'handles /notes/:id with valid params and PATCH' do
     note = notes(:default)
-    put :update, :id=>note, :note=>{:body=>'update'}
+    ptch note, note: { body: 'update'}
     expect(note.reload.body).to eq('update')
     expect(response).to redirect_to(root_path)
   end
 
-  it 'handles /notes/:id with invalid params and PUT' do
+  it 'handles /notes/:id with invalid params and PATCH' do
     note = notes(:default)
-    put :update, :id=>note, :note=>{:body=>''}
+    ptch note, note: { body: '' }
     expect(note.reload.body).not_to eq('')
     expect(response).to redirect_to(root_path)
   end
 
   it 'handles /notes/:id with DELETE' do
-    expect(running {
-      delete :destroy, :id=>notes(:default)
+    expect {
+      del notes(:default)
       expect(response).to redirect_to(root_path)
-    }).to change(Note, :count).by(-1)
+    }.to change(Note, :count).by(-1)
   end
 
 end

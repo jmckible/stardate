@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  skip_before_filter :login_required
+  skip_before_action :login_required
 
   # GET /sessions/new
   # Redirect if the user is already logged in

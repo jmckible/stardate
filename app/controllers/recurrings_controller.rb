@@ -40,7 +40,7 @@ class RecurringsController < ApplicationController
 
   protected
   def recurrings_params
-    params.require(:recurring).permit(:day, :amount, :vendor_name, :tag_list, :debit_id, :credit_id)
+    params.fetch(:recurring, {}).permit(:day, :amount, :vendor_name, :tag_list, :debit_id, :credit_id)
   end
 
 end

@@ -1,24 +1,82 @@
 AllCops:
+  TargetRubyVersion: 2.3
   Include:
     - 'app/**/*.rb'
     - 'lib/**/*.rb'
     - 'specs/**/*.rb'
   Exclude:
     - 'bin/**/*'
-    - 'config/**/*.rb'
-    - 'cookbooks/**/*.rb'
+    - 'config/**/*'
+    - 'cookbooks/**/*'
     - 'db/**/*.rb'
+    - 'lib/geolocal.rb'
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
 
-Rails:
-  Enabled: true
+###############################################################################
+#                              L A Y O U T                                    #
+###############################################################################
+Layout/AlignArray:
+  Enabled: false
+
+Layout/AlignHash:
+  Enabled: false
+
+Layout/AlignParameters:
+  Enabled: false
+
+Layout/EmptyLineBetweenDefs:
+  Enabled: false
+
+Layout/EmptyLinesAroundAccessModifier:
+  Enabled: false
+
+Layout/EmptyLinesAroundBlockBody:
+  Enabled: false
+
+Layout/EmptyLinesAroundClassBody:
+  Enabled: false
+
+Layout/EmptyLinesAroundModuleBody:
+  Enabled: false
+
+Layout/ExtraSpacing:
+  Enabled: false
+
+Layout/IndentHash:
+  Enabled: false
+
+Layout/MultilineOperationIndentation:
+  Enabled: false
+
+Layout/SpaceAroundOperators:
+  Enabled: false
+
+Layout/SpaceAfterColon:
+  Enabled: false
+
+Layout/SpaceAfterComma:
+  Enabled: false
+
+Layout/SpaceBeforeBlockBraces:
+  Enabled: false
+
+Layout/SpaceInsideBlockBraces:
+  Enabled: false
+
+Layout/SpaceInsideBrackets:
+  Enabled: false
+
+Layout/SpaceInsideHashLiteralBraces:
+  Enabled: false
+
+Layout/TrailingBlankLines:
+  Enabled: false
 
 Lint/AmbiguousOperator:
   Enabled: false
 
 Lint/AssignmentInCondition:
-  Enabled: false
-
-Lint/Eval:
   Enabled: false
 
 Lint/HandleExceptions:
@@ -27,7 +85,13 @@ Lint/HandleExceptions:
 Lint/RescueException:
   Enabled: false
 
+###############################################################################
+#                              M E T R I C S                                  #
+###############################################################################
 Metrics/AbcSize:
+  Enabled: false
+
+Metrics/BlockLength:
   Enabled: false
 
 Metrics/BlockNesting:
@@ -45,31 +109,85 @@ Metrics/LineLength:
 Metrics/MethodLength:
   Max: 500
 
+Metrics/ModuleLength:
+  Enabled: false
+
 Metrics/ParameterLists:
   Max: 10
 
 Metrics/PerceivedComplexity:
   Enabled: false
 
+###############################################################################
+#                              N A M I N G                                    #
+###############################################################################
+Naming/AccessorMethodName:
+  Enabled: false
+
+Naming/ConstantName:
+  Enabled: false
+
+Naming/FileName:
+  Enabled: false
+
+Naming/PredicateName:
+  Enabled: false
+
+Naming/VariableNumber:
+  Enabled: false
+
+###############################################################################
+#                            P E R F O R M A N C E                            #
+###############################################################################
+Performance/Count:
+  Enabled: false
+
+Performance/Detect:
+  Enabled: false
+
+###############################################################################
+#                                  R A I L S                                  #
+###############################################################################
+Rails:
+  Enabled: true
+
 Rails/HasAndBelongsToMany:
+  Enabled: false
+
+Rails/FilePath:
+  Enabled: false
+
+Rails/FindEach:
+  Enabled: false
+
+Rails/SkipsModelValidations:
+  Enabled: false
+
+Rails/OutputSafety:
+  Enabled: false
+
+Rails/UnknownEnv:
   Enabled: false
 
 Rails/Validation:
   Enabled: false
 
-Style/AccessorMethodName:
+###############################################################################
+#                             S E C U R I T Y                                 #
+###############################################################################
+Security/Eval:
   Enabled: false
 
-Style/AlignArray:
-  Enabled: false
-
-Style/AlignHash:
-  Enabled: false
-
-Style/AlignParameters:
-  Enabled: false
-
+###############################################################################
+#                                 S T Y L E                                   #
+###############################################################################
 Style/AndOr:
+  Enabled: false
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/BlockDelimiters:
   Enabled: false
 
 Style/BracesAroundHashParameters:
@@ -90,49 +208,40 @@ Style/ColonMethodCall:
 Style/CommentAnnotation:
   Enabled: false
 
+Style/ConditionalAssignment:
+  Enabled: false
+
 Style/Documentation:
   Enabled: false
 
 Style/EmptyElse:
   Enabled: false
 
-Style/EmptyLineBetweenDefs:
+Style/EmptyMethod:
   Enabled: false
 
-Style/EmptyLinesAroundAccessModifier:
-  Enabled: false
-
-Style/EmptyLinesAroundBlockBody:
-  Enabled: false
-
-Style/EmptyLinesAroundClassBody:
-  Enabled: false
-
-Style/EmptyLinesAroundModuleBody:
-  Enabled: false
-
-Style/ExtraSpacing:
-  Enabled: false
-
-Style/FileName:
+Style/FrozenStringLiteralComment:
   Enabled: false
 
 Style/GuardClause:
   Enabled: false
 
-Style/IfUnlessModifier:
+Style/HashSyntax:
   Enabled: false
 
-Style/IndentHash:
+Style/IfUnlessModifier:
   Enabled: false
 
 Style/Lambda:
   Enabled: false
 
+Style/MethodMissing:
+  Enabled: false
+
 Style/MultilineBlockChain:
   Enabled: false
 
-Style/MultilineOperationIndentation:
+Style/MutableConstant:
   Enabled: false
 
 Style/Next:
@@ -144,7 +253,7 @@ Style/NumericLiterals:
 Style/OneLineConditional:
   Enabled: false
 
-Style/PredicateName:
+Style/ParallelAssignment:
   Enabled: false
 
 Style/RedundantReturn:
@@ -165,34 +274,16 @@ Style/Semicolon:
 Style/SignalException:
   Enabled: false
 
+Style/SingleLineBlockParams:
+  Enabled: false
+
 Style/SingleLineMethods:
   Enabled: false
 
-Style/SpaceAroundOperators:
-  Enabled: false
-
-Style/SpaceAfterColon:
-  Enabled: false
-
-Style/SpaceAfterComma:
-  Enabled: false
-
-Style/SpaceAfterControlKeyword:
-  Enabled: false
-
-Style/SpaceBeforeBlockBraces:
-  Enabled: false
-
-Style/SpaceInsideBlockBraces:
-  Enabled: false
-
-Style/SpaceInsideBrackets:
-  Enabled: false
-
-Style/SpaceInsideHashLiteralBraces:
-  Enabled: false
-
 Style/StringLiterals:
+  Enabled: false
+
+Style/SymbolArray:
   Enabled: false
 
 Style/TrivialAccessors:

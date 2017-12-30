@@ -7,7 +7,7 @@ describe User do
   #                            T H I N G S                            #
   #####################################################################
   it 'should find stuff on a day' do
-    expect(@user.things_during(Date.new(2008, 1, 1)).size).to eq(3) #[transactions(:today), notes(:today)]
+    expect(@user.things_during(Date.new(2008, 1, 1)).size).to eq(3) # [transactions(:today), notes(:today)]
   end
 
   it 'should find nothing on an empty day' do
@@ -18,20 +18,19 @@ describe User do
   #                            T O T A L I N G                        #
   #####################################################################
   it 'should total on a date' do
-    expect(@user.total_on(Date.new(2008, 1, 1))).to eq(1)
+    expect(@user.total_on(Date.new(2008, 1, 1))).to eq(-1)
   end
 
   it 'should total for the week' do
-    expect(@user.total_past_week(Date.new(2008, 1, 1))).to eq(12)
-    # Would be 8 if you value unpaid tasks
+    expect(@user.total_past_week(Date.new(2008, 1, 1))).to eq(8)
   end
 
   it 'should total this month' do
-    expect(@user.total_past_month(Date.new(2008, 1, 1))).to eq(13)
+    expect(@user.total_past_month(Date.new(2008, 1, 1))).to eq(7)
   end
 
   it 'should total this year' do
-    expect(@user.total_past_year(Date.new(2008, 1, 1))).to eq(13)
+    expect(@user.total_past_year(Date.new(2008, 1, 1))).to eq(6)
   end
 
   #####################################################################

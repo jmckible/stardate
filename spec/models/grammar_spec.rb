@@ -10,11 +10,11 @@ describe Grammar do
   end
 
   it 'should parse a date with month and day' do
-    expect(Grammar.parse_date('1/2')).to   eq(Date.new(Date.today.year, 1, 2))
+    expect(Grammar.parse_date('1/2')).to eq(Date.new(Time.zone.today.year, 1, 2))
   end
 
   it 'should parse a date with mdy' do
-    expect(Grammar.parse_date('1/2/03')).to   eq(Date.new(2003, 1, 2))
+    expect(Grammar.parse_date('1/2/03')).to eq(Date.new(2003, 1, 2))
     expect(Grammar.parse_date('1/2/2003')).to eq(Date.new(2003, 1, 2))
   end
 
@@ -23,7 +23,6 @@ describe Grammar do
     expect(Grammar.parse_date('13/1')).to    eq(Time.zone.now.to_date)
     expect(Grammar.parse_date('14/7/08')).to eq(Time.zone.now.to_date)
   end
-
 
   #####################################################################
   #                                N O T E                            #

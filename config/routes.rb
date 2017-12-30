@@ -1,4 +1,4 @@
-Stardate::Application.routes.draw do
+Rails.application.routes.draw do
 
   resources :accounts do
     get 'fund', on: :member

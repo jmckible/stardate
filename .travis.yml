@@ -1,0 +1,18 @@
+langauge: ruby
+
+dist: trusty
+sudo: false
+
+cache:
+  yarn: true
+  bundler: true
+
+services:
+  - postgresql
+
+before_script:
+  - psql -c 'create database stardate_test;' -U postgres
+  - cp config/database.yml.travis config/database.yml
+
+notifications:
+  email: false

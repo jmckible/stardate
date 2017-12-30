@@ -1,4 +1,4 @@
-class Weight < ActiveRecord::Base
+class Weight < ApplicationRecord
   belongs_to :user
 
   scope :during, ->(date){ where(date: date) }

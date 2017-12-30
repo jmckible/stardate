@@ -1,10 +1,10 @@
-class Recurring < ActiveRecord::Base
+class Recurring < ApplicationRecord
   include Taggable
 
-  belongs_to :credit, class_name: 'Account'
-  belongs_to :debit,  class_name: 'Account'
+  belongs_to :credit, class_name: 'Account', optional: true
+  belongs_to :debit,  class_name: 'Account', optional: true
   belongs_to :user
-  belongs_to :vendor
+  belongs_to :vendor, optional: true
 
   has_many :transactions, dependent: :nullify
 
@@ -13,7 +13,7 @@ class Recurring < ActiveRecord::Base
       if date == date.end_of_month
         where("day >= ?", date.mday)
       else
-       where(day: date.mday)
+        where(day: date.mday)
       end
     else
       where(day: date)
@@ -21,7 +21,7 @@ class Recurring < ActiveRecord::Base
   }
 
   def to_transaction
-    Transaction.new date: Date.today,
+    Transaction.new date: Time.zone.today,
                   amount: amount,
                   vendor: vendor,
                 tag_list: tag_list,

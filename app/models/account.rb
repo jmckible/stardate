@@ -1,7 +1,7 @@
 class Account < ActiveRecord::Base
   include Taggable
 
-  belongs_to :deferral, class_name: 'Account'
+  belongs_to :deferral, class_name: 'Account', optional: true
   belongs_to :household
 
   has_many :credits, class_name: 'Transaction', foreign_key: 'credit_id'

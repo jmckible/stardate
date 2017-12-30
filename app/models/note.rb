@@ -1,4 +1,4 @@
-class Note < ActiveRecord::Base
+class Note < ApplicationRecord
   belongs_to :user
 
   scope :during, ->(date){ where(date: date) }

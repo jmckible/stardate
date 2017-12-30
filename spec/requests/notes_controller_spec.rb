@@ -28,10 +28,10 @@ describe NotesController do
   end
 
   it 'handles /notes/:id with DELETE' do
-    expect(running {
+    expect {
       del notes(:default)
       expect(response).to redirect_to(root_path)
-    }).to change(Note, :count).by(-1)
+    }.to change(Note, :count).by(-1)
   end
 
 end

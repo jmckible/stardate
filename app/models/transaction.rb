@@ -1,14 +1,14 @@
-class Transaction < ActiveRecord::Base
+class Transaction < ApplicationRecord
   include Taggable
 
-  belongs_to :credit, class_name: 'Account'
-  belongs_to :debit,  class_name: 'Account'
+  belongs_to :credit, class_name: 'Account', optional: true
+  belongs_to :debit,  class_name: 'Account', optional: true
   belongs_to :household
-  belongs_to :recurring
+  belongs_to :recurring, optional: true
   belongs_to :user
-  belongs_to :vendor
+  belongs_to :vendor, optional: true
 
-  has_one :paycheck
+  has_one :paycheck, dependent: :nullify
 
   scope :asset_credit,    ->{ includes(:credit).where('accounts.asset = ?', true) }
   scope :asset_debit,     ->{ includes(:debit).where('accounts.asset = ?', true) }

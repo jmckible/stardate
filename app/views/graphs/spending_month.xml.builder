@@ -1,7 +1,7 @@
 xml.chart chartLeftMargin: 0, showBorder: 0, bgColor: 'ffffff', showValues: 0, numberPrefix: '$', plotGradientColor: '', formatNumberScale: 0, showLegend: 0 do
   xml.categories do
     @period.each do |date|
-      if date.day.modulo(2) == 0
+      if date.day.modulo(2).zero?
         xml.category label: ''
       else
         xml.category label: date.day

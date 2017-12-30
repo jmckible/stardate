@@ -1,5 +1,5 @@
 class GraphsController < ApplicationController
-  
+
   # GET /graphs/health
   def health
     set_period
@@ -13,7 +13,7 @@ class GraphsController < ApplicationController
       end
     end
   end
-  
+
   # GET /graphs/spending
   def spending
     set_period
@@ -32,12 +32,12 @@ class GraphsController < ApplicationController
   def set_period
     begin
       @start = Date.parse params[:start]
-    rescue
+    rescue ArgumentError
       @start = Time.zone.now.to_date - 30
     end
     begin
       @finish = Date.parse params[:finish]
-    rescue
+    rescue ArgumentError
       @finish = Time.zone.now.to_date
     end
     @period = @start..@finish

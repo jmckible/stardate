@@ -15,12 +15,12 @@ class ApplicationController < ActionController::Base
   def set_period
     begin
       @start = Date.new params[:start][:year].to_i, params[:start][:month].to_i, params[:start][:day].to_i
-    rescue
+    rescue ArgumentError, NoMethodError
       @start = Time.zone.now.to_date - 365
     end
     begin
       @finish = Date.new params[:finish][:year].to_i, params[:finish][:month].to_i, params[:finish][:day].to_i
-    rescue
+    rescue ArgumentError, NoMethodError
       @finish = Time.zone.now.to_date
     end
     @start  = @user.created_at.to_date if @start < @user.created_at.to_date

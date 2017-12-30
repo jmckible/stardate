@@ -3,30 +3,30 @@
     Name
     %br
     = f.text_field :name
-  
+
   %p
     Email
     %br
     = f.text_field :email
-    
+
   %p
     Time Zone
     %br
     = f.time_zone_select :time_zone
-    
+
   %p= submit_tag 'Update'
-  
+
 = form_for @user do |f|
   %p
     New Password
     %br
     = f.password_field :password
-    
+
   %p
     Confirm New Password
     %br
     = f.password_field :password_confirmation
-  
+
   %p= submit_tag 'Update Password'
 
 = form_for @household do |f|

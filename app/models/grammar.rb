@@ -1,12 +1,12 @@
 class Grammar
-  
+
   def self.parse(string, household)
     date     = Grammar.parse_date string.slice!(/^\d+\/\d+(\/\d+)?\s/)
     tag_list = (string.slice!(/\s\[.+\]$/) || '').gsub(/(^\s\[)|(\]$)/, '')
 
     if string =~ /^(\$|\+)/
       words = string.split ' '
-      amount = words.shift.gsub('$', '')
+      amount = words.shift.delete '$'
       amount = '-' + amount unless amount =~ /^(\+|-)/
       amount = amount.to_f.round
 
@@ -21,7 +21,7 @@ class Grammar
       transaction = household.transactions.build vendor_name: vendor, description: description, tag_list: tag_list, date: date
 
       if amount >= 0
-        income = household.accounts.income.where(name: vendor).first
+        income = household.accounts.income.find_by name: vendor
         if income
           credit = income
         else
@@ -39,7 +39,7 @@ class Grammar
           expense = household.slush
         end
 
-        if expense && expense.deferral
+        if expense&.deferral
           source = expense.deferral
         else
           source = household.cash
@@ -48,13 +48,13 @@ class Grammar
         transaction.credit = source
         transaction.debit  = expense
 
-        amount = amount * -1 if amount < 0
+        amount = amount * -1 if amount.negative?
       end
-      
+
       transaction.amount = amount
 
       transaction
-               
+
     elsif string =~ /^(Bike|bike|b )/
       distance, minutes = string.split(/^(Bike|bike|b) /).last.split(' ')
       Workout.new bike: true, date: date, distance: distance, minutes: minutes
@@ -85,11 +85,9 @@ class Grammar
     else
       Note.new date: date, body: string
     end
-  #rescue
-    #Note.new date: Time.zone.now.to_date, body: 'Failed to parse'
   end
-  
-  def self.parse_date(string=nil)
+
+  def self.parse_date(string = nil)
     return Time.zone.now.to_date if string.nil?
     pieces = string.strip.split('/').collect(&:to_i)
     case pieces.length
@@ -103,8 +101,8 @@ class Grammar
     else
       Time.zone.now.to_date
     end
-  rescue
+  rescue ArgumentError
     Time.zone.now.to_date
   end
-  
+
 end

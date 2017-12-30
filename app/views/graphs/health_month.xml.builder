@@ -2,7 +2,7 @@ xml.chart showValues: '0', showBorder: 0, bgColor: 'ffffff',  plotGradientColor:
 
   xml.categories do
     @period.each do |date|
-      if date.mday.modulo(2) == 0
+      if date.mday.modulo(2).zero?
         label = ''
       else
         label = date.day

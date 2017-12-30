@@ -33,11 +33,11 @@ class Recurring < ApplicationRecord
   end
 
   def vendor_name
-    vendor.try :name
+    vendor&.name
   end
 
   def vendor_name=(string)
-    if string.nil? || string.chop.blank?
+    if string.blank?
       self.vendor = nil
     else
       self.vendor = Vendor.where(name: string).first_or_create

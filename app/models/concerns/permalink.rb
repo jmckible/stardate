@@ -1,6 +1,8 @@
 module Permalink
-  def self.included(base)
-    base.before_validation :create_unique_permalink, :on=>:create
+  extend ActiveSupport::Concern
+
+  included do
+    before_validation :create_unique_permalink, on: :create
   end
 
   def create_unique_permalink

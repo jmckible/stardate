@@ -7,7 +7,7 @@ class User < ApplicationRecord
   def self.authenticate(email, password)
     return nil if email.blank? or password.blank?
     user = User.find_by email: email
-    user and self.encrypt(password, user.password_salt) == user.password_hash ? user : nil
+    self.encrypt(password, user&.password_salt) == user&.password_hash ? user : nil
   end
 
   def self.encrypt(password, salt)
@@ -85,12 +85,12 @@ class User < ApplicationRecord
   #####################################################################
   attr_accessor :password
 
-  validates_confirmation_of :password,                 :if=>:update_password?
-  validates_length_of       :password, :within=>4..40, :if=>:update_password?
-  validates_presence_of     :password_confirmation,    :if=>:update_password?
+  validates_confirmation_of :password,                if: :update_password?
+  validates_length_of       :password, within: 4..40, if: :update_password?
+  validates_presence_of     :password_confirmation,   if: :update_password?
 
-  validates_format_of     :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/
-  validates_length_of     :email, :within=>5..100
+  validates_format_of     :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/
+  validates_length_of     :email, within: 5..100
   validates_uniqueness_of :email
 
   validates_presence_of :household_id, :name, :time_zone

@@ -3,12 +3,12 @@
   = link_to '...', new_thing_path, class: 'long_entry', rel: 'facebox'
 
 #Graphs
-  #SpendingMonth= render partial: 'graphs/spending_month'
-  - if @user.workouts.during(@month).any? || @user.weights.during(@month).any?
-    #HealthMonth= render partial: 'graphs/health_month'
+  #SpendingMonth.js-chart-area{ style: "width: 400px;height: 280px", data: @spending_chart }
+-#   - if @user.workouts.during(@month).any? || @user.weights.during(@month).any?
+-#     #HealthMonth= render partial: 'graphs/health_month'
 .clear
-
-#BudgetMonth= render partial: 'graphs/budget_month'
+-#
+-# #BudgetMonth= render partial: 'graphs/budget_month'
 
 %h3
   = link_to @household.cash.name, @household.cash

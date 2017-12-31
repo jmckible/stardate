@@ -8,7 +8,9 @@ gem 'pg', '0.21.0'
 gem 'puma', '3.10.0'
 gem 'rails', '5.1.4'
 gem 'sass-rails', '5.0.6'
+gem 'turbolinks', '5.0.1'
 gem 'uglifier', '3.2.0'
+gem 'webpacker', '3.0.2'
 gem 'will_paginate', '3.1.6'
 
 group :development, :test do

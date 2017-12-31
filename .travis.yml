@@ -13,6 +13,9 @@ services:
 before_script:
   - psql -c 'create database stardate_test;' -U postgres
   - cp config/database.yml.travis config/database.yml
+  - nvm install 6
+  - npm install -g yarn
+  - ./bin/yarn
 
 notifications:
   email: false

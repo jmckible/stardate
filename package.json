@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "@rails/webpacker": "^3.2.0",
+    "actioncable": "^5.1.4",
+    "coffeescript": "1.12.7",
+    "highcharts": "^6.0.4",
+    "jquery": "^3.2.1",
+    "jquery.facebox": "^1.4.1",
+    "rails-ujs": "^5.1.4",
+    "turbolinks": "^5.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^4.7.1",
+    "eslint-config-standard-preact": "^1.1.6",
+    "webpack-dev-server": "^2.9.7"
+  }
+}

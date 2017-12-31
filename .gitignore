@@ -37,3 +37,6 @@ npm-debug.log
 
 # Database backup
 latest.dump*
+/public/packs
+/public/packs-test
+/node_modules

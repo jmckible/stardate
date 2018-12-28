@@ -16,6 +16,7 @@ class Account < ApplicationRecord
   scope :asset,          -> { where(asset: true) }
   scope :cash,           -> { where(asset: true, general: true) }
   scope :dashboard,      -> { where(dashboard: true) }
+  scope :earmark,        -> { where(earmark: true) }
   scope :equity,         -> { where(equity: true) }
   scope :expense,        -> { where(expense: true) }
   scope :general_income, -> { where(income: true, general: true) }

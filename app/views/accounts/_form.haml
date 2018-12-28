@@ -27,6 +27,10 @@
     = form.label :dashboard, 'Show on Dashboard'
 
   %p
+    = form.check_box :earmark
+    = form.label :earmark, 'Cash Earmark'
+
+  %p
     Status:
     = form.collection_select :status, Account.statuses, :first, :first
 

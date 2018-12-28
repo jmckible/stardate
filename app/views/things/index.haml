@@ -11,20 +11,25 @@
 #BudgetMonth= render partial: 'graphs/budget_month'
 
 %h3
+  = link_to 'Spending This Year', '#'
+  = color_money(@household.sum_non_exceptional_expenses(1.year.ago..Time.zone.today) * -1)
+
+%h3
   = link_to @household.cash.name, @household.cash
   = color_money @household.cash.balance
 
+%h3
+  = link_to 'Minus Earmarks', accounts_path
+  = color_money @household.cash.balance - @household.accounts.asset.earmark.collect{|a| a.balance.abs}.sum
+
 - @household.accounts.asset.each do |account|
-  - if account.balance.negative?
+  - if account.balance.negative? && !account.dashboard?
     %h3
       = link_to account.name, account
       = color_money account.balance
 
-%h3
-  = link_to 'Cash Income This Year', '#'
-  = color_money @household.sum_non_exceptional_income((1.year.ago..Time.zone.today), @household.cash)
-%h3
-  = link_to 'Spending This Year', '#'
-  = color_money(@household.sum_non_exceptional_expenses(1.year.ago..Time.zone.today) * -1)
+-# %h3
+-#   = link_to 'Cash Income This Year', '#'
+-#   = color_money @household.sum_non_exceptional_income((1.year.ago..Time.zone.today), @household.cash)
 
 = render partial: 'things', object: @things

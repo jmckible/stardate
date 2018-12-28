@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_28_232127) do
+ActiveRecord::Schema.define(version: 2018_12_28_233604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,7 +28,8 @@ ActiveRecord::Schema.define(version: 2018_12_28_232127) do
     t.boolean "dashboard", default: false
     t.boolean "accruing", default: false
     t.integer "status", default: 0
-    t.index ["asset"], name: "index_accounts_on_asset"
+    t.boolean "earmark", default: false
+    t.index ["asset", "earmark"], name: "index_accounts_on_asset_and_earmark"
     t.index ["dashboard"], name: "index_accounts_on_dashboard"
     t.index ["deferral_id"], name: "index_accounts_on_deferral_id"
     t.index ["expense"], name: "index_accounts_on_expense"

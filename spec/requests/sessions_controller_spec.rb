@@ -4,7 +4,7 @@ describe SessionsController do
 
   it 'handles /sessions/new with GET' do
     gt [:new, :session]
-    expect(response).to be_success
+    expect(response).to be_successful
   end
 
   it 'redirects to root path on request to /sessions/new with logged in user and GET' do
@@ -25,7 +25,7 @@ describe SessionsController do
   it 'denies access to a user with invalid credentials' do
     pst sessions_path
     expect(response).to render_template(:new)
-    expect(response).to be_success
+    expect(response).to be_successful
   end
 
   it 'logs out a user' do

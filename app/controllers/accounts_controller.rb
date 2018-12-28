@@ -38,7 +38,7 @@ class AccountsController < ApplicationController
   # PUT /accounts/:id
   def update
     @account = @household.accounts.find params[:id]
-    @account.update_attributes account_params
+    @account.update account_params
     redirect_to @account
   end
 

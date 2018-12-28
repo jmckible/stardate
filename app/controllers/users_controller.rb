@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   # PUT /users/:id
   def update
-    @user.update_attributes! params.require(:user).permit(:name, :email, :time_zone, :password, :password_confirmation)
+    @user.update! params.require(:user).permit(:name, :email, :time_zone, :password, :password_confirmation)
     redirect_to [:edit, @user]
   rescue ActiveRecord::RecordInvalid
     render action: 'edit'

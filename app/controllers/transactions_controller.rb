@@ -36,7 +36,7 @@ class TransactionsController < ApplicationController
   # PUT /transactions/:id
   def update
     @transaction = @household.transactions.find params[:id]
-    @transaction.update_attributes! transaction_params
+    @transaction.update! transaction_params
     redirect_back_or root_url
   end
 

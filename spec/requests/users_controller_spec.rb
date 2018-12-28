@@ -5,7 +5,7 @@ describe UsersController do
 
   it 'handles /users/:id/edit with GET' do
     gt [:edit, @current_user]
-    expect(response).to be_success
+    expect(response).to be_successful
   end
 
   it 'handles /users/:id with valid params and PATCH' do
@@ -18,7 +18,7 @@ describe UsersController do
     ptch @current_user, user: {email: ''}
     expect(@current_user.reload.email).not_to be_blank
     expect(response).to render_template(:edit)
-    expect(response).to be_success
+    expect(response).to be_successful
   end
 
 end

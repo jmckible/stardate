@@ -4,10 +4,10 @@
 
 = form_for @transaction do |f|
   %p= f.date_select :date,          order: [:month, :day, :year]
-  %p= f.text_field  :amount,        class: 'money'
-  %p= f.text_field  :vendor_name, default: 'vendor'
-  %p= f.text_field  :description, default: 'description'
-  %p= f.text_field  :tag_list,    default: 'tags'
+  %p= f.text_field :amount,        class: 'money'
+  %p= f.text_field :vendor_name, default: 'vendor'
+  %p= f.text_field :description, default: 'description'
+  %p= f.text_field :tag_list,    default: 'tags'
 
   %p
     = f.check_box :secret

@@ -15,7 +15,7 @@ class WorkoutsController < ApplicationController
   # PUT /workouts/:id
   def update
     @workout = @user.workouts.find params[:id]
-    @workout.update_attributes params.require(:workout).permit(:date, :minutes, :description, :distance)
+    @workout.update params.require(:workout).permit(:date, :minutes, :description, :distance)
     redirect_back_or root_url
   end
 

@@ -14,7 +14,7 @@ class NotesController < ApplicationController
   # PUT /notes/:id
   def update
     @note = @user.notes.find params[:id]
-    @note.update_attributes params.require(:note).permit(:date, :body)
+    @note.update params.require(:note).permit(:date, :body)
     redirect_back_or root_url
   end
 

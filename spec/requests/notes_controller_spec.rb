@@ -5,12 +5,12 @@ describe NotesController do
 
   it 'handles /notes with GET' do
     get notes_path
-    expect(response).to be_success
+    expect(response).to be_successful
   end
 
   it 'handles /notes/:id with GET' do
     gt notes(:default)
-    expect(response).to be_success
+    expect(response).to be_successful
   end
 
   it 'handles /notes/:id with valid params and PATCH' do

@@ -1,5 +1,5 @@
 AllCops:
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 2.5
   Include:
     - 'app/**/*.rb'
     - 'lib/**/*.rb'
@@ -7,11 +7,8 @@ AllCops:
   Exclude:
     - 'bin/**/*'
     - 'config/**/*'
-    - 'cookbooks/**/*'
     - 'db/**/*.rb'
-    - 'lib/geolocal.rb'
     - 'node_modules/**/*'
-    - 'vendor/**/*'
 
 ###############################################################################
 #                              L A Y O U T                                    #
@@ -23,6 +20,9 @@ Layout/AlignHash:
   Enabled: false
 
 Layout/AlignParameters:
+  Enabled: false
+
+Layout/EmptyLineAfterGuardClause:
   Enabled: false
 
 Layout/EmptyLineBetweenDefs:
@@ -62,9 +62,6 @@ Layout/SpaceBeforeBlockBraces:
   Enabled: false
 
 Layout/SpaceInsideBlockBraces:
-  Enabled: false
-
-Layout/SpaceInsideBrackets:
   Enabled: false
 
 Layout/SpaceInsideHashLiteralBraces:
@@ -151,6 +148,9 @@ Performance/Detect:
 Rails:
   Enabled: true
 
+Rails/DynamicFindBy:
+  Enabled: false
+
 Rails/HasAndBelongsToMany:
   Enabled: false
 
@@ -158,6 +158,9 @@ Rails/FilePath:
   Enabled: false
 
 Rails/FindEach:
+  Enabled: false
+
+Rails/InverseOf:
   Enabled: false
 
 Rails/SkipsModelValidations:
@@ -176,6 +179,9 @@ Rails/Validation:
 #                             S E C U R I T Y                                 #
 ###############################################################################
 Security/Eval:
+  Enabled: false
+
+Security/Open:
   Enabled: false
 
 ###############################################################################
@@ -220,6 +226,9 @@ Style/EmptyElse:
 Style/EmptyMethod:
   Enabled: false
 
+Style/EvalWithLocation:
+  Enabled: false
+
 Style/FrozenStringLiteralComment:
   Enabled: false
 
@@ -235,7 +244,13 @@ Style/IfUnlessModifier:
 Style/Lambda:
   Enabled: false
 
-Style/MethodMissing:
+Style/MethodMissingSuper:
+  Enabled: false
+
+Style/MissingRespondToMissing:
+  Enabled: false
+
+Style/MixinGrouping:
   Enabled: false
 
 Style/MultilineBlockChain:

@@ -15,7 +15,7 @@
   = color_money @household.cash.balance
 
 - @household.accounts.asset.each do |account|
-  - if account.balance < 0
+  - if account.balance.negative?
     %h3
       = link_to account.name, account
       = color_money account.balance

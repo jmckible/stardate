@@ -2,7 +2,7 @@
 
 = form_for @note do |f|
   %p= f.date_select :date, order: [:month, :day, :year]
-  %p= f.text_area  :body, default: 'note'
+  %p= f.text_area :body, default: 'note'
   %p
     = submit_tag 'Update'
     or

@@ -12,12 +12,12 @@ describe ThingsController do
 
   it 'handles / with GET' do
     gt root_path
-    expect(response).to be_success
+    expect(response).to be_successful
   end
 
   it 'handles /things/new with GET' do
     gt [:new, :thing]
-    expect(response).to be_success
+    expect(response).to be_successful
   end
 
   it 'handles /things with note attributes and POST' do

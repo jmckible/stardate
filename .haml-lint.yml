@@ -9,6 +9,9 @@ linters:
   IdNames:
     enabled: false
 
+  RepeatedId:
+    enabled: false
+
   InlineStyles:
     enabled: false
 

@@ -5,12 +5,12 @@ describe VendorsController do
 
   it 'handles /vendors with GET' do
     gt vendors_path
-    expect(response).to be_success
+    expect(response).to be_successful
   end
 
   it 'handles /vendors/:id with GET' do
     gt vendors(:default)
-    expect(response).to be_success
+    expect(response).to be_successful
   end
 
 end

@@ -6,7 +6,7 @@ describe DateController do
   it 'handles /date/:year/:month/:day with valid date and GET' do
     gt date_path(year: 2008, month: 1, day: 1)
     expect(assigns(:date)).to eq(Date.new(2008, 1, 1))
-    expect(response).to be_success
+    expect(response).to be_successful
   end
 
   it 'handles /date/:year/:month/:day with invalid date and GET' do

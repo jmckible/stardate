@@ -24,8 +24,7 @@
                 = link_to thing.date, date_link(thing.date)
               %td
                 = vendor_name thing
-                - unless thing.description.blank?
-                  = thing.description
+                = thing.description.presence
                 %span.tags= linked_tag_list thing
                 - if thing.secret?
                   %span.secret SECRET

@@ -9,7 +9,7 @@ class WeightsController < ApplicationController
   # PUT /weights/:id
   def update
     @weight = @user.weights.find params[:id]
-    @weight.update_attributes params.require(:weight).permit(:date, :weight)
+    @weight.update params.require(:weight).permit(:date, :weight)
     redirect_back_or root_url
   end
 

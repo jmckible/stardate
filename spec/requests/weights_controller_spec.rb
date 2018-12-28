@@ -5,7 +5,7 @@ describe WeightsController do
 
   it 'handles /weights/:id with GET' do
     gt weights(:default)
-    expect(response).to be_success
+    expect(response).to be_successful
   end
 
   it 'handles /weights/:id with valid params and PATCH' do

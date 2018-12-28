@@ -27,7 +27,7 @@ class RecurringsController < ApplicationController
   # PUT /recurrings/:id
   def update
     @recurring = @user.recurrings.find params[:id]
-    @recurring.update_attributes recurrings_params
+    @recurring.update recurrings_params
     redirect_to recurrings_url
   end
 

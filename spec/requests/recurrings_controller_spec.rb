@@ -5,17 +5,17 @@ describe RecurringsController do
 
   it 'handles /recurrings with GET' do
     gt recurrings_path
-    expect(response).to be_success
+    expect(response).to be_successful
   end
 
   it 'handles /recurrings/:id with GET' do
     gt recurrings(:default)
-    expect(response).to be_success
+    expect(response).to be_successful
   end
 
   it 'handles /recurrings/new with GET' do
     gt [:new, :recurring]
-    expect(response).to be_success
+    expect(response).to be_successful
   end
 
   it 'handles /recurrings with valid params and POST' do

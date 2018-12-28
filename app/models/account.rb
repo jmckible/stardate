@@ -1,6 +1,8 @@
 class Account < ApplicationRecord
   include Taggable
 
+  enum status: [:active, :retired]
+
   belongs_to :deferral, class_name: 'Account', optional: true
   belongs_to :household
 

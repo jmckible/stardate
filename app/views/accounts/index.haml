@@ -44,9 +44,9 @@
     %td.credit.num= number_with_delimiter(@household.transactions.since(@user.created_at).where('credit_id is not null').sum(:amount))
     %td.num= color_money((@household.transactions.asset_debit.since(@user.created_at).sum(:amount) - @household.transactions.asset_credit.since(@user.created_at).sum(:amount)) + (@household.transactions.expense_debit.since(@user.created_at).sum(:amount) - @household.transactions.expense_credit.since(@user.created_at).sum(:amount)) + (@household.transactions.income_debit.since(@user.created_at).sum(:amount) - @household.transactions.income_credit.since(@user.created_at).sum(:amount)))
 
-%h2 Assets
+%h2 Active Assets
 %table.data
-  = render partial: 'accounts', object: @household.accounts.asset
+  = render partial: 'accounts', object: @household.accounts.active.asset
   %tr.total
     %td Net
     %td.num= color_money @household.transactions.asset_debit.since(@user.created_at).sum(:amount)
@@ -70,3 +70,7 @@
     %td.num= not_zero @household.transactions.income_debit.since(@user.created_at).sum(:amount)
     %td.credit.num= number_with_delimiter @household.transactions.income_credit.since(@user.created_at).sum(:amount)
     %td.num= color_money(@household.transactions.income_debit.since(@user.created_at).sum(:amount) - @household.transactions.income_credit.since(@user.created_at).sum(:amount))
+
+%h2 Retired Assets
+%table.data
+  = render partial: 'accounts', object: @household.accounts.retired.asset

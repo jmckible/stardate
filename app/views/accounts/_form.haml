@@ -26,6 +26,11 @@
     = form.check_box :dashboard
     = form.label :dashboard, 'Show on Dashboard'
 
+  %p
+    Status:
+    = form.collection_select :status, Account.statuses, :first, :first
+
+
 - if @account.expense?
   %p
     Deferral

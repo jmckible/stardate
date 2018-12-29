@@ -20,7 +20,11 @@
 
 %h3
   = link_to 'Minus Earmarks', accounts_path
-  = color_money @household.cash.balance - @household.accounts.asset.earmark.collect{|a| a.balance.abs}.sum
+  = color_money @household.cash_minus_earmarks
+
+%h3
+  = link_to 'Budget Remaining', accounts_path
+  = color_money @household.biweekly_budget_balance
 
 - @household.accounts.asset.each do |account|
   - if account.balance.negative? && !account.dashboard?

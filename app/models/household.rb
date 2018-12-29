@@ -32,5 +32,20 @@ class Household < ApplicationRecord
     [cash, general_income, slush].compact
   end
 
+  def cash_minus_earmarks
+    cash.balance - accounts.asset.earmark.collect{|a| a.balance.abs}.sum
+  end
+
+  def biweekly_budget_balance
+    if Time.zone.today.mday >= 15
+      date = (Time.zone.today.mday - 15).days.ago
+    else
+      date = (Time.zone.today.mday - Time.zone.today.mday + 1).days.ago
+    end
+
+    spending = cash.credits.expense_debit.since(date).not_exceptional.sum(:amount)
+    3000 - spending - accounts.sum(:budget)
+  end
+
   validates :name, presence: true
 end

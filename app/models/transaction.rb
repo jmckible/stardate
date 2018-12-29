@@ -29,6 +29,7 @@ class Transaction < ApplicationRecord
 
   scope :since, ->(date){ where("transactions.date >= ?", date)}
 
+  scope :not_exceptional, ->{ where(exceptional: false) }
   scope :visible_by, ->(user){ where('transactions.date >= ? ', user.created_at)}
 
   def vendor_name

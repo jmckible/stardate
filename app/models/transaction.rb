@@ -8,8 +8,6 @@ class Transaction < ApplicationRecord
   belongs_to :user
   belongs_to :vendor, optional: true
 
-  has_one :paycheck, dependent: :nullify
-
   scope :asset_credit,    ->{ includes(:credit).where('accounts.asset = ?', true) }
   scope :asset_debit,     ->{ includes(:debit).where('accounts.asset = ?', true) }
 

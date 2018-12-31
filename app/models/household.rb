@@ -38,9 +38,9 @@ class Household < ApplicationRecord
 
   def biweekly_budget_balance
     if Time.zone.today.mday >= 15
-      date = (Time.zone.today.mday - 15).days.ago
+      date = (Date.new Time.zone.today.year, Time.zone.today.month, 15).beginning_of_day
     else
-      date = (Time.zone.today.mday - Time.zone.today.mday + 1).days.ago
+      date = (Date.new Time.zone.today.year, Time.zone.today.month, 1).beginning_of_day
     end
 
     spending = cash.credits.expense_debit.since(date).not_exceptional.sum(:amount)

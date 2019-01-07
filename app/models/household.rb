@@ -25,7 +25,11 @@ class Household < ApplicationRecord
   end
 
   def cash_income(period)
-    cash.debits.on(period).sum(:amount)
+    cash.debits.during(period).sum(:amount)
+  end
+
+  def all_income(period)
+    transactions.income_credit.during(period).sum(:amount)
   end
 
   def core_accounts

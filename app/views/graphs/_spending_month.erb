@@ -45,17 +45,18 @@
         }
       },
       series: [{
+         name: 'Expense',
+         data: <%= @month.collect{|date| @household.sum_non_exceptional_expenses(@month.first..date)}.to_json %>,
+         pointInterval: 24 * 3600 * 1000,
+         pointStart: Date.UTC(<%= (@month.first - 1.month).year %>, <%= (@month.first - 1.month).month %>, <%= (@month.first - 1.month).day %>),
+         color: '#FF00CC'
+       }, {
         name: 'Income',
-        data: <%= @month.collect{|date| @household.cash_income @month.first..date}.to_json %>,
+        // data: <%= @month.collect{|date| @household.cash_income @month.first..date}.to_json %>,
+        data: <%= @month.collect{|date| @household.all_income @month.first..date}.to_json %>,
         pointInterval: 24 * 3600 * 1000,
         pointStart: Date.UTC(<%= (@month.first - 1.month).year %>, <%= (@month.first - 1.month).month %>, <%= (@month.first - 1.month).day %>),
         color: '#00CCFF'
-      }, {
-        name: 'Expense',
-        data: <%= @month.collect{|date| @household.sum_non_exceptional_expenses(@month.first..date)}.to_json %>,
-        pointInterval: 24 * 3600 * 1000,
-        pointStart: Date.UTC(<%= (@month.first - 1.month).year %>, <%= (@month.first - 1.month).month %>, <%= (@month.first - 1.month).day %>),
-        color: '#FF00CC'
       }]
     });
   });

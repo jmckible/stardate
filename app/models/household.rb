@@ -47,5 +47,17 @@ class Household < ApplicationRecord
     3000 - spending - accounts.sum(:budget)
   end
 
+  def last_period_budget_balance
+    if Time.zone.today.mday >= 15
+      range = Date.new(Time.zone.today.year, Time.zone.today.month, 1)..Date.new(Time.zone.today.year, Time.zone.today.month, 15)
+    else
+      last_month = 1.month.ago
+      range = Date.new(last_month.year, last_month.month, 15)..last_month.end_of_month
+    end
+
+    spending = cash.credits.expense_debit.during(range).not_exceptional.sum(:amount)
+    3000 - spending - accounts.sum(:budget)
+  end
+
   validates :name, presence: true
 end

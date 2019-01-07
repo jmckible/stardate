@@ -23,14 +23,19 @@
   = color_money @household.cash_minus_earmarks
 
 %h3
-  = link_to 'Budget Remaining', accounts_path
-  = color_money @household.biweekly_budget_balance
+  = link_to 'Previous Budget', accounts_path
+  = color_money @household.last_period_budget_balance
 
 - @household.accounts.asset.each do |account|
   - if account.balance.negative? && !account.dashboard?
     %h3
       = link_to account.name, account
       = color_money account.balance
+
+%h3
+  = link_to 'Budget Remaining', accounts_path
+  = color_money @household.biweekly_budget_balance
+
 
 -# %h3
 -#   = link_to 'Cash Income This Year', '#'

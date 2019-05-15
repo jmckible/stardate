@@ -36,8 +36,8 @@ class Household < ApplicationRecord
     [cash, general_income, slush].compact
   end
 
-  def cash_minus_earmarks
-    cash.balance - accounts.asset.earmark.collect{|a| a.balance.abs}.sum
+  def cash_plus_earmarks
+    cash.balance + accounts.asset.earmark.collect{|a| a.balance.abs}.sum
   end
 
   def biweekly_budget_balance

@@ -11,26 +11,27 @@
 #BudgetMonth= render partial: 'graphs/budget_month'
 
 %h3
-  = link_to 'Spending This Year', '#'
+  = link_to 'This Year', '#'
   = color_money(@household.sum_non_exceptional_expenses(1.year.ago..Time.zone.today) * -1)
 
-%h3
-  = link_to @household.cash.name, @household.cash
-  = color_money @household.cash.balance
+-# %h3
+-#   = link_to @household.cash.name, @household.cash
+-#   = color_money @household.cash.balance
 
 %h3
-  = link_to 'Minus Earmarks', accounts_path
-  = color_money @household.cash_minus_earmarks
+  = link_to 'Liquid', accounts_path
+  = color_money @household.cash_plus_earmarks
 
-%h3
-  = link_to 'Previous Budget', accounts_path
-  = color_money @household.last_period_budget_balance
+- if [1, 2, 3, 15, 16, 17].include?(Time.zone.now.mday)
+  %h3
+    = link_to 'Last Two Weeks', accounts_path
+    = color_money @household.last_period_budget_balance
 
-- @household.accounts.asset.each do |account|
-  - if account.balance.negative? && !account.dashboard?
-    %h3
-      = link_to account.name, account
-      = color_money account.balance
+-# - @household.accounts.asset.each do |account|
+-#   - if account.balance.negative? && !account.dashboard?
+-#     %h3
+-#       = link_to account.name, account
+-#       = color_money account.balance
 
 %h3
   = link_to 'Budget Remaining', accounts_path

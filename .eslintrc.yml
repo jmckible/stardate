@@ -1,0 +1,93 @@
+env:
+  browser: true
+  commonjs: true
+  es6: true
+extends:
+  - 'eslint:recommended'
+parser: '@babel/eslint-parser'
+parserOptions:
+  sourceType: module
+  ecmaFeatures:
+    experimentalObjectRestSpread: true
+rules:
+  array-bracket-spacing: error
+  array-callback-return: error
+  arrow-body-style: error
+  arrow-parens: error
+  arrow-spacing: error
+  brace-style:
+    - error
+    - 1tbs
+    - allowSingleLine: true
+  comma-dangle: error
+  comma-style: error
+  dot-notation: error
+  eol-last: error
+  eqeqeq: error
+  func-style: 0
+  generator-star-spacing: error
+  keyword-spacing: error
+  indent:
+    - error
+    - 2
+  linebreak-style:
+    - error
+    - unix
+  newline-per-chained-call:
+    - error
+    - ignoreChainWithDepth: 3
+  no-array-constructor: error
+  no-case-declarations: error
+  no-confusing-arrow: error
+  no-console: off
+  no-dupe-class-members: error
+  no-duplicate-imports: error
+  no-eval: error
+  no-iterator: error
+  no-loop-func: error
+  no-nested-ternary: error
+  no-new-func: error
+  no-new-object: error
+  no-param-reassign: error
+  no-restricted-globals: error
+  no-restricted-properties: error
+  no-restricted-syntax: error
+  no-undef: off
+  no-unneeded-ternary: error
+  no-useless-constructor: error
+  no-useless-escape: error
+  no-whitespace-before-property: error
+  no-var: error
+  object-curly-spacing:
+    - error
+    - always
+    - objectsInObjects: false
+  object-shorthand: error
+  one-var:
+    - error
+    - never
+  prefer-arrow-callback: error
+  prefer-const: error
+  prefer-rest-params: error
+  prefer-spread: error
+  prefer-template: error
+  quote-props:
+    - error
+    - as-needed
+  quotes:
+    - error
+    - single
+  radix:
+    - error
+    - as-needed
+  semi:
+    - error
+    - never
+  space-before-blocks: error
+  space-before-function-paren:
+    - error
+    - never
+  space-infix-ops: error
+  spaced-comment: error
+  space-in-parens: error
+  wrap-iife: error

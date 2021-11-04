@@ -40,8 +40,8 @@
     %td.num= color_money(@household.transactions.income_debit.since(@user.created_at).sum(:amount) - @household.transactions.income_credit.since(@user.created_at).sum(:amount))
   %tr.total
     %td Check
-    %td.num= color_money(@household.transactions.where('debit_id is not null').since(@user.created_at).sum(:amount))
-    %td.credit.num= number_with_delimiter(@household.transactions.since(@user.created_at).where('credit_id is not null').sum(:amount))
+    %td.num= color_money(@household.transactions.where.not(debit_id: nil).since(@user.created_at).sum(:amount))
+    %td.credit.num= number_with_delimiter(@household.transactions.since(@user.created_at).where.not(credit_id: nil).sum(:amount))
     %td.num= color_money((@household.transactions.asset_debit.since(@user.created_at).sum(:amount) - @household.transactions.asset_credit.since(@user.created_at).sum(:amount)) + (@household.transactions.expense_debit.since(@user.created_at).sum(:amount) - @household.transactions.expense_credit.since(@user.created_at).sum(:amount)) + (@household.transactions.income_debit.since(@user.created_at).sum(:amount) - @household.transactions.income_credit.since(@user.created_at).sum(:amount)))
 
 %h2 Active Assets

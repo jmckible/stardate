@@ -1,31 +1,33 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.1'
+ruby '3.0.1'
 
-gem 'coffee-rails', '4.2.2'
-gem 'haml', '5.0.4'
-gem 'jquery-rails', '4.3.3'
-gem 'parser', '2.5.1.2'
-gem 'pg', '1.1.3'
-gem 'puma', '3.12.0'
-gem 'rails', '5.2.2'
-gem 'sass-rails', '5.0.7'
-gem 'uglifier', '4.1.20'
-gem 'will_paginate', '3.1.6'
+gem 'bootsnap', '1.7.5', require: false
+gem 'haml', '5.2.1'
+gem 'image_processing', '1.12.1'
+gem 'parser', '3.0.1.1'
+gem 'pg', '1.2.3'
+gem 'puma', '5.3.2'
+gem 'rails', '6.1.4.1'
+gem 'sass-rails', '6.0.0'
+gem 'sprockets', '4.0.2'
+gem 'webpacker', '5.4.0'
+gem 'will_paginate', '3.3.1'
 
 group :development, :test do
-  gem 'haml_lint', '0.28.0'
-  gem 'rspec-rails', '3.8.1'
-  gem 'rubocop', '0.61.1'
+  gem 'haml_lint', '0.37.1'
+  gem 'rspec-rails', '5.0.1'
+  gem 'rubocop', '1.17.0' # '0.82.0'
+  gem 'rubocop-rails', '2.11.0', require: false
 end
 
 group :development do
-  gem 'listen', '3.1.5'
+  gem 'listen', '3.5.1'
   gem 'spring-watcher-listen'
-  gem 'web-console', '3.7.0'
+  gem 'web-console', '4.1.0'
 end
 
 group :test do
-  gem 'rails-controller-testing', '1.0.4'
+  gem 'rails-controller-testing', '1.0.5' # github: 'rails/rails-controller-testing', branch: 'master'
 end

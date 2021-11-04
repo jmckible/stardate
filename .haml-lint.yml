@@ -32,3 +32,6 @@ linters:
 
   UnnecessaryStringOutput:
     enabled: false
+
+  ViewLength:
+    enabled: false

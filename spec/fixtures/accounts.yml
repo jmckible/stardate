@@ -1,7 +1,11 @@
-cash:
+checking:
   household: default
   asset: true
-  name: cash
+  name: checking
+
+credit_card:
+  household: default
+  name: Credit Card
 
 gas_savings:
   household: default

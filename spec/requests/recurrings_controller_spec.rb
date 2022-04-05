@@ -20,7 +20,7 @@ describe RecurringsController do
 
   it 'handles /recurrings with valid params and POST' do
     expect {
-      pst recurrings_path, recurring: { day: 1, amount: 10, debit_id: accounts(:rent).id, credit_id: accounts(:cash).id }
+      pst recurrings_path, recurring: { day: 1, amount: 10, debit_id: accounts(:rent).id, credit_id: accounts(:checking).id }
       expect(assigns(:recurring).user).to eq(users(:default))
       expect(response).to redirect_to(recurrings_path)
     }.to change(Recurring, :count).by(1)

@@ -14,7 +14,7 @@
     = form.check_box :income
     = form.label :income, 'Income'
 
-- if @account.asset? && @account != @household.cash
+- if @account.asset? && @account != @household.checking
   %p Every Two Weeks Save:
   %p= form.text_field :budget, default: 'Budget Balance', class: 'money'
 
@@ -28,7 +28,7 @@
 
   %p
     = form.check_box :earmark
-    = form.label :earmark, 'Cash Earmark'
+    = form.label :earmark, 'Checking Earmark'
 
   %p
     Status:

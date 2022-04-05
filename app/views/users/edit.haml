@@ -31,9 +31,14 @@
 
 = form_for @household do |f|
   %p
-    Cash Account
+    Primary Checking Account
     %br
-    = f.collection_select :cash_id, @household.accounts.asset, :id, :name
+    = f.collection_select :checking_id, @household.accounts.asset, :id, :name
+
+  %p
+    Primary Credit Card
+    %br
+    = f.collection_select :credit_card_id, @household.accounts.asset, :id, :name
 
   %p
     Slush Expense

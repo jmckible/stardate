@@ -5,7 +5,7 @@ class ReportsController < ApplicationController
     set_period
 
     @income = @household.sum_income @period
-    @exceptional_income = @household.sum_non_exceptional_income @period, @household.cash
+    @exceptional_income = @household.sum_non_exceptional_income @period, @household.checking
 
     @expenses = @household.sum_expenses(@period) * -1
     @exceptional_expenses = @household.sum_non_exceptional_expenses(@period) * -1

@@ -1,6 +1,7 @@
 default:
   name: Default
-  cash: cash
+  checking: checking
+  credit_card: credit_card
   general_income: general_income
   slush: slush
 

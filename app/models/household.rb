@@ -1,7 +1,8 @@
 class Household < ApplicationRecord
   include Totalling
 
-  belongs_to :cash,           class_name: 'Account'
+  belongs_to :checking,       class_name: 'Account'
+  belongs_to :credit_card,    class_name: 'Account'
   belongs_to :general_income, class_name: 'Account'
   belongs_to :slush,          class_name: 'Account'
 
@@ -24,8 +25,8 @@ class Household < ApplicationRecord
     users.first
   end
 
-  def cash_income(period)
-    cash.debits.during(period).sum(:amount)
+  def checking_income(period)
+    checking.debits.during(period).sum(:amount)
   end
 
   def all_income(period)
@@ -40,11 +41,11 @@ class Household < ApplicationRecord
   end
 
   def core_accounts
-    [cash, general_income, slush].compact
+    [checking, credit_card, general_income, slush].compact
   end
 
-  def cash_plus_earmarks
-    cash.balance + accounts.asset.earmark.collect{|a| a.balance.abs}.sum
+  def checking_plus_earmarks
+    checking.balance + accounts.asset.earmark.collect{|a| a.balance.abs}.sum
   end
 
   def biweekly_budget_balance
@@ -54,7 +55,7 @@ class Household < ApplicationRecord
       date = (Date.new Time.zone.today.year, Time.zone.today.month, 1).beginning_of_day
     end
 
-    spending = cash.credits.expense_debit.since(date).not_exceptional.sum(:amount)
+    spending = checking.credits.expense_debit.since(date).not_exceptional.sum(:amount)
     3000 - spending - accounts.sum(:budget)
   end
 
@@ -66,7 +67,7 @@ class Household < ApplicationRecord
       range = Date.new(last_month.year, last_month.month, 15)..last_month.end_of_month
     end
 
-    spending = cash.credits.expense_debit.during(range).not_exceptional.sum(:amount)
+    spending = checking.credits.expense_debit.during(range).not_exceptional.sum(:amount)
     3000 - spending - accounts.sum(:budget)
   end
 

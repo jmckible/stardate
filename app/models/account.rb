@@ -1,7 +1,7 @@
 class Account < ApplicationRecord
   include Taggable
 
-  enum status: {:active => 0, :retired => 1}
+  enum status: { active: 0, retired: 1 }
 
   belongs_to :deferral, class_name: 'Account', optional: true
   belongs_to :household
@@ -13,17 +13,14 @@ class Account < ApplicationRecord
     household.transactions.where('debit_id = ? OR credit_id = ?', id, id)
   end
 
-  scope :asset,          -> { where(asset: true) }
-  scope :cash,           -> { where(asset: true, general: true) }
-  scope :dashboard,      -> { where(dashboard: true) }
-  scope :earmark,        -> { where(earmark: true) }
-  scope :equity,         -> { where(equity: true) }
-  scope :expense,        -> { where(expense: true) }
-  scope :general_income, -> { where(income: true, general: true) }
-  scope :income,         -> { where(income: true) }
-  scope :liability,      -> { where(liability: true) }
-  scope :slush,          -> { where(expense: true, general: true) }
-  scope :other_than,     ->(account){ where.not(id: account.id) }
+  scope :asset,      -> { where(asset: true) }
+  scope :dashboard,  -> { where(dashboard: true) }
+  scope :earmark,    -> { where(earmark: true) }
+  scope :equity,     -> { where(equity: true) }
+  scope :expense,    -> { where(expense: true) }
+  scope :income,     -> { where(income: true) }
+  scope :liability,  -> { where(liability: true) }
+  scope :other_than, ->(account){ where.not(id: account.id) }
 
   #############################################################################
   #                                 B A L A N C E                             #
@@ -44,9 +41,9 @@ class Account < ApplicationRecord
     household.core_accounts.include?(self)
   end
 
-  # For funding deferred accounts from cash
+  # For funding deferred accounts from checking
   def fund
-    transaction = debits.build credit: household.cash, date: Time.zone.today, user: household.default_user, household: household
+    transaction = debits.build credit: household.checking, date: Time.zone.today, user: household.default_user, household: household
 
     if accruing?
       transaction.amount = budget

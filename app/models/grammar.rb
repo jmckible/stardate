@@ -28,7 +28,7 @@ class Grammar
           credit = household.general_income
         end
 
-        transaction.debit = household.cash
+        transaction.debit = household.checking
         transaction.credit = credit
 
       else
@@ -42,7 +42,7 @@ class Grammar
         if expense&.deferral
           source = expense.deferral
         else
-          source = household.cash
+          source = household.checking
         end
 
         transaction.credit = source

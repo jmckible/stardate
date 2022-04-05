@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_01_222317) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_05_202937) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -78,10 +78,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_01_222317) do
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.integer "savings_goal", default: 0
-    t.integer "cash_id"
+    t.integer "checking_id"
     t.integer "slush_id"
     t.integer "general_income_id"
-    t.index ["cash_id"], name: "index_households_on_cash_id"
+    t.integer "credit_card_id"
+    t.index ["checking_id"], name: "index_households_on_checking_id"
     t.index ["general_income_id"], name: "index_households_on_general_income_id"
     t.index ["slush_id"], name: "index_households_on_slush_id"
   end

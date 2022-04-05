@@ -33,12 +33,12 @@
   = color_money(@household.sum_non_exceptional_expenses(1.year.ago..Time.zone.today) * -1)
 
 -# %h3
--#   = link_to @household.cash.name, @household.cash
--#   = color_money @household.cash.balance
+-#   = link_to @household.checking.name, @household.checking
+-#   = color_money @household.checking.balance
 
 %h3
   = link_to 'Liquid', accounts_path
-  = color_money @household.cash_plus_earmarks
+  = color_money @household.checking_plus_earmarks
 
 - if [1, 2, 3, 15, 16, 17].include?(Time.zone.now.mday)
   %h3
@@ -58,6 +58,6 @@
 
 -# %h3
 -#   = link_to 'Cash Income This Year', '#'
--#   = color_money @household.sum_non_exceptional_income((1.year.ago..Time.zone.today), @household.cash)
+-#   = color_money @household.sum_non_exceptional_income((1.year.ago..Time.zone.today), @household.checking)
 
 = render partial: 'things', object: @things

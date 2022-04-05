@@ -21,16 +21,8 @@ class Grammar
       transaction = household.transactions.build vendor_name: vendor, description: description, tag_list: tag_list, date: date
 
       if amount >= 0
-        income = household.accounts.income.find_by name: vendor
-        if income
-          credit = income
-        else
-          credit = household.general_income
-        end
-
-        transaction.debit = household.checking
-        transaction.credit = credit
-
+        transaction.debit = household.cash
+        transaction.credit = household.accounts.income.find_by(name: vendor) || household.general_income
       else
         key_tag = transaction.tags.detect{|t| household.accounts.expense.tagged_with t}
         if key_tag

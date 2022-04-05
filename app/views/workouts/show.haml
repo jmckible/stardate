@@ -1,7 +1,7 @@
 = modal do
   %h1 Edit #{@workout.name}
 
-  = form_for @workout do |f|
+  = form_with model: @workout, data: { turbo: false } do |f|
     %p= f.date_select :date, order: [:month, :day, :year]
     %p
       Minutes

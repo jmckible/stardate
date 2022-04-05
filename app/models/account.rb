@@ -2,6 +2,7 @@ class Account < ApplicationRecord
   include Taggable
 
   enum status: { active: 0, retired: 1 }
+  enum ledger: { asset: 0, income: 1, expense: 2, liability: 3 }
 
   belongs_to :deferral, class_name: 'Account', optional: true
   belongs_to :household
@@ -13,13 +14,8 @@ class Account < ApplicationRecord
     household.transactions.where('debit_id = ? OR credit_id = ?', id, id)
   end
 
-  scope :asset,      -> { where(asset: true) }
   scope :dashboard,  -> { where(dashboard: true) }
   scope :earmark,    -> { where(earmark: true) }
-  scope :equity,     -> { where(equity: true) }
-  scope :expense,    -> { where(expense: true) }
-  scope :income,     -> { where(income: true) }
-  scope :liability,  -> { where(liability: true) }
   scope :other_than, ->(account){ where.not(id: account.id) }
 
   #############################################################################

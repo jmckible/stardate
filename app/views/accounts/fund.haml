@@ -1,4 +1,4 @@
-= form_for @transaction do |f|
+= form_with model: @transaction, data: { turbo: false } do |f|
   = f.hidden_field :debit_id
 
   %p= f.date_select :date, order: [:month, :day, :year]

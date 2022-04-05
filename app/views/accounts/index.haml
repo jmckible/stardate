@@ -62,6 +62,15 @@
     %td.credit.num= number_with_delimiter @household.transactions.expense_credit.since(@user.created_at).sum(:amount)
     %td.num= color_money(@household.transactions.expense_debit.since(@user.created_at).sum(:amount) - @household.transactions.expense_credit.since(@user.created_at).sum(:amount))
 
+%h2 Liabilities
+%table.data
+  = render partial: 'accounts', object: @household.accounts.liability
+  %tr.total
+    %td Net
+    %td.num= color_money @household.transactions.liability_debit.since(@user.created_at).sum(:amount)
+    %td.credit.num= number_with_delimiter @household.transactions.liability_credit.since(@user.created_at).sum(:amount)
+    %td.num= color_money(@household.transactions.liability_debit.since(@user.created_at).sum(:amount) - @household.transactions.expense_credit.since(@user.created_at).sum(:amount))
+
 %h2 Income
 %table.data
   = render partial: 'accounts', object: @household.accounts.income

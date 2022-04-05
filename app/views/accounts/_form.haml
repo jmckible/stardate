@@ -1,18 +1,12 @@
+%p Name
 %p= form.text_field :name, default: 'Name'
 - unless @account.asset?
+  %p Tags
   %p= form.text_field :tag_list, default: 'tags'
 
 - if @account.new_record?
-  %h3 Account Type
-  %p
-    = form.check_box :asset
-    = form.label :asset, 'Asset'
-  %p
-    = form.check_box :expense
-    = form.label :expense, 'Expense'
-  %p
-    = form.check_box :income
-    = form.label :income, 'Income'
+  %h3 Ledger
+  = form.collection_select :ledger, Account.ledgers, :first, :first
 
 - if @account.asset? && @account != @household.checking
   %p Every Two Weeks Save:

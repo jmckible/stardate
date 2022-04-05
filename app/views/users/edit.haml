@@ -1,4 +1,4 @@
-= form_for @user do |f|
+= form_with model: @user, data: { turbo: false } do |f|
   %p
     Name
     %br
@@ -16,7 +16,7 @@
 
   %p= submit_tag 'Update'
 
-= form_for @user do |f|
+= form_with model: @user, data: { turbo: false } do |f|
   %p
     New Password
     %br
@@ -29,7 +29,7 @@
 
   %p= submit_tag 'Update Password'
 
-= form_for @household do |f|
+= form_with model: @household, data: { turbo: false } do |f|
   %p
     Primary Checking Account
     %br
@@ -38,7 +38,7 @@
   %p
     Primary Credit Card
     %br
-    = f.collection_select :credit_card_id, @household.accounts.asset, :id, :name
+    = f.collection_select :credit_card_id, @household.accounts.liability, :id, :name
 
   %p
     Slush Expense

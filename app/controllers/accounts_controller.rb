@@ -44,7 +44,7 @@ class AccountsController < ApplicationController
 
   protected
   def account_params
-    params.fetch(:account, {}).permit(:accruing, :asset, :budget, :earmark, :expense, :income, :dashboard, :deferral_id, :name, :status, :tag_list)
+    params.fetch(:account, {}).permit(:accruing,:budget, :earmark, :dashboard, :deferral_id, :ledger, :name, :status, :tag_list)
   end
 
 end

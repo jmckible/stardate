@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_05_202937) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_05_204910) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,9 +18,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_05_202937) do
     t.integer "household_id"
     t.integer "budget"
     t.integer "deferral_id"
-    t.boolean "asset", default: false
-    t.boolean "income", default: false
-    t.boolean "expense", default: false
     t.string "name", limit: 255
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
@@ -28,12 +25,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_05_202937) do
     t.boolean "accruing", default: false
     t.integer "status", default: 0
     t.boolean "earmark", default: false
-    t.index ["asset", "earmark"], name: "index_accounts_on_asset_and_earmark"
+    t.integer "ledger"
     t.index ["dashboard"], name: "index_accounts_on_dashboard"
     t.index ["deferral_id"], name: "index_accounts_on_deferral_id"
-    t.index ["expense"], name: "index_accounts_on_expense"
+    t.index ["earmark"], name: "index_accounts_on_earmark"
     t.index ["household_id"], name: "index_accounts_on_household_id"
-    t.index ["income"], name: "index_accounts_on_income"
   end
 
   create_table "active_storage_attachments", force: :cascade do |t|

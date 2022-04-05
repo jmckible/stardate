@@ -1,6 +1,6 @@
 %h1 Edit Recurring Transaction
 
-= form_for @recurring do |f|
+= form_with model: @recurring, data: { turbo: false } do |f|
   = render partial: 'form', object: f
   %p
     = submit_tag 'Update'

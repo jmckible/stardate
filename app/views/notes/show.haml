@@ -2,7 +2,7 @@
 
   %h1 Edit Note
 
-  = form_for @note do |f|
+  = form_with model: @note, data: { turbo: false } do |f|
     %p= f.date_select :date, order: [:month, :day, :year]
     %p= f.text_area :body, default: 'note'
     %p

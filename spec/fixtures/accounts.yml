@@ -1,28 +1,29 @@
 checking:
   household: default
-  asset: true
+  ledger: asset
   name: checking
 
 credit_card:
   household: default
   name: Credit Card
+  ledger: liability
 
 gas_savings:
   household: default
-  asset: true
+  ledger: asset
   name: Gas Savings
 
 general_income:
   household: default
-  income: true
+  ledger: income
   name: General Income
 
 slush:
   household: default
-  expense: true
+  ledger: expense
   name: Slush
 
 rent:
   household: default
-  expense: true
+  ledger: expense
   name: Rent

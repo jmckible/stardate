@@ -1,7 +1,7 @@
 require: rubocop-rails
 
 AllCops:
-  TargetRubyVersion: 3.0
+  TargetRubyVersion: 3.1
   Include:
     - 'app/**/*.rb'
     - 'lib/**/*.rb'
@@ -10,8 +10,6 @@ AllCops:
     - 'bin/**/*'
     - 'config/**/*'
     - 'db/**/*.rb'
-    - 'node_modules/**/*'
-    - 'vendor/**/*'
   NewCops: enable
   SuggestExtensions: false
 
@@ -165,7 +163,10 @@ Rails:
 Rails/ContentTag:
   Enabled: false
 
-Rails/HasAndBelongsToMany:
+Rails/DuplicateScope:
+  Enabled: false
+
+Rails/DynamicFindBy:
   Enabled: false
 
 Rails/FilePath:
@@ -174,7 +175,13 @@ Rails/FilePath:
 Rails/FindEach:
   Enabled: false
 
+Rails/HasAndBelongsToMany:
+  Enabled: false
+
 Rails/HelperInstanceVariable:
+  Enabled: false
+
+Rails/I18nLocaleTexts:
   Enabled: false
 
 Rails/InverseOf:

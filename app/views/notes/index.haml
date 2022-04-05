@@ -3,7 +3,7 @@
   .note
     .title
       = link_to note.date, date_link(note.date)
-      = link_to '»', note, rel: 'facebox'
+      = link_to '»', note, data: { turbo_frame: 'modal' }
     .body= simple_format note.body
 
 = will_paginate @notes

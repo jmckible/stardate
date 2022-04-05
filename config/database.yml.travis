@@ -1,5 +1,0 @@
-test:
-  adapter: postgresql
-  encoding: unicode
-  database: stardate_test
-  pool: 5

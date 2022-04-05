@@ -8,7 +8,7 @@
     - @missing.each do |transaction|
       %tr
         %td.date
-          = link_to '«', transaction, rel: 'facebox'
+          = link_to '«', transaction, data: { turbo_frame: 'modal' }
           = link_to transaction.date, date_link(transaction.date)
         %td= vendor_name transaction
         %td

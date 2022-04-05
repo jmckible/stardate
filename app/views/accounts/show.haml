@@ -1,8 +1,11 @@
 %h1= @account.name
 
 - if @account.transactions.any?
-  #Balance
-  = render partial: 'graphs/account_balance'
+  #Balance{ data: {
+    controller: 'account-balance',
+    account_balance_categories_value: @account.graph_x_axis,
+    account_balance_balances_value: @account.graph_y_axis
+  }}
 
 %h3
   Balance
@@ -17,7 +20,7 @@
   %p= link_to 'Edit', [:edit, @account]
 
 - if @account.asset? && !@account.core?
-  %p= link_to 'Fund', [:fund, @account], rel: 'facebox'
+  %p= link_to 'Fund', [:fund, @account], data: { turbo_frame: 'modal' }
 
 %table.data
   %tr
@@ -38,7 +41,7 @@
     - else
       %tr
         %td.date
-          = link_to '«', transaction, rel: 'facebox'
+          = link_to '«', transaction, data: { turbo_frame: 'modal' }
           = link_to transaction.date, date_link(transaction.date)
         %td= vendor_name transaction
         %td

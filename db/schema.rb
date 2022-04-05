@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_04_204011) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_04_01_222317) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,8 +22,8 @@ ActiveRecord::Schema.define(version: 2021_11_04_204011) do
     t.boolean "income", default: false
     t.boolean "expense", default: false
     t.string "name", limit: 255
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.boolean "dashboard", default: false
     t.boolean "accruing", default: false
     t.integer "status", default: 0
@@ -42,7 +41,7 @@ ActiveRecord::Schema.define(version: 2021_11_04_204011) do
     t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
@@ -54,8 +53,8 @@ ActiveRecord::Schema.define(version: 2021_11_04_204011) do
     t.text "metadata"
     t.string "service_name", null: false
     t.bigint "byte_size", null: false
-    t.string "checksum", null: false
-    t.datetime "created_at", null: false
+    t.string "checksum"
+    t.datetime "created_at", precision: nil, null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
@@ -68,16 +67,16 @@ ActiveRecord::Schema.define(version: 2021_11_04_204011) do
   create_table "budgets", id: :serial, force: :cascade do |t|
     t.integer "household_id"
     t.integer "amount"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "name", limit: 255
     t.index ["household_id"], name: "index_budgets_on_household_id"
   end
 
   create_table "households", id: :serial, force: :cascade do |t|
     t.string "name", limit: 255
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.integer "savings_goal", default: 0
     t.integer "cash_id"
     t.integer "slush_id"
@@ -93,8 +92,8 @@ ActiveRecord::Schema.define(version: 2021_11_04_204011) do
     t.integer "value", default: 0, null: false
     t.text "description"
     t.integer "vendor_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.integer "recurring_id"
     t.date "start"
     t.date "finish"
@@ -114,7 +113,7 @@ ActiveRecord::Schema.define(version: 2021_11_04_204011) do
     t.integer "user_id", null: false
     t.string "name", limit: 255, null: false
     t.boolean "active", default: true
-    t.datetime "created_at"
+    t.datetime "created_at", precision: nil
     t.decimal "rate", precision: 6, scale: 2, default: "0.0", null: false
     t.integer "vendor_id"
     t.index ["user_id"], name: "index_projects_on_user_id"
@@ -125,15 +124,15 @@ ActiveRecord::Schema.define(version: 2021_11_04_204011) do
     t.text "body"
     t.date "date"
     t.integer "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.index ["user_id"], name: "index_notes_on_user_id"
   end
 
   create_table "paychecks", id: :serial, force: :cascade do |t|
     t.integer "job_id", null: false
     t.integer "item_id"
-    t.datetime "created_at"
+    t.datetime "created_at", precision: nil
     t.string "description", limit: 255
     t.decimal "value", precision: 8, scale: 2, default: "0.0", null: false
     t.index ["item_id"], name: "index_paychecks_on_item_id"
@@ -153,8 +152,8 @@ ActiveRecord::Schema.define(version: 2021_11_04_204011) do
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.integer "tag_id"
     t.integer "taggable_id"
     t.string "taggable_type", limit: 255
@@ -172,7 +171,7 @@ ActiveRecord::Schema.define(version: 2021_11_04_204011) do
 
   create_table "tasks", id: :serial, force: :cascade do |t|
     t.integer "job_id", null: false
-    t.datetime "created_at"
+    t.datetime "created_at", precision: nil
     t.date "date", null: false
     t.integer "minutes", default: 0, null: false
     t.string "description", limit: 255
@@ -188,8 +187,8 @@ ActiveRecord::Schema.define(version: 2021_11_04_204011) do
     t.integer "amount", default: 0, null: false
     t.text "description"
     t.integer "vendor_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.integer "recurring_id"
     t.integer "household_id"
     t.boolean "secret", default: false
@@ -203,7 +202,7 @@ ActiveRecord::Schema.define(version: 2021_11_04_204011) do
     t.string "password_salt", limit: 255, null: false
     t.string "password_hash", limit: 255, null: false
     t.string "time_zone", limit: 255
-    t.datetime "created_at", default: "2007-05-24 15:49:54"
+    t.datetime "created_at", precision: nil, default: "2007-05-24 15:49:54"
     t.integer "household_id"
     t.string "name", limit: 255
     t.index ["email"], name: "index_users_on_email"
@@ -212,8 +211,8 @@ ActiveRecord::Schema.define(version: 2021_11_04_204011) do
 
   create_table "vendors", id: :serial, force: :cascade do |t|
     t.string "name", limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.string "permalink", limit: 255
     t.index ["name"], name: "index_vendors_on_name", unique: true
     t.index ["permalink"], name: "index_vendors_on_permalink"
@@ -223,8 +222,8 @@ ActiveRecord::Schema.define(version: 2021_11_04_204011) do
     t.integer "user_id"
     t.date "date"
     t.decimal "weight", precision: 4, scale: 1
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.index ["date"], name: "index_weights_on_date"
     t.index ["user_id"], name: "index_weights_on_user_id"
   end
@@ -235,8 +234,8 @@ ActiveRecord::Schema.define(version: 2021_11_04_204011) do
     t.integer "minutes"
     t.decimal "distance", precision: 10, scale: 2
     t.string "description", limit: 255
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.boolean "bike", default: false
     t.boolean "elliptical", default: false
     t.boolean "nike", default: false

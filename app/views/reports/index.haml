@@ -10,7 +10,14 @@
   = select_year  @finish, prefix: 'finish', start_year: @user.created_at.year, end_year: Time.zone.today.year
   = submit_tag 'Go'
 
-#SpendingYear= render partial: 'graphs/spending_year'
+#SpendingYear{ data: {
+  controller: 'spending-graph',
+  spending_graph_expense_value: @period.step(7).collect{|date| @household.sum_expenses(@period.first..date) * -1},
+  spending_graph_income_value: @period.step(7).collect{|date| @household.sum_income @period.first..date},
+  spending_graph_start_year_value: (@period.first - 1.month).year,
+  spending_graph_start_month_value: (@period.first - 1.month).month,
+  spending_graph_start_day_value: (@period.first - 1.month).day
+}}
 
 %table
   %tr

@@ -11,13 +11,9 @@ if %w[development test].include? Rails.env
   end
 
   task(:default).clear
-  task default: %w[rspec rubocop haml_lint eslint]
+  task default: %w[rspec rubocop haml_lint]
 end
 
 task :rspec do
   sh 'rspec spec/'
-end
-
-task :eslint do
-  sh './node_modules/.bin/eslint ./app/javascript'
 end

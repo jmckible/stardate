@@ -32,6 +32,13 @@ class Household < ApplicationRecord
     transactions.income_credit.during(period).sum(:amount)
   end
 
+  def budget_month_values
+    accounts.dashboard.collect do |account|
+      amount = account.balance
+      {y: amount, color: (amount.negative? ? '#FF00CC' : '#00CCFF') }
+    end
+  end
+
   def core_accounts
     [cash, general_income, slush].compact
   end

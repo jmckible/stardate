@@ -4,6 +4,7 @@
   = form_tag transactions_path, method: :get do
     = select_month @period.first
     = select_year  @period.first, start_year: @user.created_at.year, end_year: Time.zone.today.year
+    = submit_tag 'Change'
 .clear
 
 - if @transactions.empty?

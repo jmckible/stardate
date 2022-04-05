@@ -8,17 +8,17 @@ class Transaction < ApplicationRecord
   belongs_to :user
   belongs_to :vendor, optional: true
 
-  scope :asset_credit,    ->{ includes(:credit).where('accounts.asset = ?', true) }
-  scope :asset_debit,     ->{ includes(:debit).where('accounts.asset = ?', true) }
+  scope :asset_credit,    ->{ includes(:credit).where(accounts: { asset: true }) }
+  scope :asset_debit,     ->{ includes(:debit).where(accounts: { asset: true }) }
 
-  scope :deferred_credit, ->{ includes(:credit).where('accounts.deferred = ?', true) }
-  scope :deferred_debit,  ->{ includes(:debit).where('accounts.deferred = ?', true) }
+  scope :deferred_credit, ->{ includes(:credit).where(accounts: { deferred: true }) }
+  scope :deferred_debit,  ->{ includes(:debit).where(accounts: { deferred: true }) }
 
-  scope :expense_credit,  ->{ includes(:credit).where('accounts.expense = ?', true) }
-  scope :expense_debit,   ->{ includes(:debit).where('accounts.expense = ?', true) }
+  scope :expense_credit,  ->{ includes(:credit).where(accounts: { expense: true }) }
+  scope :expense_debit,   ->{ includes(:debit).where(accounts: { expense: true }) }
 
-  scope :income_credit,   ->{ includes(:credit).where('accounts.income = ?', true) }
-  scope :income_debit,    ->{ includes(:debit).where('accounts.income = ?', true) }
+  scope :income_credit,   ->{ includes(:credit).where(accounts: { income: true }) }
+  scope :income_debit,    ->{ includes(:debit).where(accounts: { income: true }) }
 
   scope :before, ->(date){ where("transactions.date <= ?", date) }
   scope :during, ->(period){ where(date: period).order('transactions.date, transactions.id') }

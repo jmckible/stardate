@@ -1,5 +1,7 @@
+require: rubocop-rails
+
 AllCops:
-  TargetRubyVersion: 2.5
+  TargetRubyVersion: 3.1
   Include:
     - 'app/**/*.rb'
     - 'lib/**/*.rb'
@@ -8,19 +10,16 @@ AllCops:
     - 'bin/**/*'
     - 'config/**/*'
     - 'db/**/*.rb'
-    - 'node_modules/**/*'
-    - 'vendor/**/*'
+  NewCops: enable
+  SuggestExtensions: false
 
 ###############################################################################
 #                              L A Y O U T                                    #
 ###############################################################################
-Layout/AlignArray:
+Layout/ArgumentAlignment:
   Enabled: false
 
-Layout/AlignHash:
-  Enabled: false
-
-Layout/AlignParameters:
+Layout/ArrayAlignment:
   Enabled: false
 
 Layout/EmptyLineAfterGuardClause:
@@ -44,10 +43,16 @@ Layout/EmptyLinesAroundModuleBody:
 Layout/ExtraSpacing:
   Enabled: false
 
-Layout/IndentHash:
+Layout/HashAlignment:
   Enabled: false
 
+Layout/LineLength:
+  Max: 2000
+
 Layout/MultilineOperationIndentation:
+  Enabled: false
+
+Layout/ParameterAlignment:
   Enabled: false
 
 Layout/SpaceAroundOperators:
@@ -59,6 +64,9 @@ Layout/SpaceAfterColon:
 Layout/SpaceAfterComma:
   Enabled: false
 
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
 Layout/SpaceBeforeBlockBraces:
   Enabled: false
 
@@ -68,7 +76,7 @@ Layout/SpaceInsideBlockBraces:
 Layout/SpaceInsideHashLiteralBraces:
   Enabled: false
 
-Layout/TrailingBlankLines:
+Layout/TrailingEmptyLines:
   Enabled: false
 
 Lint/AmbiguousOperator:
@@ -77,10 +85,22 @@ Lint/AmbiguousOperator:
 Lint/AssignmentInCondition:
   Enabled: false
 
-Lint/HandleExceptions:
+Lint/MissingSuper:
+  Enabled: false
+
+Lint/RaiseException:
+  Enabled: false
+
+Lint/RedundantSafeNavigation:
   Enabled: false
 
 Lint/RescueException:
+  Enabled: false
+
+Lint/SuppressedException:
+  Enabled: false
+
+Lint/StructNewOverride:
   Enabled: false
 
 ###############################################################################
@@ -93,16 +113,13 @@ Metrics/BlockLength:
   Enabled: false
 
 Metrics/BlockNesting:
-  Max: 5
+  Max: 9
 
 Metrics/ClassLength:
   Max: 2000
 
 Metrics/CyclomaticComplexity:
   Max: 50
-
-Metrics/LineLength:
-  Max: 1000
 
 Metrics/MethodLength:
   Max: 500
@@ -128,19 +145,13 @@ Naming/ConstantName:
 Naming/FileName:
   Enabled: false
 
+Naming/MethodParameterName:
+  Enabled: false
+
 Naming/PredicateName:
   Enabled: false
 
 Naming/VariableNumber:
-  Enabled: false
-
-###############################################################################
-#                            P E R F O R M A N C E                            #
-###############################################################################
-Performance/Count:
-  Enabled: false
-
-Performance/Detect:
   Enabled: false
 
 ###############################################################################
@@ -149,10 +160,13 @@ Performance/Detect:
 Rails:
   Enabled: true
 
-Rails/DynamicFindBy:
+Rails/ContentTag:
   Enabled: false
 
-Rails/HasAndBelongsToMany:
+Rails/DuplicateScope:
+  Enabled: false
+
+Rails/DynamicFindBy:
   Enabled: false
 
 Rails/FilePath:
@@ -161,7 +175,19 @@ Rails/FilePath:
 Rails/FindEach:
   Enabled: false
 
+Rails/HasAndBelongsToMany:
+  Enabled: false
+
+Rails/HelperInstanceVariable:
+  Enabled: false
+
+Rails/I18nLocaleTexts:
+  Enabled: false
+
 Rails/InverseOf:
+  Enabled: false
+
+Rails/RakeEnvironment:
   Enabled: false
 
 Rails/SkipsModelValidations:
@@ -188,6 +214,9 @@ Security/Open:
 ###############################################################################
 #                                 S T Y L E                                   #
 ###############################################################################
+Style/AccessorGrouping:
+  Enabled: false
+
 Style/AndOr:
   Enabled: false
 
@@ -197,7 +226,10 @@ Style/AsciiComments:
 Style/BlockDelimiters:
   Enabled: false
 
-Style/BracesAroundHashParameters:
+Style/CaseLikeIf:
+  Enabled: false
+
+Style/HashLikeCase:
   Enabled: false
 
 Style/ClassAndModuleChildren:
@@ -230,10 +262,19 @@ Style/EmptyMethod:
 Style/EvalWithLocation:
   Enabled: false
 
+Style/ExponentialNotation:
+  Enabled: false
+
+Style/FloatDivision:
+  Enabled: false
+
 Style/FrozenStringLiteralComment:
   Enabled: false
 
 Style/GuardClause:
+  Enabled: false
+
+Style/HashEachMethods:
   Enabled: false
 
 Style/HashSyntax:
@@ -243,9 +284,6 @@ Style/IfUnlessModifier:
   Enabled: false
 
 Style/Lambda:
-  Enabled: false
-
-Style/MethodMissingSuper:
   Enabled: false
 
 Style/MissingRespondToMissing:
@@ -272,6 +310,9 @@ Style/OneLineConditional:
 Style/ParallelAssignment:
   Enabled: false
 
+Style/RedundantRegexpEscape:
+  Enabled: false
+
 Style/RedundantReturn:
   Enabled: false
 
@@ -296,10 +337,22 @@ Style/SingleLineBlockParams:
 Style/SingleLineMethods:
   Enabled: false
 
+Style/SoleNestedConditional:
+  Enabled: false
+
+Style/StringConcatenation:
+  Enabled: false
+
 Style/StringLiterals:
   Enabled: false
 
 Style/SymbolArray:
+  Enabled: false
+
+Style/HashTransformKeys:
+  Enabled: false
+
+Style/HashTransformValues:
   Enabled: false
 
 Style/TrivialAccessors:

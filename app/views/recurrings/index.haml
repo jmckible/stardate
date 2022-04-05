@@ -1,6 +1,6 @@
 %h1 Recurring Transactions
 
-%p.create= link_to 'Create...', new_recurring_path, rel: 'facebox'
+%p.create= link_to 'Create...', new_recurring_path, data: { turbo_frame: 'modal' }
 
 - unless @recurrings.empty?
   %table
@@ -13,7 +13,7 @@
 
     - @recurrings.each do |recurring|
       %tr.recurring
-        %td.date= link_to recurring.day, recurring, rel: 'facebox'
+        %td.date= link_to recurring.day, recurring, data: { turbo_frame: 'modal' }
         %td
           = vendor_name recurring
           %span.tags= linked_tag_list recurring

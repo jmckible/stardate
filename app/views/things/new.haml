@@ -1,3 +1,4 @@
-= form_tag things_path do
-  %p= text_area_tag 'thing', ''
-  %p= submit_tag 'Save'
+= modal do
+  = form_with path: things_path, data: { turbo: false } do
+    %p= text_area_tag 'thing', ''
+    %p= submit_tag 'Save'

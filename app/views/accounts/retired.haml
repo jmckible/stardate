@@ -1,0 +1,11 @@
+%h2 Retired Assets
+%table.data
+  = render partial: 'accounts', object: @household.accounts.retired.asset
+
+%h2 Retired Expenses
+%table.data
+  = render partial: 'accounts', object: @household.accounts.retired.expense
+
+%h2 Retired Income
+%table.data
+  = render partial: 'accounts', object: @household.accounts.retired.income

@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
   resources :accounts do
-    get 'fund', on: :member
+    get 'fund',    on: :member
+    get 'retired', on: :collection
   end
   resources :households
   resources :notes

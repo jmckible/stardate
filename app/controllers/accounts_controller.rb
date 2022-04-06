@@ -5,6 +5,10 @@ class AccountsController < ApplicationController
     @missing = @household.transactions.where('debit_id IS NULL OR credit_id IS NULL')
   end
 
+  # GET /accounts/retired
+  def retired
+  end
+
   # GET /accounts/new
   def new
     @account = @household.accounts.build
@@ -44,7 +48,7 @@ class AccountsController < ApplicationController
 
   protected
   def account_params
-    params.fetch(:account, {}).permit(:accruing,:budget, :earmark, :dashboard, :deferral_id, :ledger, :name, :status, :tag_list)
+    params.fetch(:account, {}).permit(:accruing, :budget, :earmark, :dashboard, :deferral_id, :ledger, :name, :status, :tag_list)
   end
 
 end

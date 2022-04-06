@@ -54,9 +54,10 @@
       (@household.transactions.income_debit.since(@user.created_at).sum(:amount) - @household.transactions.income_credit.since(@user.created_at).sum(:amount))
     %td.num= color_money check
 
-%h2 Active Assets
+%h2 Assets
 %table.data
-  = render partial: 'accounts', object: @household.accounts.active.asset
+  = render partial: 'accounts', object: @household.accounts.active.asset.where('budget > 0').or(Account.where(id: @household.checking.id)).reorder(budget: :desc)
+  = render partial: 'accounts', object: @household.accounts.active.asset.where('budget <= 0 OR budget IS NULL').where.not(id: @household.checking.id)
   %tr.total
     %td Net
     %td.num= color_money @household.transactions.asset_debit.since(@user.created_at).sum(:amount)
@@ -90,6 +91,5 @@
     %td.credit.num= number_with_delimiter @household.transactions.income_credit.since(@user.created_at).sum(:amount)
     %td.num= color_money(@household.transactions.income_debit.since(@user.created_at).sum(:amount) - @household.transactions.income_credit.since(@user.created_at).sum(:amount))
 
-%h2 Retired Assets
-%table.data
-  = render partial: 'accounts', object: @household.accounts.retired.asset
+
+%p= link_to 'Retired Accounts', [:retired, :accounts]

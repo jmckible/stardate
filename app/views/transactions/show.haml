@@ -6,9 +6,13 @@
 
   = form_with model: @transaction, data: { remote: true, turbo: false } do |f|
     %p= f.date_select :date,          order: [:month, :day, :year]
+    %p Amount
     %p= f.text_field :amount,        class: 'money'
+    %p Vendor
     %p= f.text_field :vendor_name, default: 'vendor'
+    %p Description
     %p= f.text_field :description, default: 'description'
+    %p Tags
     %p= f.text_field :tag_list,    default: 'tags'
 
     %p

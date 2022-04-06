@@ -45,7 +45,7 @@ class Household < ApplicationRecord
   end
 
   def checking_plus_earmarks
-    checking.balance + accounts.asset.earmark.collect{|a| a.balance.abs}.sum
+    checking.balance + accounts.asset.earmark.collect(&:balance).sum
   end
 
   def biweekly_budget_balance

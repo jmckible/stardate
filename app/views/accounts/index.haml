@@ -56,7 +56,13 @@
 
 %h2 Assets
 %table.data
-  = render partial: 'accounts', object: @household.accounts.active.asset.where('budget > 0').or(Account.where(id: @household.checking.id)).reorder(budget: :desc)
+  - cash = @household.accounts.active.asset.where('budget > 0').or(Account.where(id: @household.checking.id)).reorder(budget: :desc)
+  = render partial: 'accounts', object: cash
+  %tr.total
+    %td Cash
+    %td
+    %td
+    %td.num= color_money @household.checking_plus_earmarks
   = render partial: 'accounts', object: @household.accounts.active.asset.where('budget <= 0 OR budget IS NULL').where.not(id: @household.checking.id)
   %tr.total
     %td Net

@@ -56,7 +56,7 @@
 
 %h2 Assets
 %table.data
-  - cash = @household.accounts.active.asset.where('budget > 0').or(Account.where(id: @household.checking.id)).reorder(budget: :desc)
+  - cash = @household.accounts.active.asset.earmark.or(Account.where(id: @household.checking.id)).reorder(budget: :desc)
   = render partial: 'accounts', object: cash
   %tr.total
     %td Cash

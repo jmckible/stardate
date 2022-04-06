@@ -63,7 +63,7 @@
     %td
     %td
     %td.num= color_money @household.checking_plus_earmarks
-  = render partial: 'accounts', object: @household.accounts.active.asset.where('budget <= 0 OR budget IS NULL').where.not(id: @household.checking.id)
+  = render partial: 'accounts', object: @household.accounts.active.asset.where(earmark: false).where.not(id: @household.checking.id)
   %tr.total
     %td Net
     %td.num= color_money @household.transactions.asset_debit.since(@user.created_at).sum(:amount)

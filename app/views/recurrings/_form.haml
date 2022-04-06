@@ -1,9 +1,15 @@
 %p
   Day of Month:
   = form.collection_select :day, (1..31).collect, :to_i, :to_s
-%p= form.text_field :amount, class: 'money'
-%p= form.text_field :vendor_name, default: 'vendor'
-%p= form.text_field :tag_list, default: 'tags'
+%p
+  Amount
+  = form.text_field :amount, class: 'money'
+%p
+  Vendor
+  = form.text_field :vendor_name, default: 'vendor'
+%p
+  Tags
+  = form.text_field :tag_list, default: 'tags'
 
 %p
   Debit:

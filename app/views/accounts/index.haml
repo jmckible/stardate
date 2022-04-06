@@ -72,7 +72,7 @@
 
 %h2 Expenses
 %table.data
-  = render partial: 'accounts', object: @household.accounts.expense
+  = render partial: 'accounts', object: @household.accounts.expense.active
   %tr.total
     %td Net
     %td.num= color_money @household.transactions.expense_debit.since(@user.created_at).sum(:amount)
@@ -81,7 +81,7 @@
 
 %h2 Liabilities
 %table.data
-  = render partial: 'accounts', object: @household.accounts.liability
+  = render partial: 'accounts', object: @household.accounts.liability.active
   %tr.total
     %td Net
     %td.num= color_money @household.transactions.liability_debit.since(@user.created_at).sum(:amount)
@@ -90,7 +90,7 @@
 
 %h2 Income
 %table.data
-  = render partial: 'accounts', object: @household.accounts.income
+  = render partial: 'accounts', object: @household.accounts.income.active
   %tr.total
     %td Net
     %td.num= not_zero @household.transactions.income_debit.since(@user.created_at).sum(:amount)

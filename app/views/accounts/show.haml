@@ -16,8 +16,7 @@
     Biweekly Budget Balance
     = @account.budget
 
-- unless @account.core?
-  %p= link_to 'Edit', [:edit, @account]
+%p= link_to 'Edit', [:edit, @account]
 
 - if @account.asset? && !@account.core?
   %p= link_to 'Fund', [:fund, @account], data: { turbo_frame: 'modal' }

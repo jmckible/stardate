@@ -1,6 +1,7 @@
 class Grammar
 
-  def self.parse(string, household)
+  def self.parse(string, user)
+    household = user.household
     date     = Grammar.parse_date string.slice!(/^\d+\/\d+(\/\d+)?\s/)
     tag_list = (string.slice!(/\s\[.+\]$/) || '').gsub(/(^\s\[)|(\]$)/, '')
 
@@ -21,7 +22,7 @@ class Grammar
       transaction = household.transactions.build vendor_name: vendor, description: description, tag_list: tag_list, date: date
 
       if amount >= 0
-        transaction.debit = household.cash
+        transaction.debit = household.checking
         transaction.credit = household.accounts.income.find_by(name: vendor) || household.general_income
       else
         key_tag = transaction.tags.detect{|t| household.accounts.expense.tagged_with t}
@@ -32,7 +33,9 @@ class Grammar
         end
 
         if expense&.deferral
-          source = expense.deferral
+          source = household.credit_card
+          fund = household.transactions.build date: date, user: user, debit: household.checking, credit: expense.deferral, amount: amount.abs
+          fund.save!
         else
           source = household.checking
         end

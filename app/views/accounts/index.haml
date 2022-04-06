@@ -34,6 +34,11 @@
     %td.num.credit= number_with_delimiter @household.transactions.expense_credit.since(@user.created_at).sum(:amount)
     %td.num= color_money(@household.transactions.expense_debit.since(@user.created_at).sum(:amount) - @household.transactions.expense_credit.since(@user.created_at).sum(:amount))
   %tr
+    %td Liabilities
+    %td.num.debit= number_with_delimiter @household.transactions.liability_debit.since(@user.created_at).sum(:amount)
+    %td.num.credit= number_with_delimiter @household.transactions.liability_credit.since(@user.created_at).sum(:amount)
+    %td.num= color_money(@household.transactions.liability_debit.since(@user.created_at).sum(:amount) - @household.transactions.liability_credit.since(@user.created_at).sum(:amount))
+  %tr
     %td Income
     %td.num.debit= not_zero @household.transactions.income_debit.since(@user.created_at).sum(:amount)
     %td.num.credit= number_with_delimiter @household.transactions.income_credit.since(@user.created_at).sum(:amount)
@@ -42,7 +47,12 @@
     %td Check
     %td.num= color_money(@household.transactions.where.not(debit_id: nil).since(@user.created_at).sum(:amount))
     %td.credit.num= number_with_delimiter(@household.transactions.since(@user.created_at).where.not(credit_id: nil).sum(:amount))
-    %td.num= color_money((@household.transactions.asset_debit.since(@user.created_at).sum(:amount) - @household.transactions.asset_credit.since(@user.created_at).sum(:amount)) + (@household.transactions.expense_debit.since(@user.created_at).sum(:amount) - @household.transactions.expense_credit.since(@user.created_at).sum(:amount)) + (@household.transactions.income_debit.since(@user.created_at).sum(:amount) - @household.transactions.income_credit.since(@user.created_at).sum(:amount)))
+    :ruby
+      check = (@household.transactions.asset_debit.since(@user.created_at).sum(:amount) - @household.transactions.asset_credit.since(@user.created_at).sum(:amount)) +
+      (@household.transactions.expense_debit.since(@user.created_at).sum(:amount) - @household.transactions.expense_credit.since(@user.created_at).sum(:amount)) +
+      (@household.transactions.liability_debit.since(@user.created_at).sum(:amount) - @household.transactions.liability_credit.since(@user.created_at).sum(:amount)) +
+      (@household.transactions.income_debit.since(@user.created_at).sum(:amount) - @household.transactions.income_credit.since(@user.created_at).sum(:amount))
+    %td.num= color_money check
 
 %h2 Active Assets
 %table.data
@@ -69,7 +79,7 @@
     %td Net
     %td.num= color_money @household.transactions.liability_debit.since(@user.created_at).sum(:amount)
     %td.credit.num= number_with_delimiter @household.transactions.liability_credit.since(@user.created_at).sum(:amount)
-    %td.num= color_money(@household.transactions.liability_debit.since(@user.created_at).sum(:amount) - @household.transactions.expense_credit.since(@user.created_at).sum(:amount))
+    %td.num= color_money(@household.transactions.liability_debit.since(@user.created_at).sum(:amount) - @household.transactions.liability_credit.since(@user.created_at).sum(:amount))
 
 %h2 Income
 %table.data

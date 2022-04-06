@@ -1,5 +1,5 @@
 = form_with path: things_path, data: { turbo: false } do
-  = text_field_tag 'thing', '', class: 'long'
+  = text_field_tag 'thing', '', class: 'long', autofocus: true
   /= link_to '...', new_thing_path, class: 'long_entry', data: { turbo: true, turbo_frame: 'modal' }
 
 #Graphs
@@ -39,6 +39,10 @@
 %h3
   = link_to 'Liquid', accounts_path
   = color_money @household.checking_plus_earmarks
+
+%h3
+  = link_to 'Credit Card', accounts_path
+  = color_money @household.credit_card.balance
 
 - if [1, 2, 3, 15, 16, 17].include?(Time.zone.now.mday)
   %h3

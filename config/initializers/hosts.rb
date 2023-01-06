@@ -5,7 +5,7 @@ when 'test'
   Rails.application.config.hosts << 'www.example.com'
   Rails.application.config.hosts << 'stardate.test'
 when 'production'
-  Rails.application.config.hosts << 'stardate.herokuapp.com'
+  Rails.application.config.hosts << 'stardate.fly.dev'
 end
 
 # Rails.application.config.hosts = nil

@@ -6,6 +6,7 @@ when 'test'
   Rails.application.config.hosts << 'stardate.test'
 when 'production'
   Rails.application.config.hosts << 'stardate.fly.dev'
+  Rails.application.config.hosts << 'stardate.mckible.com'
 end
 
 # Rails.application.config.hosts = nil

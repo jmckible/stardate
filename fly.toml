@@ -1,4 +1,4 @@
-# fly.toml file generated for stardate on 2023-01-05T21:02:42-08:00
+# fly.toml file generated for esophagus on 2022-11-02T11:06:16-07:00
 
 app = "stardate"
 kill_signal = "SIGINT"

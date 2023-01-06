@@ -10,7 +10,6 @@
 .byebug_history
 
 # local config
-config/database.yml
 config/secrets.yml.key
 config/master.key
 

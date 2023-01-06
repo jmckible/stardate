@@ -21,7 +21,7 @@
           %li= link_to 'vendors', vendors_path
           %li= link_to 'reports', reports_path
           %li= link_to 'settings', [:edit, @user]
-          %li= link_to 'logout', session_path(@user), method: :delete
+          %li= button_to 'logout', session_path(@user), method: :delete, data: { turbo: false }
 
 
   = turbo_frame_tag 'modal'

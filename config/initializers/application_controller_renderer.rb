@@ -2,7 +2,7 @@ ActiveSupport::Reloader.to_prepare do
 
   case Rails.env
   when 'production'
-    options = { http_host: 'stardate.herokuapp.com', https: true }
+    options = { http_host: 'stardate.fly.dev', https: true }
   else
     options = { http_host: 'stardate.test', https: true }
   end

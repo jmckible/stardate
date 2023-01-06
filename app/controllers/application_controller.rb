@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  include Authorization
+  include Authorization, Turbo::Redirection
 
   # By default all pages are protected
   # Use skip_before_filter on public pages

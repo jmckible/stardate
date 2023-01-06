@@ -12,6 +12,7 @@
 # local config
 config/database.yml
 config/secrets.yml.key
+config/master.key
 
 # log and tempfiles
 /log/*

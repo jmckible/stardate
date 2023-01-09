@@ -12,4 +12,13 @@ class UsersController < ApplicationController
     render action: 'edit'
   end
 
+  # POST /users/:id/recur
+  def recur
+    @user.recurrings.on(Time.zone.today).each do |recurring|
+      transaction = recurring.to_transaction
+      transaction.save
+    end
+    redirect_to things_url
+  end
+
 end

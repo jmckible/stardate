@@ -4,7 +4,9 @@ Rails.application.routes.draw do
     get 'fund',    on: :member
     get 'retired', on: :collection
   end
-  resources :households
+  resources :households do
+    post 'fund', on: :member
+  end
   resources :notes
   resources :recurrings
   resources :reports
@@ -12,7 +14,9 @@ Rails.application.routes.draw do
   resources :tags
   resources :things
   resources :transactions
-  resources :users
+  resources :users do
+    post 'recur', on: :member
+  end
   resources :vendors
   resources :weights
   resources :workouts

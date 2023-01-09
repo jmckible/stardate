@@ -6,4 +6,10 @@ class HouseholdsController < ApplicationController
     redirect_to [:edit, @user]
   end
 
+  # POST /households/:id/fund
+  def fund
+    @household.accounts.asset.where('budget > 0').each(&:fund)
+    redirect_to things_url
+  end
+
 end

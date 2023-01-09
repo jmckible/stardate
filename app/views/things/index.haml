@@ -1,6 +1,9 @@
 = form_with path: things_path, data: { turbo: false } do
   = text_field_tag 'thing', '', class: 'long', autofocus: true
-  /= link_to '...', new_thing_path, class: 'long_entry', data: { turbo: true, turbo_frame: 'modal' }
+- if @user.recurrings.on(Time.zone.today).any? && @user.transactions.on(Time.zone.today).none?
+  = button_to '+ Add Daily Recurring', [:recur, @user], method: :post, data: { turbo: false }
+- if [1, 15].include?(Time.zone.today.mday) && @household.transactions.on(Time.zone.today).none?
+  = button_to '+ Fund Accounts', [:fund, @household], method: :post, data: { turbo: false }
 
 #Graphs
   #SpendingMonth{ data: {

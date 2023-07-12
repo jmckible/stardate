@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for stardate on 2023-05-26T16:02:56-07:00
+# fly.toml app configuration file generated for stardate on 2023-07-12T14:36:31-07:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -10,11 +10,6 @@ kill_timeout = "5s"
 
 [experimental]
   auto_rollback = true
-
-[build]
-  [build.args]
-    BUILD_COMMAND = "bin/rails fly:build"
-    SERVER_COMMAND = "bin/rails fly:server"
 
 [deploy]
   release_command = "bin/rails fly:release"

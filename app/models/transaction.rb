@@ -3,7 +3,7 @@ class Transaction < ApplicationRecord
 
   belongs_to :credit, class_name: 'Account', optional: true
   belongs_to :debit,  class_name: 'Account', optional: true
-  belongs_to :household
+  belongs_to :household, touch: true
   belongs_to :recurring, optional: true
   belongs_to :user
   belongs_to :vendor, optional: true

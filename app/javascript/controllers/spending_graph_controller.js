@@ -3,27 +3,53 @@ import Highcharts from 'highcharts'
 
 export default class extends Controller {
 
-  static values = { expense: Array, income: Array, startDay: Number, startMonth: Number, startYear: Number }
+  static values = {
+    built: { type: Boolean, default: false },
+    expense: Array,
+    income: Array,
+    startDay: Number,
+    startMonth: Number,
+    startYear: Number
+  }
 
-  connect() {
+  expenseValueChanged() {
+    this._buildChart()
+  }
+
+  incomeValueChanged() {
+    this._buildChart()
+  }
+
+  builtValueChanged() {
+    this._buildChart()
+  }
+
+  _buildChart() {
+    if (!this.builtValue) {
+      this.builtValue = true
+      const chart = new Highcharts.Chart(this._chartConfig)
+    }
+  }
+
+  get _chartConfig() {
     const expenseSum = this.expenseValue.reduce((sum, e) => sum + e, 0)
     const incomeSum = this.incomeValue.reduce((sum, e) => sum + e, 0)
 
     const series = [{
-       name: 'Income',
-       data: this.incomeValue,
-       pointInterval: 24 * 3600 * 1000,
-       pointStart: Date.UTC(this.startYearValue, this.startMonthValue, this.startDayValue),
-       color: '#00CCFF'
+      name: 'Income',
+      data: this.incomeValue,
+      pointInterval: 24 * 3600 * 1000,
+      pointStart: Date.UTC(this.startYearValue, this.startMonthValue, this.startDayValue),
+      color: '#00CCFF'
     }]
 
     const expense = {
-       name: 'Expense',
-       data: this.expenseValue,
-       pointInterval: 24 * 3600 * 1000,
-       pointStart: Date.UTC(this.startYearValue, this.startMonthValue, this.startDayValue),
-       color: '#FF00CC'
-     }
+      name: 'Expense',
+      data: this.expenseValue,
+      pointInterval: 24 * 3600 * 1000,
+      pointStart: Date.UTC(this.startYearValue, this.startMonthValue, this.startDayValue),
+      color: '#FF00CC'
+    }
 
     if (expenseSum < incomeSum) {
       series.push(expense)
@@ -41,13 +67,13 @@ export default class extends Controller {
       credits: {
         enabled: false
       },
-      title:  { text: undefined },
+      title: { text: undefined },
       legend: { enabled: false },
       yAxis: {
         title: false,
         labels: {
-          formatter: function(){
-            return('$' + this.value / 1000 + 'k');
+          formatter: function () {
+            return ('$' + this.value / 1000 + 'k');
           }
         }
       },
@@ -56,8 +82,8 @@ export default class extends Controller {
         tickInterval: 24 * 3600 * 1000,
         labels: {
           step: 7,
-          formatter: function(){
-            return(Highcharts.dateFormat('%b %e',this.value));
+          formatter: function () {
+            return (Highcharts.dateFormat('%b %e', this.value));
           }
         }
       },
@@ -74,13 +100,12 @@ export default class extends Controller {
         }
       },
       tooltip: {
-        formatter: function(){
-          return(Highcharts.dateFormat('%B %e, %Y',this.x) + ': <b>$' + Highcharts.numberFormat(this.y, 0, '', ',')+'</b>');
+        formatter: function () {
+          return (Highcharts.dateFormat('%B %e, %Y', this.x) + ': <b>$' + Highcharts.numberFormat(this.y, 0, '', ',') + '</b>');
         }
       },
       series: series
     }
-
-    const spendingMonth = new Highcharts.Chart(config)
+    return config
   }
 }

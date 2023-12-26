@@ -9,15 +9,15 @@ class AccountsController < ApplicationController
   def retired
   end
 
-  # GET /accounts/new
-  def new
-    @account = @household.accounts.build
-  end
-
   # GET /accounts/:id
   def show
     @account = @household.accounts.find params[:id]
     @transactions = @account.transactions.since(@user.created_at).order(date: :desc).page params[:page]
+  end
+
+  # GET /accounts/new
+  def new
+    @account = @household.accounts.build
   end
 
   # GET /accounts/:id/edit

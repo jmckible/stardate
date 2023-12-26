@@ -1,0 +1,12 @@
+- unless things.empty?
+  %table
+    %tr
+      %th Date
+      %th
+      %th Debit
+      %th Credit
+      %th Amount
+
+    %tbody
+      - things.each do |thing|
+        = render 'things/thing', thing: thing

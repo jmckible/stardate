@@ -1,0 +1,16 @@
+#modal .modal-background {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  background-color: #666; }
+
+#modal .modal-body {
+  background: #fff;
+  padding: 20px;
+  margin: 10% 0% 0% 30%;
+  width: 40%;
+  border: 5px solid #555;
+  border-radius: 25px; }

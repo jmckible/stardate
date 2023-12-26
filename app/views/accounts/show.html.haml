@@ -1,11 +1,13 @@
 %h1= @account.name
 
 - if @account.transactions.any?
-  #Balance{ data: {
-    controller: 'account-balance',
-    account_balance_categories_value: @account.graph_x_axis,
-    account_balance_balances_value: @account.graph_y_axis
-  }}
+  #Balance{
+    data: {
+      controller: 'account-balance',
+      account_balance_categories_value: @account.graph_x_axis,
+      account_balance_balances_value: @account.graph_y_axis
+    }
+  }
 
 %h3
   Balance

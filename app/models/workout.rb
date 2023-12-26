@@ -1,6 +1,6 @@
 class Workout < ApplicationRecord
 
-  belongs_to :user
+  belongs_to :user, touch: true
 
   scope :during, ->(date){ where(date: date) }
   scope :on,     ->(date){ where(date: date) }

@@ -1,0 +1,53 @@
+table.data {
+  min-width: 800px; }
+
+table {
+  margin: 2em 0;
+  line-height: 1.75em;
+  border-collapse: collapse;
+  border: 1px solid #ccc; }
+  table tbody tr:hover {
+    background-color: #ffd; }
+  table tr.total td {
+    font-weight: bold;
+    border-top: 2px solid #999; }
+  table th {
+    border: 0;
+    padding: 0 0.5em;
+    font-size: 0.8em;
+    background-color: #eee;
+    min-width: 5em;
+    text-align: left; }
+  table th:last-child {
+    text-align: right; }
+  table td {
+    border: 0;
+    padding: 0 0.5em;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    font-variant-numeric: tabular-nums; }
+    table td .user_name {
+      color: #666;
+      font-size: 0.6em; }
+  table td.date {
+    width: 9.5em;
+    text-align: left;
+    padding-left: 0.2em;
+    font-size: 0.8em; }
+  table td.count {
+    margin: 0 1em;
+    text-align: right; }
+  table td.money {
+    width: 5em;
+    text-align: right; }
+  table td.sum {
+    text-align: right; }
+  table td.num {
+    text-align: right; }
+  table td .tags {
+    font-size: 0.8em;
+    color: #999; }
+  table td .secret {
+    font-size: 0.6em;
+    color: #900;
+    font-weight: bold; }

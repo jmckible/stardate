@@ -10,14 +10,17 @@
   = select_year  @finish, prefix: 'finish', start_year: 2007, end_year: Time.zone.today.year
   = submit_tag 'Go'
 
-#HealthYear{ data: {
-  controller: 'health-year',
-  health_year_workout_value: @period.step(7).collect{|date| @user.workouts.on(date..(date+6)).sum(:minutes)},
-  health_year_weights_value: @user.weight_json(@period),
-  health_year_start_year_value: (@period.first - 1.month).year,
-  health_year_start_month_value: (@period.first - 1.month).month,
-  health_year_start_day_value: (@period.first - 1.month).day
-}}
+= cache [:user, @period.first, @period.last] do
+  #HealthYear{
+    data: {
+      controller: 'health-year',
+      health_year_workout_value: @period.step(7).collect{|date| @user.workouts.on(date..(date+6)).sum(:minutes)},
+      health_year_weights_value: @user.weight_json(@period),
+      health_year_start_year_value: (@period.first - 1.month).year,
+      health_year_start_month_value: (@period.first - 1.month).month,
+      health_year_start_day_value: (@period.first - 1.month).day
+    }
+  }
 
 = render partial: 'things/things', object: @workouts
 

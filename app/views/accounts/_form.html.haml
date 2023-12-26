@@ -24,11 +24,9 @@
     = form.check_box :earmark
     = form.label :earmark, 'Checking Earmark'
 
-
 %p
   Status:
   = form.collection_select :status, Account.statuses, :first, :first
-
 
 - if @account.expense?
   %p

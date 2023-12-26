@@ -5,15 +5,15 @@ class RecurringsController < ApplicationController
     @recurrings = @user.recurrings
   end
 
-  # GET /recurrings/new
-  def new
-    @recurring = @user.recurrings.build
-    render layout: false
-  end
-
   # GET /recurrings/1
   def show
     @recurring = @user.recurrings.find params[:id]
+    render layout: false
+  end
+
+  # GET /recurrings/new
+  def new
+    @recurring = @user.recurrings.build
     render layout: false
   end
 

@@ -3,11 +3,36 @@ import Highcharts from 'highcharts'
 
 export default class extends Controller {
 
-  static values = { workout: Array, weights: Array, startDay: Number, startMonth: Number, startYear: Number }
+  static values = {
+    built: { type: Boolean, default: false },
+    startDay: Number,
+    startMonth: Number,
+    startYear: Number,
+    weights: Array,
+    workout: Array,
+  }
 
-  connect() {
+  workoutValueChanged() {
+    this._buildChart()
+  }
 
-    const config = {
+  weightsValueChanged() {
+    this._buildChart()
+  }
+
+  builtValueChanged() {
+    this._buildChart()
+  }
+
+  _buildChart() {
+    if (!this.builtValue) {
+      this.builtValue = true
+      const chart = new Highcharts.Chart(this._chartConfig)
+    }
+  }
+
+  get _chartConfig() {
+    return {
       chart: {
         renderTo: this.element,
         width: 400,
@@ -16,9 +41,9 @@ export default class extends Controller {
       credits: {
         enabled: false
       },
-      title:  { text: undefined },
+      title: { text: undefined },
       legend: { enabled: false },
-      yAxis:[
+      yAxis: [
         {
           title: false
         },
@@ -32,19 +57,19 @@ export default class extends Controller {
         tickInterval: 24 * 3600 * 1000,
         labels: {
           step: 7,
-          formatter: function(){
-            return(Highcharts.dateFormat('%b %e',this.value));
+          formatter: function () {
+            return (Highcharts.dateFormat('%b %e', this.value));
           }
         }
       },
-      plotOptions:{
-        spline:{
+      plotOptions: {
+        spline: {
           marker: {
             enabled: false
           },
           shadow: false
         },
-        column:{
+        column: {
           stacking: 'normal',
           shadow: false,
           pointWidth: 10,
@@ -59,7 +84,7 @@ export default class extends Controller {
         pointStart: Date.UTC(this.startYearValue, this.startMonthValue, this.startDayValue),
         yAxis: 0,
         color: '#F0F'
-      },{
+      }, {
         type: 'spline',
         name: 'Weight',
         data: this.weightsValue,
@@ -69,7 +94,6 @@ export default class extends Controller {
         lineWidth: 4
       }]
     }
-    const healthMonth = new Highcharts.Chart(config)
   }
 
 }

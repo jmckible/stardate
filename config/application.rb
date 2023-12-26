@@ -9,7 +9,7 @@ Bundler.require(*Rails.groups)
 module Stardate
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.0
+    config.load_defaults 7.1
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -18,5 +18,7 @@ module Stardate
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    config.cache_store = :solid_cache_store
   end
 end

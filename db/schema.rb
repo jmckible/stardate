@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_06_062606) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_26_043508) do
+  create_schema "heroku_ext"
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -148,6 +150,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_06_062606) do
     t.index ["vendor_id"], name: "index_recurrings_on_vendor_id"
   end
 
+  create_table "solid_cache_entries", force: :cascade do |t|
+    t.binary "key", null: false
+    t.binary "value", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_solid_cache_entries_on_key", unique: true
+  end
+
   create_table "taggings", id: :serial, force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
@@ -251,6 +260,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_06_062606) do
     t.index ["yoga"], name: "index_workouts_on_yoga"
   end
 
-  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
 end

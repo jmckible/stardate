@@ -18,6 +18,7 @@ gem "turbo-rails", "= 2.0.0.pre.beta.2"
 gem 'will_paginate'
 
 group :development, :test do
+  gem 'dockerfile-rails', '>= 1.6' # For rails generate dockerfile
   gem 'haml_lint'
   gem 'rspec-rails'
   gem 'rubocop'

@@ -4,7 +4,7 @@
 #
 
 app = "stardate"
-primary_region = "sjc2"
+primary_region = "sjc"
 kill_signal = "SIGINT"
 kill_timeout = "5s"
 
@@ -12,7 +12,7 @@ kill_timeout = "5s"
   auto_rollback = true
 
 [deploy]
-  release_command = "bin/rails fly:release"
+  release_command = "./bin/rails db:prepare"
 
 [env]
   PORT = "8080"

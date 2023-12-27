@@ -16,3 +16,14 @@ Use that info to pg_dump from local machine:
 Then import into database:
 
 `psql stardate_development < ~/Downloads/stardate.sql`
+
+
+# To migrate the database
+
+`fly ssh console -C "/rails/bin/rails db:migrate"`
+
+
+# To update the Dockerfile
+
+Add `gem 'dockerfile-rails', '>= 1.6'` to Gemfile
+`bin/rails generate dockerfile`

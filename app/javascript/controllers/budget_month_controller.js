@@ -14,7 +14,6 @@ export default class extends Controller {
   }
 
   builtValueChanged() {
-    console.log('built changed')
     this._buildChart()
   }
 

@@ -25,10 +25,10 @@
 
     %p
       Debit:
-      = f.collection_select :debit_id, @household.accounts.active, :id, :name, include_blank: true
+      = f.collection_select :debit_id, Current.household.accounts.active, :id, :name, include_blank: true
     %p
       Credit:
-      = f.collection_select :credit_id, @household.accounts.active, :id, :name, include_blank: true
+      = f.collection_select :credit_id, Current.household.accounts.active, :id, :name, include_blank: true
     %p
       = submit_tag 'Update'
       or

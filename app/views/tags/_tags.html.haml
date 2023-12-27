@@ -8,5 +8,5 @@
     - tags.each do |tag|
       %tr
         %td= link_to tag.name, tag_path(tag)
-        %td.num= number_with_delimiter @household.transactions.visible_by(@user).tagged_with(tag).count
-        %td.num= number_to_currency @household.transactions.visible_by(@user).tagged_with(tag).sum(:amount), precision: 0
+        %td.num= number_with_delimiter Current.household.transactions.visible_by(Current.user).tagged_with(tag).count
+        %td.num= number_to_currency Current.household.transactions.visible_by(Current.user).tagged_with(tag).sum(:amount), precision: 0

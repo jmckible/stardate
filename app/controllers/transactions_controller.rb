@@ -12,37 +12,37 @@ class TransactionsController < ApplicationController
 
     @period = Date.new(year, month, 1)..Date.civil(year, month, -1)
 
-    if @period.first < @user.created_at.to_date
-      @period = @user.created_at.beginning_of_month.to_date..@user.created_at.end_of_month.to_date
+    if @period.first < Current.user.created_at.to_date
+      @period = Current.user.created_at.beginning_of_month.to_date..Current.user.created_at.end_of_month.to_date
     end
 
-    @transactions = @household.transactions.during @period
+    @transactions = Current.household.transactions.during @period
   end
 
   # GET /transactions/:id
   def show
-    @transaction = @household.transactions.find params[:id]
+    @transaction = Current.household.transactions.find params[:id]
     render layout: false
   end
 
   # POST /transactions/:id
   def create
-    @transaction = @household.transactions.build transaction_params
-    @transaction.user = @user
+    @transaction = Current.household.transactions.build transaction_params
+    @transaction.user = Current.user
     @transaction.save
     redirect_back_or @transaction.credit
   end
 
   # PUT /transactions/:id
   def update
-    @transaction = @household.transactions.find params[:id]
+    @transaction = Current.household.transactions.find params[:id]
     @transaction.update! transaction_params
     redirect_back_or root_url
   end
 
   # DELETE /transaction/:id
   def destroy
-    @transaction = @household.transactions.find params[:id]
+    @transaction = Current.household.transactions.find params[:id]
     @transaction.destroy
     redirect_back_or root_url
   end

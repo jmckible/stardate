@@ -1,10 +1,7 @@
 class ApplicationController < ActionController::Base
-  include Authorization, Turbo::Redirection
+  include Authorization
 
-  # By default all pages are protected
-  # Use skip_before_filter on public pages
   before_action :login_required
-
   before_action :set_time_zone
 
   protected
@@ -23,12 +20,12 @@ class ApplicationController < ActionController::Base
     rescue ArgumentError, NoMethodError
       @finish = Time.zone.now.to_date
     end
-    @start  = @user.created_at.to_date if @start < @user.created_at.to_date
+    @start  = Current.user.created_at.to_date if @start < Current.user.created_at.to_date
     @period = @start..@finish
   end
 
   def set_time_zone
-    Time.zone = @user.time_zone if logged_in?
+    Time.zone = Current.user.time_zone if logged_in?
   end
 
 end

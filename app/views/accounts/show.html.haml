@@ -32,7 +32,7 @@
     %th Credit
 
   - @transactions.each do |transaction|
-    - if transaction.secret? && transaction.user != @user
+    - if transaction.secret? && transaction.user != Current.user
       %tr
         %td.date
           = link_to transaction.date, date_link(transaction.date)
@@ -63,7 +63,7 @@
     %td Total
     %td
     %td
-    %td.debit.num= number_with_delimiter @account.debits.since(@user.created_at).sum(:amount)
-    %td.credit.num= number_with_delimiter @account.credits.since(@user.created_at).sum(:amount)
+    %td.debit.num= number_with_delimiter @account.debits.since(Current.user.created_at).sum(:amount)
+    %td.credit.num= number_with_delimiter @account.credits.since(Current.user.created_at).sum(:amount)
 
 = will_paginate @transactions

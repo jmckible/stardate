@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_26_043508) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_27_061219) do
   create_schema "heroku_ext"
 
   # These are extensions that must be enabled in order to support this database
@@ -205,13 +205,12 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_26_043508) do
 
   create_table "users", id: :serial, force: :cascade do |t|
     t.string "email", limit: 255, null: false
-    t.string "password_salt", limit: 255, null: false
-    t.string "password_hash", limit: 255, null: false
+    t.string "password_digest", limit: 255, null: false
     t.string "time_zone", limit: 255
     t.datetime "created_at", precision: nil, default: "2007-05-24 15:49:54"
     t.integer "household_id"
     t.string "name", limit: 255
-    t.index ["email"], name: "index_users_on_email"
+    t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["household_id"], name: "index_users_on_household_id"
   end
 

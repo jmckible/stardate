@@ -18,14 +18,11 @@ describe SessionsController do
     pst sessions_path, email: @user.email, password: 'test'
     expect(response).to redirect_to(root_path)
     expect(session[:user_id]).to eq(@user.id)
-    expect(response.cookies['user_id']).to eq(@user.id.to_s)
-    expect(response.cookies['password_hash']).to eq(@user.password_hash)
   end
 
   it 'denies access to a user with invalid credentials' do
     pst sessions_path
-    expect(response).to render_template(:new)
-    expect(response).to be_successful
+    expect(response).to redirect_to(new_session_path)
   end
 
   it 'logs out a user' do
@@ -33,8 +30,6 @@ describe SessionsController do
     del session_path(@current_user)
     expect(response).to redirect_to(new_session_path)
     expect(session[:user_id]).to be_nil
-    expect(response.cookies['user_id']).to be_nil
-    expect(response.cookies['password_hash']).to be_nil
   end
 
 end

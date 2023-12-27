@@ -14,8 +14,8 @@
   #HealthYear{
     data: {
       controller: 'health-year',
-      health_year_workout_value: @period.step(7).collect{|date| @user.workouts.on(date..(date+6)).sum(:minutes)},
-      health_year_weights_value: @user.weight_json(@period),
+      health_year_workout_value: @period.step(7).collect{|date| Current.user.workouts.on(date..(date+6)).sum(:minutes)},
+      health_year_weights_value: Current.user.weight_json(@period),
       health_year_start_year_value: (@period.first - 1.month).year,
       health_year_start_month_value: (@period.first - 1.month).month,
       health_year_start_day_value: (@period.first - 1.month).day

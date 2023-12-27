@@ -1,47 +1,39 @@
 class AccountsController < ApplicationController
 
-  # GET /accounts
   def index
-    @missing = @household.transactions.where('debit_id IS NULL OR credit_id IS NULL')
+    @missing = Current.household.transactions.where('debit_id IS NULL OR credit_id IS NULL')
   end
 
-  # GET /accounts/retired
   def retired
   end
 
-  # GET /accounts/:id
   def show
-    @account = @household.accounts.find params[:id]
-    @transactions = @account.transactions.since(@user.created_at).order(date: :desc).page params[:page]
+    @account = Current.household.accounts.find params[:id]
+    @transactions = @account.transactions.since(Current.user.created_at).order(date: :desc).page params[:page]
   end
 
-  # GET /accounts/new
   def new
-    @account = @household.accounts.build
+    @account = Current.household.accounts.build
   end
 
-  # GET /accounts/:id/edit
   def edit
-    @account = @household.accounts.find params[:id]
+    @account = Current.household.accounts.find params[:id]
   end
 
-  # GET /accounts/:id/fund
   def fund
-    @account = @household.accounts.find params[:id]
-    @transaction = @household.transactions.build debit: @account
+    @account = Current.household.accounts.find params[:id]
+    @transaction = Current.household.transactions.build debit: @account
     render layout: false
   end
 
-  # POST /accounts
   def create
-    @account = @household.accounts.build account_params
+    @account = Current.household.accounts.build account_params
     @account.save
     redirect_to @account
   end
 
-  # PUT /accounts/:id
   def update
-    @account = @household.accounts.find params[:id]
+    @account = Current.household.accounts.find params[:id]
     @account.update account_params
     redirect_to @account
   end

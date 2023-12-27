@@ -5,7 +5,7 @@
 
   %p
     Source
-    = f.collection_select :credit_id, @household.accounts.asset.other_than(@account), :id, :name
+    = f.collection_select :credit_id, Current.household.accounts.asset.other_than(@account), :id, :name
 
   %p= f.text_field :amount, default: 'Amount', class: 'money'
 

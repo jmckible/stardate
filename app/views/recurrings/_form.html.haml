@@ -13,7 +13,7 @@
 
 %p
   Debit:
-  = form.collection_select :debit_id, @household.accounts, :id, :name, include_blank: true
+  = form.collection_select :debit_id, Current.household.accounts, :id, :name, include_blank: true
 %p
   Credit:
-  = form.collection_select :credit_id, @household.accounts, :id, :name, include_blank: true
+  = form.collection_select :credit_id, Current.household.accounts, :id, :name, include_blank: true

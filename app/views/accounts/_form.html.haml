@@ -8,7 +8,7 @@
   %h3 Ledger
   = form.collection_select :ledger, Account.ledgers, :first, :first
 
-- if @account.asset? && @account != @household.checking
+- if @account.asset? && @account != Current.household.checking
   %p Every Two Weeks Save:
   %p= form.text_field :budget, default: 'Budget Balance', class: 'money'
 
@@ -31,4 +31,4 @@
 - if @account.expense?
   %p
     Deferral
-    = form.collection_select :deferral_id, @household.accounts, :id, :name, include_blank: true
+    = form.collection_select :deferral_id, Current.household.accounts, :id, :name, include_blank: true

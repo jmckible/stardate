@@ -32,4 +32,6 @@
 
 # Ignore assets.
 /node_modules/
+/app/assets/builds/*
+!/app/assets/builds/.keep
 /public/assets

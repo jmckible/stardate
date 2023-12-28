@@ -20,3 +20,7 @@ console_command = "/rails/bin/rails console"
 [[statics]]
   guest_path = "/rails/public"
   url_prefix = "/"
+
+[deploy]
+  release_command = "./bin/rails db:prepare"
+

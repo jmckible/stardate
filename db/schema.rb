@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_27_061219) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_28_221925) do
   create_schema "heroku_ext"
 
   # These are extensions that must be enabled in order to support this database
@@ -210,6 +210,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_27_061219) do
     t.datetime "created_at", precision: nil, default: "2007-05-24 15:49:54"
     t.integer "household_id"
     t.string "name", limit: 255
+    t.datetime "updated_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["household_id"], name: "index_users_on_household_id"
   end

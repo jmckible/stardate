@@ -12,7 +12,6 @@ gem 'pg'
 gem 'propshaft', github: 'rails/propshaft'
 gem 'puma'
 gem 'rails', '7.1.2'
-gem 'redis'
 gem 'solid_cache'
 gem 'stimulus-rails'
 gem "turbo-rails", "= 2.0.0.pre.beta.2"

@@ -33,14 +33,11 @@ class Grammar
         end
 
         if expense&.deferral
-          source = household.credit_card
           fund = household.transactions.build date: date, user: user, debit: household.checking, credit: expense.deferral, amount: amount.abs
           fund.save!
-        else
-          source = household.checking
         end
 
-        transaction.credit = source
+        transaction.credit = household.credit_card
         transaction.debit  = expense
 
         amount = amount * -1 if amount.negative?

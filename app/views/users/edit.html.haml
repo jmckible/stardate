@@ -50,4 +50,9 @@
     %br
     = f.collection_select :general_income_id, Current.household.accounts.income, :id, :name
 
+  %p
+    Monthly Budget Target
+    %br
+    = f.number_field :monthly_budget_target
+
   %p= f.submit 'Update Accounts'

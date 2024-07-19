@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_28_221925) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_19_213459) do
   create_schema "heroku_ext"
 
   # These are extensions that must be enabled in order to support this database
@@ -80,6 +80,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_28_221925) do
     t.integer "slush_id"
     t.integer "general_income_id"
     t.integer "credit_card_id"
+    t.integer "monthly_budget_target", default: 0
     t.index ["checking_id"], name: "index_households_on_checking_id"
     t.index ["general_income_id"], name: "index_households_on_general_income_id"
     t.index ["slush_id"], name: "index_households_on_slush_id"

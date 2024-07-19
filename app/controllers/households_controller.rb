@@ -2,7 +2,7 @@ class HouseholdsController < ApplicationController
 
   # PUT /households/:id
   def update
-    Current.household.update params.fetch(:household, {}).permit(:checking_id, :credit_card_id, :slush_id, :general_income_id)
+    Current.household.update params.fetch(:household, {}).permit(:checking_id, :credit_card_id, :monthly_budget_target, :slush_id, :general_income_id)
     redirect_to [:edit, Current.user]
   end
 

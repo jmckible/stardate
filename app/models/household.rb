@@ -58,7 +58,7 @@ class Household < ApplicationRecord
     end
 
     spending = checking.credits.expense_debit.since(date).not_exceptional.sum(:amount)
-    3366 - spending - accounts.sum(:budget)
+    monthly_budget_target - spending - accounts.sum(:budget)
   end
 
   def last_period_budget_balance
@@ -70,7 +70,7 @@ class Household < ApplicationRecord
     end
 
     spending = checking.credits.expense_debit.during(range).not_exceptional.sum(:amount)
-    3366 - spending - accounts.sum(:budget)
+    monthly_budget_target - spending - accounts.sum(:budget)
   end
 
   validates :name, presence: true

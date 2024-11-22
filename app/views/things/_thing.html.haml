@@ -1,7 +1,7 @@
 = cache thing do
   - if thing.is_a?(Transaction)
 
-    - if thing.secret? && thing.user != Current.user
+    - if thing.secret? && thing.user_id.presence != Current.user.id
       %tr.transaction
         %td.date
           &nbsp;

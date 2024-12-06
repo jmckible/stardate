@@ -1,7 +1,7 @@
 require: rubocop-rails
 
 AllCops:
-  TargetRubyVersion: 3.1
+  TargetRubyVersion: 3.3
   Include:
     - 'app/**/*.rb'
     - 'lib/**/*.rb'
@@ -13,9 +13,10 @@ AllCops:
   NewCops: enable
   SuggestExtensions: false
 
-# --------------------------------------------------------------------------- #
+
+###############################################################################
 #                              L A Y O U T                                    #
-# --------------------------------------------------------------------------- #
+###############################################################################
 Layout/ArgumentAlignment:
   Enabled: false
 
@@ -24,6 +25,8 @@ Layout/ArrayAlignment:
 
 Layout/EmptyLines:
   Enabled: true
+  Exclude:
+    - app/views/**/*
 
 Layout/EmptyLineAfterGuardClause:
   Enabled: false
@@ -46,14 +49,24 @@ Layout/EmptyLinesAroundModuleBody:
 Layout/ExtraSpacing:
   Enabled: false
 
-Layout/FirstHashElementIndentation:
+Layout/FirstArrayElementIndentation:
   Enabled: false
 
 Layout/HashAlignment:
   Enabled: false
 
+Layout/IndentationConsistency:
+  Enabled: true
+  Exclude:
+    - app/views/**/*
+
+Layout/FirstHashElementIndentation:
+  Enabled: true
+  Exclude:
+    - app/views/**/*
+
 Layout/LineLength:
-  Max: 2000
+  Max: 2500
 
 Layout/MultilineOperationIndentation:
   Enabled: false
@@ -103,15 +116,18 @@ Lint/RedundantSafeNavigation:
 Lint/RescueException:
   Enabled: false
 
+Lint/SymbolConversion:
+  Enabled: false
+
 Lint/SuppressedException:
   Enabled: false
 
 Lint/StructNewOverride:
   Enabled: false
 
-# --------------------------------------------------------------------------- #
+###############################################################################
 #                              M E T R I C S                                  #
-# --------------------------------------------------------------------------- #
+###############################################################################
 Metrics/AbcSize:
   Enabled: false
 
@@ -139,10 +155,13 @@ Metrics/ParameterLists:
 Metrics/PerceivedComplexity:
   Enabled: false
 
-# --------------------------------------------------------------------------- #
+###############################################################################
 #                              N A M I N G                                    #
-# --------------------------------------------------------------------------- #
+###############################################################################
 Naming/AccessorMethodName:
+  Enabled: false
+
+Naming/BlockForwarding:
   Enabled: false
 
 Naming/ConstantName:
@@ -160,19 +179,22 @@ Naming/PredicateName:
 Naming/VariableNumber:
   Enabled: false
 
-# --------------------------------------------------------------------------- #
+###############################################################################
 #                                  R A I L S                                  #
-# --------------------------------------------------------------------------- #
+###############################################################################
 Rails:
   Enabled: true
 
 Rails/ContentTag:
   Enabled: false
 
-Rails/DuplicateScope:
+Rails/DeprecatedActiveModelErrorsMethods:
   Enabled: false
 
 Rails/DynamicFindBy:
+  Enabled: false
+
+Rails/HasAndBelongsToMany:
   Enabled: false
 
 Rails/FilePath:
@@ -181,7 +203,7 @@ Rails/FilePath:
 Rails/FindEach:
   Enabled: false
 
-Rails/HasAndBelongsToMany:
+Rails/HasManyOrHasOneDependent:
   Enabled: false
 
 Rails/HelperInstanceVariable:
@@ -205,21 +227,24 @@ Rails/OutputSafety:
 Rails/UnknownEnv:
   Enabled: false
 
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false
+
 Rails/Validation:
   Enabled: false
 
-# --------------------------------------------------------------------------- #
+###############################################################################
 #                             S E C U R I T Y                                 #
-# --------------------------------------------------------------------------- #
+###############################################################################
 Security/Eval:
   Enabled: false
 
 Security/Open:
   Enabled: false
 
-# --------------------------------------------------------------------------- #
+###############################################################################
 #                                 S T Y L E                                   #
-# --------------------------------------------------------------------------- #
+###############################################################################
 Style/AccessorGrouping:
   Enabled: false
 
@@ -313,7 +338,13 @@ Style/NumericLiterals:
 Style/OneLineConditional:
   Enabled: false
 
+Style/OpenStructUse:
+  Enabled: false
+
 Style/ParallelAssignment:
+  Enabled: false
+
+Style/RedundantConstantBase:
   Enabled: false
 
 Style/RedundantRegexpEscape:

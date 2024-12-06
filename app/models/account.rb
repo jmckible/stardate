@@ -1,8 +1,8 @@
 class Account < ApplicationRecord
   include Taggable
 
-  enum status: { active: 0, retired: 1 }
-  enum ledger: { asset: 0, income: 1, expense: 2, liability: 3 }
+  enum :status, { active: 0, retired: 1 }
+  enum :ledger, { asset: 0, income: 1, expense: 2, liability: 3 }
 
   belongs_to :deferral, class_name: 'Account', optional: true
   belongs_to :household

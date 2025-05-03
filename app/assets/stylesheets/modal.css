@@ -5,12 +5,38 @@
   right: 0;
   bottom: 0;
   z-index: 1000;
-  background-color: #666; }
+  background-color: rgba(102, 102, 102, 0.8);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch; }
 
 #modal .modal-body {
   background: #fff;
   padding: 20px;
-  margin: 10% 0% 0% 30%;
-  width: 40%;
+  margin: 5% auto;
+  width: 90%;
+  max-width: 500px;
   border: 5px solid #555;
-  border-radius: 25px; }
+  border-radius: 25px;
+  box-sizing: border-box;
+  max-height: 90vh;
+  overflow-y: auto; }
+
+@media (min-width: 768px) {
+  #modal .modal-body {
+    width: 60%;
+    max-width: 600px;
+  }
+}
+
+/* Additional scroll fixes for iOS */
+@media (max-width: 767px) {
+  #modal .modal-background {
+    position: fixed;
+    -webkit-transform: translateZ(0);
+  }
+  
+  #modal .modal-body {
+    margin: 5% auto 10% auto;
+    max-height: 85vh;
+  }
+}

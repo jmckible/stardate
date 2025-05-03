@@ -35,8 +35,8 @@ export default class extends Controller {
     return {
       chart: {
         renderTo: this.element,
-        width: 400,
-        height: 280
+        height: 280,
+        reflow: true
       },
       credits: {
         enabled: false
@@ -67,7 +67,8 @@ export default class extends Controller {
           marker: {
             enabled: false
           },
-          shadow: false
+          shadow: false,
+          lineWidth: 2
         },
         column: {
           stacking: 'normal',
@@ -75,6 +76,20 @@ export default class extends Controller {
           pointWidth: 10,
           pointPadding: 0
         }
+      },
+      responsive: {
+        rules: [{
+          condition: {
+            maxWidth: 500
+          },
+          chartOptions: {
+            xAxis: {
+              labels: {
+                step: 14
+              }
+            }
+          }
+        }]
       },
       series: [{
         type: 'column',

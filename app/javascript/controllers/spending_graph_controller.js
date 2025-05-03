@@ -61,8 +61,8 @@ export default class extends Controller {
       chart: {
         renderTo: this.element,
         defaultSeriesType: 'area',
-        width: 400,
-        height: 280
+        height: 280,
+        reflow: true
       },
       credits: {
         enabled: false
@@ -96,8 +96,24 @@ export default class extends Controller {
                 enabled: true
               }
             }
-          }
+          },
+          lineWidth: 2,
+          fillOpacity: 0.5
         }
+      },
+      responsive: {
+        rules: [{
+          condition: {
+            maxWidth: 500
+          },
+          chartOptions: {
+            xAxis: {
+              labels: {
+                step: 14
+              }
+            }
+          }
+        }]
       },
       tooltip: {
         formatter: function () {

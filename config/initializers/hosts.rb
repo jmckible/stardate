@@ -1,6 +1,7 @@
 case Rails.env
 when 'development'
   Rails.application.config.hosts << 'stardate.test' # iPhone
+  Rails.application.config.hosts << 'stardate.local'
 when 'test'
   Rails.application.config.hosts << 'www.example.com'
   Rails.application.config.hosts << 'stardate.test'

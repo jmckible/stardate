@@ -8,19 +8,19 @@
     .form-group
       %label Date
       .date-selects= f.date_select :date, order: [:month, :day, :year]
-    
+
     .form-group
       %label Amount
       %div= f.text_field :amount, class: 'money'
-    
+
     .form-group
       %label Vendor
       %div= f.text_field :vendor_name, default: 'vendor'
-    
+
     .form-group
       %label Description
       %div= f.text_field :description, default: 'description'
-    
+
     .form-group
       %label Tags
       %div= f.text_field :tag_list, default: 'tags'
@@ -38,11 +38,13 @@
     .form-group
       %label Debit
       %div= f.collection_select :debit_id, Current.household.accounts.active, :id, :name, include_blank: true
-    
+
     .form-group
       %label Credit
       %div= f.collection_select :credit_id, Current.household.accounts.active, :id, :name, include_blank: true
-    
+
     .form-actions
       = submit_tag 'Update', class: 'btn-update'
-      %span.delete= button_to 'Delete', @transaction, method: :delete, data: { turbo: false }, class: 'btn-delete'
+
+  %br
+  %span.delete= button_to 'Delete', @transaction, method: :delete, data: { turbo: false }, class: 'btn-delete'

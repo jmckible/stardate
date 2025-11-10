@@ -18,9 +18,10 @@ class Account < ApplicationRecord
   scope :earmark,    -> { where(earmark: true) }
   scope :other_than, ->(account){ where.not(id: account.id) }
 
-  #############################################################################
-  #                                 B A L A N C E                             #
-  #############################################################################
+  # -------------------------------------------------------------------------- #
+  #                               B A L A N C E                                #
+  # -------------------------------------------------------------------------- #
+
   def balance
     debits.sum(:amount) - credits.sum(:amount)
   end
@@ -54,19 +55,20 @@ class Account < ApplicationRecord
     transaction
   end
 
-  #############################################################################
-  #                                 G R A P H I N G                           #
-  #############################################################################
+  # -------------------------------------------------------------------------- #
+  #                              G R A P H I N G                               #
+  # -------------------------------------------------------------------------- #
+
   def graph_step
     (graph_end - graph_start) < 365 ? 7 : 30
   end
 
   def graph_start
-    transactions.order('date').first.date
+    transactions.order(:date).first.date
   end
 
   def graph_end
-    transactions.order('date DESC').first.date
+    transactions.order(date: :desc).first.date
   end
 
   def graph_x_axis
@@ -86,8 +88,9 @@ class Account < ApplicationRecord
     data.to_json.html_safe
   end
 
-  #############################################################################
-  #                             V A L I D A T I O N                           #
-  #############################################################################
+  # -------------------------------------------------------------------------- #
+  #                            V A L I D A T I O N                             #
+  # -------------------------------------------------------------------------- #
+
   validates_presence_of :household_id, :name
 end

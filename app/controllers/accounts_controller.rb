@@ -5,28 +5,31 @@ class AccountsController < ApplicationController
       .where('debit_id IS NULL OR credit_id IS NULL')
       .includes(:vendor, :tags, :debit, :credit)
 
-    # Eager load accounts with their transactions to avoid N+1 queries
+    # Use SQL aggregation to compute balances efficiently
     @cash_accounts = Current.household.accounts.active.asset.earmark
       .or(Account.where(id: Current.household.checking.id))
       .reorder(budget: :desc)
-      .includes(:debits, :credits)
+      .with_balances
 
     @other_assets = Current.household.accounts.active.asset
       .where(earmark: false)
       .where.not(id: Current.household.checking.id)
-      .includes(:debits, :credits)
+      .with_balances
 
     @expense_accounts = Current.household.accounts.expense.active
-      .includes(:debits, :credits)
+      .with_balances
 
     @liability_accounts = Current.household.accounts.liability.active
-      .includes(:debits, :credits)
+      .with_balances
 
     @income_accounts = Current.household.accounts.income.active
-      .includes(:debits, :credits)
+      .with_balances
   end
 
   def retired
+    @retired_assets = Current.household.accounts.retired.asset.with_balances
+    @retired_expenses = Current.household.accounts.retired.expense.with_balances
+    @retired_income = Current.household.accounts.retired.income.with_balances
   end
 
   def show

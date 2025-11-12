@@ -42,8 +42,8 @@ class ThingsController < ApplicationController
     # Check if we have health data
     @has_health_data = workouts.any? || weights.any?
 
-    # Preload dashboard accounts with their transactions for budget graph
-    @dashboard_accounts = Current.household.accounts.dashboard.includes(:debits, :credits).to_a
+    # Preload dashboard accounts with their balances computed in SQL
+    @dashboard_accounts = Current.household.accounts.dashboard.with_balances.to_a
     @budget_categories = @dashboard_accounts.map { |a| a.name.gsub(' Deferral', '') }
     @budget_balances = @dashboard_accounts.map do |account|
       amount = account.balance

@@ -36,7 +36,7 @@ class Household < ApplicationRecord
   end
 
   def budget_month_values
-    accounts.dashboard.collect do |account|
+    accounts.dashboard.with_balances.collect do |account|
       amount = account.balance
       {y: amount, color: (amount.negative? ? '#FF00CC' : '#00CCFF') }
     end
@@ -47,7 +47,7 @@ class Household < ApplicationRecord
   end
 
   def checking_plus_earmarks
-    checking.balance + accounts.asset.earmark.collect(&:balance).sum
+    checking.balance + accounts.asset.earmark.with_balances.sum(&:balance)
   end
 
   def biweekly_budget_balance

@@ -18,12 +18,32 @@ class Account < ApplicationRecord
   scope :earmark,    -> { where(earmark: true) }
   scope :other_than, ->(account){ where.not(id: account.id) }
 
+  # Efficiently load accounts with their balance totals computed in SQL using scalar subqueries
+  scope :with_balances, -> {
+    select('accounts.*,
+            (SELECT COALESCE(SUM(amount), 0) FROM transactions WHERE debit_id = accounts.id) as debit_total,
+            (SELECT COALESCE(SUM(amount), 0) FROM transactions WHERE credit_id = accounts.id) as credit_total')
+  }
+
   # -------------------------------------------------------------------------- #
   #                               B A L A N C E                                #
   # -------------------------------------------------------------------------- #
 
+  # Use precomputed total if available from with_balances scope, otherwise query
+  def debit_total
+    has_attribute?(:debit_total) ? read_attribute(:debit_total) : debits.sum(:amount)
+  end
+
+  def credit_total
+    has_attribute?(:credit_total) ? read_attribute(:credit_total) : credits.sum(:amount)
+  end
+
   def balance
-    debits.sum(:amount) - credits.sum(:amount)
+    if has_attribute?(:debit_total) && has_attribute?(:credit_total)
+      read_attribute(:debit_total) - read_attribute(:credit_total)
+    else
+      debits.sum(:amount) - credits.sum(:amount)
+    end
   end
 
   def balance_on(date)

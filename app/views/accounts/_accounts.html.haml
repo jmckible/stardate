@@ -6,6 +6,6 @@
 - accounts.each do |account|
   %tr
     %td= link_to account.name, account
-    %td.num.debit= not_zero account.debits.sum(:amount)
-    %td.num.credit= not_zero account.credits.sum(:amount)
+    %td.num.debit= not_zero account.debit_total
+    %td.num.credit= not_zero account.credit_total
     %td.num= color_money account.balance

@@ -11,7 +11,7 @@ class Recurring < ApplicationRecord
   scope :on, ->(date){
     if date.is_a?(Date)
       if date == date.end_of_month
-        where("day >= ?", date.mday)
+        where(day: date.mday..)
       else
         where(day: date.mday)
       end

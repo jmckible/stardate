@@ -17,7 +17,7 @@ module Permalink
         try_to_use = name.parameterize + "-#{count}"
       end
 
-      if self.class.where(permalink: try_to_use).count.positive?
+      if self.class.where(permalink: try_to_use).any?
         count = count + 1
       else
         safe_to_use = true

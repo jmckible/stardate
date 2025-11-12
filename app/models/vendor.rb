@@ -1,5 +1,6 @@
 class Vendor < ApplicationRecord
   include Permalink
+
   has_many :transactions, dependent: :nullify
 
   scope :visible_by, ->(user){

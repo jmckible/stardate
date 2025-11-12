@@ -13,9 +13,8 @@ module Taggable
   end
 
   def tag_list=(tag_string)
-    new_tags = []
-    tag_string.split(',').compact.each do |name|
-      new_tags << Tag.where(name: name.strip).first_or_create
+    new_tags = tag_string.split(',').compact.map do |name|
+      Tag.where(name: name.strip).first_or_create
     end
     taggings.each { |t| t.destroy unless new_tags.include?(t.tag) }
     new_tags.each { |t| tags << t unless tags.include?(t) }

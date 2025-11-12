@@ -68,6 +68,9 @@ Layout/FirstHashElementIndentation:
 Layout/LineLength:
   Max: 2500
 
+Layout/MultilineMethodCallIndentation:
+  Enabled: false
+
 Layout/MultilineOperationIndentation:
   Enabled: false
 
@@ -189,6 +192,9 @@ Rails/ContentTag:
   Enabled: false
 
 Rails/DeprecatedActiveModelErrorsMethods:
+  Enabled: false
+
+Rails/DuplicateScope:
   Enabled: false
 
 Rails/DynamicFindBy:

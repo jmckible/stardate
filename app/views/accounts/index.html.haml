@@ -56,14 +56,13 @@
 
 %h2 Assets
 %table.data
-  - cash = Current.household.accounts.active.asset.earmark.or(Account.where(id: Current.household.checking.id)).reorder(budget: :desc)
-  = render partial: 'accounts', object: cash
+  = render partial: 'accounts', object: @cash_accounts
   %tr.total
     %td Cash
     %td
     %td
     %td.num= color_money Current.household.checking_plus_earmarks
-  = render partial: 'accounts', object: Current.household.accounts.active.asset.where(earmark: false).where.not(id: Current.household.checking.id)
+  = render partial: 'accounts', object: @other_assets
   %tr.total
     %td Net
     %td.num= color_money Current.household.transactions.asset_debit.since(Current.user.created_at).sum(:amount)
@@ -72,7 +71,7 @@
 
 %h2 Expenses
 %table.data
-  = render partial: 'accounts', object: Current.household.accounts.expense.active
+  = render partial: 'accounts', object: @expense_accounts
   %tr.total
     %td Net
     %td.num= color_money Current.household.transactions.expense_debit.since(Current.user.created_at).sum(:amount)
@@ -81,7 +80,7 @@
 
 %h2 Liabilities
 %table.data
-  = render partial: 'accounts', object: Current.household.accounts.liability.active
+  = render partial: 'accounts', object: @liability_accounts
   %tr.total
     %td Net
     %td.num= color_money Current.household.transactions.liability_debit.since(Current.user.created_at).sum(:amount)
@@ -90,7 +89,7 @@
 
 %h2 Income
 %table.data
-  = render partial: 'accounts', object: Current.household.accounts.income.active
+  = render partial: 'accounts', object: @income_accounts
   %tr.total
     %td Net
     %td.num= not_zero Current.household.transactions.income_debit.since(Current.user.created_at).sum(:amount)

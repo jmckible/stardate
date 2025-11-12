@@ -21,14 +21,14 @@ class User < ApplicationRecord
   # ------------------------------------------------------------------------- #
   belongs_to :household
 
-  has_many :jobs,        ->{ order('name') },       dependent: :destroy
-  has_many :notes,       ->{ order('date DESC') },  dependent: :destroy
-  has_many :recurrings,  ->{ order('day') },        dependent: :destroy
+  has_many :jobs,        ->{ order(:name) },       dependent: :destroy
+  has_many :notes,       ->{ order(date: :desc) },  dependent: :destroy
+  has_many :recurrings,  ->{ order(:day) },        dependent: :destroy
   has_many :tags,        ->{ uniq },                  through: :transactions
   has_many :tasks,                                    through: :jobs
-  has_many :transactions, ->{ order('date') },      dependent: :destroy
-  has_many :vendors,      ->{ order('name').uniq },   through: :transactions
-  has_many :weights,      ->{ order('date') },      dependent: :destroy
+  has_many :transactions, ->{ order(:date) },      dependent: :destroy
+  has_many :vendors,      ->{ order(:name).uniq },   through: :transactions
+  has_many :weights,      ->{ order(:date) },      dependent: :destroy
   has_many :workouts,                               dependent: :destroy
 
   # ------------------------------------------------------------------------- #
@@ -42,7 +42,7 @@ class User < ApplicationRecord
   def things_during(period)
     period = period..period unless period.is_a?(Range)
 
-    (household.transactions.during(period) + notes.during(period) +
+    (household.transactions.during(period).includes(:vendor, :tags, :debit, :credit, :user) + notes.during(period) +
      workouts.during(period) + weights.during(period)).sort do |x,y|
       if x.date == y.date
         y.created_at <=> x.created_at

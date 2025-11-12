@@ -13,8 +13,8 @@
     #SpendingMonth{
       data: {
         controller: 'spending-graph',
-        spending_graph_expense_value: @month.collect{|date| Current.household.sum_non_exceptional_expenses(@month.first..date)},
-        spending_graph_income_value: @month.collect{|date| Current.household.sum_non_exceptional_income @month.first..date},
+        spending_graph_expense_value: @expense_data,
+        spending_graph_income_value: @income_data,
         spending_graph_start_year_value: (@month.first - 1.month).year,
         spending_graph_start_month_value: (@month.first - 1.month).month,
         spending_graph_start_day_value: (@month.first - 1.month).day
@@ -22,12 +22,12 @@
     }
 
   = cache [Current.user, :health] do
-    - if Current.user.workouts.during(@month).any? || Current.user.weights.during(@month).any?
+    - if @has_health_data
       #HealthMonth{
         data: {
           controller: 'health-month',
-          health_month_workout_value: @month.collect{|date| Current.user.workouts.on(date).sum(:minutes)},
-          health_month_weights_value: Current.user.weight_json(@month),
+          health_month_workout_value: @workout_data,
+          health_month_weights_value: @weight_data,
           health_month_start_year_value: (@month.first - 1.month).year,
           health_month_start_month_value: (@month.first - 1.month).month,
           health_month_start_day_value: (@month.first - 1.month).day
@@ -39,8 +39,8 @@
   #BudgetMonth{
     data: {
       controller: 'budget-month',
-      budget_month_categories_value: Current.household.accounts.dashboard.collect{|a| a.name.gsub(' Deferral', '')},
-      budget_month_balances_value: Current.household.budget_month_values.to_json
+      budget_month_categories_value: @budget_categories,
+      budget_month_balances_value: @budget_balances.to_json
     }
   }
 

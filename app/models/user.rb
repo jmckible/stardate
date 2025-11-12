@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   include Totalling
 
-  broadcasts_refreshes
+  # broadcasts_refreshes
 
   # ------------------------------------------------------------------------- #
   #                      C L A S S   M E T H O D S                            #

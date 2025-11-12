@@ -20,7 +20,7 @@ class Household < ApplicationRecord
 
   has_many :vendors, ->{ distinct.order(name: :asc) }, through: :transactions
 
-  broadcasts_refreshes
+  # broadcasts_refreshes
 
   # For scheduled deferral funding
   def default_user

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_11_12_175838) do
+ActiveRecord::Schema[8.1].define(version: 2025_11_12_184500) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -29,7 +29,9 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_12_175838) do
     t.index ["dashboard"], name: "index_accounts_on_dashboard"
     t.index ["deferral_id"], name: "index_accounts_on_deferral_id"
     t.index ["earmark"], name: "index_accounts_on_earmark"
+    t.index ["household_id", "ledger"], name: "index_accounts_on_household_id_and_ledger"
     t.index ["household_id"], name: "index_accounts_on_household_id"
+    t.index ["ledger"], name: "index_accounts_on_ledger"
   end
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -216,7 +218,11 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_12_175838) do
     t.index ["date"], name: "index_transactions_on_date"
     t.index ["debit_id"], name: "index_transactions_on_debit_id"
     t.index ["exceptional"], name: "index_transactions_on_exceptional"
-    t.index ["household_id"], name: "index_transactions_on_household_id"
+    t.index ["household_id", "credit_id"], name: "index_transactions_on_household_id_and_credit_id"
+    t.index ["household_id", "date"], name: "index_transactions_on_household_id_and_date"
+    t.index ["household_id", "debit_id"], name: "index_transactions_on_household_id_and_debit_id"
+    t.index ["household_id", "exceptional", "date"], name: "index_transactions_on_household_id_and_exceptional_and_date"
+    t.index ["household_id", "vendor_id", "date"], name: "index_transactions_on_household_id_and_vendor_id_and_date"
     t.index ["recurring_id"], name: "index_transactions_on_recurring_id"
     t.index ["user_id"], name: "index_transactions_on_user_id"
     t.index ["vendor_id"], name: "index_transactions_on_vendor_id"

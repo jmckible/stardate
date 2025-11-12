@@ -13,8 +13,8 @@
     #SpendingMonth{
       data: {
         controller: 'spending-graph',
-        spending_graph_expense_value: @expense_data,
-        spending_graph_income_value: @income_data,
+        spending_graph_expense_value: @expense_data.to_json,
+        spending_graph_income_value: @income_data.to_json,
         spending_graph_start_year_value: (@month.first - 1.month).year,
         spending_graph_start_month_value: (@month.first - 1.month).month,
         spending_graph_start_day_value: (@month.first - 1.month).day
@@ -26,8 +26,8 @@
       #HealthMonth{
         data: {
           controller: 'health-month',
-          health_month_workout_value: @workout_data,
-          health_month_weights_value: @weight_data,
+          health_month_workout_value: @workout_data.to_json,
+          health_month_weights_value: @weight_data.to_json,
           health_month_start_year_value: (@month.first - 1.month).year,
           health_month_start_month_value: (@month.first - 1.month).month,
           health_month_start_day_value: (@month.first - 1.month).day

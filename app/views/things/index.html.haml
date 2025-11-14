@@ -2,7 +2,7 @@
 -# = turbo_stream_from Current.user
 
 = form_with path: things_path do
-  = text_field_tag 'thing', '', class: 'long', id: 'thing_input', data: { controller: 'responsive-focus' }
+  = text_field_tag 'thing', '', class: 'long', autofocus: true
 - if Current.user.recurrings.on(Time.zone.today).any? && Current.user.transactions.on(Time.zone.today).none?
   = button_to '+ Add Daily Recurring', [:recur, Current.user], method: :post, data: { turbo: false }
 - if [1, 15].include?(Time.zone.today.mday) && Current.household.transactions.on(Time.zone.today).where(recurring: nil).none?

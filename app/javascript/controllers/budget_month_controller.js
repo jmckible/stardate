@@ -29,8 +29,8 @@ export default class extends Controller {
       chart: {
         renderTo: this.element,
         type: 'column',
-        height: 280,
-        reflow: true
+        width: 800,
+        height: 280
       },
       credits: {
         enabled: false
@@ -46,28 +46,7 @@ export default class extends Controller {
         }
       },
       xAxis: {
-        categories: this.categoriesValue,
-        labels: {
-          style: {
-            fontSize: '11px',
-            overflow: 'justify'
-          }
-        }
-      },
-      responsive: {
-        rules: [{
-          condition: {
-            maxWidth: 500
-          },
-          chartOptions: {
-            xAxis: {
-              labels: {
-                rotation: -45,
-                align: 'right'
-              }
-            }
-          }
-        }]
+        categories: this.categoriesValue
       },
       series: [{
         name: 'Month',

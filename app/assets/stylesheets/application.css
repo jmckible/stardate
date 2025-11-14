@@ -47,106 +47,23 @@ input[type=text] {
   border: 2px solid #ddd;
   font-size: 1.5em;
   margin: 0.25em 0;
-  width: 100%;
-  max-width: 15em;
-  box-sizing: border-box;
+  width: 15em;
 }
 
 input[type=text].long {
-  max-width: 30em;
-  width: 100%;
-}
-
-@media (max-width: 767px) {
-  input[type=text].long {
-    font-size: 16px; /* Prevents zoom on iOS */
-    padding: 0.7em;
-    border-radius: 4px;
-  }
+  width: 30em;
 }
 
 input.money {
   background: #ffffff url("dollar_sign.png") no-repeat center left;
   padding-left: 1em;
-  width: 100%;
-  max-width: 9em;
+  width: 9em;
 }
 
 textarea {
   border: 2px solid #ddd;
-  width: 100%;
-  max-width: 30em;
+  width: 30em;
   height: 25em;
-  box-sizing: border-box;
-}
-
-/* Mobile-friendly form styling */
-.form-group {
-  margin-bottom: 1em;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 0.3em;
-  font-weight: bold;
-}
-
-.form-group .checkbox {
-  display: flex;
-  align-items: center;
-}
-
-.form-group .checkbox label {
-  display: inline;
-  margin-left: 0.5em;
-}
-
-select {
-  width: 100%;
-  max-width: 15em;
-  padding: 0.5em;
-  font-size: 1em;
-  border: 2px solid #ddd;
-  box-sizing: border-box;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background-color: #fff;
-  border-radius: 0;
-}
-
-/* Date select fields need special handling for mobile */
-select[name*="date"] {
-  display: inline-block;
-  width: auto;
-  margin-right: 0.5em;
-}
-
-@media (max-width: 767px) {
-  .date-selects {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5em;
-  }
-}
-
-.form-actions {
-  margin-top: 1.5em;
-  display: flex;
-  align-items: center;
-  gap: 1em;
-}
-
-.btn-update, .btn-delete {
-  padding: 0.5em 1em;
-  font-size: 1em;
-  cursor: pointer;
-}
-
-@media (max-width: 767px) {
-  select, input, button {
-    font-size: 16px; /* Prevents iOS zoom on focus */
-  }
 }
 
 .clear {

@@ -40,7 +40,7 @@ class Account < ApplicationRecord
 
   def balance
     if has_attribute?(:debit_total) && has_attribute?(:credit_total)
-      read_attribute(:debit_total) - read_attribute(:credit_total)
+      self[:debit_total] - self[:credit_total]
     else
       debits.sum(:amount) - credits.sum(:amount)
     end
@@ -73,39 +73,6 @@ class Account < ApplicationRecord
     transaction.save
 
     transaction
-  end
-
-  # -------------------------------------------------------------------------- #
-  #                              G R A P H I N G                               #
-  # -------------------------------------------------------------------------- #
-
-  def graph_step
-    (graph_end - graph_start) < 365 ? 7 : 30
-  end
-
-  def graph_start
-    transactions.order(:date).first.date
-  end
-
-  def graph_end
-    transactions.order(date: :desc).first.date
-  end
-
-  def graph_x_axis
-    (graph_start..graph_end).step(graph_step).collect{|d| d.strftime('%b %Y')}.to_json.html_safe
-  end
-
-  def graph_y_axis
-    data = []
-
-    (graph_start..graph_end).step(graph_step) do |date|
-      value = balance_on(date)
-      value = value * -1 if income?
-      color = value.negative? ? '#FF00CC' : '#00CCFF'
-      data << { y: value, marker: { fillColor: color } }
-    end
-
-    data.to_json.html_safe
   end
 
   # -------------------------------------------------------------------------- #

@@ -1,11 +1,12 @@
 %h1= @account.name
 
 - if @account.transactions.any?
+  - graph = AccountGraph.new @account, start: 1.year.ago
   #Balance{
     data: {
       controller: 'account-balance',
-      account_balance_categories_value: @account.graph_x_axis,
-      account_balance_balances_value: @account.graph_y_axis
+      account_balance_categories_value: graph.x_axis,
+      account_balance_balances_value: graph.y_axis
     }
   }
 

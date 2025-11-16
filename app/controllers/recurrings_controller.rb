@@ -2,7 +2,7 @@ class RecurringsController < ApplicationController
 
   # GET /recurrings
   def index
-    @recurrings = Current.user.recurrings
+    @recurrings = Current.user.recurrings.includes(:vendor, :tags, :debit, :credit)
   end
 
   # GET /recurrings/1

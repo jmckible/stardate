@@ -1,7 +1,9 @@
-require: rubocop-rails
+
+plugins:
+  - rubocop-rails
 
 AllCops:
-  TargetRubyVersion: 3.3
+  TargetRubyVersion: 3.4
   Include:
     - 'app/**/*.rb'
     - 'lib/**/*.rb'
@@ -10,13 +12,13 @@ AllCops:
     - 'bin/**/*'
     - 'config/**/*'
     - 'db/**/*.rb'
+    - 'node_modules/**/*'
   NewCops: enable
   SuggestExtensions: false
 
-
-###############################################################################
-#                              L A Y O U T                                    #
-###############################################################################
+# ---------------------------------------------------------------------------- #
+#                                 L A Y O U T                                  #
+# ---------------------------------------------------------------------------- #
 Layout/ArgumentAlignment:
   Enabled: false
 
@@ -128,9 +130,9 @@ Lint/SuppressedException:
 Lint/StructNewOverride:
   Enabled: false
 
-###############################################################################
-#                              M E T R I C S                                  #
-###############################################################################
+# ---------------------------------------------------------------------------- #
+#                                M E T R I C S                                 #
+# ---------------------------------------------------------------------------- #
 Metrics/AbcSize:
   Enabled: false
 
@@ -158,9 +160,9 @@ Metrics/ParameterLists:
 Metrics/PerceivedComplexity:
   Enabled: false
 
-###############################################################################
-#                              N A M I N G                                    #
-###############################################################################
+# ---------------------------------------------------------------------------- #
+#                                 N A M I N G                                  #
+# ---------------------------------------------------------------------------- #
 Naming/AccessorMethodName:
   Enabled: false
 
@@ -173,20 +175,29 @@ Naming/ConstantName:
 Naming/FileName:
   Enabled: false
 
+Naming/MemoizedInstanceVariableName:
+  Enabled: false
+
 Naming/MethodParameterName:
   Enabled: false
 
-Naming/PredicateName:
+Naming/PredicateMethod:
+  Enabled: false
+
+Naming/PredicatePrefix:
   Enabled: false
 
 Naming/VariableNumber:
   Enabled: false
 
-###############################################################################
-#                                  R A I L S                                  #
-###############################################################################
+# ---------------------------------------------------------------------------- #
+#                                  R A I L S                                   #
+# ---------------------------------------------------------------------------- #
 Rails:
   Enabled: true
+
+Rails/ActionOrder:
+  Enabled: false
 
 Rails/ContentTag:
   Enabled: false
@@ -221,10 +232,16 @@ Rails/I18nLocaleTexts:
 Rails/InverseOf:
   Enabled: false
 
+Rails/LexicallyScopedActionFilter:
+  Enabled: false
+
 Rails/RakeEnvironment:
   Enabled: false
 
 Rails/SkipsModelValidations:
+  Enabled: false
+
+Rails/StrongParametersExpect:
   Enabled: false
 
 Rails/OutputSafety:
@@ -308,6 +325,9 @@ Style/FloatDivision:
 Style/FrozenStringLiteralComment:
   Enabled: false
 
+Style/FormatStringToken:
+  Enabled: false
+
 Style/GuardClause:
   Enabled: false
 
@@ -350,7 +370,13 @@ Style/OpenStructUse:
 Style/ParallelAssignment:
   Enabled: false
 
+Style/RaiseArgs:
+  Enabled: false
+
 Style/RedundantConstantBase:
+  Enabled: false
+
+Style/RedundantParentheses:
   Enabled: false
 
 Style/RedundantRegexpEscape:
@@ -363,6 +389,9 @@ Style/RedundantSelf:
   Enabled: false
 
 Style/RegexpLiteral:
+  Enabled: false
+
+Style/SafeNavigationChainLength:
   Enabled: false
 
 Style/SelfAssignment:
@@ -387,6 +416,9 @@ Style/StringConcatenation:
   Enabled: false
 
 Style/StringLiterals:
+  Enabled: false
+
+Style/SuperWithArgsParentheses:
   Enabled: false
 
 Style/SymbolArray:

@@ -6,7 +6,8 @@
 
   %tbody
     - tags.each do |tag|
+      - stats = @tag_stats[tag.id]
       %tr
         %td= link_to tag.name, tag_path(tag)
-        %td.num= number_with_delimiter Current.household.transactions.visible_by(Current.user).tagged_with(tag).count
-        %td.num= number_to_currency Current.household.transactions.visible_by(Current.user).tagged_with(tag).sum(:amount), precision: 0
+        %td.num= stats ? number_with_delimiter(stats.transaction_count) : 0
+        %td.num= stats ? number_to_currency(stats.total_amount, precision: 0) : number_to_currency(0, precision: 0)

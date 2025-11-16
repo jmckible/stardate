@@ -34,7 +34,10 @@ class AccountsController < ApplicationController
 
   def show
     @account = Current.household.accounts.find params[:id]
-    @transactions = @account.transactions.since(Current.user.created_at).order(date: :desc).page params[:page]
+    @transactions = @account.transactions.since(Current.user.created_at)
+      .includes(:vendor, :tags, :debit, :credit)
+      .order(date: :desc)
+      .page params[:page]
   end
 
   def new

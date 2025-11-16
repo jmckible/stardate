@@ -16,7 +16,7 @@ class TransactionsController < ApplicationController
       @period = Current.user.created_at.beginning_of_month.to_date..Current.user.created_at.end_of_month.to_date
     end
 
-    @transactions = Current.household.transactions.during @period
+    @transactions = Current.household.transactions.during(@period).includes(:vendor, :tags, :debit, :credit, :user)
   end
 
   # GET /transactions/:id

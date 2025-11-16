@@ -7,9 +7,10 @@
     %th Amount
 
   - @vendors.each do |vendor|
+    - stats = @vendor_stats[vendor.id]
     %tr
       %td= link_to vendor.name, vendor
-      %td.num= number_with_delimiter Current.household.transactions.visible_by(Current.user).from_vendor(vendor).count
-      %td.num= number_to_currency Current.household.transactions.visible_by(Current.user).from_vendor(vendor).sum(:amount), precision: 0
+      %td.num= stats ? number_with_delimiter(stats.transaction_count) : 0
+      %td.num= stats ? number_to_currency(stats.total_amount, precision: 0) : number_to_currency(0, precision: 0)
 
 = will_paginate @vendors

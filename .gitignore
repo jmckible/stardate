@@ -50,3 +50,5 @@ yarn-debug.log*
 
 .env
 .env.local
+
+/.claude/*_plan.md

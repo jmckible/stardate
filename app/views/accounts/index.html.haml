@@ -76,9 +76,10 @@
 
 %h2 Expenses
 %table.data
-  = render partial: 'accounts', object: @expense_accounts
+  = render partial: 'accounts', object: @expense_accounts, locals: { show_deferral: true }
   %tr.total
     %td Net
+    %td
     %td.num= color_money Current.household.transactions.expense_debit.since(Current.user.created_at).sum(:amount)
     %td.credit.num= number_with_delimiter Current.household.transactions.expense_credit.since(Current.user.created_at).sum(:amount)
     %td.num= color_money(Current.household.transactions.expense_debit.since(Current.user.created_at).sum(:amount) - Current.household.transactions.expense_credit.since(Current.user.created_at).sum(:amount))

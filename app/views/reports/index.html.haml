@@ -59,22 +59,32 @@
 %table
   %tr
     %th Account
+    %th Biweekly
+    %th Annual
     %th Transactions
     %th Total
   - @expense_accounts.each do |account|
+    - non_exceptional_total = @non_exceptional_account_totals[account.id] || 0
     %tr
       %td= account.name
+      %td.count= color_money((non_exceptional_total / @duration) * 15 * -1)
+      %td.count= color_money((non_exceptional_total / @duration) * 365 * -1)
       %td.count= account.transaction_count
       %td.count= color_money(account.total * -1)
-
 
 %table
   %tr
     %th Account
+    %th Biweekly
+    %th Annual
     %th Transactions
     %th Total
   - @expense_tags.each do |tag|
+    - non_exceptional_total = @non_exceptional_tag_totals[tag.id] || 0
     %tr
       %td= tag.name
+      %td.count= color_money((non_exceptional_total / @duration) * 15 * -1)
+      %td.count= color_money((non_exceptional_total / @duration) * 365 * -1)
       %td.count= tag.transaction_count
       %td.count= color_money(tag.total * -1)
+

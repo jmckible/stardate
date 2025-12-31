@@ -50,28 +50,5 @@ class Household < ApplicationRecord
     checking.balance + accounts.asset.earmark.with_balances.sum(&:balance)
   end
 
-  def biweekly_budget_balance
-    if Time.zone.today.mday >= 15
-      date = (Date.new Time.zone.today.year, Time.zone.today.month, 15).beginning_of_day
-    else
-      date = (Date.new Time.zone.today.year, Time.zone.today.month, 1).beginning_of_day
-    end
-
-    spending = checking.credits.expense_debit.since(date).not_exceptional.sum(:amount)
-    (monthly_budget_target / 2) - spending - accounts.sum(:budget)
-  end
-
-  def last_period_budget_balance
-    if Time.zone.today.mday >= 15
-      range = Date.new(Time.zone.today.year, Time.zone.today.month, 1)..Date.new(Time.zone.today.year, Time.zone.today.month, 15)
-    else
-      last_month = 1.month.ago
-      range = Date.new(last_month.year, last_month.month, 15)..last_month.end_of_month
-    end
-
-    spending = checking.credits.expense_debit.during(range).not_exceptional.sum(:amount)
-    (monthly_budget_target / 2) - spending - accounts.sum(:budget)
-  end
-
   validates :name, presence: true
 end

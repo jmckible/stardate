@@ -1,11 +1,15 @@
 %tr
   %th Account
+  - if local_assigns[:show_budget]
+    %th Budget
   %th Debit
   %th Credit
   %th Balance
 - accounts.each do |account|
   %tr
     %td= link_to account.name, account
+    - if local_assigns[:show_budget]
+      %td.num.debit= not_zero(account.budget) if account.budget
     %td.num.debit= not_zero account.debit_total
     %td.num.credit= not_zero account.credit_total
     %td.num= color_money account.balance

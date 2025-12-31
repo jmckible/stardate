@@ -59,15 +59,17 @@
 
 %h2 Assets
 %table.data
-  = render partial: 'accounts', object: @cash_accounts
+  = render partial: 'accounts', object: @cash_accounts, locals: { show_budget: true }
   %tr.total
     %td Cash
+    %td.num= color_money @cash_accounts.sum(:budget)
     %td
     %td
     %td.num= color_money Current.household.checking_plus_earmarks
-  = render partial: 'accounts', object: @other_assets
+  = render partial: 'accounts', object: @other_assets, locals: { show_budget: true }
   %tr.total
     %td Net
+    %td
     %td.num= color_money Current.household.transactions.asset_debit.since(Current.user.created_at).sum(:amount)
     %td.credit.num= number_with_delimiter Current.household.transactions.asset_credit.since(Current.user.created_at).sum(:amount)
     %td.num= color_money(Current.household.transactions.asset_debit.since(Current.user.created_at).sum(:amount) - Current.household.transactions.since(Current.user.created_at).asset_credit.sum(:amount))

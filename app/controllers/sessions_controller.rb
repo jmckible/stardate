@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
   skip_before_action :login_required
-  skip_before_action :verify_authenticity_token
 
   def new
     session_login

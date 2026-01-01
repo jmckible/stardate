@@ -5,46 +5,32 @@
   %p Added by #{@transaction.user.name}
 
   = form_with model: @transaction, data: { remote: true, turbo: false } do |f|
-    .form-group
-      %label Date
-      .date-selects= f.date_select :date, order: [:month, :day, :year]
+    %p= f.date_select :date,          order: [:month, :day, :year]
+    %p Amount
+    %p= f.text_field :amount,        class: 'money'
+    %p Vendor
+    %p= f.text_field :vendor_name, default: 'vendor'
+    %p Description
+    %p= f.text_field :description, default: 'description'
+    %p Tags
+    %p= f.text_field :tag_list,    default: 'tags'
 
-    .form-group
-      %label Amount
-      %div= f.text_field :amount, class: 'money'
+    %p
+      = f.check_box :secret
+      = f.label :secret, 'Top Secret'
 
-    .form-group
-      %label Vendor
-      %div= f.text_field :vendor_name, default: 'vendor'
+    %p
+      = f.check_box :exceptional
+      = f.label :exceptional, 'Exceptional'
 
-    .form-group
-      %label Description
-      %div= f.text_field :description, default: 'description'
+    %p
+      Debit:
+      = f.collection_select :debit_id, Current.household.accounts.active, :id, :name, include_blank: true
+    %p
+      Credit:
+      = f.collection_select :credit_id, Current.household.accounts.active, :id, :name, include_blank: true
+    %p
+      = submit_tag 'Update'
+      or
 
-    .form-group
-      %label Tags
-      %div= f.text_field :tag_list, default: 'tags'
-
-    .form-group
-      .checkbox
-        = f.check_box :secret
-        = f.label :secret, 'Top Secret'
-
-    .form-group
-      .checkbox
-        = f.check_box :exceptional
-        = f.label :exceptional, 'Exceptional'
-
-    .form-group
-      %label Debit
-      %div= f.collection_select :debit_id, Current.household.accounts.active, :id, :name, include_blank: true
-
-    .form-group
-      %label Credit
-      %div= f.collection_select :credit_id, Current.household.accounts.active, :id, :name, include_blank: true
-
-    .form-actions
-      = submit_tag 'Update', class: 'btn-update'
-
-  %br
-  %span.delete= button_to 'Delete', @transaction, method: :delete, data: { turbo: false }, class: 'btn-delete'
+  %span.delete= button_to 'delete', @transaction, method: :delete, data: { turbo: false }

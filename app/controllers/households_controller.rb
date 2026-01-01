@@ -8,7 +8,7 @@ class HouseholdsController < ApplicationController
 
   # POST /households/:id/fund
   def fund
-    Current.household.accounts.asset.where('budget > 0').each(&:fund)
+    Current.household.accounts.asset.where('budget > 0').with_balances.each(&:fund)
     redirect_to things_url
   end
 

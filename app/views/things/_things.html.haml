@@ -1,14 +1,12 @@
 - unless things.empty?
-  .table-responsive
-    %table
-      %thead
-        %tr
-          %th Date
-          %th Description
-          %th Debit
-          %th Credit
-          %th Amount
+  %table
+    %tr
+      %th Date
+      %th
+      %th Debit
+      %th Credit
+      %th Amount
 
-      %tbody
-        - things.each do |thing|
-          = render 'things/thing', thing: thing
+    %tbody
+      - things.each do |thing|
+        = render 'things/thing', thing: thing

@@ -1,8 +1,8 @@
-= turbo_stream_from Current.household
-= turbo_stream_from Current.user
+-# = turbo_stream_from Current.household
+-# = turbo_stream_from Current.user
 
 = form_with path: things_path do
-  = text_field_tag 'thing', '', class: 'long', id: 'thing_input', data: { controller: 'responsive-focus' }
+  = text_field_tag 'thing', '', class: 'long', autofocus: true
 - if Current.user.recurrings.on(Time.zone.today).any? && Current.user.transactions.on(Time.zone.today).none?
   = button_to '+ Add Daily Recurring', [:recur, Current.user], method: :post, data: { turbo: false }
 - if [1, 15].include?(Time.zone.today.mday) && Current.household.transactions.on(Time.zone.today).where(recurring: nil).none?
@@ -13,8 +13,8 @@
     #SpendingMonth{
       data: {
         controller: 'spending-graph',
-        spending_graph_expense_value: @month.collect{|date| Current.household.sum_non_exceptional_expenses(@month.first..date)},
-        spending_graph_income_value: @month.collect{|date| Current.household.sum_non_exceptional_income @month.first..date},
+        spending_graph_expense_value: @expense_data.to_json,
+        spending_graph_income_value: @income_data.to_json,
         spending_graph_start_year_value: (@month.first - 1.month).year,
         spending_graph_start_month_value: (@month.first - 1.month).month,
         spending_graph_start_day_value: (@month.first - 1.month).day
@@ -22,12 +22,12 @@
     }
 
   = cache [Current.user, :health] do
-    - if Current.user.workouts.during(@month).any? || Current.user.weights.during(@month).any?
+    - if @has_health_data
       #HealthMonth{
         data: {
           controller: 'health-month',
-          health_month_workout_value: @month.collect{|date| Current.user.workouts.on(date).sum(:minutes)},
-          health_month_weights_value: Current.user.weight_json(@month),
+          health_month_workout_value: @workout_data.to_json,
+          health_month_weights_value: @weight_data.to_json,
           health_month_start_year_value: (@month.first - 1.month).year,
           health_month_start_month_value: (@month.first - 1.month).month,
           health_month_start_day_value: (@month.first - 1.month).day
@@ -39,8 +39,8 @@
   #BudgetMonth{
     data: {
       controller: 'budget-month',
-      budget_month_categories_value: Current.household.accounts.dashboard.collect{|a| a.name.gsub(' Deferral', '')},
-      budget_month_balances_value: Current.household.budget_month_values.to_json
+      budget_month_categories_value: @budget_categories,
+      budget_month_balances_value: @budget_balances.to_json
     }
   }
 
@@ -49,10 +49,6 @@
     = link_to 'This Year', '#'
     = color_money(Current.household.sum_non_exceptional_expenses(1.year.ago..Time.zone.today) * -1)
 
-  -# %h3
-  -#   = link_to Current.household.checking.name, Current.household.checking
-  -#   = color_money Current.household.checking.balance
-
   %h3
     = link_to 'Cash', accounts_path
     = color_money Current.household.checking_plus_earmarks
@@ -60,24 +56,5 @@
   %h3
     = link_to 'Credit Card', accounts_path
     = color_money Current.household.credit_card.balance
-
-  - if [1, 2, 3, 15, 16, 17].include?(Time.zone.now.mday)
-    %h3
-      = link_to 'Last Two Weeks', accounts_path
-      = color_money Current.household.last_period_budget_balance
-
-  -# - Current.household.accounts.asset.each do |account|
-  -#   - if account.balance.negative? && !account.dashboard?
-  -#     %h3
-  -#       = link_to account.name, account
-  -#       = color_money account.balance
-
-  %h3
-    = link_to 'Budget Remaining', accounts_path
-    = color_money Current.household.biweekly_budget_balance
-
-  -# %h3
-  -#   = link_to 'Cash Income This Year', '#'
-  -#   = color_money Current.household.sum_non_exceptional_income((1.year.ago..Time.zone.today), Current.household.checking)
 
 = render partial: 'things', object: @things

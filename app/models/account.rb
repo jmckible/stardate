@@ -18,11 +18,32 @@ class Account < ApplicationRecord
   scope :earmark,    -> { where(earmark: true) }
   scope :other_than, ->(account){ where.not(id: account.id) }
 
-  #############################################################################
-  #                                 B A L A N C E                             #
-  #############################################################################
+  # Efficiently load accounts with their balance totals computed in SQL using scalar subqueries
+  scope :with_balances, -> {
+    select('accounts.*,
+            (SELECT COALESCE(SUM(amount), 0) FROM transactions WHERE debit_id = accounts.id) as debit_total,
+            (SELECT COALESCE(SUM(amount), 0) FROM transactions WHERE credit_id = accounts.id) as credit_total')
+  }
+
+  # -------------------------------------------------------------------------- #
+  #                               B A L A N C E                                #
+  # -------------------------------------------------------------------------- #
+
+  # Use precomputed total if available from with_balances scope, otherwise query
+  def debit_total
+    has_attribute?(:debit_total) ? read_attribute(:debit_total) : debits.sum(:amount)
+  end
+
+  def credit_total
+    has_attribute?(:credit_total) ? read_attribute(:credit_total) : credits.sum(:amount)
+  end
+
   def balance
-    debits.sum(:amount) - credits.sum(:amount)
+    if has_attribute?(:debit_total) && has_attribute?(:credit_total)
+      self[:debit_total] - self[:credit_total]
+    else
+      debits.sum(:amount) - credits.sum(:amount)
+    end
   end
 
   def balance_on(date)
@@ -54,40 +75,9 @@ class Account < ApplicationRecord
     transaction
   end
 
-  #############################################################################
-  #                                 G R A P H I N G                           #
-  #############################################################################
-  def graph_step
-    (graph_end - graph_start) < 365 ? 7 : 30
-  end
+  # -------------------------------------------------------------------------- #
+  #                            V A L I D A T I O N                             #
+  # -------------------------------------------------------------------------- #
 
-  def graph_start
-    transactions.order('date').first.date
-  end
-
-  def graph_end
-    transactions.order('date DESC').first.date
-  end
-
-  def graph_x_axis
-    (graph_start..graph_end).step(graph_step).collect{|d| d.strftime('%b %Y')}.to_json.html_safe
-  end
-
-  def graph_y_axis
-    data = []
-
-    (graph_start..graph_end).step(graph_step) do |date|
-      value = balance_on(date)
-      value = value * -1 if income?
-      color = value.negative? ? '#FF00CC' : '#00CCFF'
-      data << { y: value, marker: { fillColor: color } }
-    end
-
-    data.to_json.html_safe
-  end
-
-  #############################################################################
-  #                             V A L I D A T I O N                           #
-  #############################################################################
   validates_presence_of :household_id, :name
 end

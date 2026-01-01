@@ -23,15 +23,15 @@ class Transaction < ApplicationRecord
   scope :income_credit,   ->{ includes(:credit).where(accounts: { ledger: 'income' }) }
   scope :income_debit,    ->{ includes(:debit).where(accounts: { ledger: 'income' }) }
 
-  scope :before, ->(date){ where("transactions.date <= ?", date) }
+  scope :before, ->(date){ where(transactions: { date: ..date }) }
   scope :during, ->(period){ where(date: period).order('transactions.date, transactions.id') }
   scope :on, ->(date){ where date: date }
   scope :from_vendor, ->(vendor){ where(vendor_id: vendor.id) if vendor }
 
-  scope :since, ->(date){ where("transactions.date >= ?", date)}
+  scope :since, ->(date){ where(transactions: { date: date.. })}
 
   scope :not_exceptional, ->{ where(exceptional: false) }
-  scope :visible_by, ->(user){ where('transactions.date >= ? ', user.created_at)}
+  scope :visible_by, ->(user){ where(transactions: { date: user.created_at.. })}
 
   def vendor_name
     vendor&.name

@@ -1,0 +1,62 @@
+name: Scheduled Tasks
+
+on:
+  schedule:
+    # Daily recurring transactions at 5:30 AM PST (13:30 UTC)
+    # Runs at 13:30 UTC every day (off :30 to avoid high-load periods)
+    - cron: '30 13 * * *'
+    
+    # Account funding on 1st and 15th at 5:30 AM PST (13:30 UTC)
+    # Runs at 13:30 UTC on the 1st and 15th of every month
+    - cron: '30 13 1,15 * *'
+  
+  # Allow manual triggering for testing
+  workflow_dispatch:
+    inputs:
+      task:
+        description: 'Which task to run'
+        required: true
+        type: choice
+        options:
+          - recur
+          - accounts:fund
+          - both
+
+jobs:
+  run-recur:
+    name: Daily Recurring Transactions
+    runs-on: ubuntu-latest
+    # Run on daily schedule OR manual trigger with 'recur' or 'both'
+    if: |
+      (github.event.schedule == '30 13 * * *') ||
+      (github.event_name == 'workflow_dispatch' && (github.event.inputs.task == 'recur' || github.event.inputs.task == 'both'))
+    steps:
+      - name: Install flyctl
+        uses: superfly/flyctl-actions/setup-flyctl@master
+      
+      - name: Run recurring transaction task
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+        run: |
+          echo "Running daily recurring transactions task..."
+          flyctl ssh console -a stardate -C "rails recur"
+          echo "✓ Recurring transactions task completed"
+
+  run-accounts-fund:
+    name: Account Funding (1st & 15th)
+    runs-on: ubuntu-latest
+    # Run on 1st/15th schedule OR manual trigger with 'accounts:fund' or 'both'
+    if: |
+      (github.event.schedule == '30 13 1,15 * *') ||
+      (github.event_name == 'workflow_dispatch' && (github.event.inputs.task == 'accounts:fund' || github.event.inputs.task == 'both'))
+    steps:
+      - name: Install flyctl
+        uses: superfly/flyctl-actions/setup-flyctl@master
+      
+      - name: Run account funding task
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+        run: |
+          echo "Running account funding task..."
+          flyctl ssh console -a stardate -C "rails accounts:fund"
+          echo "✓ Account funding task completed"

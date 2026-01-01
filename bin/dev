@@ -1,2 +1,89 @@
 #!/usr/bin/env ruby
-exec "./bin/rails", "server", *ARGV
+require 'fileutils'
+
+APP_ROOT = File.expand_path('..', __dir__)
+
+# --------------------------------------------------------------------------- #
+#                              H E L P E R S                                  #
+# --------------------------------------------------------------------------- #
+
+def red(text)
+  "\e[31m#{text}\e[0m"
+end
+
+def green(text)
+  "\e[32m#{text}\e[0m"
+end
+
+def yellow(text)
+  "\e[33m#{text}\e[0m"
+end
+
+def installed?(command)
+  system("command -v #{command} > /dev/null 2>&1")
+end
+
+def docker_running?
+  system("docker info > /dev/null 2>&1")
+end
+
+def docker_services_running?
+  output = `docker compose ps --services --filter "status=running" 2>/dev/null`
+  output.include?('postgres')
+end
+
+def start_docker_services
+  # Start services from root docker-compose.yml
+  system("docker compose up -d")
+  puts "Waiting for services to start..."
+  sleep 2
+end
+
+# --------------------------------------------------------------------------- #
+#                                 M A I N                                     #
+# --------------------------------------------------------------------------- #
+
+FileUtils.chdir APP_ROOT do
+  puts "🚀 Starting development environment..."
+  puts
+
+  # Check Docker
+  print "Checking Docker... "
+  unless docker_running?
+    puts red("✗")
+    puts red("Error: Docker is not running")
+    puts "Please start Docker Desktop and try again"
+    exit 1
+  end
+  puts green("✓")
+
+  # Check Foreman
+  print "Checking Foreman... "
+  unless installed?('foreman')
+    puts yellow("not found")
+    puts "Installing Foreman..."
+    system('gem install foreman', exception: true)
+    puts green("✓ Installed")
+  else
+    puts green("✓")
+  end
+
+  # Check Docker services
+  print "Checking Docker services... "
+  unless docker_services_running?
+    puts yellow("not running")
+    puts "Starting Docker services..."
+    start_docker_services
+    puts green("✓ Started")
+  else
+    puts green("✓")
+  end
+
+  puts
+  puts "#{green('All checks passed!')} Starting services..."
+  puts yellow("Press Ctrl+C to stop all services")
+  puts
+
+  # Start foreman
+  exec 'foreman start -f Procfile.dev'
+end

@@ -16,7 +16,7 @@ class TransactionsController < ApplicationController
       @period = Current.user.created_at.beginning_of_month.to_date..Current.user.created_at.end_of_month.to_date
     end
 
-    @transactions = Current.household.transactions.during @period
+    @transactions = Current.household.transactions.during(@period).includes(:vendor, :tags, :debit, :credit, :user)
   end
 
   # GET /transactions/:id
@@ -49,7 +49,7 @@ class TransactionsController < ApplicationController
 
   protected
   def transaction_params
-    params.require(:transaction).permit(:amount, :credit_id, :date, :debit_id, :description, :exceptional, :tag_list, :secret, :vendor_name)
+    params.expect(transaction: [:amount, :credit_id, :date, :debit_id, :description, :exceptional, :tag_list, :secret, :vendor_name])
   end
 
 end

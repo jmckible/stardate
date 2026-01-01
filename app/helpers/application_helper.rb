@@ -41,7 +41,7 @@ module ApplicationHelper
 
   def modal(&block)
     turbo_frame_tag 'modal' do
-      content_tag :div, class: 'modal-background', data: { controller: 'modal', action: 'click->modal#close'} do
+      content_tag :div, class: 'modal-background', data: { controller: 'modal', action: 'mousedown->modal#handleMouseDown click->modal#close'} do
         content_tag :div, class: 'modal-body' do
           yield block
         end

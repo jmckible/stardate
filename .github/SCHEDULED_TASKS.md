@@ -64,10 +64,11 @@ You can manually trigger the workflow to test it:
 
 1. GitHub Actions triggers at scheduled time
 2. Workflow installs `flyctl` CLI tool
-3. Connects to your Fly.io app using the API token
-4. Runs the Rails task via SSH console
-5. Your Fly machine auto-starts (if stopped), runs the task, then auto-stops
-6. Total runtime: typically 5-30 seconds per task
+3. Makes an HTTP request to `https://stardate.fly.dev/` to wake up your stopped machine
+4. Waits 5 seconds for machine to fully start
+5. Connects via SSH using the API token and runs the Rails task
+6. Your Fly machine auto-stops after 5 minutes of inactivity
+7. Total runtime: typically 15-35 seconds per task (including wake-up time)
 
 ## Troubleshooting
 

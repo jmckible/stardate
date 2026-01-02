@@ -38,13 +38,22 @@ jobs:
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
         run: |
-          echo "Running daily recurring transactions task..."
+          echo "=== Daily Recurring Transactions ==="
+          echo "Date: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          echo ""
+          
           # Wake up the machine with an HTTP request
+          echo "Waking up application..."
           curl -f https://stardate.fly.dev/ || true
           sleep 5
+          
           # Now SSH in and run the task
+          echo ""
+          echo "Running task..."
           flyctl ssh console -a stardate -C "bin/rails recur"
-          echo "✓ Recurring transactions task completed"
+          
+          echo ""
+          echo "=== Task Completed ==="
 
   run-accounts-fund:
     name: Account Funding (1st & 15th)
@@ -61,10 +70,19 @@ jobs:
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
         run: |
-          echo "Running account funding task..."
+          echo "=== Account Funding (1st & 15th) ==="
+          echo "Date: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          echo ""
+          
           # Wake up the machine with an HTTP request
+          echo "Waking up application..."
           curl -f https://stardate.fly.dev/ || true
           sleep 5
+          
           # Now SSH in and run the task
+          echo ""
+          echo "Running task..."
           flyctl ssh console -a stardate -C "bin/rails accounts:fund"
-          echo "✓ Account funding task completed"
+          
+          echo ""
+          echo "=== Task Completed ==="
